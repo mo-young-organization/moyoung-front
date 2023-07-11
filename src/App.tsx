@@ -12,7 +12,7 @@ function App() {
 
   return (
     <>
-      <div>ㅎㅇ</div>
+      <div></div>
     </>
   );
 }

@@ -1,4 +1,7 @@
 import axios from 'axios';
+import Home from './pages/Home';
+import NavBar from './components/NavBar';
+import Footer from './components/Footer';
 
 function App() {
   console.log('hi');
@@ -11,9 +14,13 @@ function App() {
     .catch(error => console.log(error));
 
   return (
-    <>
-      <div></div>
-    </>
+    <div>
+      <NavBar />
+      <div>
+        <Home />
+      </div>
+      <Footer />
+    </div>
   );
 }
 

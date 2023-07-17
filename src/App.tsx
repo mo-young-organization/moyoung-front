@@ -2,6 +2,7 @@ import axios from 'axios';
 import Home from './pages/Home';
 import NavBar from './components/NavBar';
 import Footer from './components/Footer';
+import { styled } from 'styled-components';
 
 function App() {
   console.log('hi');
@@ -14,14 +15,28 @@ function App() {
     .catch(error => console.log(error));
 
   return (
-    <div>
+    <Wrapper>
       <NavBar />
-      <div>
+      <ContentWrapper>
         <Home />
-      </div>
+      </ContentWrapper>
       <Footer />
-    </div>
+    </Wrapper>
   );
 }
 
 export default App;
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100vh;
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;

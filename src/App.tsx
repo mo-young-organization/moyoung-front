@@ -16,11 +16,13 @@ function App() {
 
   return (
     <Wrapper>
-      <NavBar />
-      <ContentWrapper>
-        <Home />
-      </ContentWrapper>
-      <Footer />
+      <div>
+        <NavBar />
+        <ContentWrapper>
+          <Home />
+        </ContentWrapper>
+        <Footer />
+      </div>
     </Wrapper>
   );
 }
@@ -31,12 +33,14 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+
+  height: 100%;
+  width: 100%;
 `;
 
 const ContentWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
 `;

@@ -37,6 +37,7 @@ const Container = styled.div`
 
     width: 465px;
     height: 440px;
+    border-radius: 36px;
     margin: 40px;
   }
 `;

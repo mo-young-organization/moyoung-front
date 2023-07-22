@@ -1,27 +1,24 @@
+import React from 'react';
 import styled from 'styled-components';
 
 type NameProps = {
   name: string,
   role: string,
   email: string,
-  Icon?: any,
   link?: string,
+  children?: React.ReactNode,
 };
 
-const Name = ({ name, role, email, Icon, link }: NameProps) => {
+const Name = ({ name, role, email, link, children }: NameProps) => {
   return (
     <Container>
-      <div>
+      <div className='name'>
         <span>{name}</span> <span className="role">{role}</span>
         <div className="email">{email}</div>
       </div>
-      {Icon && (
-        <div className='github-link'>
-          <a href={link}>
-            <Icon />
-          </a>
-        </div>
-      )}
+      <div className="github-link">
+        <a href={link} target="_blank">{children}</a>
+      </div>
     </Container>
   );
 };
@@ -32,6 +29,10 @@ const Container = styled.div`
   display: flex;
 
   margin-top: 10px;
+
+.name {
+    width: 110px;
+}
 
   .role {
     font-size: 14px;
@@ -44,7 +45,12 @@ const Container = styled.div`
   }
 
   .github-link {
-    a:link{text-decoration:none};
-    a:visited,a:active{color:black};
+    a:link {
+      text-decoration: none;
+    }
+    a:visited,
+    a:active {
+      color: black;
+    }
   }
 `;

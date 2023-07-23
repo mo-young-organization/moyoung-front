@@ -1,8 +1,8 @@
 import axios from 'axios';
-import Home from './pages/Home';
-import NavBar from './components/NavBar';
-import Footer from './components/Footer/Footer';
+
 import { styled } from 'styled-components';
+import RoutingPage from './pages/RoutingPage';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   console.log('hi');
@@ -16,13 +16,9 @@ function App() {
 
   return (
     <Wrapper>
-      <Conatainer>
-        <NavBar />
-        <ContentWrapper>
-          <Home />
-        </ContentWrapper>
-        <Footer />
-      </Conatainer>
+      <BrowserRouter>
+        <RoutingPage />
+      </BrowserRouter>
     </Wrapper>
   );
 }
@@ -35,17 +31,4 @@ const Wrapper = styled.div`
   justify-content: space-between;
 
   width: 100vw;
-`;
-
-const Conatainer = styled.div`
-  width: 100%;
-`
-
-const ContentWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  width: 100%;
 `;

@@ -5,11 +5,11 @@ type Props = {
 };
 
 const MovieTopFive = ({ dummy }: Props) => {
-  console.log(dummy.map(el => el.MOVIE));
+  
   return (
     <Container>
-        {dummy.map(el => (
-          <MovieBox>{el.MOVIE}</MovieBox>
+        {dummy.map((el,idx) => (
+          <MovieBox key={idx}>{el.MOVIE}</MovieBox>
         ))}
     </Container>
   );

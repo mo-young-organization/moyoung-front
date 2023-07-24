@@ -1,15 +1,34 @@
 import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
+import { useState } from 'react';
 
 const Search = () => {
+  const [movieTitle, setMovieTitle] = useState('');
+
+  const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setMovieTitle(event.target.value);
+  };
+
+  const buttonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setMovieTitle('');
+    console.log(movieTitle);
+  };
+
   return (
     <Container>
-      <Label id="searchinput">
-        <SearchInput id="searchinput" type="text" placeholder="영화 제목을 검색해보세요" />
-        <SearchButton>
+      <Form id="searchinput" onSubmit={buttonClickHandler}>
+        <SearchInput
+          value={movieTitle}
+          id="searchinput"
+          type="text"
+          placeholder="영화 제목을 검색해보세요"
+          onChange={movieTitleHandler}
+        />
+        <SearchButton type="submit">
           <LiaSearchSolid />
         </SearchButton>
-      </Label>
+      </Form>
     </Container>
   );
 };
@@ -21,7 +40,7 @@ const Container = styled.div`
   height: 72px;
 `;
 
-const Label = styled.label`
+const Form = styled.form`
   display: flex;
   align-items: center;
 

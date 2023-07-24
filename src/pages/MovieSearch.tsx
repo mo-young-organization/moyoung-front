@@ -2,7 +2,7 @@ import { styled } from 'styled-components';
 import Search from '../components/MovieSearch/Search';
 import MovieTopFive from '../components/MovieSearch/MovieTopFive';
 
-import Dummy from '../data/dummy';
+import Dummy from "../data/Dummy"
 
 const MovieSearch = () => {
   return (

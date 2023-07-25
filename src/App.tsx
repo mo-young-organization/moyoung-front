@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 import { styled } from 'styled-components';
 import RoutingPage from './pages/RoutingPage';
 import { BrowserRouter } from 'react-router-dom';
@@ -28,6 +27,5 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   width: 100vw;
 `;

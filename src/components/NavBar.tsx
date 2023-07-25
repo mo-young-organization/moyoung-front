@@ -10,6 +10,7 @@ const NavBar = () => {
   };
 
   const loginClickHandler = () => {
+    navigate('/login');
     console.log('로그인 클릭');
   };
 
@@ -52,5 +53,7 @@ const Container = styled.div`
     align-items: center;
     background-color: yellow;
     margin-right: 100px;
+
+    cursor: pointer;
   }
 `;

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { styled } from 'styled-components';
 import RoutingPage from './pages/RoutingPage';
 import { BrowserRouter } from 'react-router-dom';
+import GlobalStyles from './style/GlobalStyle';
 
 function App() {
   const api_key = import.meta.env.VITE_API_KEY;
@@ -16,6 +17,7 @@ function App() {
   return (
     <Wrapper>
       <BrowserRouter>
+        <GlobalStyles />
         <RoutingPage />
       </BrowserRouter>
     </Wrapper>

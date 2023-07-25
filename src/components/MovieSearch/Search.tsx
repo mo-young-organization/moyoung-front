@@ -22,7 +22,7 @@ const Search = () => {
           value={movieTitle}
           id="searchinput"
           type="text"
-          placeholder="영화 제목을 검색해보세요"
+          placeholder="영화 제목을 검색해보세요."
           onChange={movieTitleHandler}
         />
         <SearchButton type="submit">

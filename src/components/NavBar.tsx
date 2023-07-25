@@ -1,16 +1,27 @@
 import { styled } from 'styled-components';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
+import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
+  const navigate = useNavigate();
+
+  const logoClickHandler = () => {
+    navigate('/');
+  };
 
   const loginClickHandler = () => {
-    console.log('로그인 클릭')
-  }
+    console.log('로그인 클릭');
+  };
 
   return (
     <Container>
-        <div className="logo">로고</div>
-        <div className="login" onClick={loginClickHandler}><PermIdentityOutlinedIcon />로그인</div>
+      <div className="logo" onClick={logoClickHandler}>
+        로고
+      </div>
+      <div className="login" onClick={loginClickHandler}>
+        <PermIdentityOutlinedIcon />
+        로그인
+      </div>
     </Container>
   );
 };
@@ -18,6 +29,7 @@ const NavBar = () => {
 export default NavBar;
 
 const Container = styled.div`
+  background-color: red;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,6 +43,8 @@ const Container = styled.div`
 
     width: 100px;
     height: 50px;
+
+    cursor: pointer;
   }
 
   .login {

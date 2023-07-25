@@ -1,7 +1,12 @@
 import { styled } from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const Box = () => {
+  const navigate = useNavigate();
+  
   const theaterHandler = () => {
+    navigate('moviesearch');
+
     console.log('영화관 찾기');
   };
 
@@ -39,5 +44,6 @@ const Container = styled.div`
     height: 440px;
     border-radius: 36px;
     margin: 40px;
+    cursor: pointer;
   }
 `;

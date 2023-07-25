@@ -13,7 +13,9 @@ const MovieTopFive = ({ dummy }: Props) => {
     <Container>
       {dummy.map((el, idx) => (
         <div key={idx}>
-          <MovieBox img={el.JPG}>{idx + 1}</MovieBox>
+          <MovieBox img={el.JPG}>
+            <span className='number'>{idx + 1}</span>
+          </MovieBox>
           <MovieTitle>{el.MOVIE}</MovieTitle>
         </div>
       ))}
@@ -31,7 +33,12 @@ const Container = styled.div`
   justify-content: space-around;
 `;
 
-const MovieBox = styled.div <ImgProps > `
+const MovieBox =
+  styled.div <
+  ImgProps >
+  `
+display: flex;
+align-items: end;
   color: white;
   font-size: 24px;
   position: relative;
@@ -45,6 +52,11 @@ const MovieBox = styled.div <ImgProps > `
   .poster {
     width: 100%;
     height: 100%;
+  }
+
+  .number {
+    margin-left: 10px;
+    font-size: 38px;
   }
 `;
 

@@ -4,6 +4,7 @@ import NavBar from '../components/NavBar';
 import Footer from '../components/Footer/Footer';
 import styled from 'styled-components';
 import MovieSearch from './MovieSearch';
+import Login from './Login';
 
 const RoutingPage = () => {
   return (
@@ -12,7 +13,8 @@ const RoutingPage = () => {
       <ContentWrapper>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="moviesearch" element={<MovieSearch />} />
+          <Route path="/moviesearch" element={<MovieSearch />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </ContentWrapper>
       <Footer />

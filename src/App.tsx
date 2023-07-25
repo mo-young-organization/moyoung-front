@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Home from './pages/Home';
 import NavBar from './components/NavBar';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import { styled } from 'styled-components';
 
 function App() {
@@ -16,11 +16,13 @@ function App() {
 
   return (
     <Wrapper>
-      <NavBar />
-      <ContentWrapper>
-        <Home />
-      </ContentWrapper>
-      <Footer />
+      <Conatainer>
+        <NavBar />
+        <ContentWrapper>
+          <Home />
+        </ContentWrapper>
+        <Footer />
+      </Conatainer>
     </Wrapper>
   );
 }
@@ -31,12 +33,19 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+
+  width: 100vw;
 `;
+
+const Conatainer = styled.div`
+  width: 100%;
+`
 
 const ContentWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
+
+  width: 100%;
 `;

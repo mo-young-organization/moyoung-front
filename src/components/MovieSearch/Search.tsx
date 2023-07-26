@@ -43,8 +43,8 @@ const Container = styled.div`
 const Form = styled.form`
   display: flex;
   align-items: center;
-
-  position: relative;
+  border-radius: 60px;
+  background-color: white;
 
   button:hover {
     background-color: red;
@@ -54,16 +54,17 @@ const Form = styled.form`
 
 const SearchInput = styled.input`
   width: 100%;
+  max-width: 100%;
   height: 100%;
-
   border-radius: 60px;
   padding: 16px 40px;
+  outline: none;
 
   border: none;
 `;
 
 const SearchButton = styled.button`
-  position: absolute;
+  position: relative;
   right: 0px;
   width: 80px;
   height: 100%;

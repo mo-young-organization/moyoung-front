@@ -40,7 +40,6 @@ const ContentWrapper = styled.div`
   align-items: center;
 
   background-color: #EFEFEF;
-
   min-height: 100vh;
   width: 100%;
 `;

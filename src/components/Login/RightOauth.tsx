@@ -1,14 +1,22 @@
 import { styled } from 'styled-components';
 import Oauth from './Oauth';
+import { useNavigate } from 'react-router-dom';
 
 const RightOauth = () => {
+
+  const navigate = useNavigate();
+
+  const signupHandler = () => {
+    navigate('/signup')
+  }
+
   return (
     <Container>
       <div className="login">로그인</div>
       <Oauth />
       <div className="signup">
         <span className="first">아직 회원이 아니신가요?</span>
-        <span className="twice">회원가입</span>
+        <span className="twice" onClick={signupHandler}>회원가입</span>
       </div>
     </Container>
   );
@@ -44,5 +52,7 @@ const Container = styled.div`
     font-size: 16px;
     font-weight: 700;
     color: #c2c2c2;
+
+    cursor: pointer;
   }
 `;

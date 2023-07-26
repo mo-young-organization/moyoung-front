@@ -5,8 +5,10 @@ import Box from '../components/Home/Box';
 const Home = () => {
   return (
     <Container>
-      <Title />
-      <Box />
+      <Content>
+        <Title />
+        <Box />
+      </Content>
     </Container>
   );
 };
@@ -16,8 +18,17 @@ export default Home;
 const Container = styled.div`
   background-color: #efefef;
   display: flex;
-  flex-direction: column;
+
+  justify-content: center;
 
   width: 100%;
   height: 950px;
 `;
+
+const Content = styled.div`
+display: flex;
+flex-direction: column;
+  
+  width: 1200px;
+  height: 100%;
+`

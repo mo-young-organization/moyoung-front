@@ -14,25 +14,37 @@ const NavBar = () => {
     console.log('로그인 클릭');
   };
 
+  const signupClickHandler = () => {
+    navigate('/signup');
+    console.log('회원가입 클릭');
+  };
+
   return (
     <Container>
-      <div className="logo" onClick={logoClickHandler}>
-        로고
-      </div>
-      <div className="login" onClick={loginClickHandler}>
-        <PermIdentityOutlinedIcon />
-        로그인
-      </div>
+      <Content>
+        <div className="logo" onClick={logoClickHandler}>
+          로고
+        </div>
+        <UserDiv>
+          <div className="login" onClick={loginClickHandler}>
+            <PermIdentityOutlinedIcon />
+            로그인
+          </div>
+          <div className="signup" onClick={signupClickHandler}>
+            <PermIdentityOutlinedIcon />
+            회원가입
+          </div>
+        </UserDiv>
+      </Content>
     </Container>
   );
 };
 
 export default NavBar;
 
-const Container = styled.div`
-  background-color: red;
+const Container = styled.header`
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 
   width: 100%;
@@ -40,19 +52,31 @@ const Container = styled.div`
 
   .logo {
     background-color: blue;
-    margin-left: 100px;
 
     width: 100px;
     height: 50px;
 
     cursor: pointer;
   }
+`;
 
-  .login {
+const Content = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 1200px;
+`;
+
+const UserDiv = styled.div`
+  display: flex;
+  margin: 0px;
+
+  .login,
+  .signup {
     display: flex;
     align-items: center;
     background-color: yellow;
-    margin-right: 100px;
 
     cursor: pointer;
   }

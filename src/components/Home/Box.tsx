@@ -3,10 +3,9 @@ import { useNavigate } from 'react-router-dom';
 
 const Box = () => {
   const navigate = useNavigate();
-  
+
   const theaterHandler = () => {
     navigate('moviesearch');
-
     console.log('영화관 찾기');
   };
 
@@ -29,8 +28,6 @@ const Box = () => {
 export default Box;
 
 const Container = styled.div`
-  background-color: #efefef;
-
   display: flex;
   justify-content: center;
   flex-grow: 2;

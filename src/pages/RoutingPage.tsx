@@ -27,6 +27,7 @@ export default RoutingPage;
 const Conatainer = styled.div`
   display: flex;
   flex-direction: column;
+
   height: 100%;
   width: 100%;
 `;
@@ -34,8 +35,8 @@ const Conatainer = styled.div`
 const ContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+
   min-height: 100vh;
   width: 100%;
 `;

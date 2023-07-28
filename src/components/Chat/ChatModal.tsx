@@ -26,7 +26,7 @@ const ChatModalWrapper = styled.div`
   width: 455px;
   height: 700px;
   border-radius: 32px;
-  box-shadow: 2px 2px 2px 2px gray;
+  box-shadow: 2px 2px 10px 2px gray;
   background-color: #ffffff;
   font-size: 14px;
 `;

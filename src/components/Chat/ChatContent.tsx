@@ -7,10 +7,14 @@ import { useRef, useCallback, useState } from 'react';
 
 import type { OpenChat } from './ChatModal';
 import Chat from './Chat';
+import dummyChatData from '../../data/DummyChat';
 
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
 };
+
+const myId = 4;
+
 const ChatContent = (props: Props) => {
   const [chatContent, setChatCotent] = useState<string>('');
   const textRef = useRef<HTMLTextAreaElement>(null);
@@ -45,18 +49,25 @@ const ChatContent = (props: Props) => {
           <span>3/4</span>
         </div>
       </Title>
-      <Content>
-        <div className="myChatWrapper">
-          <div className="message-time">
-            <div className="readCount">2</div>
-            <div className="time">오후 13:24</div>
-          </div>
-          <div className="message-content">
-            <div className="content">안녕하세요!</div>
-          </div>
-        </div>
-        <Chat />
-      </Content>
+      <div className="contentWrapper">
+        <Content>
+          {dummyChatData.map((el, idx) => {
+            return myId === el.writerId ? (
+              <div key={idx + 'chat'} className="myChatWrapper">
+                <div className="message-time">
+                  <div className="readCount">{el.readCount}</div>
+                  <div className="time">{el.time}</div>
+                </div>
+                <div className="message-content">
+                  <div className="content">{el.content}</div>
+                </div>
+              </div>
+            ) : (
+              <Chat key={idx + 'chat'} chatData={el} />
+            );
+          })}
+        </Content>
+      </div>
       <Send>
         {/* <input type="text" className="chatInput" placeholder="메세지를 입력해주세요" /> */}
         <textarea
@@ -78,7 +89,14 @@ const ChatContent = (props: Props) => {
   );
 };
 
-const ChatContentWrapper = styled.div``;
+const ChatContentWrapper = styled.div`
+  .contentWrapper {
+    height: 485px;
+    display: flex;
+    flex-direction: column-reverse;
+    background-color: #ebebeb;
+  }
+`;
 
 const Header = styled.div`
   display: flex;
@@ -121,10 +139,9 @@ const Title = styled.div`
 `;
 
 const Content = styled.ul`
-  background-color: #ebebeb;
-  height: 485px;
+  width: 100%;
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
   padding-right: 21px;
 
   .myChatWrapper {
@@ -138,6 +155,8 @@ const Content = styled.ul`
       color: #ffffff;
       padding: 12px 16px;
       border-radius: 25px;
+      word-break: keep-all;
+      max-width: 330px;
     }
     .message-time {
       display: flex;

@@ -2,20 +2,26 @@ import { GiMale } from 'react-icons/gi';
 import { GiFemale } from 'react-icons/gi';
 import { styled } from 'styled-components';
 
-const Chat = () => {
+import type { Chat } from '../../data/DummyChat';
+
+const Chat = ({ chatData }: { chatData: Chat }) => {
   return (
     <MessageWrapper className="messageWrapper">
       <div className="message-content">
         <div className="writerInfo">
-          <span className="nickName">닉네임</span>
-          <GiMale className="gender" />
-          <span className="age">20대</span>
+          <span className="nickName">{chatData.name}</span>
+          {chatData.gender === 'male' ? (
+            <GiMale className={chatData.gender} />
+          ) : (
+            <GiFemale className={chatData.gender} />
+          )}
+          <span className="age">{chatData.age}대</span>
         </div>
-        <div className="content">안녕하세요!</div>
+        <div className="content">{chatData.content}</div>
       </div>
       <div className="message-time">
-        <div className="readCount">2</div>
-        <div className="time">오후 13:24</div>
+        <div className="readCount">{chatData.readCount}</div>
+        <div className="time">{chatData.time}</div>
       </div>
     </MessageWrapper>
   );
@@ -29,14 +35,16 @@ const MessageWrapper = styled.li`
     background-color: white;
     padding: 12px 16px;
     border-radius: 25px;
+    word-break: keep-all;
+    max-width: 330px;
   }
   .writerInfo {
     display: flex;
     margin: 0 0 4px 8px;
-    .gender .male {
+    .male {
       color: blue;
     }
-    .gender .female {
+    .female {
       color: red;
     }
     .age {

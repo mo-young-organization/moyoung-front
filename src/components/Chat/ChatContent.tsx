@@ -3,13 +3,29 @@ import { PiChatDotsLight } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
+import { useRef, useCallback, useState } from 'react';
 
 import type { OpenChat } from './ChatModal';
+import Chat from './Chat';
 
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
 };
 const ChatContent = (props: Props) => {
+  const [chatContent, setChatCotent] = useState<string>('');
+  const textRef = useRef<HTMLTextAreaElement>(null);
+
+  const handleResizeHeight = useCallback(() => {
+    if (textRef.current) {
+      textRef.current.style.height = '16px';
+      textRef.current.style.height = textRef.current.scrollHeight + 'px';
+    }
+  }, []);
+
+  const sendMessageHandler = () => {
+    setChatCotent('');
+  };
+
   return (
     <ChatContentWrapper>
       <Header>
@@ -29,10 +45,34 @@ const ChatContent = (props: Props) => {
           <span>3/4</span>
         </div>
       </Title>
-      <Content></Content>
+      <Content>
+        <div className="myChatWrapper">
+          <div className="message-time">
+            <div className="readCount">2</div>
+            <div className="time">오후 13:24</div>
+          </div>
+          <div className="message-content">
+            <div className="content">안녕하세요!</div>
+          </div>
+        </div>
+        <Chat />
+      </Content>
       <Send>
-        <input type="text" className="chatInput" placeholder="메세지를 입력해주세요" />
-        <button className="sendButton">전송</button>
+        {/* <input type="text" className="chatInput" placeholder="메세지를 입력해주세요" /> */}
+        <textarea
+          value={chatContent}
+          onChange={e => {
+            setChatCotent(e.target.value);
+          }}
+          className="chatInput"
+          ref={textRef}
+          onInput={handleResizeHeight}
+          placeholder="메세지를 입력해주세요"
+          // onKeyPress={EnterKey}
+        ></textarea>
+        <button className="sendButton" onClick={sendMessageHandler}>
+          전송
+        </button>
       </Send>
     </ChatContentWrapper>
   );
@@ -63,7 +103,7 @@ const Title = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
-  height: 82px;
+  height: 60px;
 
   .titleText {
     font-size: 24px;
@@ -80,14 +120,42 @@ const Title = styled.div`
   }
 `;
 
-const Content = styled.div`
+const Content = styled.ul`
   background-color: #ebebeb;
   height: 485px;
+  display: flex;
+  flex-direction: column-reverse;
+  padding-right: 21px;
+
+  .myChatWrapper {
+    list-style-type: none;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    margin-bottom: 16px;
+    .content {
+      background-color: #676767;
+      color: #ffffff;
+      padding: 12px 16px;
+      border-radius: 25px;
+    }
+    .message-time {
+      display: flex;
+      flex-direction: column;
+      justify-content: end;
+      align-items: end;
+      margin-right: 8px;
+      .readCount {
+        color: #7d7d7d;
+        font-size: 12px;
+      }
+    }
+  }
 `;
 
 const Send = styled.div`
   display: flex;
-  height: 65px;
+  height: auto;
   padding: 16px;
 
   .chatInput {
@@ -96,9 +164,15 @@ const Send = styled.div`
     outline: none;
     border: none;
     padding: 4px;
+    background-color: var(--green);
+    min-height: 30px;
+    max-height: 60px;
+    resize: none;
+    overflow: auto;
   }
   .sendButton {
     width: 65px;
+    height: 36px;
     background-color: #bcbcbc;
     border: none;
     border-radius: 5px;

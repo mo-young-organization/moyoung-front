@@ -28,6 +28,7 @@ const ChatModalWrapper = styled.div`
   border-radius: 32px;
   box-shadow: 2px 2px 2px 2px gray;
   background-color: #ffffff;
+  font-size: 14px;
 `;
 
 export default ChatModal;

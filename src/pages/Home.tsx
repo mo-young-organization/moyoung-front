@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import Title from '../components/Home/Title';
 import Box from '../components/Home/Box';
+import ChatModal from '../components/Chat/ChatModal';
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
       <Content>
         <Title />
         <Box />
+        <ChatModal />
       </Content>
     </Container>
   );
@@ -22,13 +24,12 @@ const Container = styled.div`
   justify-content: center;
 
   width: 100%;
-  height: 950px;
 `;
 
 const Content = styled.div`
-display: flex;
-flex-direction: column;
-  
+  display: flex;
+  flex-direction: column;
+
   width: 1200px;
   height: 100%;
-`
+`;

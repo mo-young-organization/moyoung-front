@@ -19,6 +19,7 @@ const Container = styled.div`
   background-color: #ffffff;
   width: 856px;
   height: 690px;
+  border-radius: 14px;
 
   display: flex;
   justify-content: center;
@@ -26,7 +27,6 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-  background-color: orange;
   width: 680px;
   height: 535px;
 `;

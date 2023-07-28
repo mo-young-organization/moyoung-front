@@ -1,11 +1,11 @@
 import { styled } from 'styled-components';
 
 type Props = {
-  dummy: { MOVIE: string, JPG: string }[],
+  dummy: { MOVIE: string; JPG: string }[];
 };
 
 type ImgProps = {
-  img: string,
+  img: string;
 };
 
 const MovieTopFive = ({ dummy }: Props) => {
@@ -14,7 +14,7 @@ const MovieTopFive = ({ dummy }: Props) => {
       {dummy.map((el, idx) => (
         <div key={idx}>
           <MovieBox img={el.JPG}>
-            <span className='number'>{idx + 1}</span>
+            <span className="number">{idx + 1}</span>
           </MovieBox>
           <MovieTitle>{el.MOVIE}</MovieTitle>
         </div>
@@ -33,12 +33,9 @@ const Container = styled.div`
   justify-content: space-around;
 `;
 
-const MovieBox =
-  styled.div <
-  ImgProps >
-  `
-display: flex;
-align-items: end;
+const MovieBox = styled.div<ImgProps>`
+  display: flex;
+  align-items: end;
   color: white;
   font-size: 24px;
   position: relative;

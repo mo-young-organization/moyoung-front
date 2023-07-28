@@ -5,13 +5,19 @@ import ChatContent from './ChatContent';
 import ChatInfo from './ChatInfo';
 import ChatParticipant from './ChatParticipant';
 
+export type OpenChat = 'chat' | 'more' | 'participant';
+
 const ChatModal = () => {
-  const [isChatContentOpen, setIsChatContentOpen] = useState<'chat' | 'more' | 'participant'>('chat');
+  const [isChatContentOpen, setIsChatContentOpen] = useState<OpenChat>('chat');
+
+  const switchModalView = (whitchView: OpenChat) => {
+    setIsChatContentOpen(whitchView);
+  };
   return (
     <ChatModalWrapper>
-      {isChatContentOpen === 'chat' && <ChatContent />}
-      {isChatContentOpen === 'more' && <ChatInfo />}
-      {isChatContentOpen === 'participant' && <ChatParticipant />}
+      {isChatContentOpen === 'chat' && <ChatContent switchModalView={switchModalView} />}
+      {isChatContentOpen === 'more' && <ChatInfo switchModalView={switchModalView} />}
+      {isChatContentOpen === 'participant' && <ChatParticipant switchModalView={switchModalView} />}
     </ChatModalWrapper>
   );
 };

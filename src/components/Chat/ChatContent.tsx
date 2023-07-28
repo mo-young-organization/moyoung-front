@@ -4,22 +4,27 @@ import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
 
-const ChatContent = () => {
+import type { OpenChat } from './ChatModal';
+
+export type Props = {
+  switchModalView: (witchModalView: OpenChat) => void;
+};
+const ChatContent = (props: Props) => {
   return (
     <ChatContentWrapper>
       <Header>
         <div className="textWrapper ">
           <PiChatDotsLight />
-          <span className="margin">CHAT</span>
+          <span className="margin chat">CHAT</span>
         </div>
         <div className="buttonWrapper ">
-          <BsThreeDots className="button" />
+          <BsThreeDots className="button" onClick={() => props.switchModalView('more')} />
           <AiOutlineClose className="margin button" />
         </div>
       </Header>
       <Title>
         <div className="titleText">영화보고 고기 먹으러 가용 ^__^</div>
-        <div className="peopleCount">
+        <div className="peopleCount" onClick={() => props.switchModalView('participant')}>
           <IoPersonSharp />
           <span>3/4</span>
         </div>
@@ -49,6 +54,9 @@ const Header = styled.div`
   .margin {
     margin-left: 8px;
   }
+  .chat {
+    font-weight: bold;
+  }
 `;
 
 const Title = styled.div`
@@ -66,6 +74,9 @@ const Title = styled.div`
     font-size: 14px;
     color: #6c6c6c;
     height: 50%;
+    &:hover {
+      cursor: pointer;
+    }
   }
 `;
 

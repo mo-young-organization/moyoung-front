@@ -42,10 +42,10 @@ const MessageWrapper = styled.li`
     display: flex;
     margin: 0 0 4px 8px;
     .male {
-      color: blue;
+      color: #6360ff;
     }
     .female {
-      color: red;
+      color: #ff6060;
     }
     .age {
       color: #7d7d7d;

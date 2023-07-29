@@ -3,7 +3,7 @@ import { PiChatDotsLight } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
-import { useRef, useCallback, useState } from 'react';
+import { useRef, useCallback } from 'react';
 
 import type { OpenChat } from './ChatModal';
 import Chat from './Chat';
@@ -17,7 +17,6 @@ export type Props = {
 const myId = 4;
 
 const ChatContent = (props: Props) => {
-  const [chatContent, setChatCotent] = useState<string>('');
   const textRef = useRef<HTMLTextAreaElement>(null);
 
   const handleResizeHeight = useCallback(() => {
@@ -28,7 +27,8 @@ const ChatContent = (props: Props) => {
   }, []);
 
   const sendMessageHandler = () => {
-    setChatCotent('');
+    console.log(textRef!.current!.value);
+    textRef!.current!.value = '';
   };
 
   return (
@@ -72,10 +72,6 @@ const ChatContent = (props: Props) => {
       <Send>
         {/* <input type="text" className="chatInput" placeholder="메세지를 입력해주세요" /> */}
         <textarea
-          value={chatContent}
-          onChange={e => {
-            setChatCotent(e.target.value);
-          }}
           className="chatInput"
           ref={textRef}
           onInput={handleResizeHeight}

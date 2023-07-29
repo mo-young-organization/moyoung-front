@@ -13,7 +13,7 @@ const ChatInfo = (props: Props) => {
           <span className="margin bold">상세정보</span>
         </div>
         <div className="buttonWrapper ">
-          <AiOutlineClose className="margin button" />
+          <AiOutlineClose className="margin button" onClick={props.closeChatModal} />
         </div>
       </Header>
     </ChatContentWrapper>

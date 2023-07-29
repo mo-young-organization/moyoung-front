@@ -16,7 +16,7 @@ const ChatParticipant = (props: Props) => {
         </div>
         <div className="buttonWrapper ">
           <BsThreeDots className="button" onClick={() => props.switchModalView('more')} />
-          <AiOutlineClose className="margin button" />
+          <AiOutlineClose className="margin button" onClick={props.closeChatModal} />
         </div>
       </Header>
     </ChatContentWrapper>

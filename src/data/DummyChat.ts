@@ -47,4 +47,38 @@ const dummyChatData: Chat[] = [
   },
 ];
 
+export type Participants = {
+  name: string;
+  id: number;
+  age: number;
+  gender: 'male' | 'female';
+};
+
+export const dummyParticipants = [
+  {
+    name: '이세영',
+    id: 1,
+    age: 70,
+    gender: 'male',
+  },
+  {
+    name: '송준상',
+    id: 2,
+    age: 20,
+    gender: 'male',
+  },
+  {
+    name: '최영아',
+    id: 3,
+    age: 20,
+    gender: 'female',
+  },
+  {
+    name: '김현우',
+    id: 4,
+    age: 20,
+    gender: 'male',
+  },
+];
+
 export default dummyChatData;

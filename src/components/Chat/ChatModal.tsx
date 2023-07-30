@@ -39,8 +39,8 @@ const ChatModalWrapper = styled.div`
   background-color: #ffffff;
   font-size: 14px;
   position: fixed;
-  left: 65%;
-  top: 47%;
+  left: calc(100% - 480px);
+  top: calc(100% - 730px);
   z-index: 20;
 `;
 

@@ -47,19 +47,21 @@ const dummyChatData: Chat[] = [
   },
 ];
 
-export type Participants = {
+export type TParticipants = {
   name: string;
   id: number;
   age: number;
   gender: 'male' | 'female';
+  isHost?: boolean;
 };
 
-export const dummyParticipants = [
+export const dummyParticipants: TParticipants[] = [
   {
     name: '이세영',
     id: 1,
     age: 70,
     gender: 'male',
+    isHost: true,
   },
   {
     name: '송준상',

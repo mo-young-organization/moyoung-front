@@ -4,15 +4,30 @@ import { useState } from 'react';
 import ChatContent from './ChatContent';
 import ChatInfo from './ChatInfo';
 import ChatParticipant from './ChatParticipant';
+import Modal from '../Modal/Modal';
 
-const ChatModal = () => {
-  const [isChatContentOpen, setIsChatContentOpen] = useState<'chat' | 'more' | 'participant'>('chat');
+export type OpenChat = 'chat' | 'more' | 'participant';
+
+const ChatModal = (props: { closeChatModal: () => void }) => {
+  const [isChatContentOpen, setIsChatContentOpen] = useState<OpenChat>('chat');
+
+  const switchModalView = (whitchView: OpenChat) => {
+    setIsChatContentOpen(whitchView);
+  };
   return (
-    <ChatModalWrapper>
-      {isChatContentOpen === 'chat' && <ChatContent />}
-      {isChatContentOpen === 'more' && <ChatInfo />}
-      {isChatContentOpen === 'participant' && <ChatParticipant />}
-    </ChatModalWrapper>
+    <Modal>
+      <ChatModalWrapper>
+        {isChatContentOpen === 'chat' && (
+          <ChatContent switchModalView={switchModalView} closeChatModal={props.closeChatModal} />
+        )}
+        {isChatContentOpen === 'more' && (
+          <ChatInfo switchModalView={switchModalView} closeChatModal={props.closeChatModal} />
+        )}
+        {isChatContentOpen === 'participant' && (
+          <ChatParticipant switchModalView={switchModalView} closeChatModal={props.closeChatModal} />
+        )}
+      </ChatModalWrapper>
+    </Modal>
   );
 };
 
@@ -20,8 +35,13 @@ const ChatModalWrapper = styled.div`
   width: 455px;
   height: 700px;
   border-radius: 32px;
-  box-shadow: 2px 2px 2px 2px gray;
+  box-shadow: 2px 2px 10px 2px gray;
   background-color: #ffffff;
+  font-size: 14px;
+  position: fixed;
+  left: calc(100% - 480px);
+  top: calc(100% - 730px);
+  z-index: 20;
 `;
 
 export default ChatModal;

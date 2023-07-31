@@ -1,16 +1,50 @@
+import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 const FormCheck = () => {
+  const [nick, setNick] = useState('');
+  const [isNick, setIsNick] = useState(false);
+
+  //닉네임 정규식
+  // - 2자 이상 5자 이하, 영어 또는 숫자 또는 한글로 구성
+  // * 특이사항 : 한글 초성 및 모음은 허가하지 않는다.
+  const nickTest = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/
+
+  const userFormHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log("당연히 이건 값이 나오지")
+  };
+
+  const nicknameHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // 닉네임 중복 검사 5자 이내로 입력 ( 5자 까지 가능 )
+    // 중복 검사도 통과 해야지만 setNick에 넣으면 nick은 가능한 닉네임값이 됨
+    const nickValue = event.target.value;
+    setNick(nickValue)
+  };
+
+  const buttonClickHandler = () => {
+    console.log("button클릭")
+    console.log(nick);
+  }
+
+  useEffect(() => {
+    if (nickTest.test(nick)) {
+      setIsNick(true);
+      console.log("5글자 이내임")
+    }
+  }, [nick]);
+
   return (
-    <ContainerForm>
+    <ContainerForm onSubmit={userFormHandler}>
       <div>
         <Content>
           <label htmlFor="nickname" className="font">
             닉네임
           </label>
           <div>
-            <input id="nickname" type="text" placeholder="사용할 닉네임을 입력해주세요" />
+            <input id="nickname" type="text" placeholder="사용할 닉네임을 입력해주세요" onChange={nicknameHandler} />
             <span>*5자 이내로 입력</span>
+            <button>중복검사</button>
           </div>
         </Content>
         <Content className="content-gender">
@@ -18,10 +52,10 @@ const FormCheck = () => {
             성별
           </label>
           <div>
-            <input id="gender" type="checkbox" />
-            남자
-            <input type="checkbox" />
-            여자
+            <input id="man" type="checkbox" />
+            <label htmlFor="man">남자</label>
+            <input id="woman" type="checkbox" />
+            <label htmlFor="woman">여자</label>
           </div>
         </Content>
         <Content>
@@ -39,7 +73,7 @@ const FormCheck = () => {
         </Content>
       </div>
       <div className="button-check">
-        <button>완료</button>
+        <button type="button" onClick={buttonClickHandler}>완료</button>
       </div>
     </ContainerForm>
   );

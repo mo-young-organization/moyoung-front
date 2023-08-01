@@ -26,7 +26,7 @@ const FormCheck = () => {
   }
 
   return (
-    <ContainerForm>
+    <ContainerForm onSubmit={userFormHandler}>
       <div>
         <Nickname register={register} errors={errors} watch={watch}/>
         <Gender register={register} />

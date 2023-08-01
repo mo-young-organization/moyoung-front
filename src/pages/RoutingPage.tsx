@@ -18,7 +18,7 @@ const RoutingPage = () => {
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path='/signupCheck' element={<SignupCheck />} />
+          <Route path="/signupCheck" element={<SignupCheck />} />
         </Routes>
       </ContentWrapper>
       <Footer />
@@ -42,7 +42,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: #EFEFEF;
+  background-color: #efefef;
   min-height: 100vh;
   width: 100%;
 `;

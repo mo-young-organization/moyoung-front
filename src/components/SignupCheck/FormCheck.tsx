@@ -8,20 +8,10 @@ import { FormValue } from './FormType';
 
 
 const FormCheck = () => {
-  const [nick, setNick] = useState('');
-  const [isNick, setIsNick] = useState(false);
-
   //닉네임 정규식
   // - 2자 이상 5자 이하, 영어 또는 숫자 또는 한글로 구성
   // * 특이사항 : 한글 초성 및 모음은 허가하지 않는다.
   const nickTest = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/;
-
-  useEffect(() => {
-    if (nickTest.test(nick)) {
-      setIsNick(true);
-      console.log('5글자 이내임');
-    }
-  }, [nick]);
 
   const {
     register,
@@ -31,14 +21,14 @@ const FormCheck = () => {
   } = useForm<FormValue>();
 
   const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
-    setNick(data.nick)
     console.log(data)
+    console.log(errors)
   }
 
   return (
     <ContainerForm>
       <div>
-        <Nickname register={register} nick={nick} setNick={setNick}/>
+        <Nickname register={register} errors={errors} watch={watch}/>
         <Gender register={register} />
         <Age register={register} />
       </div>

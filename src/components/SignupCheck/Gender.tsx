@@ -14,7 +14,7 @@ const Gender = ({ register }) => {
       <ul>
         {genderArr.map(data => (
           <li key={data.gender}>
-            <input type="checkbox" id={data.gender} {...register('gender')} />
+            <input type="radio" id={data.gender} {...register('gender')} value={data.name} />
             <label htmlFor={data.gender}>{data.name}</label>
           </li>
         ))}
@@ -28,4 +28,10 @@ export default Gender;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  >ul {
+    display: flex;
+    padding: 0px;
+    list-style: none;
+  }
 `;

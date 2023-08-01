@@ -1,12 +1,9 @@
 import { styled } from 'styled-components';
 
-const Nickname = ({ register, nick, setNick }) => {
-  const nickHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNick(e.target.value);
-  };
+const Nickname = ({ register, errors, watch }) => {
 
   const duplicateHandler = () => {
-    console.log(nick);
+    console.log(watch('nick'));
   };
 
   return (
@@ -19,9 +16,9 @@ const Nickname = ({ register, nick, setNick }) => {
           id="nickname"
           type="text"
           placeholder="사용할 닉네임을 입력해주세요"
-          {...register('nick')}
-          onChange={nickHandler}
+          {...register('nick', { required: true })}
         />
+        {errors.nick && '에러?'}
         <span>*5자 이내로 입력</span>
         <button type="button" onClick={duplicateHandler}>
           중복검사

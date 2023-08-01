@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { styled } from 'styled-components';
 
 const Age = ({ register }) => {
@@ -16,7 +15,7 @@ const Age = ({ register }) => {
       <ul>
         {ageArr.map(data => (
           <li key={data.id}>
-            <input type="checkbox" id={data.id} {...register('age')} />
+            <input type="radio" id={data.id} value={data.age} {...register('age')} />
             <label htmlFor={data.id}>{data.age}</label>
           </li>
         ))}
@@ -30,4 +29,10 @@ export default Age;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+
+  >ul {
+    display: flex;
+    padding: 0px;
+    list-style: none;
+  }
 `;

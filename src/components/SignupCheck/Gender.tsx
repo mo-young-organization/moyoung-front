@@ -14,7 +14,7 @@ const Gender = ({ register }) => {
       <ul>
         {genderArr.map(data => (
           <li key={data.gender}>
-            <input type="radio" id={data.gender} {...register('gender')} value={data.name} />
+            <input type="radio" id={data.gender} {...register('gender', { required: true })} value={data.name} />
             <label htmlFor={data.gender}>{data.name}</label>
           </li>
         ))}
@@ -29,7 +29,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  >ul {
+  > ul {
     display: flex;
     padding: 0px;
     list-style: none;

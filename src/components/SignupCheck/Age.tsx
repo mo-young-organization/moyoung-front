@@ -15,7 +15,7 @@ const Age = ({ register }) => {
       <ul>
         {ageArr.map(data => (
           <li key={data.id}>
-            <input type="radio" id={data.id} value={data.age} {...register('age')} />
+            <input type="radio" id={data.id} value={data.age} {...register('age', { required: true })} />
             <label htmlFor={data.id}>{data.age}</label>
           </li>
         ))}
@@ -30,7 +30,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
 
-  >ul {
+  > ul {
     display: flex;
     padding: 0px;
     list-style: none;

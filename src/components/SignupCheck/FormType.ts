@@ -11,3 +11,7 @@ export interface PropsForm {
   errors: FieldErrors<FormValue>;
   watch: UseFormWatch<FormValue>;
 }
+
+export interface Props  {
+  register: UseFormRegister<FormValue>;
+}

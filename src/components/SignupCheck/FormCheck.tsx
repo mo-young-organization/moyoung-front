@@ -16,6 +16,7 @@ const FormCheck = () => {
     register,
     handleSubmit,
     watch,
+    trigger,
     formState: { errors },
   } = useForm<FormValue>();
 
@@ -26,7 +27,7 @@ const FormCheck = () => {
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <div>
-        <Nickname register={register} errors={errors} watch={watch}/>
+        <Nickname register={register} errors={errors} watch={watch} trigger={trigger}/>
         <Gender register={register} />
         <Age register={register} />
       </div>

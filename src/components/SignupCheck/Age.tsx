@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
+import { Props } from './FormType';
 
-const Age = ({ register }) => {
+const Age = ({ register }: Props) => {
   const ageArr = [
     { id: 'age10', age: '10대' },
     { id: 'age20', age: '20대' },

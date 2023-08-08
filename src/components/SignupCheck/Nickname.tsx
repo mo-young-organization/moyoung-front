@@ -3,17 +3,15 @@ import { PropsForm } from './FormType';
 import { useEffect, useState } from 'react';
 
 const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
-  const [isNick, setIsNick] = useState<boolean | undefined>()
-  const [message, setMessage] = useState<string | undefined>();
-  const nick = watch('nick')
-  console.log(nick)
+  const [isNick, setIsNick] = useState<boolean | undefined>(false);
+  const nick = watch('nick');
 
   const duplicateHandler = () => {
     // 문제 중복검사 클릭시 처음한번은 무조건 전송이됨 => 문제 : 빈문자열로 넘기면 중복검사에서 통과가 되어버림
     // 이유 : react-hook form은 무조건 통과가 되면 undifind를 넘김 왜냐믄 errors가 없으면 nick이랑 message가
     // 없다고 판단이 되기 때문
 
-    //위 문제가 있었는데 nick으로 하면 값이 없는걸 인지할 수 있다보니깐 nick으로 해결하면 되는 거였다.
+    // 위 문제가 있었는데 nick으로 하면 값이 없는걸 인지할 수 있다보니깐 nick으로 해결하면 되는 거였다.
     // 그리고 사용 가능한 닉네임입니다. 를 하면서 여기 조건에 백엔드에게 보내는 코드를 추가하면 될거 같다.
 
     // 그리고 두번 클릭해야지 인식이 돼서 이걸 유즈이펙트로 관리를 하려고 하였다.
@@ -24,17 +22,18 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
     // 근데 useCallback으로 감싸아야 한다고 오류 메세지가 뜨는데(gpt피셜)
     // 감싸기 전에 과연이게 최선일까...? 라는 생각이 계속 든다.
     // 현우야 이 주석까지 본다면 넌 진짜 최고다 개발자해라 아 1시간 고생하고 한게 이거밖에 안되니 현타 ㅈㄴ오네 휴~
-    if(!(errors.nick?.message) && nick !== undefined) {
-      console.log('통과?')
-      setMessage('사용 가능한 닉네임입니다.')
+    // const errorMessage = errors.nick?.message;
+    const errorMessage = errors.nick?.message;
+    console.log(errorMessage);
+    console.log(nick);
+    if (!errorMessage && nick !== undefined) {
+      console.log('으잉?');
+      setIsNick(true);
     } else {
-      setMessage(errors.nick?.message)
+      console.log('또잉?');
+      setIsNick(false);
     }
-  }
-
-  useEffect(() => {
-duplicateHandler()
-  }, [duplicateHandler]);
+  };
 
   return (
     <Container>
@@ -56,13 +55,15 @@ duplicateHandler()
           <br />
           한국어,영어,숫자로 입력해주세요.
         </div>
-        {/* {errors && <div>{errors.nick?.message}</div>} */}
-        {errors && <div>{message}</div>}
-        {/* {isNick && <div>{message}</div>} */}
+        {isNick ? <div>사용 가능한 닉네임입니다.</div> : <div>{errors.nick?.message}</div>}
+        {/* {errors && <div>{message}</div>} */}
       </Content>
       <DuplicateButton
         type="button"
-        onClick={() => {trigger('nick'); duplicateHandler(); }}
+        onClick={() => {
+          trigger('nick').then(()=> duplicateHandler())
+          ;
+        }}
       >
         중복검사
       </DuplicateButton>
@@ -105,5 +106,13 @@ const Content = styled.div`
 `;
 
 const DuplicateButton = styled.button`
+  width: 73px;
   height: 30px;
+
+  border-radius: 4px;
+  margin-left: 16px;
+
+  border: 0;
+  background-color: #bcbcbc;
+  color: white;
 `;

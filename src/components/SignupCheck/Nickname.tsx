@@ -1,9 +1,9 @@
 import { styled } from 'styled-components';
 import { PropsForm } from './FormType';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
-  const [isNick, setIsNick] = useState<boolean | undefined>(false);
+  const [isNick, setIsNick] = useState<boolean | undefined>(undefined);
   const nick = watch('nick');
 
   const duplicateHandler = () => {
@@ -24,13 +24,9 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
     // 현우야 이 주석까지 본다면 넌 진짜 최고다 개발자해라 아 1시간 고생하고 한게 이거밖에 안되니 현타 ㅈㄴ오네 휴~
     // const errorMessage = errors.nick?.message;
     const errorMessage = errors.nick?.message;
-    console.log(errorMessage);
-    console.log(nick);
     if (!errorMessage && nick !== undefined) {
-      console.log('으잉?');
       setIsNick(true);
     } else {
-      console.log('또잉?');
       setIsNick(false);
     }
   };
@@ -45,24 +41,27 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
           id="nickname"
           type="text"
           placeholder="사용할 닉네임을 입력해주세요"
+          className={isNick === undefined ? 'input black' : isNick ? 'input green' : ' input red'}
           {...register('nick', {
             required: '닉네임을 입력해주세요',
             pattern: { value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/, message: '닉네임 형식에 맞춰주세요' },
           })}
         />
+        {isNick ? (
+          <div className="nick divgreen">사용 가능한 닉네임입니다.</div>
+        ) : (
+          <div className="nick divred">{errors.nick?.message}</div>
+        )}
         <div className="nick default">
           2~5자로 작성해주세요.
           <br />
           한국어,영어,숫자로 입력해주세요.
         </div>
-        {isNick ? <div>사용 가능한 닉네임입니다.</div> : <div>{errors.nick?.message}</div>}
-        {/* {errors && <div>{message}</div>} */}
       </Content>
       <DuplicateButton
         type="button"
         onClick={() => {
-          trigger('nick').then(()=> duplicateHandler())
-          ;
+          trigger('nick').then(() => duplicateHandler());
         }}
       >
         중복검사
@@ -76,8 +75,13 @@ export default Nickname;
 const Container = styled.div`
   display: flex;
   align-items: center;
+`;
 
-  #nickname {
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  .input {
     width: 240px;
     height: 37px;
 
@@ -86,10 +90,6 @@ const Container = styled.div`
     outline: none;
   }
 `;
-
-const Content = styled.div`
-  display: flex;
-  flex-direction: column;
 
   .nick {
     color: gray;
@@ -102,6 +102,20 @@ const Content = styled.div`
 
   .complet {
     color: green;
+  }
+
+  .divgreen {
+    color: green;
+  }
+  .divred {
+    color: red;
+  }
+  .green {
+    border-bottom: 1px solid green;
+  }
+
+  .red {
+    border-bottom: 1px solid red;
   }
 `;
 

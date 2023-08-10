@@ -7,11 +7,6 @@ import { FormValue } from './FormType';
 
 
 const FormCheck = () => {
-  //닉네임 정규식
-  // - 2자 이상 5자 이하, 영어 또는 숫자 또는 한글로 구성
-  // * 특이사항 : 한글 초성 및 모음은 허가하지 않는다.
-  // const nickTest = /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/;
-
   const {
     register,
     handleSubmit,

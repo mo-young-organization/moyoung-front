@@ -89,7 +89,6 @@ const Content = styled.div`
     border-bottom: 1px solid black;
     outline: none;
   }
-`;
 
   .nick {
     color: gray;

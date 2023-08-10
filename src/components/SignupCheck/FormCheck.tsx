@@ -1,39 +1,35 @@
 import { styled } from 'styled-components';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import Nickname from './Nickname';
+import Gender from './Gender';
+import Age from './Age';
+import { FormValue } from './FormType';
+
 
 const FormCheck = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    trigger,
+    formState: { errors },
+  } = useForm<FormValue>();
+
+  const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
+    console.log(data)
+  }
+
   return (
-    <ContainerForm>
+    <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <div>
-        <div>
-          <label htmlFor="nickname" className="font">
-            닉네임
-          </label>
-          <input id="nickname" type="text" placeholder="사용할 닉네임을 입력해주세요" />
-          <span>*5자 이내로 입력</span>
-        </div>
-        <div>
-          <label htmlFor="gender" className="font">
-            성별
-          </label>
-          <input id="gender" type="checkbox" />
-          남자
-          <input type="checkbox" />
-          여자
-        </div>
-        <div>
-          <label htmlFor="age" className="font">
-            나이대
-          </label>
-          <input id="age" type="checkbox" />
-          10대
-          <input id="age" type="checkbox" />
-          20대
-          <input id="age" type="checkbox" />
-          30대 이상
-        </div>
+        <Nickname register={register} errors={errors} watch={watch} trigger={trigger}/>
+        <Gender register={register} />
+        <Age register={register} />
       </div>
       <div className="button-check">
-        <button>완료</button>
+        <CompletButton type="submit" >
+          완료
+        </CompletButton>
       </div>
     </ContainerForm>
   );
@@ -42,8 +38,6 @@ const FormCheck = () => {
 export default FormCheck;
 
 const ContainerForm = styled.form`
-  background-color: pink;
-
   width: 680px;
   height: 355px;
 
@@ -52,16 +46,37 @@ const ContainerForm = styled.form`
   justify-content: space-between;
 
   .button-check {
-    background-color: aqua;
-
     height: 100%;
 
     display: flex;
     align-items: end;
+:hover {
+  background-color: green;
+}
+    
   }
 
   .font {
     font-size: 20px;
     font-weight: 700px;
+
+    margin-bottom: 8px;
+  }
+
+  .content-gender {
+    margin: 60px 0px;
   }
 `;
+
+const CompletButton = styled.button`
+  background-color: #b8b8b8;
+  color: #ffffff;
+  width: 150px;
+  height: 50px;
+
+  border: none;
+  border-radius: 12px;
+
+  font-size: 20px;
+  font-weight: 700;
+`

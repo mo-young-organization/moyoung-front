@@ -7,6 +7,7 @@ import MovieSearch from './MovieSearch';
 import Login from './Login';
 import Signup from './Signup';
 import SignupCheck from './SignupCheck';
+import NoMovie from './NoMovie';
 
 const RoutingPage = () => {
   return (
@@ -18,7 +19,8 @@ const RoutingPage = () => {
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/signupCheck" element={<SignupCheck />} />
+          <Route path="/signupcheck" element={<SignupCheck />} />
+          <Route path="/nomovie" element={<NoMovie />} />
         </Routes>
       </ContentWrapper>
       <Footer />

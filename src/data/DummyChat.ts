@@ -1,4 +1,4 @@
-export type Chat = {
+export type TChat = {
   writerId: number;
   name: string;
   gender: 'male' | 'female';
@@ -8,7 +8,7 @@ export type Chat = {
   readCount: string;
 };
 
-const dummyChatData: Chat[] = [
+const dummyChatData: TChat[] = [
   {
     writerId: 1,
     name: '이세영',

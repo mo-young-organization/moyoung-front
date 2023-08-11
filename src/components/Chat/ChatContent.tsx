@@ -92,6 +92,7 @@ const ChatContentWrapper = styled.div`
     display: flex;
     flex-direction: column-reverse;
     background-color: #ebebeb;
+    overflow: auto;
   }
 `;
 
@@ -140,6 +141,7 @@ const Content = styled.ul`
   display: flex;
   flex-direction: column;
   padding-right: 21px;
+  padding-top: 16px;
 
   .myChatWrapper {
     list-style-type: none;

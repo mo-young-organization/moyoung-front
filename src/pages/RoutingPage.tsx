@@ -9,6 +9,7 @@ import Signup from './Signup';
 import SignupCheck from './SignupCheck';
 import NoMovie from './NoMovie';
 import OauthToken from './OauthToken';
+import MovieDetail from './MovieDetail';
 
 const RoutingPage = () => {
   return (
@@ -23,6 +24,7 @@ const RoutingPage = () => {
           <Route path="/signupcheck" element={<SignupCheck />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/nomovie" element={<NoMovie />} />
+          <Route path="/moviedetail" element={<MovieDetail />} />
         </Routes>
       </ContentWrapper>
       <Footer />

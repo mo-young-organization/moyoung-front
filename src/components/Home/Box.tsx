@@ -10,6 +10,7 @@ const Box = () => {
   };
 
   const peoplelHandler = () => {
+    navigate('recruitmentlist')
     console.log('사람 찾기');
   };
 

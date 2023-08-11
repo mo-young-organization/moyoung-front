@@ -3,6 +3,10 @@ import { PropsForm } from './FormType';
 import { useState } from 'react';
 import { nickNameDuplicatePost } from '../../api/api';
 
+
+// 중복검사 유효성검사시 버튼클릭후 유효성 검사가 아닌 온 체인지로 변경할지? => onblur찾아보기 포커스 잃으면 입력해주세요
+// validate 함수 완성하기 => 로직은 리턴 boolean형식으로 이 함수에서 axios요청을 해야함.
+// 준상님께 문자가 아닌 true/false로 리턴값을 달라고 해야겠다.
 const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
   const [isNick, setIsNick] = useState<boolean | undefined>(undefined);
   const nick = watch('nick');

@@ -8,6 +8,7 @@ import Login from './Login';
 import Signup from './Signup';
 import SignupCheck from './SignupCheck';
 import NoMovie from './NoMovie';
+import OauthToken from './OauthToken';
 
 const RoutingPage = () => {
   return (
@@ -16,10 +17,11 @@ const RoutingPage = () => {
       <ContentWrapper>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
+          <Route path="/callback" element={<OauthToken />} />
           <Route path="/signupcheck" element={<SignupCheck />} />
+          <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/nomovie" element={<NoMovie />} />
         </Routes>
       </ContentWrapper>

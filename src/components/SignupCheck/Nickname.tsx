@@ -1,34 +1,36 @@
 import { styled } from 'styled-components';
 import { PropsForm } from './FormType';
 import { useState } from 'react';
+import { nickNameDuplicatePost } from '../../api/api';
 
+
+// 중복검사 유효성검사시 버튼클릭후 유효성 검사가 아닌 온 체인지로 변경할지? => onblur찾아보기 포커스 잃으면 입력해주세요
+// validate 함수 완성하기 => 로직은 리턴 boolean형식으로 이 함수에서 axios요청을 해야함.
+// 준상님께 문자가 아닌 true/false로 리턴값을 달라고 해야겠다.
 const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
   const [isNick, setIsNick] = useState<boolean | undefined>(undefined);
   const nick = watch('nick');
+  const req = {
+    displayName: nick,
+  };
 
-  const duplicateHandler = () => {
-    // 문제 중복검사 클릭시 처음한번은 무조건 전송이됨 => 문제 : 빈문자열로 넘기면 중복검사에서 통과가 되어버림
-    // 이유 : react-hook form은 무조건 통과가 되면 undifind를 넘김 왜냐믄 errors가 없으면 nick이랑 message가
-    // 없다고 판단이 되기 때문
-
-    // 위 문제가 있었는데 nick으로 하면 값이 없는걸 인지할 수 있다보니깐 nick으로 해결하면 되는 거였다.
-    // 그리고 사용 가능한 닉네임입니다. 를 하면서 여기 조건에 백엔드에게 보내는 코드를 추가하면 될거 같다.
-
-    // 그리고 두번 클릭해야지 인식이 돼서 이걸 유즈이펙트로 관리를 하려고 하였다.
-    // 그래서 함수를 유즈이펙트에 집어넣어 처음부터 렌더링 되도록 하였고 조건으로 에러메세지가 없고 빈문자열이면 안되도록 하여
-    // 조건을 걸었다.
-
-    // 의존성 배열에 함수 동채로 집어넣어서 인식되게 하니깐 두번클릭말고 클릭시 바로 인식이 됐다.
-    // 근데 useCallback으로 감싸아야 한다고 오류 메세지가 뜨는데(gpt피셜)
-    // 감싸기 전에 과연이게 최선일까...? 라는 생각이 계속 든다.
-    // 현우야 이 주석까지 본다면 넌 진짜 최고다 개발자해라 아 1시간 고생하고 한게 이거밖에 안되니 현타 ㅈㄴ오네 휴~
-    // const errorMessage = errors.nick?.message;
+  const duplicateHandler = (value) => {
     const errorMessage = errors.nick?.message;
-    if (!errorMessage && nick !== undefined) {
+    if (!errorMessage && value !== undefined) {
+      console.log('전달');
+      nickNameDuplicatePost(req);
       setIsNick(true);
     } else {
       setIsNick(false);
     }
+  };
+
+  const validatePassword = (value) => {
+    console.log(value)
+    if (value === '이강인') {
+      return '캉진리';
+    }
+    return false;
   };
 
   return (
@@ -45,6 +47,7 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
           {...register('nick', {
             required: '닉네임을 입력해주세요',
             pattern: { value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/, message: '닉네임 형식에 맞춰주세요' },
+            validate: validatePassword
           })}
         />
         {isNick ? (

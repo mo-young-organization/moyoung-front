@@ -4,6 +4,10 @@ import kakaoicon from '../../assets/img/카카오아이콘 원형.png';
 import { styled } from 'styled-components';
 
 const Oauth = () => {
+  const googleOauth = () => {
+    window.location.assign('https://2f7e-61-254-8-200.ngrok-free.app/oauth2/authorization/google');
+  };
+
   return (
     <Container>
       <OauthButton className="kakao-div">
@@ -18,7 +22,7 @@ const Oauth = () => {
           <div>네이버로 로그인하기</div>
         </Content>
       </OauthButton>
-      <OauthButton className="google-div">
+      <OauthButton className="google-div" onClick={googleOauth}>
         <Content>
           <img src={googleicon} />
           <div>구글 계정으로 로그인하기</div>

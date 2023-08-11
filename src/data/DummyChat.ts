@@ -1,4 +1,4 @@
-export type Chat = {
+export type TChat = {
   writerId: number;
   name: string;
   gender: 'male' | 'female';
@@ -8,7 +8,7 @@ export type Chat = {
   readCount: string;
 };
 
-const dummyChatData: Chat[] = [
+const dummyChatData: TChat[] = [
   {
     writerId: 1,
     name: '이세영',
@@ -34,51 +34,6 @@ const dummyChatData: Chat[] = [
     age: '20',
     content: '디자인 천재 최영아입니다. 뛰어난 ux가 뭔지 제대로 보여드리죠',
     time: '오후 13:25',
-    readCount: '1',
-  },
-  {
-    writerId: 4,
-    name: '김현우',
-    gender: 'male',
-    age: '30',
-    content: '저는 무임승차를 담당합니다. 감사합니다',
-    time: '오후 13:26',
-    readCount: '1',
-  },
-  {
-    writerId: 4,
-    name: '김현우',
-    gender: 'male',
-    age: '30',
-    content: '저는 무임승차를 담당합니다. 감사합니다',
-    time: '오후 13:26',
-    readCount: '1',
-  },
-  {
-    writerId: 4,
-    name: '김현우',
-    gender: 'male',
-    age: '30',
-    content: '저는 무임승차를 담당합니다. 감사합니다',
-    time: '오후 13:26',
-    readCount: '1',
-  },
-  {
-    writerId: 4,
-    name: '김현우',
-    gender: 'male',
-    age: '30',
-    content: '저는 무임승차를 담당합니다. 감사합니다',
-    time: '오후 13:26',
-    readCount: '1',
-  },
-  {
-    writerId: 4,
-    name: '김현우',
-    gender: 'male',
-    age: '30',
-    content: '저는 무임승차를 담당합니다. 감사합니다',
-    time: '오후 13:26',
     readCount: '1',
   },
   {

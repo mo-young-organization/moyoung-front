@@ -3,9 +3,10 @@ import { PiChatDotsLight } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
-import { useRef, useCallback } from 'react';
+import { useRef, useCallback, useState, KeyboardEvent } from 'react';
 
 import type { OpenChat } from './ChatModal';
+import type { TChat } from '../../data/DummyChat';
 import Chat from './Chat';
 import dummyChatData from '../../data/DummyChat';
 
@@ -14,10 +15,14 @@ export type Props = {
   closeChatModal: () => void;
 };
 
+// textarea shift enter로 줄바꿈
+// 빈 문자열이면 실행되지 않게
+
 const myId = 4;
 
 const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
+  const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
 
   const handleResizeHeight = useCallback(() => {
     if (textRef.current) {
@@ -27,8 +32,36 @@ const ChatContent = (props: Props) => {
   }, []);
 
   const sendMessageHandler = () => {
-    console.log(textRef!.current!.value);
+    if (textRef!.current!.value.trim() === '') {
+      textRef!.current!.value = '';
+      return;
+    }
+
+    let contents: string = textRef!.current!.value;
+    contents = contents.replaceAll('<br>', '\r\n');
+
+    setChatData([
+      ...chatData,
+      {
+        writerId: myId,
+        name: '김현우',
+        gender: 'male',
+        age: '70',
+        content: textRef!.current!.value,
+        time: '오후 13:24',
+        readCount: '2',
+      },
+    ]);
+
     textRef!.current!.value = '';
+  };
+  const pressEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.shiftKey && e.key === 'Enter') {
+      return;
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      sendMessageHandler();
+    }
   };
 
   return (
@@ -52,7 +85,7 @@ const ChatContent = (props: Props) => {
       </Title>
       <div className="contentWrapper">
         <Content>
-          {dummyChatData.map((el, idx) => {
+          {chatData.map((el, idx) => {
             return myId === el.writerId ? (
               <div key={idx + 'chat'} className="myChatWrapper">
                 <div className="message-time">
@@ -60,7 +93,7 @@ const ChatContent = (props: Props) => {
                   <div className="time">{el.time}</div>
                 </div>
                 <div className="message-content">
-                  <div className="content">{el.content}</div>
+                  <pre className="content">{el.content}</pre>
                 </div>
               </div>
             ) : (
@@ -76,8 +109,8 @@ const ChatContent = (props: Props) => {
           ref={textRef}
           onInput={handleResizeHeight}
           placeholder="메세지를 입력해주세요"
-          // onKeyPress={EnterKey}
-        ></textarea>
+          onKeyPress={pressEnterKey}
+        />
         <button className="sendButton" onClick={sendMessageHandler}>
           전송
         </button>
@@ -87,6 +120,11 @@ const ChatContent = (props: Props) => {
 };
 
 const ChatContentWrapper = styled.div`
+  pre {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+      'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+  }
   .contentWrapper {
     height: 485px;
     display: flex;

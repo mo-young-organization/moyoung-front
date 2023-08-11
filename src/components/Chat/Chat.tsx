@@ -2,9 +2,9 @@ import { GiMale } from 'react-icons/gi';
 import { GiFemale } from 'react-icons/gi';
 import { styled } from 'styled-components';
 
-import type { Chat } from '../../data/DummyChat';
+import type { TChat } from '../../data/DummyChat';
 
-const Chat = ({ chatData }: { chatData: Chat }) => {
+const Chat = ({ chatData }: { chatData: TChat }) => {
   return (
     <MessageWrapper className="messageWrapper">
       <div className="message-content">
@@ -17,7 +17,7 @@ const Chat = ({ chatData }: { chatData: Chat }) => {
           )}
           <span className="age">{chatData.age}대</span>
         </div>
-        <div className="content">{chatData.content}</div>
+        <pre className="content">{chatData.content}</pre>
       </div>
       <div className="message-time">
         <div className="readCount">{chatData.readCount}</div>
@@ -36,6 +36,7 @@ const MessageWrapper = styled.li`
     padding: 12px 16px;
     border-radius: 25px;
     word-break: keep-all;
+    white-space: pre-wrap;
     max-width: 330px;
   }
   .writerInfo {

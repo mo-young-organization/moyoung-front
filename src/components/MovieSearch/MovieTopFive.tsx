@@ -2,17 +2,19 @@ import { styled } from 'styled-components';
 
 type Props = {
   dummy: { MOVIE: string; JPG: string }[];
+  text: string;
+  classname: string;
 };
 
 type ImgProps = {
   img: string;
 };
 
-const MovieTopFive = ({ dummy }: Props) => {
+const MovieTopFive = ({ dummy, text ,classname}: Props) => {
   return (
     <Container>
-      <Title>
-        <div className="top5">{`TOP${dummy.length}`}</div>
+      <Title className={classname}>
+        <div className="top5">{text}</div>
       </Title>
       <Content>
         {dummy.map((el, idx) => (
@@ -31,13 +33,22 @@ const MovieTopFive = ({ dummy }: Props) => {
 export default MovieTopFive;
 
 const Container = styled.div`
-  width: 1000px;
+  width: 1032px;
   height: 440px;
 
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  margin-bottom: 40px;
+
+  .left{
+  /* background-color: red; */
+  border: none;
+  display: flex;
+  width: 100%;
+
+  }
 `;
 
 const Title = styled.div`
@@ -77,6 +88,8 @@ const MovieBox = styled.div<ImgProps>`
 `;
 
 const MovieTitle = styled.div`
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 23px;
+  font-weight: 500;
   text-align: center;
 `;

@@ -14,9 +14,9 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
     displayName: nick,
   };
 
-  const duplicateHandler = (value) => {
+  const duplicateHandler = () => {
     const errorMessage = errors.nick?.message;
-    if (!errorMessage && value !== undefined) {
+    if (!errorMessage && nick !== undefined) {
       console.log('전달');
       nickNameDuplicatePost(req);
       setIsNick(true);
@@ -25,13 +25,13 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
     }
   };
 
-  const validatePassword = (value) => {
-    console.log(value)
-    if (value === '이강인') {
-      return '캉진리';
-    }
-    return false;
-  };
+  // const validatePassword = (value) => {
+  //   console.log(value)
+  //   if (value === '이강인') {
+  //     return '캉진리';
+  //   }
+  //   return false;
+  // };
 
   return (
     <Container>
@@ -47,7 +47,7 @@ const Nickname = ({ register, errors, watch, trigger }: PropsForm) => {
           {...register('nick', {
             required: '닉네임을 입력해주세요',
             pattern: { value: /^(?=.*[a-z0-9가-힣])[a-z0-9가-힣]{2,5}$/, message: '닉네임 형식에 맞춰주세요' },
-            validate: validatePassword
+            // validate: validatePassword
           })}
         />
         {isNick ? (

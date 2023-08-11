@@ -17,6 +17,9 @@ const Search = () => {
 
   return (
     <Container>
+      <Title>
+        <h1>내 주변 영화관 찾기</h1>
+      </Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
         <SearchInput
           value={movieTitle}
@@ -38,6 +41,16 @@ export default Search;
 const Container = styled.div`
   width: 550px;
   height: 72px;
+
+  margin: 80px 0px 100px 0px;
+`;
+
+const Title = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  
 `;
 
 const Form = styled.form`

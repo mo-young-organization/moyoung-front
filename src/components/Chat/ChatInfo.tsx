@@ -18,7 +18,26 @@ const ChatInfo = (props: Props) => {
           <AiOutlineClose className="margin button" onClick={props.closeChatModal} />
         </div>
       </Header>
-      <Movie></Movie>
+      <Movie>
+        <div className="movieInfoWrpper">
+          <img src="" alt="" />
+          <span className="movieTitle"></span>
+          <div className="aboutMovie">
+            <span className="ageLimit"></span>
+            <span className="movieType"></span>
+          </div>
+        </div>
+        <div className="timeInfoWrapper">
+          <span className="movieTime">{`${'2023년 7월 12일 수요일'} / ${'16:50'} / ${'5관'}`}</span>
+        </div>
+        <div className="placeInfoWrapper">
+          <div className="place">
+            <img className="theater" src="" alt="" />
+            <span className="city"></span>
+          </div>
+          <div className="adress"></div>
+        </div>
+      </Movie>
       <Detail>
         <div className="detail-text">등록 글 상세정보</div>
         <RecruitInfoWrapper>
@@ -77,6 +96,7 @@ const Header = styled.div`
 const Movie = styled.div`
   height: calc(700px - 67px - 280px);
   padding: 32px;
+  background-color: pink;
 `;
 const Detail = styled.div`
   background-color: #f1f1f1;

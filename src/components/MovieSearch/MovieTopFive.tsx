@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 type Props = {
   dummy: { MOVIE: string; JPG: string }[];
   text: string;
-  classname: string;
+  classname?: string;
 };
 
 type ImgProps = {

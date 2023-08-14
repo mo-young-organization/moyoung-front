@@ -62,17 +62,6 @@ const Content = styled.div`
   display: flex;
 `;
 
-const Title = styled.div`
-  font-size: 28px;
-  line-height: 33px;
-  border-bottom: 2px solid #d9d9d9;
-  margin-bottom: 40px;
-`;
-
-const Content = styled.div`
-  display: flex;
-`;
-
 const MovieBox = styled.div<ImgProps>`
   display: flex;
   align-items: end;

@@ -5,7 +5,16 @@ import { BsFillPeopleFill } from 'react-icons/bs';
 const MovieDetail = () => {
   const { movieId } = useParams();
   console.log(movieId);
-
+  // AIzaSyCwqGJGZtRte2upFi6ss6fKkzrIzkJM5n0
+  const iframeProps = {
+    id: 'ytplayer',
+    type: 'text/html',
+    width: '720',
+    height: '405',
+    src: 'https://www.youtube.com/embed/AIzaSyCwqGJGZtRte2upFi6ss6fKkzrIzkJM5n0',
+    frameborder: '0',
+    allowfullscreen: 'allowfullscreen',
+  };
   return (
     <Content>
       <TopInfo>
@@ -62,7 +71,12 @@ const MovieDetail = () => {
           감동까지 선사할 것이다. THIS IS ME! 우리는 누구나 특별하다!
         </div>
       </MovieStory>
-      <MovieTrailer></MovieTrailer>
+      <MovieTrailer>
+        <div className="title">트레일러</div>
+        <div className="movieTrailerWrpper">
+          <iframe {...iframeProps}></iframe>
+        </div>
+      </MovieTrailer>
       <MoviePhoto></MoviePhoto>
     </Content>
   );

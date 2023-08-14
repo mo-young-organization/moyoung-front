@@ -10,11 +10,148 @@ const RecruitmentListPage = () => {
       province: '경기',
       city: '남양주',
     },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '인천',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '가평',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '남양주',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '강릉',
+    },
   ];
 
   return (
     <Container>
-      <Article data={dummyData} />
+      <UlArticleMaping>
+        {dummyData.map((el, idx) => (
+          <Article key={idx} data={el} />
+        ))}
+      </UlArticleMaping>
     </Container>
   );
 };
@@ -25,4 +162,18 @@ const Container = styled.div`
   width: 1200px;
   height: 100%;
   background-color: orange;
+
+  display: flex;
+  justify-content: center;
+`;
+
+const UlArticleMaping = styled.ul`
+  width: 1032px;
+  height: 100%;
+  background-color: #d76a6a;
+  padding: 0px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 78px 24px;
 `;

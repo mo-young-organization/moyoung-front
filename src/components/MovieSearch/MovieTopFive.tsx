@@ -3,14 +3,14 @@ import { styled } from 'styled-components';
 type Props = {
   dummy: { MOVIE: string; JPG: string }[];
   text: string;
-  classname: string;
+  classname?: string;
 };
 
 type ImgProps = {
   img: string;
 };
 
-const MovieTopFive = ({ dummy, text ,classname}: Props) => {
+const MovieTopFive = ({ dummy, text, classname }: Props) => {
   return (
     <Container>
       <Title className={classname}>
@@ -42,12 +42,11 @@ const Container = styled.div`
   justify-content: space-around;
   margin-bottom: 40px;
 
-  .left{
-  /* background-color: red; */
-  border: none;
-  display: flex;
-  width: 100%;
-
+  .left {
+    /* background-color: red; */
+    border: none;
+    display: flex;
+    width: 100%;
   }
 `;
 

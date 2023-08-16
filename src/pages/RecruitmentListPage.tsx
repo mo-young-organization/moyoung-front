@@ -1,7 +1,10 @@
 import { styled } from 'styled-components';
 import Article from '../components/RecruitmentList/Article';
+import Pagination from '../components/RecruitmentList/Pagination';
+import { useState } from 'react';
 
 const RecruitmentListPage = () => {
+  const [curPage, setCurPage] = useState(1);
   const dummyData = [
     {
       recruitingArticleId: 1,
@@ -147,11 +150,17 @@ const RecruitmentListPage = () => {
 
   return (
     <Container>
+      <DivPagination>
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
+      </DivPagination>
       <UlArticleMaping>
         {dummyData.map((el, idx) => (
           <Article key={idx} data={el} />
         ))}
       </UlArticleMaping>
+      <DivPagination>
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
+      </DivPagination>
     </Container>
   );
 };
@@ -159,9 +168,13 @@ const RecruitmentListPage = () => {
 export default RecruitmentListPage;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
   width: 1200px;
   height: 100%;
-  background-color: orange;
+  /* background-color: orange; */
 
   display: flex;
   justify-content: center;
@@ -170,10 +183,19 @@ const Container = styled.div`
 const UlArticleMaping = styled.ul`
   width: 1032px;
   height: 100%;
-  background-color: #d76a6a;
+  /* background-color: #d76a6a; */
   padding: 0px;
 
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 78px 24px;
+`;
+
+const DivPagination = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+
+  margin: 100px 0px;
 `;

@@ -15,13 +15,15 @@ const Article = ({ data }: ArticleProps) => {
   const [isHover, setIsHover] = useState<boolean>(false);
 
   const handleMouseOver = e => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     console.log('호버됨');
     setIsHover(true);
   };
 
   const handleMouseOut = e => {
-    e.stopPropagation();
+    // e.stopPropagation();
+    e.preventDefault();
     console.log('호버 아웃');
     setIsHover(false);
   };
@@ -35,47 +37,6 @@ const Article = ({ data }: ArticleProps) => {
   }, [isHover]);
 
   return (
-    // <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
-    //   {isHover ? (
-    //     <>
-    //       <MovieTitle>미션 임파서블:데드 레코닝</MovieTitle>
-    //       <DateTime>
-    //         <span className="date">7. 12. 수</span>
-    //         <span className="time">16:50</span>
-    //         <div className="location">5관 | 2D(자막)</div>
-    //       </DateTime>
-    //       <OutFotter>
-    //         <ul className="condition">
-    //           <li>여자만</li>
-    //           <li>20대</li>
-    //         </ul>
-    //         <button type="button" onClick={participateHandler}>
-    //           <span>참여하기</span>
-    //           <span>2/4</span>
-    //         </button>
-    //       </OutFotter>
-    //     </>
-    //   ) : (
-    //     <>
-    //       <div>
-    //         <Head>
-    //           <div>
-    //             <span className="nick">닉네임</span>
-    //             <span className="gray">20대</span>
-    //           </div>
-    //           <span className="gray">1시간 전</span>
-    //         </Head>
-    //         <Title>{data.title}</Title>
-    //       </div>
-    //       <OnFotter>
-    //         <div></div>
-    //         <div className="province">경기</div>
-    //         <div className="city">고양스타필드</div>
-    //       </OnFotter>
-    //     </>
-    //   )}
-    // </LiContainer>
-
     <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
       {isHover ? (
         <OutContent className="hover out">
@@ -129,7 +90,6 @@ const LiContainer = styled.li`
 
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
   justify-content: space-between;
   padding: 22px 20px;
 
@@ -138,7 +98,7 @@ const LiContainer = styled.li`
     flex-direction: column;
     justify-content: space-between;
 
-    background-color: yellow;
+    /* background-color: yellow; */
     animation: fadeIn 0.5s ease-in-out;
   }
 
@@ -163,13 +123,13 @@ const LiContainer = styled.li`
 const OutContent = styled.div`
   width: 200px;
   height: 290px;
-  background-color: pink;
+  /* background-color: pink; */
 `;
 
 const OnContent = styled.div`
   width: 200px;
   height: 290px;
-  background-color: pink;
+  /* background-color: pink; */
 `;
 
 const Head = styled.div`
@@ -264,6 +224,8 @@ const OutFotter = styled.div`
     padding: 12px 16px;
 
     border: none;
+
+    cursor: pointer;
 
     > span {
       color: #000000;

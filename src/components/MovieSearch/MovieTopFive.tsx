@@ -75,11 +75,6 @@ const MovieBox = styled.div<ImgProps>`
   background-image: url(${props => props.img});
   background-size: 100%;
 
-  .poster {
-    width: 100%;
-    height: 100%;
-  }
-
   .number {
     margin-left: 10px;
     font-size: 38px;

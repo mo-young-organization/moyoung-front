@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
 
 *{
   box-sizing: border-box;
+  padding: 0px;
 }
 html,
 body,
@@ -25,7 +26,6 @@ body {
 }
 ul {
   margin: 0;
-  padding: 0 0 0 1.5em;
 }
 li {
   padding: 0;

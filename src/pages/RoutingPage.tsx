@@ -26,7 +26,7 @@ const RoutingPage = () => {
           <Route path="/signupcheck" element={<SignupCheck />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
           <Route path="/nomovie" element={<NoMovie />} />
-          <Route path="/moviedetail" element={<MovieDetail />} />
+          <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemainfo" element={<CinemaPage />} />
         </Routes>

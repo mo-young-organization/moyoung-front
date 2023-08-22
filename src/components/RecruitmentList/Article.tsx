@@ -1,18 +1,29 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import ChatModal from '../Chat/ChatModal';
 
-type ArticleProps = {
-  data: {
-    recruitingArticleId: number;
-    title: string;
-    nicname: string;
-    province: string;
-    city: string;
-  };
+export type ArticleProps = {
+  recruitingArticleId: number;
+  title: string;
+  nicname: string;
+  province: string;
+  city: string;
 };
 
-const Article = ({ data }: ArticleProps) => {
+const Article = ({ data }: { data: ArticleProps }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  // chatmodal 여닫기 func
+  // 이미 modal 열려있다면 안열리게 하는 로직 필요할듯?
+  // 동시에 여러개 참여할 수 있나...?
+  const openChatModal = () => {
+    setIsChatOpen(!isChatOpen);
+    console.log(data);
+  };
+  const closeChatModal = () => {
+    setIsChatOpen(false);
+    setIsHover(false);
+  };
 
   const handleMouseOver = e => {
     // e.stopPropagation();
@@ -30,6 +41,7 @@ const Article = ({ data }: ArticleProps) => {
 
   const participateHandler = () => {
     console.log('참여하기');
+    openChatModal();
   };
 
   useEffect(() => {
@@ -38,6 +50,7 @@ const Article = ({ data }: ArticleProps) => {
 
   return (
     <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      {isChatOpen && <ChatModal closeChatModal={closeChatModal} recruitData={data} />}
       {isHover ? (
         <OutContent className="hover out">
           <MovieTitle>미션 임파서블:데드 레코닝</MovieTitle>

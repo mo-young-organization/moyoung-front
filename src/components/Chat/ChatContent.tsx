@@ -7,12 +7,14 @@ import { useRef, useCallback, useState, KeyboardEvent } from 'react';
 
 import type { OpenChat } from './ChatModal';
 import type { TChat } from '../../data/DummyChat';
+import type { ArticleProps } from '../RecruitmentList/Article';
 import Chat from './Chat';
 import dummyChatData from '../../data/DummyChat';
 
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
   closeChatModal: () => void;
+  recruitData?: ArticleProps;
 };
 
 // textarea shift enter로 줄바꿈
@@ -77,7 +79,7 @@ const ChatContent = (props: Props) => {
         </div>
       </Header>
       <Title>
-        <div className="titleText">영화보고 고기 먹으러 가용 ^__^</div>
+        <div className="titleText">{props.recruitData.title}</div>
         <div className="peopleCount" onClick={() => props.switchModalView('participant')}>
           <IoPersonSharp />
           <span>3/4</span>

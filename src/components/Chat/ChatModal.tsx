@@ -5,10 +5,15 @@ import ChatContent from './ChatContent';
 import ChatInfo from './ChatInfo';
 import ChatParticipant from './ChatParticipant';
 import Modal from '../Modal/Modal';
+import type { ArticleProps } from '../RecruitmentList/Article';
 
 export type OpenChat = 'chat' | 'more' | 'participant';
+type Props = {
+  closeChatModal: () => void;
+  recruitData: ArticleProps;
+};
 
-const ChatModal = (props: { closeChatModal: () => void }) => {
+const ChatModal = (props: Props) => {
   const [isChatContentOpen, setIsChatContentOpen] = useState<OpenChat>('chat');
 
   const switchModalView = (whitchView: OpenChat) => {
@@ -18,7 +23,11 @@ const ChatModal = (props: { closeChatModal: () => void }) => {
     <Modal>
       <ChatModalWrapper>
         {isChatContentOpen === 'chat' && (
-          <ChatContent switchModalView={switchModalView} closeChatModal={props.closeChatModal} />
+          <ChatContent
+            switchModalView={switchModalView}
+            closeChatModal={props.closeChatModal}
+            recruitData={props.recruitData}
+          />
         )}
         {isChatContentOpen === 'more' && (
           <ChatInfo switchModalView={switchModalView} closeChatModal={props.closeChatModal} />

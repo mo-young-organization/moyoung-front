@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
-
 import ChatModal from '../Chat/ChatModal';
 
 export type ArticleProps = {

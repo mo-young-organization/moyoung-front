@@ -4,6 +4,7 @@ const GlobalStyles = createGlobalStyle`
 
 *{
   box-sizing: border-box;
+  padding: 0px;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
       'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -27,7 +28,6 @@ body {
 }
 ul {
   margin: 0;
-  padding: 0 0 0 1.5em;
 }
 li {
   padding: 0;

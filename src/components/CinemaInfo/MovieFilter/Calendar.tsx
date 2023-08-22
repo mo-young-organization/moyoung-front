@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
 const Calendar = () => {
@@ -29,7 +29,7 @@ const Calendar = () => {
     }
 
     //요일 정상적으로 뜨는지 확인해보자
-    console.log(dates);
+    // console.log(dates);
 
     return dates;
   };
@@ -59,7 +59,7 @@ const Calendar = () => {
       }
     }
 
-    console.log(weaklist);
+    // console.log(weaklist);
 
     return weaklist;
   };
@@ -83,13 +83,36 @@ const Calendar = () => {
     getCalendar();
   }, []);
 
+  //   const Weak = useRef<HTMLSpanElement>(null);
+  const WeakRefs = useRef<any>([]);
+
+  const [curIdx, setCurIdx] = useState(0);
+  const onClickHandler = (idx: number) => {
+    setCurIdx(idx);
+    console.log(WeakRefs.current[idx]?.textContent);
+  };
+
   return (
     <ContainerUl>
       {CalendarObject.map((el, idx) => (
-        <Content key={idx} className={el.weak === '토' ? 'sat' : el.weak === '일' ? 'sun' : ''}>
-          <span className="day">{el.day}</span>
-          <span className="weak">{el.weak}</span>
-        </Content>
+        <button key={idx} onClick={() => onClickHandler(idx)}>
+          <ContentLi
+            className={
+              curIdx === idx
+                ? `active ${el.weak === '토' ? 'sat' : el.weak === '일' ? 'sun' : ''}`
+                : el.weak === '토'
+                ? 'sat'
+                : el.weak === '일'
+                ? 'sun'
+                : ''
+            }
+          >
+            <span className="day" ref={el => (WeakRefs.current[idx] = el)}>
+              {el.day}
+            </span>
+            <span className="weak">{el.weak}</span>
+          </ContentLi>
+        </button>
       ))}
     </ContainerUl>
   );
@@ -98,23 +121,29 @@ const Calendar = () => {
 export default Calendar;
 
 const ContainerUl = styled.ul`
-  background-color: yellow;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   width: 1200px;
   height: 48px;
+
+  > button {
+    border: none;
+    background-color: transparent;
+  }
 `;
 
-const Content = styled.li`
+const ContentLi = styled.li`
   display: flex;
   justify-content: center;
   align-items: center;
   width: 72px;
   height: 48px;
+  cursor: pointer;
+
   &.sat {
-    color: #0094ff;
+    color: #0094ff !important;
   }
 
   &.sun {
@@ -124,6 +153,11 @@ const Content = styled.li`
   &:hover {
     border-radius: 8px;
     background-color: blue;
+  }
+
+  &.active {
+    border-radius: 8px;
+    background-color: #e5e5e5;
   }
 
   .day {

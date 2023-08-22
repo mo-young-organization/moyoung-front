@@ -11,6 +11,7 @@ import NoMovie from './NoMovie';
 import OauthToken from './OauthToken';
 import MovieDetail from './MovieDetail';
 import RecruitmentListPage from './RecruitmentListPage';
+import CinemaPage from './CinemaPage';
 
 const RoutingPage = () => {
   return (
@@ -27,6 +28,7 @@ const RoutingPage = () => {
           <Route path="/nomovie" element={<NoMovie />} />
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
+          <Route path="/cinemainfo" element={<CinemaPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />

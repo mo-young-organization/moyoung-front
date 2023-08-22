@@ -10,7 +10,7 @@ type ImgProps = {
   img: string;
 };
 
-const MovieTopFive = ({ dummy, text ,classname}: Props) => {
+const MovieTopFive = ({ dummy, text, classname }: Props) => {
   return (
     <Container>
       <Title className={classname}>
@@ -42,12 +42,11 @@ const Container = styled.div`
   justify-content: space-around;
   margin-bottom: 40px;
 
-  .left{
-  /* background-color: red; */
-  border: none;
-  display: flex;
-  width: 100%;
-
+  .left {
+    /* background-color: red; */
+    border: none;
+    display: flex;
+    width: 100%;
   }
 `;
 
@@ -75,11 +74,6 @@ const MovieBox = styled.div<ImgProps>`
 
   background-image: url(${props => props.img});
   background-size: 100%;
-
-  .poster {
-    width: 100%;
-    height: 100%;
-  }
 
   .number {
     margin-left: 10px;

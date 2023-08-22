@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
+import ChatModal from '../Chat/ChatModal';
+
 type ArticleProps = {
   data: {
     recruitingArticleId: number;
@@ -13,6 +15,11 @@ type ArticleProps = {
 
 const Article = ({ data }: ArticleProps) => {
   const [isHover, setIsHover] = useState<boolean>(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  // chatmodal 여닫기 func
+  const openCloseChatModal = () => {
+    setIsChatOpen(!isChatOpen);
+  };
 
   const handleMouseOver = e => {
     // e.stopPropagation();
@@ -30,6 +37,7 @@ const Article = ({ data }: ArticleProps) => {
 
   const participateHandler = () => {
     console.log('참여하기');
+    openCloseChatModal();
   };
 
   useEffect(() => {
@@ -38,6 +46,7 @@ const Article = ({ data }: ArticleProps) => {
 
   return (
     <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      {isChatOpen && <ChatModal closeChatModal={openCloseChatModal} />}
       {isHover ? (
         <OutContent className="hover out">
           <MovieTitle>미션 임파서블:데드 레코닝</MovieTitle>

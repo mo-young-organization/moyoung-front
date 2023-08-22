@@ -14,8 +14,8 @@ const MovieDetail = () => {
     width: '720',
     height: '405',
     src: 'https://www.youtube.com/embed/AIzaSyCwqGJGZtRte2upFi6ss6fKkzrIzkJM5n0',
-    frameborder: '0',
-    allowfullscreen: 'allowfullscreen',
+    frameBorder: '0',
+    allowFullScreen: true,
   };
   return (
     <Content>

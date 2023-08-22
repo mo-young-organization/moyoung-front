@@ -55,6 +55,9 @@ const TopMovieInfoWrpper = styled.article`
     }
     .buttonWrapper {
       display: flex;
+      .findButton:hover {
+        cursor: pointer;
+      }
       .peopleWrapper {
         margin-left: 32px;
         .iconWrapper {

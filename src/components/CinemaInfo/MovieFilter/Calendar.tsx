@@ -7,6 +7,9 @@ const Calendar = () => {
   const todayWeak = date.getDay();
   const today = date.getDate();
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  const month = date.getMonth() + 1;
+  const [clickMonth, setClickMonth] = useState(month);
+  console.log(clickMonth);
 
   // 일수 가져오는 함수(1,2,3,4 ...)
   const getAlldate = (today: number, lastday: number) => {
@@ -83,13 +86,20 @@ const Calendar = () => {
     getCalendar();
   }, []);
 
-  //   const Weak = useRef<HTMLSpanElement>(null);
+  // ***유즈ref 정리한번 하자!!!!****
   const WeakRefs = useRef<any>([]);
 
   const [curIdx, setCurIdx] = useState(0);
   const onClickHandler = (idx: number) => {
     setCurIdx(idx);
-    console.log(WeakRefs.current[idx]?.textContent);
+    //일단 몇월인지 계산하는 조건문인데 조금 이상하지만 1일날 다시 테스트해보자 일단 해결
+    if (CalendarDay[0] === 1) {
+      setClickMonth(month);
+    } else if (WeakRefs.current[idx]?.textContent < today) {
+      setClickMonth(month + 1);
+    } else {
+      setClickMonth(month);
+    }
   };
 
   return (

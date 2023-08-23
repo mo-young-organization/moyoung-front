@@ -3,7 +3,7 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import Nickname from './Nickname';
 import Gender from './Gender';
 import Age from './Age';
-import { FormValue } from './FormType';
+import { SignupFormValue } from './FormType';
 
 
 const FormCheck = () => {
@@ -13,9 +13,9 @@ const FormCheck = () => {
     watch,
     trigger,
     formState: { errors },
-  } = useForm<FormValue>();
+  } = useForm<SignupFormValue>();
 
-  const onSubmitHandler: SubmitHandler<FormValue> = (data) => {
+  const onSubmitHandler: SubmitHandler<SignupFormValue> = (data) => {
     console.log(data)
   }
 

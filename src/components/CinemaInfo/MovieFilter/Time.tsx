@@ -1,3 +1,4 @@
+import { styled } from 'styled-components';
 import { FilterProps } from '../../SignupCheck/FormType';
 
 const Time = ({ register }: FilterProps) => {
@@ -9,18 +10,34 @@ const Time = ({ register }: FilterProps) => {
   ];
 
   return (
-    <div>
+    <Container>
       <label>시간</label>
-      <ul>
-        {timeArr.map(el => (
-          <li>
+      <ContentUl>
+        {timeArr.map((el, idx) => (
+          <li key={idx}>
             <input type="radio" id={el.id} {...register('time')} />
             <label htmlFor={el.id}>{el.time}</label>
           </li>
         ))}
-      </ul>
-    </div>
+      </ContentUl>
+    </Container>
   );
 };
 
 export default Time;
+
+const Container = styled.div`
+  display: flex;
+
+  > label {
+    width: 64px;
+  }
+`;
+
+const ContentUl = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+
+  width: 330px;
+`;

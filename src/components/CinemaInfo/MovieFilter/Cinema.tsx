@@ -1,3 +1,4 @@
+import { styled } from 'styled-components';
 import { FilterProps } from '../../SignupCheck/FormType';
 
 const Cinema = ({ register }: FilterProps) => {
@@ -8,18 +9,38 @@ const Cinema = ({ register }: FilterProps) => {
   ];
 
   return (
-    <div>
+    <Container>
       <label htmlFor="cinema">영화관</label>
-      <ul>
+      <ContentUl>
         {cinemaArr.map(el => (
           <li key={el.id}>
             <input type="radio" id={el.id} {...register('cinema')} />
             <label htmlFor={el.id}>{el.cinema}</label>
           </li>
         ))}
-      </ul>
-    </div>
+      </ContentUl>
+    </Container>
   );
 };
 
 export default Cinema;
+
+const Container = styled.div`
+  display: flex;
+
+  > label {
+    width: 64px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+`;
+
+const ContentUl = styled.ul`
+  display: flex;
+  justify-content: space-between;
+  list-style-type: none;
+
+  width: 330px;
+  font-size: 16px;
+  font-weight: 500;
+`;

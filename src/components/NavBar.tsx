@@ -14,11 +14,6 @@ const NavBar = () => {
     console.log('로그인 클릭');
   };
 
-  const signupClickHandler = () => {
-    navigate('/signup');
-    console.log('회원가입 클릭');
-  };
-
   return (
     <Container>
       <Content>
@@ -29,10 +24,6 @@ const NavBar = () => {
           <div className="login" onClick={loginClickHandler}>
             <PermIdentityOutlinedIcon />
             로그인
-          </div>
-          <div className="signup" onClick={signupClickHandler}>
-            <PermIdentityOutlinedIcon />
-            회원가입
           </div>
         </UserDiv>
       </Content>
@@ -72,11 +63,9 @@ const UserDiv = styled.div`
   display: flex;
   margin: 0px;
 
-  .login,
-  .signup {
+  .login {
     display: flex;
     align-items: center;
-    background-color: yellow;
 
     cursor: pointer;
   }

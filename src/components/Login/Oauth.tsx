@@ -13,19 +13,19 @@ const Oauth = () => {
       <OauthButton className="kakao-div">
         <Content>
           <img className="kakao" src={kakaoicon} />
-          <div>카카오로 로그인하기</div>
+          <div className="kakao_start">카카오로 시작하기</div>
         </Content>
       </OauthButton>
       <OauthButton className="naver-div">
         <Content>
           <img src={navericon} />
-          <div>네이버로 로그인하기</div>
+          <div className="naver_start">네이버로 시작하기</div>
         </Content>
       </OauthButton>
       <OauthButton className="google-div" onClick={googleOauth}>
         <Content>
           <img src={googleicon} />
-          <div>구글 계정으로 로그인하기</div>
+          <div className="google_start">구글 계정으로 시작하기</div>
         </Content>
       </OauthButton>
     </Container>
@@ -82,5 +82,21 @@ const Content = styled.div`
   > div {
     width: 220px;
     text-align: center;
+  }
+
+  .kakao_start {
+    font-size: 20px;
+    font-weight: 500;
+    color: #181600;
+  }
+  .naver_start {
+    font-size: 20px;
+    font-weight: 500;
+    color: #ffffff;
+  }
+  .google_start {
+    font-size: 20px;
+    font-weight: 500;
+    color: #525252;
   }
 `;

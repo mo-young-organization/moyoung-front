@@ -2,7 +2,11 @@ import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { useState } from 'react';
 
-const Search = () => {
+interface TextProps {
+  text?: string;
+}
+
+const Search = ({ text }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
 
   const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -17,9 +21,7 @@ const Search = () => {
 
   return (
     <Container>
-      <Title>
-        <h1>내 주변 영화관 찾기</h1>
-      </Title>
+      <Title>{text ? <h1>{text}</h1> : <h1>내 주변 영화관 찾기</h1>}</Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
         <SearchInput
           value={movieTitle}
@@ -49,8 +51,6 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  
 `;
 
 const Form = styled.form`

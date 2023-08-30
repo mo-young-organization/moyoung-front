@@ -12,6 +12,7 @@ import OauthToken from './OauthToken';
 import MovieDetail from './MovieDetail';
 import RecruitmentListPage from './RecruitmentListPage';
 import CinemaPage from './CinemaPage';
+import RecruitPostCreatePage from './RecruitPostCreatePage';
 
 const RoutingPage = () => {
   return (
@@ -28,6 +29,7 @@ const RoutingPage = () => {
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemainfo" element={<CinemaPage />} />
+          <Route path="/createpostrecruit" element={<RecruitPostCreatePage />} />
         </Routes>
       </ContentWrapper>
       <Footer />
@@ -51,7 +53,7 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  background-color: #efefef;
+  /* background-color: #efefef; */
   min-height: 100vh;
   width: 100%;
 `;

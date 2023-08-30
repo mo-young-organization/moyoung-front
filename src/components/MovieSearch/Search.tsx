@@ -40,7 +40,6 @@ export default Search;
 
 const Container = styled.div`
   width: 550px;
-  height: 72px;
 
   margin: 80px 0px 100px 0px;
 `;
@@ -49,8 +48,6 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  
 `;
 
 const Form = styled.form`

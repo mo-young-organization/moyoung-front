@@ -50,9 +50,9 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
 
   return (
     <>
-      <SideBtn onClick={() => setCurPage(1)} disabled={curPage === 1}>
+      {/* <SideBtn onClick={() => setCurPage(1)} disabled={curPage === 1}>
         &lt;&lt;
-      </SideBtn>
+      </SideBtn> */}
       <SideBtn onClick={() => setCurPage(curPage - 1)} disabled={curPage === 1}>
         &lt;
       </SideBtn>
@@ -72,14 +72,14 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
       <SideBtn onClick={() => setCurPage(curPage + 1)} disabled={curPage === totalPage}>
         &gt;
       </SideBtn>
-      <SideBtn
+      {/* <SideBtn
         onClick={() => {
           setCurPage(totalPage);
         }}
         disabled={curPage === totalPage}
       >
         &gt;&gt;
-      </SideBtn>
+      </SideBtn> */}
     </>
   );
 }
@@ -93,12 +93,11 @@ const Button = styled.button`
   height: 40px;
   padding: 8px;
   margin: 2px;
-  background: white;
-  color: black;
+  color: #818181;
+  background-color: white;
   font-size: 1rem;
   &:hover {
-    color: white;
-    background: var(--second-color4);
+    color: #000000;
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -109,8 +108,10 @@ const Button = styled.button`
 `;
 
 const SideBtn = styled(Button)`
+color: #000000;
   &[disabled] {
-    background: #e7e5e5;
+    display: none;
+    background: #FFFFFF;
     cursor: revert;
     transform: revert;
   }
@@ -120,8 +121,7 @@ const PgBtn = styled(Button)<ActiveT>`
   ${props =>
     props.i + 1 === props.curPage &&
     css`
-      color: white;
-      background-color: var(--first-color4);
+      color: #000000;
       font-weight: bold;
       cursor: revert;
       transform: revert;

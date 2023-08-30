@@ -21,7 +21,6 @@ const RoutingPage = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
           <Route path="/callback" element={<OauthToken />} />
           <Route path="/signupcheck" element={<SignupCheck />} />
           <Route path="/moviesearch" element={<MovieSearch />} />

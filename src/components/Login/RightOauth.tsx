@@ -1,23 +1,11 @@
 import { styled } from 'styled-components';
 import Oauth from './Oauth';
-import { useNavigate } from 'react-router-dom';
 
 const RightOauth = () => {
-
-  const navigate = useNavigate();
-
-  const signupHandler = () => {
-    navigate('/signup')
-  }
-
   return (
     <Container>
-      <div className="login">로그인</div>
+      <div className="login">로그인과 회원가입을 한번에!</div>
       <Oauth />
-      <div className="signup">
-        <span className="first">아직 회원이 아니신가요?</span>
-        <span className="twice" onClick={signupHandler}>회원가입</span>
-      </div>
     </Container>
   );
 };
@@ -26,7 +14,6 @@ export default RightOauth;
 
 const Container = styled.div`
   width: 330px;
-  height: 376px;
   margin-left: 100px;
 
   display: flex;
@@ -39,6 +26,7 @@ const Container = styled.div`
     font-size: 24px;
     font-weight: 700;
     line-height: 28px;
+    margin-bottom: 20px;
   }
 
   .first {

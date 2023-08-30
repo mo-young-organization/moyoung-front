@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import { Props } from './FormType';
+import { SignupProps } from './FormType';
 
-const Gender = ({ register }: Props) => {
+const Gender = ({ register }: SignupProps) => {
   const genderArr = [
     { gender: 'man', name: '남자' },
     { gender: 'woman', name: '여자' },

@@ -1,6 +1,6 @@
 import MoviePoster from '../components/CinemaInfo/Poster/MoviePoster';
 import Search from '../components/MovieSearch/Search';
-import CinemaBox from '../components/CinemaInfo/CinemaBox';
+import CinemaBox from '../components/CinemaInfo/Cinema/CinemaBox';
 import MovieFilter from '../components/CinemaInfo/MovieFilter/MovieFilter';
 import Dummy from '../data/Dummy';
 import { styled } from 'styled-components';
@@ -13,15 +13,15 @@ const CinemaPage = () => {
       <div>
         <Search />
       </div>
-      <div>
+      <Content>
         <MoviePoster jpg={dummy.JPG} />
-      </div>
+      </Content>
       <div>
         <MovieFilter />
       </div>
-      <div>
+      <Content>
         <CinemaBox />
-      </div>
+      </Content>
     </Container>
   );
 };
@@ -29,9 +29,8 @@ const CinemaPage = () => {
 export default CinemaPage;
 
 const Container = styled.div`
-  width: 1200px;
+  width: 100%;
   height: 100%;
-  background-color: pink;
 
   display: flex;
   flex-direction: column;
@@ -39,3 +38,9 @@ const Container = styled.div`
   justify-content: center;
 `;
 
+const Content = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background-color: white;
+`;

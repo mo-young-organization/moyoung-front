@@ -7,24 +7,31 @@ type ImgProps = {
 
 const MoviePoster = ({ jpg }: ImgProps) => {
   return (
-    <Content>
-      <MovieImg jpg={jpg}>사진</MovieImg>
-      <InfoDiv>
-        <MovieTitle>
-          <div className="kr-title">스파이더맨: 어크로스 더 유니버스</div>
-          <div className="en-title">Spider-Man: Across the Spider-Verse</div>
-        </MovieTitle>
-        <Explanation />
-      </InfoDiv>
-    </Content>
+    <Container>
+      <Content>
+        <MovieImg jpg={jpg}>사진</MovieImg>
+        <InfoDiv>
+          <MovieTitle>
+            <div className="kr-title">스파이더맨: 어크로스 더 유니버스</div>
+            <div className="en-title">Spider-Man: Across the Spider-Verse</div>
+          </MovieTitle>
+          <Explanation />
+        </InfoDiv>
+      </Content>
+    </Container>
   );
 };
 
 export default MoviePoster;
 
+const Container = styled.div`
+  width: 1200px;
+`;
+
 const Content = styled.div`
   display: flex;
   width: 1031px;
+  margin: 74px 85px 67px 84px;
 `;
 
 const MovieImg = styled.div<ImgProps>`

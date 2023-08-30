@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
 
 const TimeBox = ({ 상영정보 }) => {
-  console.log(상영정보);
+  // console.log(상영정보);
   return (
     <ContentLi>
       <span className="theater">{상영정보.상영관}</span>
       <div>
         {상영정보.상영시간.map((el, idx) => (
-          <button className="time">{el}</button>
+          <button key={idx} className="time">
+            {el}
+          </button>
         ))}
       </div>
     </ContentLi>
@@ -17,7 +19,7 @@ const TimeBox = ({ 상영정보 }) => {
 export default TimeBox;
 
 const ContentLi = styled.li`
-margin: 22px 0px;
+  margin: 22px 0px;
   .theater {
     font-size: 16px;
     font-weight: 500;

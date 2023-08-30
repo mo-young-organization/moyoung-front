@@ -10,14 +10,14 @@ const CinemaBox = () => {
   return (
     <ContainerUl>
       {date.map((el, idx) => (
-        <ContentLi>
+        <ContentLi key={idx}>
           <HeadDiv>
             <span className="area">{el.지역}</span>
             <span className="address">{el.주소}</span>
           </HeadDiv>
           <ContentUl>
             {el.상영정보.map((data, index) => (
-              <TimeBox 상영정보={data} />
+              <TimeBox 상영정보={data} key={index} />
             ))}
           </ContentUl>
         </ContentLi>

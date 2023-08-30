@@ -162,7 +162,7 @@ const ContentLi = styled.li`
 
   &:hover {
     border-radius: 8px;
-    background-color: blue;
+    background-color: white;
   }
 
   &.active {

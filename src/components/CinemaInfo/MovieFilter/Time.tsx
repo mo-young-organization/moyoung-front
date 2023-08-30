@@ -31,13 +31,16 @@ const Container = styled.div`
 
   > label {
     width: 64px;
+    font-size: 20px;
+    font-weight: 700;
   }
 `;
 
 const ContentUl = styled.ul`
   display: flex;
-  justify-content: space-between;
   list-style-type: none;
 
-  width: 330px;
+  > li {
+    margin-right: 36px;
+  }
 `;

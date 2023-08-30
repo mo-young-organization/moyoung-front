@@ -37,10 +37,13 @@ const Container = styled.div`
 
 const ContentUl = styled.ul`
   display: flex;
-  justify-content: space-between;
   list-style-type: none;
 
   width: 330px;
   font-size: 16px;
   font-weight: 500;
+
+  > li {
+    margin-right: 36px;
+  }
 `;

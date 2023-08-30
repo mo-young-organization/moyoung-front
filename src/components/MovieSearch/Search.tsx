@@ -42,7 +42,6 @@ export default Search;
 
 const Container = styled.div`
   width: 550px;
-  height: 72px;
 
   margin: 80px 0px 100px 0px;
 `;

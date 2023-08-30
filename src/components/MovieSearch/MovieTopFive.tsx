@@ -40,7 +40,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  margin-bottom: 40px;
+  margin: 64px 84px 142px;
 
   .left {
     /* background-color: red; */

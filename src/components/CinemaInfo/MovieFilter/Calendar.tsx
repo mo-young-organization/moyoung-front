@@ -54,16 +54,15 @@ const Calendar = () => {
         weaklist[i] = strWeak[todayWeak];
         // 오늘이면 오늘 추가, 오늘 다음 내일 추가
         // 조건 0번째가 오늘이고 1번째가 내일이 아니라면 내일 추가
-      } else if (weaklist[0] === '오늘' && weaklist[1] !== '내일') {
-        weaklist[i] = '내일';
+        // } else if (weaklist[0] === '오늘' && weaklist[1] !== '내일') {
+        //   weaklist[i] = '내일';
         // 나머지 요일들 배열 추가
       } else {
         weaklist[i] = strWeak[todayWeak];
       }
     }
 
-    // console.log(weaklist);
-
+    weaklist[1] = '내일';
     return weaklist;
   };
 
@@ -102,19 +101,29 @@ const Calendar = () => {
     }
   };
 
+  // 원하는 요일의 인데스들을 반환하는 함수
+  const findWeekend = (day: string) => {
+    const dayIndex = CalendarWeak.indexOf(day);
+    if (dayIndex < CalendarWeak.length / 2) {
+      return [dayIndex, dayIndex + 7];
+    } else {
+      return [dayIndex - 7, dayIndex];
+    }
+  };
+  // 토, 일요일의 인덱스
+  const findSat = findWeekend('토');
+  const findSun = findWeekend('일');
+
   return (
     <ContainerUl>
       {CalendarObject.map((el, idx) => (
         <button key={idx} onClick={() => onClickHandler(idx)}>
           <ContentLi
+            // 클릭시 active
+            // 토, 일요일의 인덱스를 가져와서 현재 인덱스와 비교 후 맞다면 sat, sun classname 부여
             className={
-              curIdx === idx
-                ? `active ${el.weak === '토' ? 'sat' : el.weak === '일' ? 'sun' : ''}`
-                : el.weak === '토'
-                ? 'sat'
-                : el.weak === '일'
-                ? 'sun'
-                : ''
+              `${curIdx === idx ? 'active' : ''} ` +
+              `${findSat.includes(idx) ? 'sat' : findSun.includes(idx) ? 'sun' : ''}`
             }
           >
             <span className="day" ref={el => (WeakRefs.current[idx] = el)}>

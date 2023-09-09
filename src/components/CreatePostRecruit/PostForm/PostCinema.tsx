@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { PropsCreatePost } from '../../SignupCheck/FormType';
 import { LiaSearchSolid } from 'react-icons/lia';
+import Calendar from '../../CinemaInfo/MovieFilter/Calendar';
 
 const PostCinema = ({ register }: PropsCreatePost) => {
   const movieSearchHandler = () => {
@@ -17,6 +18,12 @@ const PostCinema = ({ register }: PropsCreatePost) => {
         <SearchButton type="button" onClick={movieSearchHandler}>
           <LiaSearchSolid />
         </SearchButton>
+        <FilterDiv>
+          <SearchCalendarDiv>
+            <Calendar />
+          </SearchCalendarDiv>
+          <div></div>
+        </FilterDiv>
       </Content>
       <WhichMovieDiv>
         <span>어떤 영화를 볼까요?</span>
@@ -94,4 +101,22 @@ const SearchButton = styled.button`
     width: 40px;
     height: 40px;
   }
+`;
+
+const FilterDiv = styled.div`
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 580px;
+  height: 800px;
+`;
+
+const SearchCalendarDiv = styled.div`
+  background-color: pink;
+  display: flex;
+
+  width: 520px;
+  height: 180px;
 `;

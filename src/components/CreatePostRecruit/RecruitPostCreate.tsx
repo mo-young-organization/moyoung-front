@@ -4,9 +4,8 @@ import PostForm from './PostForm';
 const RecruitPostCreate = () => {
   return (
     <Container>
-      <div>영화 같이 볼 사람 모으기</div>
-      <div>
-        <div>
+      <div className="post_state">
+        <div className="state_div">
           <span>작성중 ...</span>
           <span>닉네임 20대</span>
         </div>
@@ -19,6 +18,27 @@ const RecruitPostCreate = () => {
 export default RecruitPostCreate;
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 1200px;
-  background-color: orange;
+
+  .post_state {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 170px;
+
+    .state_div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 328px;
+      height: 60px;
+      border-radius: 40px;
+
+      background-color: #f1f1f1;
+    }
+  }
 `;

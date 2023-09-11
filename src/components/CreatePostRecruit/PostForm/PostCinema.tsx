@@ -18,16 +18,25 @@ const PostCinema = ({ register }: PropsCreatePost) => {
         <SearchButton type="button" onClick={movieSearchHandler}>
           <LiaSearchSolid />
         </SearchButton>
-        <FilterDiv>
-          <SearchCalendarDiv>
-            <Calendar />
-          </SearchCalendarDiv>
-          <div></div>
-        </FilterDiv>
       </Content>
       <WhichMovieDiv>
         <span>어떤 영화를 볼까요?</span>
       </WhichMovieDiv>
+      <FilterDiv>
+        <SearchCalendarDiv>
+          <SearchDiv>
+            <input type="text" title="검색창" placeholder="영화 제목을 검색해주세요" />
+            <FilterSearchButton type="button" onClick={movieSearchHandler}>
+              <LiaSearchSolid />
+            </FilterSearchButton>
+            <button>필터</button>
+          </SearchDiv>
+          <CalendarDiv>
+            <Calendar />
+          </CalendarDiv>
+        </SearchCalendarDiv>
+        <FilterCinemainfoDiv></FilterCinemainfoDiv>
+      </FilterDiv>
     </Container>
   );
 };
@@ -104,19 +113,74 @@ const SearchButton = styled.button`
 `;
 
 const FilterDiv = styled.div`
-  background-color: aqua;
+  background-color: #f6f6f6;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 12px;
+  padding: 16px 28px;
 
   width: 580px;
   height: 800px;
 `;
 
 const SearchCalendarDiv = styled.div`
-  background-color: pink;
+  /* background-color: pink; */
+  width: 520px;
+  height: 180px;
+`;
+
+const CalendarDiv = styled.div`
   display: flex;
 
   width: 520px;
-  height: 180px;
+`;
+
+const SearchDiv = styled.div`
+  position: relative;
+  width: 520px;
+  height: 50px;
+  margin-bottom: 12px;
+
+  > input {
+    width: 460px;
+    height: 50px;
+
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 1px 2px 0px;
+    margin-right: 12px;
+    padding: 0px 70px 0px 15px;
+  }
+
+  > button {
+    width: 48px;
+    height: 48px;
+  }
+`;
+
+const FilterSearchButton = styled.button`
+  position: absolute;
+  right: 70px;
+  cursor: pointer;
+
+  border: 0;
+  border-radius: 8px;
+  background-color: transparent;
+
+  > svg {
+    &:hover {
+      background-color: red;
+    }
+    width: 24px;
+    height: 24px;
+  }
+`;
+
+const FilterCinemainfoDiv = styled.div`
+  background-color: white;
+  width: 520px;
+  height: 550px;
+  border-radius: 8px;
+  padding: 20px 28px;
 `;

@@ -4,6 +4,10 @@ import { LiaSearchSolid } from 'react-icons/lia';
 import Calendar from '../../CinemaInfo/MovieFilter/Calendar';
 
 import { CinemaDummy } from '../../CinemaInfo/Cinema/data';
+import Cinema from '../../CinemaInfo/MovieFilter/Cinema';
+import FilterCinema from '../Filter/FilterCinema';
+import FilterTime from '../Filter/FilterTime';
+import FilterDistance from '../Filter/FilterDistance';
 
 const PostCinema = ({ register }: PropsCreatePost) => {
   const date = CinemaDummy;
@@ -11,6 +15,16 @@ const PostCinema = ({ register }: PropsCreatePost) => {
   const movieSearchHandler = () => {
     console.log('영화 검색 버튼 클릭');
   };
+
+  const filterinFilterHandler = () => {
+    console.log('필터안에 필터');
+  };
+
+  const cinemaArr = [
+    { id: 'cgv', cinema: 'CGV' },
+    { id: 'mega', cinema: '메가박스' },
+    { id: 'lotte', cinema: '롯데시네마' },
+  ];
 
   return (
     <Container>
@@ -26,14 +40,17 @@ const PostCinema = ({ register }: PropsCreatePost) => {
       <WhichMovieDiv>
         <span>어떤 영화를 볼까요?</span>
       </WhichMovieDiv>
-      <FilterDiv>
+      {/* 이 밑에는 따로 컴포넌트로 빼야함 */}
+      {/* <FilterDiv>
         <SearchCalendarDiv>
           <SearchDiv>
             <input type="text" title="검색창" placeholder="영화 제목을 검색해주세요" />
             <FilterSearchButton type="button" onClick={movieSearchHandler}>
               <LiaSearchSolid />
             </FilterSearchButton>
-            <button>필터</button>
+            <button type="button" onClick={filterinFilterHandler}>
+              필터
+            </button>
           </SearchDiv>
           <CalendarDiv>
             <Calendar />
@@ -77,12 +94,75 @@ const PostCinema = ({ register }: PropsCreatePost) => {
             </ContainerUl>
           </CinemaContentDiv>
         </FilterCinemainfoDiv>
-      </FilterDiv>
+      </FilterDiv> */}
+      <InFilterForm>
+        <InFilterDiv>
+          <div className="filter_font_div">필터</div>
+          <InMidDiv>
+            <FilterCinema />
+            <FilterTime />
+            <FilterDistance />
+          </InMidDiv>
+          <div className="filter_button_div">
+            <button onClick={e => e.preventDefault()}>적용</button>
+          </div>
+        </InFilterDiv>
+      </InFilterForm>
     </Container>
   );
 };
 
 export default PostCinema;
+
+// ----Filter
+const InFilterForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: whitesmoke;
+
+  width: 580px;
+  height: 360px;
+  border-radius: 12px;
+`;
+
+const InFilterDiv = styled.div`
+  height: 320px;
+
+  .filter_font_div {
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .filter_button_div {
+    display: flex;
+    justify-content: end;
+
+    > button {
+      border: 1px solid #c2c2c2;
+      border-radius: 4px;
+      background-color: transparent;
+      width: 65px;
+      height: 33px;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+`;
+
+const InMidDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  width: 100%;
+  height: 200px;
+  margin: 28px 0px;
+`;
 
 const Container = styled.div`
   .cinema_title {

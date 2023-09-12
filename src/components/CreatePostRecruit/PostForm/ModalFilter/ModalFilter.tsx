@@ -9,7 +9,14 @@ const ModalFilter = ({ onClose }) => {
       <Content>
         <InFilterForm>
           <InFilterDiv>
-            <div className="filter_font_div">필터</div>
+            <div className="top-div">
+              {/* 야매로 span3개로 함... */}
+              <span />
+              <span className="filter_font_div">필터</span>
+              <span className="cancell-button" onClick={onClose}>
+                X
+              </span>
+            </div>
             <InMidDiv>
               <FilterCinema />
               <FilterTime />
@@ -30,22 +37,23 @@ export default ModalFilter;
 const Background = styled.div`
   height: 100%;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
   position: fixed;
   left: 0;
   top: 0;
-  text-align: center;
+  z-index: 100;
 `;
 
 const Content = styled.div`
   height: 100%;
   width: 100%;
-  margin-top: 70px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   position: relative;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 1;
 `;
 
 // ----Filter
@@ -65,10 +73,14 @@ const InFilterForm = styled.form`
 const InFilterDiv = styled.div`
   height: 320px;
 
+  .top-div {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .filter_font_div {
     font-size: 16px;
     font-weight: 700;
-    text-align: center;
   }
 
   .filter_button_div {

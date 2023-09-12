@@ -30,7 +30,6 @@ const PostCinema = ({ register }: PropsCreatePost) => {
         <span>어떤 영화를 볼까요?</span>
       </WhichMovieDiv>
       <CinemaPotal>{modalOn && <CinemaModal onClose={movieSearchHandler} />}</CinemaPotal>
-
       {/* 이 밑에는 따로 컴포넌트로 빼야함 */}
       {/* <TicketDiv>
         <LeftTicket>
@@ -279,6 +278,7 @@ const SearchButton = styled.button`
   width: 80px;
   height: 100%;
   cursor: pointer;
+  z-index: 1;
 
   border: 0;
   border-radius: 8px;
@@ -289,6 +289,7 @@ const SearchButton = styled.button`
   }
 
   > svg {
+    z-index: 1;
     width: 40px;
     height: 40px;
   }

@@ -22,7 +22,9 @@ const CinemaModal = ({ onClose }) => {
   return (
     <Background>
       <Content>
-        <div onClick={onClose}>취소버튼</div>
+        <div className="cancell-button" onClick={onClose}>
+          X
+        </div>
         <FilterDiv>
           <SearchCalendarDiv>
             <SearchDiv>
@@ -86,24 +88,33 @@ const CinemaModal = ({ onClose }) => {
 export default CinemaModal;
 
 const Background = styled.div`
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+
   position: fixed;
   left: 0;
   top: 0;
-  text-align: center;
+  z-index: 99;
 `;
 
 const Content = styled.div`
   height: 100%;
   width: 100%;
-  margin-top: 70px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
   position: relative;
   background-color: rgba(0, 0, 0, 0.2);
-  z-index: 1;
+
+  .cancell-button {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 20px;
+    width: 580px;
+  }
 `;
 
 const FilterDiv = styled.div`

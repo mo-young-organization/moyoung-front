@@ -1,9 +1,7 @@
-import { FilterProps } from '../../SignupCheck/FormType';
 import Slider from '@mui/material/Slider';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { useState } from 'react';
 import { styled } from 'styled-components';
-import Box from '@mui/material/Box';
 
 const FilterDistance = () => {
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -59,8 +57,9 @@ const Container = styled.div`
 
   > div {
     width: 64px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
+    padding-left: 5px;
   }
 `;
 
@@ -76,6 +75,10 @@ const DistanceSlider = styled(Slider)`
   }
   .MuiSlider-track {
     color: #a0a0a0;
+  }
+  .MuiSlider-markLabel {
+    font-size: 12px;
+    font-weight: 500;
   }
   color: #a0a0a0;
 `;

@@ -30,14 +30,18 @@ const Container = styled.div`
 
   > label {
     width: 64px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
+    padding-left: 5px;
   }
 `;
 
 const ContentUl = styled.ul`
   display: flex;
   list-style-type: none;
+
+  font-size: 12px;
+  font-weight: 500;
 
   > li {
     margin-right: 36px;

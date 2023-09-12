@@ -29,7 +29,7 @@ const Container = styled.div`
 
   > label {
     width: 64px;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: 700;
   }
 `;
@@ -39,7 +39,7 @@ const ContentUl = styled.ul`
   list-style-type: none;
 
   width: 330px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 500;
 
   > li {

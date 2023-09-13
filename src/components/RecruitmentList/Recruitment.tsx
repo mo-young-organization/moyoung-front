@@ -3,16 +3,26 @@ import Article from './Article';
 import Pagination from './Pagination';
 import { styled } from 'styled-components';
 import Search from '../MovieSearch/Search';
+import RecruFilterModal from './Modal/RecruFilterModal';
+import RecPotal from './Modal/RecPotal';
 
 const Recruitment = ({ dummyData }) => {
   const [curPage, setCurPage] = useState(1);
+  const [recModalOn, setRecModalOn] = useState(false);
+
+  const filterOnAndCancelButtonHandler = () => {
+    setRecModalOn(!recModalOn);
+  };
 
   return (
     <>
       <ContentSearchDiv>
         <Search text="영화 같이 볼 사람 찾기" />
       </ContentSearchDiv>
-      <div>네모네모?</div>
+      <FilterBoxDiv>
+        <button>1</button>
+        <button onClick={filterOnAndCancelButtonHandler}>2</button>
+      </FilterBoxDiv>
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
       </DivPagination>
@@ -24,6 +34,7 @@ const Recruitment = ({ dummyData }) => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
       </DivPagination>
+      <RecPotal>{recModalOn && <RecruFilterModal onClose={filterOnAndCancelButtonHandler} />}</RecPotal>
     </>
   );
 };
@@ -55,4 +66,17 @@ const DivPagination = styled.div`
   height: 50px;
 
   margin: 100px 0px;
+`;
+
+const FilterBoxDiv = styled.div`
+  margin-top: 40px;
+  width: 1031px;
+  text-align: end;
+
+  > button {
+    border: none;
+    width: 28px;
+    height: 28px;
+    margin-left: 5px;
+  }
 `;

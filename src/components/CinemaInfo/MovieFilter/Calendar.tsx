@@ -141,6 +141,7 @@ export default Calendar;
 
 const ContainerUl = styled.ul`
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
 

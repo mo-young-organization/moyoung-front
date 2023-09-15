@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 
 const Oauth = () => {
   const googleOauth = () => {
-    window.location.assign('https://2f7e-61-254-8-200.ngrok-free.app/oauth2/authorization/google');
+    window.location.assign(`${import.meta.env.VITE_BASE_API}oauth2/authorization/google`);
   };
 
   return (

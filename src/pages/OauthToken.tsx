@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
-import { styled } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { setCookie } from '../util/Cookie';
 
 const OauthToken = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const user = searchParams.get('user');
@@ -14,22 +16,22 @@ const OauthToken = () => {
   const accessTokenExpiration = searchParams.get('accessTokenExpiration');
   const refreshTokenExpiration = searchParams.get('refreshTokenExpiration');
   console.log([user, token, refreshToken, memberId, nickname, accessTokenExpiration, refreshTokenExpiration]);
+  console.log(new Date());
+  console.log(new Date(accessTokenExpiration));
+  console.log(new Date(refreshTokenExpiration));
 
   useEffect(() => {
-    if (user === 'false') {
-      navigate('/signupcheck');
-    }
+    //
+    setCookie('token', token, { path: '/', expires: new Date(accessTokenExpiration) });
+    setCookie('refreshToken', refreshToken, { path: '/', expires: new Date(refreshTokenExpiration) });
+    // if (user === 'false') {
+    //   navigate('/signupcheck');
+    // }
+
+    // tokenSetDispatch(token);
   }, []);
 
-  return (
-    <Con>
-      <div>ㅎㅇㅎㅇㅎㅇ</div>
-    </Con>
-  );
+  return <></>;
 };
 
 export default OauthToken;
-
-const Con = styled.div`
-  background-color: red;
-`;

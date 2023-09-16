@@ -4,7 +4,8 @@ import Nickname from './Nickname';
 import Gender from './Gender';
 import Age from './Age';
 import { SignupFormValue } from './FormType';
-
+import { useState } from 'react';
+import { signupCheckPost } from '../../api/api';
 
 const FormCheck = () => {
   const {
@@ -15,21 +16,23 @@ const FormCheck = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
-  const onSubmitHandler: SubmitHandler<SignupFormValue> = (data) => {
-    console.log(data)
-  }
+  const onSubmitHandler: SubmitHandler<SignupFormValue> = data => {
+    console.log('이게 되면 안되는데?');
+
+    data.gender = String(data.gender === '남자' ? true : false);
+    data.age = data.age[0];
+    signupCheckPost(data);
+  };
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <div>
-        <Nickname register={register} errors={errors} watch={watch} trigger={trigger}/>
+        <Nickname register={register} errors={errors} watch={watch} trigger={trigger} />
         <Gender register={register} />
         <Age register={register} />
       </div>
       <div className="button-check">
-        <CompletButton type="submit" >
-          완료
-        </CompletButton>
+        <CompletButton type="submit">완료</CompletButton>
       </div>
     </ContainerForm>
   );
@@ -50,10 +53,9 @@ const ContainerForm = styled.form`
 
     display: flex;
     align-items: end;
-:hover {
-  background-color: green;
-}
-    
+    :hover {
+      background-color: green;
+    }
   }
 
   .font {
@@ -79,4 +81,4 @@ const CompletButton = styled.button`
 
   font-size: 20px;
   font-weight: 700;
-`
+`;

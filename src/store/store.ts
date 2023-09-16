@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import accessTokenReduser from './reducers/accessToken';
+import memberIdReduser from './reducers/memberId';
 
 export default configureStore({
   reducer: {
-    accessToken: accessTokenReduser,
+    memberId: memberIdReduser,
   },
 });

@@ -13,7 +13,7 @@ export const instance = axios.create({
 instance.interceptors.request.use(
   request => {
     request.headers['Authorization'] = getCookie('token');
-    console.log(getCookie('token'));
+    request.headers['Refresh'] = getCookie('refreshToken');
     return request;
   },
   error => {

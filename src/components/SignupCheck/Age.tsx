@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { SignupProps } from './FormType';
 
-const Age = ({ register }: SignupProps) => {
+const Age = ({ register, errors }: SignupProps) => {
   const ageArr = [
     { id: 'age10', age: '10대' },
     { id: 'age20', age: '20대' },
@@ -16,11 +16,12 @@ const Age = ({ register }: SignupProps) => {
       <ul>
         {ageArr.map(data => (
           <li key={data.id}>
-            <input type="radio" id={data.id} value={data.age} {...register('age', { required: true })} />
+            <input type="radio" id={data.id} value={data.age} {...register('age', { required: '체크를 해주세요' })} />
             <label htmlFor={data.id}>{data.age}</label>
           </li>
         ))}
       </ul>
+      {errors.age?.message ? <div>{errors.age?.message}</div> : <></>}
     </Container>
   );
 };

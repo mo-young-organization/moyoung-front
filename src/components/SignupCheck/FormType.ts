@@ -1,14 +1,16 @@
+import { Dispatch, SetStateAction } from 'react';
 import { UseFormRegister, FieldErrors, UseFormWatch } from 'react-hook-form';
 
 // 회원가입시 체크
 export interface SignupFormValue {
-  nick: string;
+  displayName: string;
   gender: string;
   age: string;
 }
 
 export interface SignupProps {
   register: UseFormRegister<SignupFormValue>;
+  errors: FieldErrors<SignupFormValue>;
 }
 
 export interface PropsForm {

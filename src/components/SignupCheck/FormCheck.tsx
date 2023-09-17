@@ -16,20 +16,30 @@ const FormCheck = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
+  const [isNickOverlap, setIsNickOverlap] = useState(false);
+
   const onSubmitHandler: SubmitHandler<SignupFormValue> = data => {
-    console.log('이게 되면 안되는데?');
+    console.log('폼 체크');
 
     data.gender = String(data.gender === '남자' ? true : false);
     data.age = data.age[0];
-    signupCheckPost(data);
+    console.log(data);
+    // signupCheckPost(data);
   };
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <div>
-        <Nickname register={register} errors={errors} watch={watch} trigger={trigger} />
-        <Gender register={register} />
-        <Age register={register} />
+        <Nickname
+          register={register}
+          errors={errors}
+          watch={watch}
+          trigger={trigger}
+          isNickOverlap={isNickOverlap}
+          setIsNickOverlap={setIsNickOverlap}
+        />
+        <Gender register={register} errors={errors} />
+        <Age register={register} errors={errors} />
       </div>
       <div className="button-check">
         <CompletButton type="submit">완료</CompletButton>

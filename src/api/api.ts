@@ -5,6 +5,7 @@ export const nickNameDuplicatePost = async req => {
   try {
     const data = await instance.post(`/displayname`, req);
     console.log(data);
+    return data.data;
   } catch (error) {
     console.log(error);
   }

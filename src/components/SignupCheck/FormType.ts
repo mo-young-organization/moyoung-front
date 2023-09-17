@@ -10,6 +10,7 @@ export interface SignupFormValue {
 
 export interface SignupProps {
   register: UseFormRegister<SignupFormValue>;
+  errors: FieldErrors<SignupFormValue>;
 }
 
 export interface PropsForm {

@@ -16,10 +16,13 @@ const FormCheck = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
-  const [isNickOverlap, setIsNickOverlap] = useState(false);
+  const [중복확인, set중복확인] = useState(false);
 
   const onSubmitHandler: SubmitHandler<SignupFormValue> = data => {
     console.log('폼 체크');
+    if (중복확인) {
+      console.log('폼 api요청 보낸다');
+    }
 
     data.gender = String(data.gender === '남자' ? true : false);
     data.age = data.age[0];
@@ -35,8 +38,8 @@ const FormCheck = () => {
           errors={errors}
           watch={watch}
           trigger={trigger}
-          isNickOverlap={isNickOverlap}
-          setIsNickOverlap={setIsNickOverlap}
+          중복확인={중복확인}
+          set중복확인={set중복확인}
         />
         <Gender register={register} errors={errors} />
         <Age register={register} errors={errors} />

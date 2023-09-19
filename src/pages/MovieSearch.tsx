@@ -8,7 +8,7 @@ const MovieSearch = () => {
   return (
     <Container>
       <Search />
-      <MovieTopFive dummy={Dummy} text={`TOP${Dummy.length}`}/>
+      <MovieTopFive dummy={Dummy} text={`TOP${Dummy.length}`} />
     </Container>
   );
 };
@@ -20,7 +20,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  width: 1200px;
+  width: 100%;
   height: 100%;
   background-color: #efefef;
 `;

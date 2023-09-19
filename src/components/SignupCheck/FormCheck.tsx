@@ -8,6 +8,7 @@ import { useState } from 'react';
 import { signupCheckPost } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { setUserStatus } from '../../store/reducers/userStatus';
 
 const FormCheck = () => {
   const {
@@ -29,8 +30,7 @@ const FormCheck = () => {
     // await 안붙혀서 그런가?? => 회원정보 등록 api요청을 보내고 세션스토리지에 닉네임 저장후 네비게이터 이동 이걸 원한건데 왜 안될까
     // signupCheckPost(data).then(() => navigate('/'));
     await signupCheckPost(data).then(date => {
-      // user정보를 리덕스에 저장
-      dispatch(date.user), navigate('/');
+      dispatch(setUserStatus(date.data.user)), navigate('/');
     });
   };
 

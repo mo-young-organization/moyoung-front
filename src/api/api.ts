@@ -17,8 +17,18 @@ export const signupCheckPost = async req => {
     const data = await instance.post(`/info`, req);
     console.log(data);
 
-    window.sessionStorage.setItem('displayName', data.displayName);
+    window.sessionStorage.setItem('displayName', data.data.displayName);
     return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 회원 탈퇴(임의)
+export const userDelete = async memberId => {
+  try {
+    const data = await instance.delete(`/hi?id=${memberId}`);
+    console.log(data);
   } catch (error) {
     console.log(error);
   }

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { getCookie, removeCookie } from '../util/Cookie';
 import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
+import { userDelete } from '../api/api';
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -22,6 +23,7 @@ const NavBar = () => {
     console.log('로그인 클릭');
   };
 
+  //로그아웃 버튼 이벤트
   const logoutHandler = () => {
     console.log('로그아웃이구만유');
     removeCookie('token', { path: '/' });
@@ -30,15 +32,29 @@ const NavBar = () => {
     setIsLogin(false);
   };
 
-  const dropDownMenuArr = [{ key: '로그아웃', onClick: logoutHandler }];
+  //회원 탈퇴 버튼 이벤트
+  const userDeleteHandler = () => {
+    const memberId = window.sessionStorage.getItem('memberId');
+    userDelete(memberId);
+    removeCookie('token', { path: '/' });
+    removeCookie('refreshToken', { path: '/' });
+    window.sessionStorage.clear();
+    setIsLogin(false);
+  };
+
+  const dropDownMenuArr = [
+    { key: '로그아웃', onClick: logoutHandler },
+    { key: '회원탈퇴', onClick: userDeleteHandler },
+  ];
   const displayName = window.sessionStorage.getItem('displayName');
   // const refreshToken = getCookie('refreshToken');
   const userStatus = useSelector((state: ReduxType) => state.userStatus.value);
-  console.log(userStatus);
+  // string값으로 넘어온다
 
   useEffect(() => {
+    console.log(userStatus);
     // 이걸 유저여부로 파악하자 리프레쉬토큰이 아니라
-    if (userStatus) {
+    if (userStatus !== 'false') {
       setIsLogin(true);
     } else {
       setIsLogin(false);
@@ -65,13 +81,13 @@ const NavBar = () => {
                   {displayName}
                   {onClick ? <RiArrowUpSLine className="arrow" /> : <RiArrowDownSLine className="arrow" />}
                 </div>
-                <ul role="button" className={onClick ? 'drop-menu' : 'none'}>
+                <DropDownUl role="button" className={onClick ? 'drop-menu' : 'none'}>
                   {dropDownMenuArr.map(el => (
                     <li onClick={el.onClick} key={el.key}>
                       {el.key}
                     </li>
                   ))}
-                </ul>
+                </DropDownUl>
               </div>
             </LoginSuccessDiv>
           ) : (
@@ -152,7 +168,6 @@ const LoginSuccessDiv = styled.div`
     list-style: none;
 
     position: absolute;
-    height: 30px;
     width: 70px;
     top: 100px;
     z-index: 200;
@@ -179,4 +194,9 @@ const LoginSuccessDiv = styled.div`
   .none {
     display: none;
   }
+`;
+
+const DropDownUl = styled.ul`
+  display: flex;
+  flex-direction: column;
 `;

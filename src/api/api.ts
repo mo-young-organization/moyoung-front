@@ -16,6 +16,9 @@ export const signupCheckPost = async req => {
   try {
     const data = await instance.post(`/info`, req);
     console.log(data);
+
+    window.sessionStorage.setItem('displayName', data.displayName);
+    return data;
   } catch (error) {
     console.log(error);
   }

@@ -24,11 +24,27 @@ export const signupCheckPost = async req => {
   }
 };
 
-// 회원 탈퇴(임의)
+// 회원 탈퇴(임의) delete요청
 export const userDelete = async memberId => {
   try {
     const data = await instance.delete(`/hi?id=${memberId}`);
     console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 영화 검색 get요청
+export const movieSearchGet = async movieName => {
+  try {
+    const data = await instance.get(`/movie?movieName=${movieName}&page=1`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
+      },
+    });
+    console.log(data);
+    console.log(data.data);
   } catch (error) {
     console.log(error);
   }

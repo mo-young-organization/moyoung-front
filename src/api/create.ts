@@ -4,6 +4,9 @@ import { getCookie, setCookie } from '../util/Cookie';
 // 1단계 인스턴스 생성
 export const instance = axios.create({
   baseURL: import.meta.env.VITE_BASE_API,
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // 2단계 인터셉터 사용
@@ -14,6 +17,7 @@ instance.interceptors.request.use(
   request => {
     request.headers['Authorization'] = getCookie('token');
     request.headers['Refresh'] = getCookie('refreshToken');
+
     return request;
   },
   error => {
@@ -53,27 +57,26 @@ instance.interceptors.response.use(
         // isTokenRefreshing이 false인 경우에만 token refresh 요청
         isTokenRefreshing = true;
         const refreshToken = await getCookie('refreshToken');
-        const { data } = await axios.post(
-          `http://localhost:3000/refresh/token`, // token refresh api
-          {
-            refreshToken,
-          },
-        );
-        // 새로운 토큰 저장
-        const {
-          accessToken: newAccessToken,
-          refreshToken: newRefreshToken,
-          accessTokenExpiration: newAccessTokenExpiration,
-          refreshTokenExpiration: newRefreshTokenExpiration,
-        } = data;
-        // ------------새로 저장하면 굳이 삭제를 안해도 되나??(테스트 해봐야 함)
-        await setCookie('token', newAccessToken, { path: '/', expires: new Date(newAccessTokenExpiration) });
-        await setCookie('refreshToken', newRefreshToken, { path: '/', expires: new Date(newRefreshTokenExpiration) });
+        await instance
+          .post(
+            `${import.meta.env.VITE_BASE_API}refresh`, // token refresh api
+            {
+              headers: {
+                Refresh: refreshToken,
+              },
+            },
+          )
+          .then(res => {
+            if (res.status === 200) {
+              const { authorization: newAccessToken, accesstokenexpiration: newAccessTokenExpiration } = res.headers;
+              setCookie('token', newAccessToken, { path: '/', expires: new Date(newAccessTokenExpiration) });
 
-        isTokenRefreshing = false;
-        axios.defaults.headers.common.Authorization = newAccessToken;
-        // 새로운 토큰으로 지연되었던 요청 진행
-        onTokenRefreshed(newAccessToken);
+              isTokenRefreshing = false;
+              axios.defaults.headers.common.Authorization = newAccessToken;
+              // 새로운 토큰으로 지연되었던 요청 진행
+              onTokenRefreshed(newAccessToken);
+            }
+          });
       }
       // token이 재발급 되는 동안의 요청은 refreshSubscribers에 저장
       const retryOriginalRequest = new Promise(resolve => {

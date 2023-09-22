@@ -1,8 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
-import memberIdReduser from './reducers/memberId';
+import userStatusReduser from './reducers/userStatus';
 
-export default configureStore({
+const store = configureStore({
   reducer: {
-    memberId: memberIdReduser,
+    userStatus: userStatusReduser,
   },
 });
+
+export type ReduxType = ReturnType<typeof store.getState>;
+
+export default store;

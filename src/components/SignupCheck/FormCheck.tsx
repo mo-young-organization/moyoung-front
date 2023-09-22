@@ -6,6 +6,9 @@ import Age from './Age';
 import { SignupFormValue } from './FormType';
 import { useState } from 'react';
 import { signupCheckPost } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUserStatus } from '../../store/reducers/userStatus';
 
 const FormCheck = () => {
   const {
@@ -17,14 +20,18 @@ const FormCheck = () => {
   } = useForm<SignupFormValue>();
 
   const [isNickOverlap, setIsNickOverlap] = useState(false);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const onSubmitHandler: SubmitHandler<SignupFormValue> = data => {
-    console.log('폼 체크');
-
+  const onSubmitHandler: SubmitHandler<SignupFormValue> = async data => {
     data.gender = String(data.gender === '남자' ? true : false);
     data.age = data.age[0];
     console.log(data);
-    // signupCheckPost(data);
+    // await 안붙혀서 그런가?? => 회원정보 등록 api요청을 보내고 세션스토리지에 닉네임 저장후 네비게이터 이동 이걸 원한건데 왜 안될까
+    // signupCheckPost(data).then(() => navigate('/'));
+    await signupCheckPost(data).then(date => {
+      dispatch(setUserStatus(date.data.user)), navigate('/');
+    });
   };
 
   return (

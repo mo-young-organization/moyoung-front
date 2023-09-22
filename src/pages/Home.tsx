@@ -22,6 +22,7 @@ const Container = styled.div`
   justify-content: center;
 
   width: 100%;
+  height: 100%;
 `;
 
 const Content = styled.div`

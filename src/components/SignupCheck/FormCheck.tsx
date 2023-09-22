@@ -19,6 +19,8 @@ const FormCheck = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
+
+  const [중복확인, set중복확인] = useState(false);
   const [isNickOverlap, setIsNickOverlap] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -42,8 +44,8 @@ const FormCheck = () => {
           errors={errors}
           watch={watch}
           trigger={trigger}
-          isNickOverlap={isNickOverlap}
-          setIsNickOverlap={setIsNickOverlap}
+          중복확인={중복확인}
+          set중복확인={set중복확인}
         />
         <Gender register={register} errors={errors} />
         <Age register={register} errors={errors} />

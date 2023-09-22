@@ -8,6 +8,7 @@ export const nickNameDuplicatePost = async req => {
     return data.data;
   } catch (error) {
     console.log(error);
+    return error.response.status;
   }
 };
 

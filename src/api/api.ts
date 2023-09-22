@@ -1,4 +1,5 @@
 import { instance } from './create';
+import axios from 'axios';
 import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
@@ -57,6 +58,34 @@ export const getMovieTopFive = async () => {
   try {
     const data = await instance.get(`movie/rank`);
     return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 불러오기 get요청
+export const getRecruitList = async (page: number) => {
+  try {
+    const data = await instance.get(`recruit?page=${page}`);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 삭제 delete 요청
+export const deleteRecruit = async (recruitId: string) => {
+  try {
+    await instance.delete(`recruit/${recruitId}`);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 수정 patch 요청
+export const patchRecruit = async req => {
+  try {
+    await instance.patch(`recruit/${1}`, req);
   } catch (error) {
     console.log(error);
   }

@@ -1,6 +1,7 @@
 import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { useState } from 'react';
+import { movieSearchGet } from '../../api/api';
 
 interface TextProps {
   text?: string;
@@ -15,8 +16,11 @@ const Search = ({ text }: TextProps) => {
 
   const buttonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (movieTitle !== '') {
+      console.log('get요청');
+      movieSearchGet(movieTitle);
+    }
     setMovieTitle('');
-    console.log(movieTitle);
   };
 
   return (

@@ -1,4 +1,5 @@
 import { instance } from './create';
+import axios from 'axios';
 import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
@@ -57,6 +58,65 @@ export const getMovieTopFive = async () => {
   try {
     const data = await instance.get(`movie/rank`);
     return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 불러오기 get요청
+export const getRecruitList = async (page: number) => {
+  try {
+    const data = await instance.get(`recruit?page=${page}`);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 삭제 delete 요청
+export const deleteRecruit = async (authToken: string, refreshToken: string, recruitId: string) => {
+  try {
+    await axios.delete(`${import.meta.env.VITE_BASE_API}/recruit/${recruitId}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: authToken,
+        Refresh: refreshToken,
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 모집글 수정 patch 요청
+export const patchRecruit = async (
+  authToken: string,
+  refreshToken: string,
+  recruitId: string,
+  runningTimeId: number,
+  title: string,
+  maxNum: number,
+  gender: number,
+  age: number,
+) => {
+  try {
+    await axios.patch(
+      `${import.meta.env.VITE_BASE_API}/recruit/${recruitId}`,
+      {
+        runningTimeId,
+        title,
+        maxNum,
+        gender,
+        age,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: authToken,
+          Refresh: refreshToken,
+        },
+      },
+    );
   } catch (error) {
     console.log(error);
   }

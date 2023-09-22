@@ -74,49 +74,18 @@ export const getRecruitList = async (page: number) => {
 };
 
 // 모집글 삭제 delete 요청
-export const deleteRecruit = async (authToken: string, refreshToken: string, recruitId: string) => {
+export const deleteRecruit = async (recruitId: string) => {
   try {
-    await axios.delete(`${import.meta.env.VITE_BASE_API}/recruit/${recruitId}`, {
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: authToken,
-        Refresh: refreshToken,
-      },
-    });
+    await instance.delete(`recruit/${recruitId}`);
   } catch (error) {
     console.log(error);
   }
 };
 
 // 모집글 수정 patch 요청
-export const patchRecruit = async (
-  authToken: string,
-  refreshToken: string,
-  recruitId: string,
-  runningTimeId: number,
-  title: string,
-  maxNum: number,
-  gender: number,
-  age: number,
-) => {
+export const patchRecruit = async req => {
   try {
-    await axios.patch(
-      `${import.meta.env.VITE_BASE_API}/recruit/${recruitId}`,
-      {
-        runningTimeId,
-        title,
-        maxNum,
-        gender,
-        age,
-      },
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: authToken,
-          Refresh: refreshToken,
-        },
-      },
-    );
+    await instance.patch(`recruit/${1}`, req);
   } catch (error) {
     console.log(error);
   }

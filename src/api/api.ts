@@ -50,3 +50,13 @@ export const movieSearchGet = async movieName => {
     console.log(error);
   }
 };
+
+// 영화 탑 순위 5개 get요청
+export const getMovieTopFive = async () => {
+  try {
+    const data = await instance.get(`movie/rank`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
+import { useState, useEffect } from 'react';
 
 type Props = {
-  dummy: { MOVIE: string; JPG: string }[];
-  text: string;
   classname?: string;
 };
 
@@ -10,19 +9,30 @@ type ImgProps = {
   img: string;
 };
 
-const MovieTopFive = ({ dummy, text, classname }: Props) => {
+type TMovieTopFive = {
+  date: string;
+  ranks: {
+    rank: string;
+    name: string;
+    thumbnailUrl: string;
+  }[];
+};
+
+const MovieTopFive = ({ classname }: Props) => {
+  const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
+  useEffect(() => {}, []);
   return (
     <Container>
       <Title className={classname}>
-        <div className="top5">{text}</div>
+        <div className="top5">{`Top ${topFiveData.ranks.length}`}</div>
       </Title>
       <Content>
-        {dummy.map((el, idx) => (
+        {topFiveData?.ranks.map((el, idx) => (
           <div key={idx}>
-            <MovieBox img={el.JPG}>
+            <MovieBox img={el.thumbnailUrl}>
               <span className="number">{idx + 1}</span>
             </MovieBox>
-            <MovieTitle>{el.MOVIE}</MovieTitle>
+            <MovieTitle>{el.name}</MovieTitle>
           </div>
         ))}
       </Content>

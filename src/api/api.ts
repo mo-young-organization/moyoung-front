@@ -1,4 +1,5 @@
 import { instance } from './create';
+import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
 export const nickNameDuplicatePost = async req => {
@@ -46,6 +47,16 @@ export const movieSearchGet = async movieName => {
     });
     console.log(data);
     console.log(data.data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 영화 탑 순위 5개 get요청
+export const getMovieTopFive = async () => {
+  try {
+    const data = await instance.get(`movie/rank`);
+    return data.data;
   } catch (error) {
     console.log(error);
   }

@@ -1,6 +1,8 @@
 import { styled } from 'styled-components';
 import { useState, useEffect } from 'react';
 
+import { getMovieTopFive } from '../../api/api';
+
 type Props = {
   classname?: string;
 };
@@ -9,7 +11,7 @@ type ImgProps = {
   img: string;
 };
 
-type TMovieTopFive = {
+export type TMovieTopFive = {
   date: string;
   ranks: {
     rank: string;
@@ -20,7 +22,14 @@ type TMovieTopFive = {
 
 const MovieTopFive = ({ classname }: Props) => {
   const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
-  useEffect(() => {}, []);
+
+  const fetchRankedMovies = async () => {
+    const rankedMovies = await getMovieTopFive();
+    setTopFiveData(rankedMovies);
+  };
+  useEffect(() => {
+    fetchRankedMovies();
+  }, []);
   return (
     <Container>
       <Title className={classname}>

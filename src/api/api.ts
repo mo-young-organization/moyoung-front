@@ -1,4 +1,5 @@
 import { instance } from './create';
+import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
 export const nickNameDuplicatePost = async req => {
@@ -55,7 +56,7 @@ export const movieSearchGet = async movieName => {
 export const getMovieTopFive = async () => {
   try {
     const data = await instance.get(`movie/rank`);
-    return data;
+    return data.data;
   } catch (error) {
     console.log(error);
   }

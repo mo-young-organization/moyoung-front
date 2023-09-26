@@ -22,7 +22,6 @@ export type TMovieTopFive = {
 
 const MovieTopFive = ({ classname }: Props) => {
   const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
-  console.log(topFiveData);
 
   const fetchRankedMovies = async () => {
     const rankedMovies = await getMovieTopFive();
@@ -35,7 +34,7 @@ const MovieTopFive = ({ classname }: Props) => {
     <Container>
       <Title className={classname}>
         {/* <div className="top5">{`Top ${topFiveData.ranks.length}`}</div> */}
-        <div className="top5">{`Top`}</div>
+        <div className="top5">{`TOP 5`}</div>
       </Title>
       <Content>
         {topFiveData?.ranks.map((el, idx) => (

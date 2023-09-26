@@ -10,7 +10,7 @@ const CinemaPage = () => {
 
   return (
     <Container>
-      <div>
+      <div className="serach-div">
         <Search />
       </div>
       <Content>
@@ -36,6 +36,15 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  .serach-div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    background-color: #efefef;
+  }
 `;
 
 const Content = styled.div`

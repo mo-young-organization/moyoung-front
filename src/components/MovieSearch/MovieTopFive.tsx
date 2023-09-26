@@ -8,7 +8,7 @@ type Props = {
 };
 
 type ImgProps = {
-  img: string;
+  $backgroundImageUrl: string;
 };
 
 export type TMovieTopFive = {
@@ -22,6 +22,7 @@ export type TMovieTopFive = {
 
 const MovieTopFive = ({ classname }: Props) => {
   const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
+  console.log(topFiveData);
 
   const fetchRankedMovies = async () => {
     const rankedMovies = await getMovieTopFive();
@@ -33,12 +34,13 @@ const MovieTopFive = ({ classname }: Props) => {
   return (
     <Container>
       <Title className={classname}>
-        <div className="top5">{`Top ${topFiveData.ranks.length}`}</div>
+        {/* <div className="top5">{`Top ${topFiveData.ranks.length}`}</div> */}
+        <div className="top5">{`Top`}</div>
       </Title>
       <Content>
         {topFiveData?.ranks.map((el, idx) => (
           <div key={idx}>
-            <MovieBox img={el.thumbnailUrl}>
+            <MovieBox $backgroundImageUrl={el.thumbnailUrl}>
               <span className="number">{idx + 1}</span>
             </MovieBox>
             <MovieTitle>{el.name}</MovieTitle>
@@ -91,8 +93,10 @@ const MovieBox = styled.div<ImgProps>`
   height: 320px;
   margin: 14px;
 
-  background-image: url(${props => props.img});
-  background-size: 100%;
+  background-image: url(${props => props.$backgroundImageUrl});
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
 
   .number {
     margin-left: 10px;

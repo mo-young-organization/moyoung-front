@@ -3,7 +3,8 @@ import { PiChatDotsLight } from 'react-icons/pi';
 import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
-import { useRef, useCallback, useState, KeyboardEvent } from 'react';
+import { useRef, useCallback, useState, KeyboardEvent, useEffect } from 'react';
+import * as StompJs from '@stomp/stompjs';
 
 import type { OpenChat } from './ChatModal';
 import type { TChat } from '../../data/DummyChat';
@@ -24,7 +25,36 @@ const myId = 4;
 
 const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
+  const client = useRef({}); // stomp ref로 만들기
   const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
+
+  const sendMessageHandler = () => {
+    // 빈문자열이면 리턴
+    if (textRef!.current!.value.trim() === '') {
+      textRef!.current!.value = '';
+      return;
+    }
+
+    // 엔터 공백으로 변환 시켜주기
+    let contents: string = textRef!.current!.value;
+    contents = contents.replaceAll('<br>', '\r\n');
+
+    // setChatData([
+    //   ...chatData,
+    //   {
+    //     writerId: myId,
+    //     name: '김현우',
+    //     gender: 'male',
+    //     age: '70',
+    //     content: textRef!.current!.value,
+    //     time: '오후 13:24',
+    //     readCount: '2',
+    //   },
+    // ]);
+    publish(contents);
+
+    textRef!.current!.value = '';
+  };
 
   const handleResizeHeight = useCallback(() => {
     if (textRef.current) {
@@ -33,30 +63,46 @@ const ChatContent = (props: Props) => {
     }
   }, []);
 
-  const sendMessageHandler = () => {
-    if (textRef!.current!.value.trim() === '') {
-      textRef!.current!.value = '';
-      return;
-    }
-
-    let contents: string = textRef!.current!.value;
-    contents = contents.replaceAll('<br>', '\r\n');
-
-    setChatData([
-      ...chatData,
-      {
-        writerId: myId,
-        name: '김현우',
-        gender: 'male',
-        age: '70',
-        content: textRef!.current!.value,
-        time: '오후 13:24',
-        readCount: '2',
+  const connect = () => {
+    client.current = new StompJs.Client({
+      brokerURL: 'ws://localhost:8787/ws',
+      onConnect: () => {
+        console.log('success');
+        subscribe();
       },
-    ]);
-
-    textRef!.current!.value = '';
+    });
+    client.current.activate();
   };
+
+  const publish = chat => {
+    if (!client.current.connected) return;
+
+    client.current.publish({
+      destination: '/pub/chat',
+      body: JSON.stringify({
+        applyId: myId,
+        chat: chat,
+      }),
+    });
+  };
+
+  const subscribe = () => {
+    client.current.subscribe(`연결주소${myId}`, body => {
+      const json_body = JSON.parse(body.body);
+      setChatData(_chat_data => [..._chat_data, json_body]);
+    });
+  };
+
+  const disconnect = () => {
+    client.current.deactivate();
+  };
+
+  useEffect(() => {
+    connect();
+
+    return () => disconnect();
+  }, []);
+
   const pressEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.shiftKey && e.key === 'Enter') {
       return;

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { PropsCreatePost } from '../../SignupCheck/FormType';
 
-const PostTitle = ({ register }: PropsCreatePost) => {
+const PostTitle = ({ register, errors }: PropsCreatePost) => {
   return (
     <div>
       <Title>
@@ -9,7 +9,18 @@ const PostTitle = ({ register }: PropsCreatePost) => {
         <span className="explanation">*18자 이내로 작성</span>
       </Title>
       <InputDiv>
-        <input type="text" placeholder="제목을 입력해주세요" {...register('title', { required: true })} />
+        <input
+          type="text"
+          placeholder="제목을 입력해주세요"
+          {...register('title', {
+            required: true,
+            maxLength: {
+              value: 18,
+              message: '18자 이내로 작성해 주세요',
+            },
+          })}
+        />
+        {errors && <div className="error">{errors?.title?.message}</div>}
       </InputDiv>
     </div>
   );
@@ -37,6 +48,11 @@ const Title = styled.div`
 const InputDiv = styled.div`
   width: 590px;
   height: 50px;
+
+  .error {
+    font-size: 12px;
+    color: red;
+  }
 
   > input {
     width: 590px;

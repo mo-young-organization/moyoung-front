@@ -4,18 +4,27 @@ import PostTitle from './PostForm/PostTitle';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreatePormProps } from '../SignupCheck/FormType';
 import { styled } from 'styled-components';
+import { postRecruitList } from '../../api/api';
 
 const PostForm = () => {
-  const { register, handleSubmit, watch } = useForm<CreatePormProps>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<CreatePormProps>();
 
   const onSubmitHandler: SubmitHandler<CreatePormProps> = data => {
-    console.log(data);
+    data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
+    data.age = data.age[0];
+    // post 요청
+    postRecruitList(data);
   };
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <Content>
-        <PostTitle register={register} />
+        <PostTitle register={register} errors={errors} />
         <PostCinema register={register} />
         <PostPersonnel register={register} />
       </Content>

@@ -11,8 +11,8 @@ type PropsT = {
 type ActiveT = {
   key: number;
   onClick: () => void;
-  i: number;
-  curPage: number;
+  $i: number;
+  $curPage: number;
   'aria-current': string | undefined;
 };
 
@@ -61,8 +61,8 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
           <PgBtn
             key={i + 1}
             onClick={() => setCurPage(i + 1)}
-            i={i}
-            curPage={curPage}
+            $i={i}
+            $curPage={curPage}
             aria-current={curPage === i + 1 ? 'page' : undefined}
           >
             {i + 1}
@@ -119,7 +119,7 @@ color: #000000;
 
 const PgBtn = styled(Button)<ActiveT>`
   ${props =>
-    props.i + 1 === props.curPage &&
+    props.$i + 1 === props.$curPage &&
     css`
       color: #000000;
       font-weight: bold;

@@ -1,10 +1,14 @@
 import { styled } from 'styled-components';
 import RecruitPostCreate from '../components/CreatePostRecruit/RecruitPostCreate';
+import { useNavigate } from 'react-router-dom';
 
 const RecruitPostCreatePage = () => {
+  const navigate = useNavigate();
   return (
     <Container>
-      <div className="title">영화 같이 볼 사람 모으기</div>
+      <div className="title" role="button" onClick={() => navigate('/recruitmentlist')}>
+        영화 같이 볼 사람 모으기
+      </div>
       <RecruitPostCreate />
     </Container>
   );

@@ -5,13 +5,20 @@ import { styled } from 'styled-components';
 import Search from '../MovieSearch/Search';
 import RecruFilterModal from './Modal/RecruFilterModal';
 import RecPotal from './Modal/RecPotal';
+import { useNavigate } from 'react-router-dom';
 
 const Recruitment = ({ dummyData }) => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
 
+  const navigate = useNavigate();
+
   const filterOnAndCancelButtonHandler = () => {
     setRecModalOn(!recModalOn);
+  };
+
+  const createPostHandler = () => {
+    navigate('/createpostrecruit');
   };
 
   return (
@@ -20,7 +27,9 @@ const Recruitment = ({ dummyData }) => {
         <Search text="영화 같이 볼 사람 찾기" />
       </ContentSearchDiv>
       <FilterBoxDiv>
-        <button>1</button>
+        <button className="create-button" onClick={createPostHandler}>
+          글쓰기
+        </button>
         <button onClick={filterOnAndCancelButtonHandler}>2</button>
       </FilterBoxDiv>
       <DivPagination>
@@ -73,10 +82,16 @@ const FilterBoxDiv = styled.div`
   width: 1031px;
   text-align: end;
 
+  .create-button {
+    width: 77px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   > button {
     border: none;
     width: 28px;
     height: 28px;
     margin-left: 5px;
+    cursor: pointer;
   }
 `;

@@ -63,6 +63,17 @@ export const getMovieTopFive = async () => {
   }
 };
 
+// 모집글 작성 post요청
+export const postRecruitList = async req => {
+  try {
+    const data = await instance.post(`recruit`, req);
+    console.log(data);
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // 모집글 불러오기 get요청
 export const getRecruitList = async (page: number) => {
   try {

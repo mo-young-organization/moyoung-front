@@ -18,6 +18,8 @@ export interface PropsForm {
   errors: FieldErrors<SignupFormValue>;
   watch: UseFormWatch<SignupFormValue>;
   trigger: any;
+  중복확인: any;
+  set중복확인: any;
 }
 
 // 필터 폼 제출
@@ -35,7 +37,7 @@ export interface FilterProps {
 export interface CreatePormProps {
   title: string;
   cinema: string;
-  people: string;
+  maxNum: string;
   gender: string;
   age: string;
 }

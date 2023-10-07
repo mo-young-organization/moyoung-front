@@ -47,6 +47,7 @@ const NavBar = () => {
     { key: '회원탈퇴', onClick: userDeleteHandler },
   ];
   const displayName = window.sessionStorage.getItem('displayName');
+  console.log(displayName);
   // const refreshToken = getCookie('refreshToken');
   const userStatus = useSelector((state: ReduxType) => state.userStatus.value);
   // string값으로 넘어온다

@@ -149,6 +149,41 @@ const RecruitmentListPage = () => {
       province: '경기',
       city: '강릉',
     },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가',
+      nicname: '김현우',
+      province: '경기',
+      city: '강릉',
+    },
   ];
 
   const navigate = useNavigate();
@@ -162,8 +197,6 @@ const RecruitmentListPage = () => {
         <button onClick={() => navigate('/login')}>로그인/회원가입하러 가기</button>
       </div>
     );
-
-    navigate('/login');
   }
 
   return (

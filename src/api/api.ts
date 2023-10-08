@@ -56,7 +56,12 @@ export const movieSearchGet = async movieName => {
 // 영화 탑 순위 5개 get요청
 export const getMovieTopFive = async () => {
   try {
-    const data = await instance.get(`movie/rank`);
+    const data = await instance.get(`movie/rank`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
+      },
+    });
     return data.data;
   } catch (error) {
     console.log(error);
@@ -68,7 +73,7 @@ export const postRecruitList = async req => {
   try {
     const data = await instance.post(`recruit`, req);
     console.log(data);
-    
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -77,7 +82,13 @@ export const postRecruitList = async req => {
 // 모집글 불러오기 get요청
 export const getRecruitList = async (page: number) => {
   try {
-    const data = await instance.get(`recruit?page=${page}`);
+    const data = await instance.get(`recruit?page=${page}`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
+      },
+    });
+    console.log(data);
     return data.data;
   } catch (error) {
     console.log(error);

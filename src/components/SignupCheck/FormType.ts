@@ -37,6 +37,7 @@ export interface FilterProps {
 export interface CreatePormProps {
   title: string;
   cinema: string;
+  runningTimeId: string;
   maxNum: string;
   gender: string;
   age: string;

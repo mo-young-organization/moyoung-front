@@ -24,7 +24,7 @@ const PostPersonnel = ({ register }: PropsCreatePost) => {
     <Container>
       <div className="title_applicant">*모집 인원</div>
       <ContentPersonnel>
-        <PostPersonnelBox text={'인원수'} arrayMap={peopleArr} register={register} name={'people'} />
+        <PostPersonnelBox text={'인원수'} arrayMap={peopleArr} register={register} name={'maxNum'} />
         <PostPersonnelBox text={'성별'} arrayMap={genderArr} register={register} name={'gender'} />
         <PostPersonnelBox text={'나이대'} arrayMap={ageArr} register={register} name={'age'} />
       </ContentPersonnel>

@@ -4,18 +4,39 @@ import PostTitle from './PostForm/PostTitle';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CreatePormProps } from '../SignupCheck/FormType';
 import { styled } from 'styled-components';
+import { postRecruitList } from '../../api/api';
+import { useNavigate } from 'react-router-dom';
 
 const PostForm = () => {
-  const { register, handleSubmit, watch } = useForm<CreatePormProps>();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<CreatePormProps>();
 
-  const onSubmitHandler: SubmitHandler<CreatePormProps> = data => {
-    console.log(data);
+  const navigate = useNavigate();
+
+  const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
+    data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
+    data.age = data.age[0];
+
+    // 객체 분해 할당으로 cinema제외하고 값을 불러옴으로 원하는 값을 빼내올 수 있고 반대로 req에는 cinema가 삭제되어 복사된다.
+    const { cinema, ...req } = data;
+    console.log(cinema);
+    console.log((req.runningTimeId = '1'));
+    console.log(req);
+    // post 요청
+    const postData = await postRecruitList(req);
+    if (postData.status === 200) {
+      navigate('/recruitmentlist');
+    }
   };
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <Content>
-        <PostTitle register={register} />
+        <PostTitle register={register} errors={errors} />
         <PostCinema register={register} />
         <PostPersonnel register={register} />
       </Content>

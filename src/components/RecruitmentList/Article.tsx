@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import ChatModal from '../Chat/ChatModal';
+import { ListProps } from './recruitType';
 
 export type ArticleProps = {
   recruitingArticleId: number;
@@ -10,7 +11,8 @@ export type ArticleProps = {
   city: string;
 };
 
-const Article = ({ data }: { data: ArticleProps }) => {
+// const Article = ({ data }: { data: ArticleProps }) => {
+const Article = ({ data }: { data: ListProps }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   // chatmodal 여닫기 func
@@ -76,7 +78,7 @@ const Article = ({ data }: { data: ArticleProps }) => {
             <Head>
               <div>
                 <span className="nick">닉네임</span>
-                <span className="gray">20대</span>
+                <span className="gray">{data.age}</span>
               </div>
               <span className="gray">1시간 전</span>
             </Head>

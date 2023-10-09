@@ -1,17 +1,39 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Article from './Article';
 import Pagination from './Pagination';
 import { styled } from 'styled-components';
 import Search from '../MovieSearch/Search';
 import RecruFilterModal from './Modal/RecruFilterModal';
 import RecPotal from './Modal/RecPotal';
+import { useNavigate } from 'react-router-dom';
+import { getRecruitList } from '../../api/api';
+import { RecruitProps } from './recruitType';
 
 const Recruitment = ({ dummyData }) => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
 
+  const [recruitData, setRecruitData] = useState<RecruitProps>();
+  console.log(recruitData);
+
+  const { totalPages } = recruitData.pageInfo;
+
+  useEffect(() => {
+    const fetchGetRecruitData = async () => {
+      const data = await getRecruitList(1);
+      setRecruitData(data);
+    };
+    fetchGetRecruitData();
+  }, []);
+
+  const navigate = useNavigate();
+
   const filterOnAndCancelButtonHandler = () => {
     setRecModalOn(!recModalOn);
+  };
+
+  const createPostHandler = () => {
+    navigate('/createpostrecruit');
   };
 
   return (
@@ -20,19 +42,21 @@ const Recruitment = ({ dummyData }) => {
         <Search text="영화 같이 볼 사람 찾기" />
       </ContentSearchDiv>
       <FilterBoxDiv>
-        <button>1</button>
+        <button className="create-button" onClick={createPostHandler}>
+          글쓰기
+        </button>
         <button onClick={filterOnAndCancelButtonHandler}>2</button>
       </FilterBoxDiv>
       <DivPagination>
-        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
       </DivPagination>
       <UlArticleMaping>
-        {dummyData.map((el, idx) => (
+        {recruitData.data.map((el, idx) => (
           <Article key={idx} data={el} />
         ))}
       </UlArticleMaping>
       <DivPagination>
-        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={20} />
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
       </DivPagination>
       <RecPotal>{recModalOn && <RecruFilterModal onClose={filterOnAndCancelButtonHandler} />}</RecPotal>
     </>
@@ -73,10 +97,16 @@ const FilterBoxDiv = styled.div`
   width: 1031px;
   text-align: end;
 
+  .create-button {
+    width: 77px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
   > button {
     border: none;
     width: 28px;
     height: 28px;
     margin-left: 5px;
+    cursor: pointer;
   }
 `;

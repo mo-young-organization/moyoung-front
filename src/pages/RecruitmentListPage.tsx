@@ -1,6 +1,11 @@
 import { styled } from 'styled-components';
+import { useSelector } from 'react-redux';
+import { ReduxType } from '../store/store';
 
 import Recruitment from '../components/RecruitmentList/Recruitment';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getCookie } from '../util/Cookie';
 
 const RecruitmentListPage = () => {
   const dummyData = [
@@ -144,7 +149,55 @@ const RecruitmentListPage = () => {
       province: '경기',
       city: '강릉',
     },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '잠실',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가용',
+      nicname: '김현우',
+      province: '경기',
+      city: '여의도',
+    },
+    {
+      recruitingArticleId: 1,
+      title: '영화보고 고기 먹으러 가',
+      nicname: '김현우',
+      province: '경기',
+      city: '강릉',
+    },
   ];
+
+  const navigate = useNavigate();
+  const userStatus = getCookie('refreshToken');
+
+  // 회원만 입장할 수 있도록 유효성 검사
+  if (!userStatus) {
+    return (
+      <div>
+        <h1>회원이 아닙니다.</h1>
+        <button onClick={() => navigate('/login')}>로그인/회원가입하러 가기</button>
+      </div>
+    );
+  }
 
   return (
     <Container>

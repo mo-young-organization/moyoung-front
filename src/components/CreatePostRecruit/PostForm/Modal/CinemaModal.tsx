@@ -60,8 +60,8 @@ const CinemaModal = ({ onClose }) => {
                       <span className="address">{el.주소}</span>
                     </HeadDiv>
                     <ContentUl>
-                      {el.상영정보.map((data, index) => (
-                        <ContentLis>
+                      {el.상영정보.map((data) => (
+                        <ContentLis key={data.상영관}>
                           <span className="theater">{data.상영관}</span>
                           <div>
                             {data.상영시간.map((el, idx) => (

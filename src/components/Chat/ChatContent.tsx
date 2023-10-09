@@ -4,7 +4,8 @@ import { BsThreeDots } from 'react-icons/bs';
 import { AiOutlineClose } from 'react-icons/ai';
 import { IoPersonSharp } from 'react-icons/io5';
 import { useRef, useCallback, useState, KeyboardEvent, useEffect } from 'react';
-import * as StompJs from '@stomp/stompjs';
+import { CompatClient, Stomp } from '@stomp/stompjs';
+import * as SockJS from 'sockjs-client';
 
 import type { OpenChat } from './ChatModal';
 import type { TChat } from '../../data/DummyChat';
@@ -22,10 +23,12 @@ export type Props = {
 // 빈 문자열이면 실행되지 않게
 
 const myId = 4;
+const tempToken =
+  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Im1veW91bmciLCJtZW1iZXJJZCI6MSwic3ViIjoibW95b3VuZyIsImlhdCI6MTY5NjgzMDk3MywiZXhwIjoxNjk2ODMzMzczfQ.gUwO46K8LoEYI0C7ASqkerPALqtRlhVAblHYduPKmCA';
 
 const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
-  const client = useRef({}); // stomp ref로 만들기
+  const client = useRef<CompatClient>(); // stomp ref로 만들기
   const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
 
   const sendMessageHandler = () => {
@@ -51,11 +54,11 @@ const ChatContent = (props: Props) => {
     //     readCount: '2',
     //   },
     // ]);
-    publish(contents);
 
     textRef!.current!.value = '';
   };
 
+  // 채팅 입력 부 자동길이 조절
   const handleResizeHeight = useCallback(() => {
     if (textRef.current) {
       textRef.current.style.height = '16px';
@@ -63,46 +66,7 @@ const ChatContent = (props: Props) => {
     }
   }, []);
 
-  const connect = () => {
-    client.current = new StompJs.Client({
-      brokerURL: 'ws://localhost:8787/ws',
-      onConnect: () => {
-        console.log('success');
-        subscribe();
-      },
-    });
-    client.current.activate();
-  };
-
-  const publish = chat => {
-    if (!client.current.connected) return;
-
-    client.current.publish({
-      destination: '/pub/chat',
-      body: JSON.stringify({
-        applyId: myId,
-        chat: chat,
-      }),
-    });
-  };
-
-  const subscribe = () => {
-    client.current.subscribe(`연결주소${myId}`, body => {
-      const json_body = JSON.parse(body.body);
-      setChatData(_chat_data => [..._chat_data, json_body]);
-    });
-  };
-
-  const disconnect = () => {
-    client.current.deactivate();
-  };
-
-  useEffect(() => {
-    connect();
-
-    return () => disconnect();
-  }, []);
-
+  // 엔터 입력 시 전송되도록
   const pressEnterKey = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.shiftKey && e.key === 'Enter') {
       return;
@@ -111,6 +75,49 @@ const ChatContent = (props: Props) => {
       sendMessageHandler();
     }
   };
+
+  const connectHandler = (roomId: string, userId: string) => {
+    client.current = Stomp.over(() => {
+      const sock = new SockJS('http://ec2-3-34-181-61.ap-northeast-2.compute.amazonaws.com:8080');
+      return sock;
+    });
+    client.current.connect(
+      {
+        //header
+        Authorization: tempToken,
+      },
+      () => {
+        client.current!.subscribe(
+          `/recruit/1/enter`,
+          // 발행된 메세지 관리
+          message => {
+            console.log(JSON.parse(message.body));
+          },
+          {
+            Authorization: tempToken,
+          },
+        );
+      },
+      { Authoization: tempToken },
+    );
+  };
+
+  const sendHandler = () => {
+    console.log('sendHandler on progress');
+    client.current!.send(
+      // api address
+      '',
+      {
+        // header
+      },
+      // message object
+      JSON.stringify({}),
+    );
+  };
+
+  useEffect(() => {
+    connectHandler('1', `${myId}`);
+  }, []);
 
   return (
     <ChatContentWrapper>

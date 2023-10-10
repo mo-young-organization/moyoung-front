@@ -54,21 +54,29 @@ const Article = ({ data }: { data: ListProps }) => {
     }
   };
 
-  const 월 = datas => {
-    const 월일배열 = [];
+  // 월/주 계산
+  const monthWeek = datas => {
+    const monthWeekArr = [];
     if (datas.substring(5, 6) === '0') {
-      월일배열.push(datas.substring(6, 7));
+      monthWeekArr.push(datas.substring(6, 7));
     } else {
-      월일배열.push(datas.substring(5, 7));
+      monthWeekArr.push(datas.substring(5, 7));
     }
 
     if (datas.substring(8, 9) === '0') {
-      월일배열.push(datas.substring(9, 10));
+      monthWeekArr.push(datas.substring(9, 10));
     } else {
-      월일배열.push(datas.substring(8, 10));
+      monthWeekArr.push(datas.substring(8, 10));
     }
 
-    return 월일배열.join('.');
+    return monthWeekArr.join('.');
+  };
+
+  // 요일계산
+  const today = data => {
+    const todayNum = new Date(data).getDay();
+    const strWeak = ['일', '월', '화', '수', '목', '금', '토'];
+    return strWeak[todayNum];
   };
 
   return (
@@ -78,7 +86,9 @@ const Article = ({ data }: { data: ListProps }) => {
         <OutContent className="hover out">
           <MovieTitle>{data.movieName}</MovieTitle>
           <DateTime>
-            <span className="date">{월(data.startTime)}.요일</span>
+            <span className="date">
+              {monthWeek(data.startTime)}.{today(data.startTime)}
+            </span>
             <span className="time">{data.startTime.substring(11, 16)}</span>
             <div className="location">{data.screenInfo}</div>
           </DateTime>

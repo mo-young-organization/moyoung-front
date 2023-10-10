@@ -62,6 +62,7 @@ export const getMovieTopFive = async () => {
         'ngrok-skip-browser-warning': 60420,
       },
     });
+    console.log(data.data)
     return data.data;
   } catch (error) {
     console.log(error);

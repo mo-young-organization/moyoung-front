@@ -186,19 +186,6 @@ const RecruitmentListPage = () => {
     },
   ];
 
-  const navigate = useNavigate();
-  const userStatus = getCookie('refreshToken');
-
-  // 회원만 입장할 수 있도록 유효성 검사
-  if (!userStatus) {
-    return (
-      <div>
-        <h1>회원이 아닙니다.</h1>
-        <button onClick={() => navigate('/login')}>로그인/회원가입하러 가기</button>
-      </div>
-    );
-  }
-
   return (
     <Container>
       <Recruitment dummyData={dummyData} />

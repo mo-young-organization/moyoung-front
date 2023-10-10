@@ -1,26 +1,28 @@
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import ChatModal from '../Chat/ChatModal';
-import { ListProps } from './recruitType';
+import { ListProps, PosterProps } from './recruitType';
+import { useNavigate } from 'react-router-dom';
+import { getCookie } from '../../util/Cookie';
 
-export type ArticleProps = {
-  recruitingArticleId: number;
-  title: string;
-  nicname: string;
-  province: string;
-  city: string;
-};
+// export type ArticleProps = {
+//   recruitingArticleId: number;
+//   title: string;
+//   nicname: string;
+//   province: string;
+//   city: string;
+// };
 
 // const Article = ({ data }: { data: ArticleProps }) => {
 const Article = ({ data }: { data: ListProps }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+
   // chatmodal 여닫기 func
   // 이미 modal 열려있다면 안열리게 하는 로직 필요할듯?
   // 동시에 여러개 참여할 수 있나...?
   const openChatModal = () => {
     setIsChatOpen(!isChatOpen);
-    console.log(data);
   };
   const closeChatModal = () => {
     setIsChatOpen(false);
@@ -30,45 +32,66 @@ const Article = ({ data }: { data: ListProps }) => {
   const handleMouseOver = e => {
     // e.stopPropagation();
     e.preventDefault();
-    console.log('호버됨');
     setIsHover(true);
   };
 
   const handleMouseOut = e => {
     // e.stopPropagation();
     e.preventDefault();
-    console.log('호버 아웃');
     setIsHover(false);
   };
 
+  const navigate = useNavigate();
+  const userStatus = getCookie('refreshToken');
+
   const participateHandler = () => {
-    console.log('참여하기');
-    openChatModal();
+    // 회원만 입장할 수 있도록 유효성 검사
+    if (!userStatus) {
+      alert('회원만 사용이 가능합니다.');
+      navigate('/login');
+    } else {
+      openChatModal();
+    }
   };
 
-  useEffect(() => {
-    console.log(isHover);
-  }, [isHover]);
+  const 월 = datas => {
+    const 월일배열 = [];
+    if (datas.substring(5, 6) === '0') {
+      월일배열.push(datas.substring(6, 7));
+    } else {
+      월일배열.push(datas.substring(5, 7));
+    }
+
+    if (datas.substring(8, 9) === '0') {
+      월일배열.push(datas.substring(9, 10));
+    } else {
+      월일배열.push(datas.substring(8, 10));
+    }
+
+    return 월일배열.join('.');
+  };
 
   return (
-    <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+    <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} $posterImg={data.movieThumbnailUrl}>
       {isChatOpen && <ChatModal closeChatModal={closeChatModal} recruitData={data} />}
       {isHover ? (
         <OutContent className="hover out">
-          <MovieTitle>미션 임파서블:데드 레코닝</MovieTitle>
+          <MovieTitle>{data.movieName}</MovieTitle>
           <DateTime>
-            <span className="date">7. 12. 수</span>
-            <span className="time">16:50</span>
-            <div className="location">5관 | 2D(자막)</div>
+            <span className="date">{월(data.startTime)}.요일</span>
+            <span className="time">{data.startTime.substring(11, 16)}</span>
+            <div className="location">{data.screenInfo}</div>
           </DateTime>
           <OutFotter>
             <ul className="condition">
-              <li>여자만</li>
-              <li>20대</li>
+              <li>{data.gender}</li>
+              <li>{data.age}</li>
             </ul>
             <button type="button" onClick={participateHandler}>
               <span>참여하기</span>
-              <span>2/4</span>
+              <span>
+                {data.currentNum}/{data.maxNum}
+              </span>
             </button>
           </OutFotter>
         </OutContent>
@@ -77,8 +100,8 @@ const Article = ({ data }: { data: ListProps }) => {
           <div>
             <Head>
               <div>
-                <span className="nick">닉네임</span>
-                <span className="gray">{data.age}</span>
+                <span className="nick">{data.writerDisplayName}</span>
+                <span className="gray">{data.writerAge}</span>
               </div>
               <span className="gray">1시간 전</span>
             </Head>
@@ -86,8 +109,8 @@ const Article = ({ data }: { data: ListProps }) => {
           </div>
           <OnFotter>
             <div></div>
-            <div className="province">경기</div>
-            <div className="city">고양스타필드</div>
+            <div className="province">{data.cinemaRegion}</div>
+            <div className="city">{data.cinemaName}</div>
           </OnFotter>
         </OnContent>
       )}
@@ -97,11 +120,14 @@ const Article = ({ data }: { data: ListProps }) => {
 
 export default Article;
 
-const LiContainer = styled.li`
+const LiContainer = styled.li<PosterProps>`
   width: 240px;
   height: 340px;
   border-radius: 20px;
-  background-color: #6a6a6a;
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${props => props.$posterImg});
+  background-size: 100%;
+  background: linear-gradient(to top bottom, 100%, 20%, black);
 
   display: flex;
   flex-direction: column;
@@ -132,18 +158,22 @@ const LiContainer = styled.li`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    animation: fadeIn 0.5s ease-in-out;
   }
 `;
 
 const OutContent = styled.div`
   width: 200px;
   height: 290px;
+
   /* background-color: pink; */
 `;
 
 const OnContent = styled.div`
   width: 200px;
   height: 290px;
+
   /* background-color: pink; */
 `;
 
@@ -220,6 +250,7 @@ const DateTime = styled.div`
 const OutFotter = styled.div`
   .condition {
     color: white;
+    margin-left: 20px;
 
     > li {
       list-style-type: disc;

@@ -2,16 +2,19 @@ export interface RecruitProps {
   data: [
     {
       recruitingArticleId: number;
+      writerDisplayName: string;
+      writerAge: string;
       title: string;
+      cinemaRegion: string;
+      cinemaName: string;
+      movieThumbnailUrl: string;
+      movieName: string;
+      startTime: string;
+      screenInfo: string;
       maxNum: number;
       currentNum: number;
       gender: string;
       age: string;
-      runningTimeInfo: {
-        runningTimeId: number;
-        startTime: string;
-        endTime: string;
-      };
     },
   ];
   pageInfo: {
@@ -24,17 +27,25 @@ export interface RecruitProps {
 
 export interface ListProps {
   recruitingArticleId: number;
+  writerDisplayName: string;
+  writerAge: string;
   title: string;
+  cinemaRegion: string;
+  cinemaName: string;
+  movieThumbnailUrl: string;
+  movieName: string;
+  startTime: string;
+  screenInfo: string;
   maxNum: number;
   currentNum: number;
   gender: string;
   age: string;
-  runningTimeInfo: {
-    runningTimeId: number;
-    startTime: string;
-    endTime: string;
-  };
   nicname: string;
   province: string;
   city: string;
 }
+
+export interface PosterProps {
+  $posterImg: string;
+}
+

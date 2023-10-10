@@ -14,9 +14,7 @@ const Recruitment = ({ dummyData }) => {
   const [recModalOn, setRecModalOn] = useState(false);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
-  console.log(recruitData);
-
-  const { totalPages } = recruitData.pageInfo;
+  // const { totalPages } = recruitData.pageInfo;
 
   useEffect(() => {
     const fetchGetRecruitData = async () => {
@@ -48,15 +46,16 @@ const Recruitment = ({ dummyData }) => {
         <button onClick={filterOnAndCancelButtonHandler}>2</button>
       </FilterBoxDiv>
       <DivPagination>
-        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
       <UlArticleMaping>
-        {recruitData.data.map((el, idx) => (
+        {/* {dummyData.map((el, idx) => ( */}
+        {recruitData?.data.map((el, idx) => (
           <Article key={idx} data={el} />
         ))}
       </UlArticleMaping>
       <DivPagination>
-        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
+        <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
       <RecPotal>{recModalOn && <RecruFilterModal onClose={filterOnAndCancelButtonHandler} />}</RecPotal>
     </>

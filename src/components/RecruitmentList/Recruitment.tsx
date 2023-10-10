@@ -14,13 +14,11 @@ const Recruitment = ({ dummyData }) => {
   const [recModalOn, setRecModalOn] = useState(false);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
-
   // const { totalPages } = recruitData.pageInfo;
 
   useEffect(() => {
     const fetchGetRecruitData = async () => {
       const data = await getRecruitList(1);
-      console.log(data)
       setRecruitData(data);
     };
     fetchGetRecruitData();

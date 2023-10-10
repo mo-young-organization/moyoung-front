@@ -40,7 +40,6 @@ export interface ListProps {
   currentNum: number;
   gender: string;
   age: string;
-
   nicname: string;
   province: string;
   city: string;
@@ -49,3 +48,4 @@ export interface ListProps {
 export interface PosterProps {
   $posterImg: string;
 }
+

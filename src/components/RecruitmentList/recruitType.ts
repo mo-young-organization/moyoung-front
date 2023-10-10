@@ -48,4 +48,3 @@ export interface ListProps {
 export interface PosterProps {
   $posterImg: string;
 }
-

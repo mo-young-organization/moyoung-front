@@ -20,13 +20,9 @@ const ChatInfo = (props: Props) => {
       </Header>
       <Movie>
         <div className="movieInfoWrpper">
-          <img
-            className="movieImg"
-            src="https://upload.wikimedia.org/wikipedia/ko/c/cd/%EC%9C%84%EB%8C%80%ED%95%9C_%EC%87%BC%EB%A7%A8.jpg"
-            alt={`${'영화이름'}영화 포스터 사진`}
-          />
+          <img className="movieImg" src={props.recruitData.movieThumbnailUrl} alt={`${'영화이름'}영화 포스터 사진`} />
           <div className="aboutMovie">
-            <span className="movieTitle">미션 임파서블: 데드 레코닝 PART ONE</span>
+            <span className="movieTitle">{props.recruitData.movieName}</span>
             <div className="detailInfo">
               <img
                 className="ageLimit"
@@ -74,7 +70,11 @@ const ChatInfo = (props: Props) => {
             </ul>
           </div>
           <div className="button-wrapper">
-            <button className="quitButton">모임에서 나가기</button>
+            {props.recruitData.writerDisplayName === props.sessionMyName ? (
+              <button className="quitButton">모임 삭제하기</button>
+            ) : (
+              <button className="quitButton">모임에서 나가기</button>
+            )}
           </div>
         </RecruitInfoWrapper>
       </Detail>

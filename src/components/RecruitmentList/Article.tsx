@@ -5,16 +5,25 @@ import { ListProps, PosterProps } from './recruitType';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../util/Cookie';
 
-// export type ArticleProps = {
-//   recruitingArticleId: number;
-//   title: string;
-//   nicname: string;
-//   province: string;
-//   city: string;
-// };
+export type ArticleProps = {
+  age: string;
+  cinemaName: string;
+  cinemaRegion: string;
+  currentNum: number;
+  gender: string;
+  maxNum: number;
+  movieName: string;
+  movieThumbnailUrl: string;
+  recruitingArticleId: number;
+  screenInfo: string;
+  startTime: string;
+  title: string;
+  writerAge: string;
+  writerDisplayName: string;
+};
 
 // const Article = ({ data }: { data: ArticleProps }) => {
-const Article = ({ data }: { data: ListProps }) => {
+const Article = ({ data }: { data: ArticleProps }) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 

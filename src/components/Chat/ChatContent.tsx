@@ -17,6 +17,7 @@ export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
   closeChatModal: () => void;
   recruitData?: ArticleProps;
+  sessionMyName?: string;
 };
 
 // textarea shift enter로 줄바꿈

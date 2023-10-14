@@ -12,7 +12,7 @@ const RecruitmentListPage = () => {
       city: '남양주',
     },
     {
-      recruitingArticleId: 1,
+      recruitingArticleId: 2,
       title: '영화보고 영화보러 가용',
       nicname: '김현우',
       province: '경기',

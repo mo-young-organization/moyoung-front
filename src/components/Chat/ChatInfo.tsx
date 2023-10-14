@@ -4,6 +4,7 @@ import { GiMale } from 'react-icons/gi';
 import { GiFemale } from 'react-icons/gi';
 import { styled } from 'styled-components';
 
+import { deleteRecruit } from '../../api/api';
 import type { Props } from './ChatContent';
 
 const ChatInfo = (props: Props) => {
@@ -71,7 +72,9 @@ const ChatInfo = (props: Props) => {
           </div>
           <div className="button-wrapper">
             {props.recruitData.writerDisplayName === props.sessionMyName ? (
-              <button className="quitButton">모임 삭제하기</button>
+              <button className="quitButton" onClick={() => deleteRecruit(props.recruitData.recruitingArticleId)}>
+                모임 삭제하기
+              </button>
             ) : (
               <button className="quitButton">모임에서 나가기</button>
             )}

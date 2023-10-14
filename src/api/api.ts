@@ -96,7 +96,7 @@ export const getRecruitList = async (page: number) => {
 };
 
 // 모집글 삭제 delete 요청
-export const deleteRecruit = async (recruitId: string) => {
+export const deleteRecruit = async (recruitId: number) => {
   try {
     await instance.delete(`recruit/${recruitId}`);
   } catch (error) {

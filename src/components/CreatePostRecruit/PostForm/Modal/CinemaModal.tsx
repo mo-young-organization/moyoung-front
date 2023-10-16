@@ -7,48 +7,13 @@ import ModalPotal from '../ModalFilter/ModalPotal';
 import ModalFilter from '../ModalFilter/ModalFilter';
 import { cinemaGet } from '../../../../api/api';
 import { movieSearchGet } from '../../../../api/api';
-
-interface ThumbnailProps {
-  $img: string;
-}
-
-interface CinemaDataProps {
-  movieInfo: {
-    movieId: number;
-    name: string;
-    thumbnailUrl: string;
-    movieRating: string;
-    info: string;
-  };
-  cinemaInfo: [
-    {
-      cinemaId: number;
-      brand: string;
-      name: string;
-      address: string;
-      latitude: number;
-      longitude: number;
-      screenInfoList: [
-        {
-          screenInfo: string;
-          runningTimeList: [
-            {
-              runningTimeId: number;
-              startTime: string;
-              endTime: string;
-            },
-          ];
-        },
-      ];
-    },
-  ];
-}
+import { CinemaDataProps, ThumbnailProps } from './type';
 
 const CinemaModal = ({ onClose, data, movieName }) => {
-  const date = CinemaDummy;
+  // 영화 데이터
   const [movieData, setMovieData] = useState(data.data.data);
+  // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
-  console.log(cinemaData);
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState('');
 

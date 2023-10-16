@@ -6,6 +6,7 @@ import CinemaPotal from './Modal/CinemaPotal';
 import CinemaModal from './Modal/CinemaModal';
 import { useState } from 'react';
 import { movieSearchGet } from '../../../api/api';
+import Ticket from './PostTicket';
 
 const PostCinema = ({ register, watch }: PropsCreatePost) => {
   const [modalOn, setModalOn] = useState(false);
@@ -46,6 +47,7 @@ const PostCinema = ({ register, watch }: PropsCreatePost) => {
       <WhichMovieDiv>
         <span>어떤 영화를 볼까요?</span>
       </WhichMovieDiv>
+      <Ticket />
       <CinemaPotal>
         {modalOn && <CinemaModal onClose={movieSearchHandler} data={data} movieName={movieName} />}
       </CinemaPotal>

@@ -47,7 +47,6 @@ const NavBar = () => {
     { key: '회원탈퇴', onClick: userDeleteHandler },
   ];
   const displayName = window.sessionStorage.getItem('displayName');
-  console.log(displayName);
 
   // string(문자열로)값으로 넘어온다
   // 왜 이걸로 하려고 했지?? 리프레쉬 토큰이 아니라?? => 상단바에 null이라는 닉네임으로 나왔기 때문이였따.

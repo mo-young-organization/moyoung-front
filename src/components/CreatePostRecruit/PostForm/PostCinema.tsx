@@ -14,6 +14,7 @@ const PostCinema = ({ register, watch }: PropsCreatePost) => {
 
   const movieSearchHandler = async () => {
     const cinemaName = watch('cinema');
+    console.log(cinemaName);
     if (cinemaName.length !== 0) {
       setMovieName(cinemaName);
       const data = await movieSearchGet(cinemaName);
@@ -26,10 +27,13 @@ const PostCinema = ({ register, watch }: PropsCreatePost) => {
 
   return (
     <Container>
-      <div className="cinema_title">*영화 및 영화관 선택</div>
+      <label htmlFor="cinema" className="cinema_title">
+        *영화 및 영화관 선택
+      </label>
       <Content>
         <InputDiv>
           <input
+            id="cinema"
             type="text"
             placeholder="영화 제목을 검색해주세요"
             {...register('cinema', { required: '영화를 입력해 주세요.' })}

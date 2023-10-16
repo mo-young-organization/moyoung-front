@@ -1,24 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 import Calendar from '../../../CinemaInfo/MovieFilter/Calendar';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { CinemaDummy } from '../../../CinemaInfo/Cinema/data';
 import ModalPotal from '../ModalFilter/ModalPotal';
 import ModalFilter from '../ModalFilter/ModalFilter';
+import { cinemaGet } from '../../../../api/api';
+import { movieSearchGet } from '../../../../api/api';
+
+interface ThumbnailProps {
+  $img: string;
+}
+
+interface CinemaDataProps {
+  movieInfo: {
+    movieId: number;
+    name: string;
+    thumbnailUrl: string;
+    movieRating: string;
+    info: string;
+  };
+  cinemaInfo: [
+    {
+      cinemaId: number;
+      brand: string;
+      name: string;
+      address: string;
+      latitude: number;
+      longitude: number;
+      screenInfoList: [
+        {
+          screenInfo: string;
+          runningTimeList: [
+            {
+              runningTimeId: number;
+              startTime: string;
+              endTime: string;
+            },
+          ];
+        },
+      ];
+    },
+  ];
+}
 
 const CinemaModal = ({ onClose, data, movieName }) => {
-  console.log(data);
-
   const date = CinemaDummy;
+  const [movieData, setMovieData] = useState(data.data.data);
+  const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
+  console.log(cinemaData);
   const [modalFilterOn, setmodalFilterOn] = useState(false);
+  const [movieValue, setMovieValue] = useState('');
 
-  const movieSearchHandler = () => {
+  const movieSearchHandler = e => {
+    setMovieValue(e.target.value);
+  };
+
+  const movieSearchClickHandler = async e => {
     console.log('영화 검색 버튼 클릭');
+    console.log(movieValue);
+
+    const data = await movieSearchGet(movieValue);
+    setMovieData(data.data.data);
   };
 
   const filterinFilterHandler = () => {
     console.log('필터안에 필터');
     setmodalFilterOn(!modalFilterOn);
+  };
+
+  const clickHandler = async movieId => {
+    const data = await cinemaGet(movieId);
+    setCinemaData(data.data);
   };
 
   return (
@@ -28,58 +81,80 @@ const CinemaModal = ({ onClose, data, movieName }) => {
           X
         </div>
         <FilterDiv>
-          <SearchCalendarDiv>
-            <SearchDiv>
-              <input type="text" title="검색창" placeholder="영화 제목을 검색해주세요" defaultValue={movieName} />
-              <FilterSearchButton type="button" onClick={movieSearchHandler}>
-                <LiaSearchSolid />
-              </FilterSearchButton>
-              <button type="button" onClick={filterinFilterHandler}>
-                필터
-              </button>
-            </SearchDiv>
-            <CalendarDiv>
-              <Calendar />
-            </CalendarDiv>
-          </SearchCalendarDiv>
-          <FilterCinemainfoDiv>
-            <PosterDiv>
-              <MovieImg>사진</MovieImg>
-              <RightDiv>
-                <MovieTitle>
-                  <div className="kr-title">스파이더맨: 어크로스 더 유니버스</div>
-                  <div className="en-title">Spider-Man: Across the Spider-Verse</div>
-                </MovieTitle>
-                <div>네모??</div>
-              </RightDiv>
-            </PosterDiv>
-            <CinemaContentDiv>
-              <ContainerUl>
-                {date.map((el, idx) => (
-                  <ContentLi key={idx}>
-                    <HeadDiv>
-                      <span className="area">{el.지역}</span>
-                      <span className="address">{el.주소}</span>
-                    </HeadDiv>
-                    <ContentUl>
-                      {el.상영정보.map(data => (
-                        <ContentLis key={data.상영관}>
-                          <span className="theater">{data.상영관}</span>
-                          <div>
-                            {data.상영시간.map((el, idx) => (
-                              <button key={idx} className="time">
-                                {el}
-                              </button>
-                            ))}
-                          </div>
-                        </ContentLis>
-                      ))}
-                    </ContentUl>
-                  </ContentLi>
+          <SearchDiv>
+            <input
+              type="text"
+              title="검색창"
+              placeholder="영화 제목을 검색해주세요"
+              defaultValue={movieName}
+              onChange={movieSearchHandler}
+            />
+            <FilterSearchButton type="button" onClick={movieSearchClickHandler}>
+              <LiaSearchSolid />
+            </FilterSearchButton>
+            <button type="button" onClick={filterinFilterHandler}>
+              필터
+            </button>
+          </SearchDiv>
+          {cinemaData !== undefined ? (
+            <>
+              <SearchCalendarDiv>
+                <CalendarDiv>
+                  <Calendar />
+                </CalendarDiv>
+              </SearchCalendarDiv>
+              <FilterCinemainfoDiv>
+                <PosterDiv>
+                  <MovieImg $img={cinemaData.movieInfo.thumbnailUrl} role="사진" />
+                  <RightDiv>
+                    <MovieTitle>
+                      <div className="kr-title">{cinemaData.movieInfo.name}</div>
+                      {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
+                    </MovieTitle>
+                    <div>네모??</div>
+                  </RightDiv>
+                </PosterDiv>
+                <CinemaContentDiv>
+                  <ContainerUl>
+                    {cinemaData.cinemaInfo.map((el, idx) => (
+                      <ContentLi key={idx}>
+                        <HeadDiv>
+                          <span className="area">{el.name}</span>
+                          <span className="address">{el.address}</span>
+                        </HeadDiv>
+                        <ContentUl>
+                          {el.screenInfoList.map(data => (
+                            <ContentLis key={data.screenInfo}>
+                              <span className="theater">{data.screenInfo}</span>
+                              <div>
+                                {data.runningTimeList.map((el, idx) => (
+                                  <button key={idx} className="time">
+                                    {el.startTime.slice(11, 16)}
+                                  </button>
+                                ))}
+                              </div>
+                            </ContentLis>
+                          ))}
+                        </ContentUl>
+                      </ContentLi>
+                    ))}
+                  </ContainerUl>
+                </CinemaContentDiv>
+              </FilterCinemainfoDiv>
+            </>
+          ) : (
+            <ListDiv>
+              <h1>리스트 페이지</h1>
+              <ul>
+                {movieData.map(el => (
+                  <li key={el.movieId} onClick={() => clickHandler(el.movieId)}>
+                    <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
+                    <div>{el.name}</div>
+                  </li>
                 ))}
-              </ContainerUl>
-            </CinemaContentDiv>
-          </FilterCinemainfoDiv>
+              </ul>
+            </ListDiv>
+          )}
         </FilterDiv>
         <ModalPotal>{modalFilterOn && <ModalFilter onClose={filterinFilterHandler} />}</ModalPotal>
       </Content>
@@ -198,15 +273,15 @@ const PosterDiv = styled.div`
   /* background-color: red; */
 `;
 
-const MovieImg = styled.div`
+const MovieImg = styled.div<ThumbnailProps>`
   width: 76px;
   height: 106px;
   border-radius: 4px;
   margin-right: 12px;
 
   background-color: pink;
-  /* background-image: url(${props => props.jpg});
-  background-size: 100%; */
+  background-image: url(${props => props.$img});
+  background-size: 100%;
 `;
 
 const MovieTitle = styled.div`
@@ -305,4 +380,17 @@ const ContentLis = styled.li`
     padding: 8px 16px;
     margin: 12px 10px 0px 0px;
   }
+`;
+
+// 리스트 페이지
+
+const ListDiv = styled.div`
+  overflow: scroll;
+`;
+
+const ThumbnailDiv = styled.div<ThumbnailProps>`
+  width: 200px;
+  height: 280px;
+  background-image: url(${props => props.$img});
+  background-size: 100%;
 `;

@@ -4,7 +4,6 @@ import TimeBox from './TimeBox';
 import { CinemaDummy } from './data';
 
 const CinemaBox = ({ data }) => {
-
   return (
     <ContainerUl>
       {data.map((el, idx) => (
@@ -64,7 +63,6 @@ const HeadDiv = styled.div`
 const ContentUl = styled.ul`
   background-color: whitesmoke;
 
-  width: 100%;
   border-radius: 16px;
   padding: 40px 88px;
 `;

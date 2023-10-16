@@ -22,7 +22,16 @@ const TimeBox = ({ 상영정보 }) => {
 export default TimeBox;
 
 const ContentUl = styled.ul`
-  margin: 22px 0px;
+  display: flex;
+  flex-direction: column;
+
+  > li:first-child {
+    margin-top: 0px;
+  }
+  > li {
+    margin-top: 44px;
+  }
+
   .theater {
     font-size: 16px;
     font-weight: 500;

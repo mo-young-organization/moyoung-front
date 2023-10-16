@@ -17,13 +17,13 @@ const CinemaPage = () => {
         <Search />
       </SearchDiv>
       <Content>
-        <MoviePoster data={data} />
+        <MoviePoster data={data.movieInfo} />
       </Content>
       <div>
         <MovieFilter />
       </div>
       <Content>
-        <CinemaBox />
+        <CinemaBox data={data.cinemaInfo} />
       </Content>
     </Container>
   );

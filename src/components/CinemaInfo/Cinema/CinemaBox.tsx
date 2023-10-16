@@ -3,22 +3,18 @@ import { styled } from 'styled-components';
 import TimeBox from './TimeBox';
 import { CinemaDummy } from './data';
 
-const CinemaBox = () => {
-  // console.log(CinemaDummy);
-  const date = CinemaDummy;
+const CinemaBox = ({ data }) => {
 
   return (
     <ContainerUl>
-      {date.map((el, idx) => (
+      {data.map((el, idx) => (
         <ContentLi key={idx}>
           <HeadDiv>
-            <span className="area">{el.지역}</span>
-            <span className="address">{el.주소}</span>
+            <span className="area">{el.name}</span>
+            <span className="address">{el.address}</span>
           </HeadDiv>
           <ContentUl>
-            {el.상영정보.map((data, index) => (
-              <TimeBox 상영정보={data} key={index} />
-            ))}
+            <TimeBox 상영정보={el.screenInfoList} />
           </ContentUl>
         </ContentLi>
       ))}

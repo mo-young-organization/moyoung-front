@@ -6,23 +6,22 @@ type ImgProps = {
 };
 
 const MoviePoster = ({ data }) => {
-  console.log(data);
   return (
     <Container>
       <Content>
-        <MovieImg $jpg={data.movieInfo.thumbnailUrl}>사진</MovieImg>
+        <MovieImg $jpg={data.thumbnailUrl} role="사진" />
         <InfoDiv>
           <div>
             <MovieTitle>
-              <div className="kr-title">{data.movieInfo.name}</div>
+              <div className="kr-title">{data.name}</div>
               {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
             </MovieTitle>
             <MovieExplanation>
               <div className="first">영화설명</div>
-              <div className="second">{data.movieInfo.info}</div>
+              <div className="second">{data.info}</div>
             </MovieExplanation>
           </div>
-          <Explanation data={data.movieInfo} />
+          <Explanation data={data} />
         </InfoDiv>
       </Content>
     </Container>

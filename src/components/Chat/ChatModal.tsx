@@ -15,6 +15,7 @@ type Props = {
 
 const ChatModal = (props: Props) => {
   const [isChatContentOpen, setIsChatContentOpen] = useState<OpenChat>('chat');
+  const sessionMyName = window.sessionStorage.getItem('displayName');
 
   const switchModalView = (whitchView: OpenChat) => {
     setIsChatContentOpen(whitchView);
@@ -30,7 +31,12 @@ const ChatModal = (props: Props) => {
           />
         )}
         {isChatContentOpen === 'more' && (
-          <ChatInfo switchModalView={switchModalView} closeChatModal={props.closeChatModal} />
+          <ChatInfo
+            switchModalView={switchModalView}
+            closeChatModal={props.closeChatModal}
+            recruitData={props.recruitData}
+            sessionMyName={sessionMyName}
+          />
         )}
         {isChatContentOpen === 'participant' && (
           <ChatParticipant switchModalView={switchModalView} closeChatModal={props.closeChatModal} />

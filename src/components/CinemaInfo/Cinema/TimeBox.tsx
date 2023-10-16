@@ -1,25 +1,37 @@
 import { styled } from 'styled-components';
 
 const TimeBox = ({ 상영정보 }) => {
-  // console.log(상영정보);
   return (
-    <ContentLi>
-      <span className="theater">{상영정보.상영관}</span>
-      <div>
-        {상영정보.상영시간.map((el, idx) => (
-          <button key={idx} className="time">
-            {el}
-          </button>
-        ))}
-      </div>
-    </ContentLi>
+    <ContentUl>
+      {상영정보.map(el => (
+        <li key={el.screenInfo}>
+          <span className="theater">{el.screenInfo}</span>
+          <div>
+            {el.runningTimeList.map((el, idx) => (
+              <button key={idx} className="time">
+                {el.startTime.slice(11, 16)}
+              </button>
+            ))}
+          </div>
+        </li>
+      ))}
+    </ContentUl>
   );
 };
 
 export default TimeBox;
 
-const ContentLi = styled.li`
-  margin: 22px 0px;
+const ContentUl = styled.ul`
+  display: flex;
+  flex-direction: column;
+
+  > li:first-child {
+    margin-top: 0px;
+  }
+  > li {
+    margin-top: 44px;
+  }
+
   .theater {
     font-size: 16px;
     font-weight: 500;

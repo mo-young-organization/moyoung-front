@@ -13,6 +13,7 @@ import MovieDetail from './MovieDetail';
 import RecruitmentListPage from './RecruitmentListPage';
 import CinemaPage from './CinemaPage';
 import RecruitPostCreatePage from './RecruitPostCreatePage';
+import CinemaListPage from './CinemaListPage';
 
 const RoutingPage = () => {
   return (
@@ -29,6 +30,7 @@ const RoutingPage = () => {
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemainfo" element={<CinemaPage />} />
+          <Route path="/cinemalist" element={<CinemaListPage />} />
           <Route path="/createpostrecruit" element={<RecruitPostCreatePage />} />
         </Routes>
       </ContentWrapper>

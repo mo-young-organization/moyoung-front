@@ -14,7 +14,7 @@ const Distance = ({ register }: FilterProps) => {
     setValue(newValue as number[]);
   };
 
-  const marks = [
+  const $marks = [
     {
       value: 0,
       label: '0km',
@@ -41,7 +41,7 @@ const Distance = ({ register }: FilterProps) => {
       <StyledEngineProvider injectFirst>
         <DistanceSlider
           aria-labelledby="range-slider"
-          marks={marks}
+          marks={$marks}
           max={4}
           min={0}
           value={value}

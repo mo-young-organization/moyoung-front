@@ -9,7 +9,7 @@ const Calendar = () => {
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const [clickMonth, setClickMonth] = useState(month);
-  console.log(clickMonth);
+  // console.log(clickMonth);
 
   // 일수 가져오는 함수(1,2,3,4 ...)
   const getAlldate = (today: number, lastday: number) => {

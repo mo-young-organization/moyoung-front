@@ -12,7 +12,7 @@ const RecDistance = () => {
     setValue(newValue as number[]);
   };
 
-  const marks = [
+  const $marks = [
     {
       value: 0,
       label: '0km',
@@ -39,7 +39,7 @@ const RecDistance = () => {
       <StyledEngineProvider injectFirst>
         <DistanceSlider
           aria-labelledby="range-slider"
-          marks={marks}
+          marks={$marks}
           max={4}
           min={0}
           value={value}

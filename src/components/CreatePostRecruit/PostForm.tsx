@@ -37,7 +37,7 @@ const PostForm = () => {
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <Content>
         <PostTitle register={register} errors={errors} />
-        <PostCinema register={register} />
+        <PostCinema register={register} watch={watch}/>
         <PostPersonnel register={register} />
       </Content>
       <ButtonDiv>

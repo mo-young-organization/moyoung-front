@@ -2,6 +2,9 @@ import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { useState } from 'react';
 import { movieSearchGet } from '../../api/api';
+import { useDispatch } from 'react-redux';
+import { setCinemaNameStatus } from '../../store/reducers/cinemaName';
+import { useNavigate } from 'react-router-dom';
 
 interface TextProps {
   text?: string;
@@ -14,11 +17,19 @@ const Search = ({ text }: TextProps) => {
     setMovieTitle(event.target.value);
   };
 
-  const buttonClickHandler = (event: React.FormEvent<HTMLFormElement>) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (movieTitle !== '') {
       console.log('get요청');
-      movieSearchGet(movieTitle);
+      const data = await movieSearchGet(movieTitle);
+
+      // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
+      navigate('/cinemalist', { state: data.data });
+
+      // 전역 변수로 저장 => 영화 이름으로 검색후 리스트 페이지에서 사용
+      // dispatch(setCinemaNameStatus(data.data));
     }
     setMovieTitle('');
   };

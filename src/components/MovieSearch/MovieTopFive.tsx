@@ -41,7 +41,7 @@ const MovieTopFive = ({ classname }: Props) => {
             <MovieBox $img={el.thumbnailUrl}>
               <span className="number">{idx + 1}</span>
             </MovieBox>
-            <MovieTitle>{el.name}</MovieTitle>
+            <MovieTitle>{el.name.length > 8 ? `${el.name.slice(0, 9)}...` : el.name}</MovieTitle>
           </div>
         ))}
       </Content>
@@ -88,7 +88,7 @@ const MovieBox = styled.div<ImgProps>`
   position: relative;
 
   width: 180px;
-  height: 320px;
+  height: 255px;
   margin: 14px;
 
   background-image: url(${props => props.$img});

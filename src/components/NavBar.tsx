@@ -47,9 +47,10 @@ const NavBar = () => {
     { key: '회원탈퇴', onClick: userDeleteHandler },
   ];
   const displayName = window.sessionStorage.getItem('displayName');
+  console.log(displayName);
 
   // string(문자열로)값으로 넘어온다
-  // 왜 이걸로 하려고 했지?? 리프레쉬 토큰이 아니라??
+  // 왜 이걸로 하려고 했지?? 리프레쉬 토큰이 아니라?? => 상단바에 null이라는 닉네임으로 나왔기 때문이였따.
   // const userStatus = useSelector((state: ReduxType) => state.userStatus.value);
 
   const refreshToken = getCookie('refreshToken');
@@ -57,7 +58,7 @@ const NavBar = () => {
   useEffect(() => {
     // 이걸 유저여부로 파악하자 리프레쉬토큰이 아니라 ?? => 왜 리프레쉬 토큰을 안쓰려고 했을까?
     // 리덕스는 새로고침하면 초기화가 되는데... 흠..
-    if (refreshToken) {
+    if (displayName !== 'null' && refreshToken) {
       setIsLogin(true);
     } else {
       setIsLogin(false);

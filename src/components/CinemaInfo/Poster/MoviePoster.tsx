@@ -2,20 +2,27 @@ import { styled } from 'styled-components';
 import Explanation from './Explanation';
 
 type ImgProps = {
-  jpg: string;
+  $jpg: string;
 };
 
-const MoviePoster = ({ jpg }: ImgProps) => {
+const MoviePoster = ({ data }) => {
+  console.log(data);
   return (
     <Container>
       <Content>
-        <MovieImg jpg={jpg}>사진</MovieImg>
+        <MovieImg $jpg={data.movieInfo.thumbnailUrl}>사진</MovieImg>
         <InfoDiv>
-          <MovieTitle>
-            <div className="kr-title">스파이더맨: 어크로스 더 유니버스</div>
-            <div className="en-title">Spider-Man: Across the Spider-Verse</div>
-          </MovieTitle>
-          <Explanation />
+          <div>
+            <MovieTitle>
+              <div className="kr-title">{data.movieInfo.name}</div>
+              {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
+            </MovieTitle>
+            <MovieExplanation>
+              <div className="first">영화설명</div>
+              <div className="second">{data.movieInfo.info}</div>
+            </MovieExplanation>
+          </div>
+          <Explanation data={data.movieInfo} />
         </InfoDiv>
       </Content>
     </Container>
@@ -40,7 +47,7 @@ const MovieImg = styled.div<ImgProps>`
   border-radius: 12px;
   margin-right: 24px;
 
-  background-image: url(${props => props.jpg});
+  background-image: url(${props => props.$jpg});
   background-size: 100%;
 `;
 
@@ -53,6 +60,28 @@ const MovieTitle = styled.div`
   .en-title {
     font-size: 20px;
     font-weight: 500;
+  }
+`;
+
+const MovieExplanation = styled.div`
+  display: flex;
+
+  .first {
+    font-size: 16px;
+    font-weight: 500;
+    color: #a2a2a2;
+
+    width: 64px;
+    text-align: center;
+    margin-right: 24px;
+  }
+
+  .second {
+    font-size: 16px;
+    font-weight: 500;
+    color: #474747;
+
+    width: 700px;
   }
 `;
 

@@ -4,17 +4,20 @@ import CinemaBox from '../components/CinemaInfo/Cinema/CinemaBox';
 import MovieFilter from '../components/CinemaInfo/MovieFilter/MovieFilter';
 import Dummy from '../data/Dummy';
 import { styled } from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 const CinemaPage = () => {
   const dummy = Dummy[0];
+  const location = useLocation();
+  const data = location.state;
 
   return (
     <Container>
-      <div>
+      <SearchDiv>
         <Search />
-      </div>
+      </SearchDiv>
       <Content>
-        <MoviePoster jpg={dummy.JPG} />
+        <MoviePoster data={data} />
       </Content>
       <div>
         <MovieFilter />
@@ -36,6 +39,15 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+`;
+
+const SearchDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  background-color: #efefef;
 `;
 
 const Content = styled.div`

@@ -6,7 +6,9 @@ import { CinemaDummy } from '../../../CinemaInfo/Cinema/data';
 import ModalPotal from '../ModalFilter/ModalPotal';
 import ModalFilter from '../ModalFilter/ModalFilter';
 
-const CinemaModal = ({ onClose }) => {
+const CinemaModal = ({ onClose, data, movieName }) => {
+  console.log(data);
+
   const date = CinemaDummy;
   const [modalFilterOn, setmodalFilterOn] = useState(false);
 
@@ -28,7 +30,7 @@ const CinemaModal = ({ onClose }) => {
         <FilterDiv>
           <SearchCalendarDiv>
             <SearchDiv>
-              <input type="text" title="검색창" placeholder="영화 제목을 검색해주세요" />
+              <input type="text" title="검색창" placeholder="영화 제목을 검색해주세요" defaultValue={movieName} />
               <FilterSearchButton type="button" onClick={movieSearchHandler}>
                 <LiaSearchSolid />
               </FilterSearchButton>
@@ -60,7 +62,7 @@ const CinemaModal = ({ onClose }) => {
                       <span className="address">{el.주소}</span>
                     </HeadDiv>
                     <ContentUl>
-                      {el.상영정보.map((data) => (
+                      {el.상영정보.map(data => (
                         <ContentLis key={data.상영관}>
                           <span className="theater">{data.상영관}</span>
                           <div>

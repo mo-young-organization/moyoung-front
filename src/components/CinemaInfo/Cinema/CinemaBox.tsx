@@ -4,7 +4,7 @@ import TimeBox from './TimeBox';
 import { CinemaDummy } from './data';
 
 const CinemaBox = () => {
-  console.log(CinemaDummy);
+  // console.log(CinemaDummy);
   const date = CinemaDummy;
 
   return (

@@ -8,8 +8,10 @@ import RecPotal from './Modal/RecPotal';
 import { useNavigate } from 'react-router-dom';
 import { getRecruitList } from '../../api/api';
 import { RecruitProps } from './recruitType';
+import { getCookie } from '../../util/Cookie';
+import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 
-const Recruitment = ({ dummyData }) => {
+const Recruitment = () => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
 
@@ -25,13 +27,24 @@ const Recruitment = ({ dummyData }) => {
   }, []);
 
   const navigate = useNavigate();
+  const userStatus = getCookie('refreshToken');
 
   const filterOnAndCancelButtonHandler = () => {
-    setRecModalOn(!recModalOn);
+    if (!userStatus) {
+      alert('회원만 사용이 가능합니다.');
+      navigate('/login');
+    } else {
+      setRecModalOn(!recModalOn);
+    }
   };
 
   const createPostHandler = () => {
-    navigate('/createpostrecruit');
+    if (!userStatus) {
+      alert('회원만 사용이 가능합니다.');
+      navigate('/login');
+    } else {
+      navigate('/createpostrecruit');
+    }
   };
 
   return (
@@ -43,7 +56,9 @@ const Recruitment = ({ dummyData }) => {
         <button className="create-button" onClick={createPostHandler}>
           글쓰기
         </button>
-        <button onClick={filterOnAndCancelButtonHandler}>2</button>
+        <button className="create-filter" onClick={filterOnAndCancelButtonHandler}>
+          <HiOutlineAdjustmentsHorizontal size="30" />
+        </button>
       </FilterBoxDiv>
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
@@ -92,18 +107,23 @@ const DivPagination = styled.div`
 `;
 
 const FilterBoxDiv = styled.div`
+  display: flex;
+  justify-content: end;
   margin-top: 40px;
   width: 1031px;
-  text-align: end;
 
   .create-button {
     width: 77px;
     border-radius: 4px;
     cursor: pointer;
   }
+
+  .create-filter {
+    background-color: transparent;
+  }
+
   > button {
     border: none;
-    width: 28px;
     height: 28px;
     margin-left: 5px;
     cursor: pointer;

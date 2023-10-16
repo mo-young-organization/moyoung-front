@@ -1,20 +1,20 @@
 import { styled } from 'styled-components';
 
-const Explanation = () => {
+const Explanation = ({ data }) => {
   return (
     <Container>
-      <Content>
+      {/* <Content>
         <span className="first">개봉</span>
         <span className="second">2023.06.21</span>
-      </Content>
+      </Content> */}
       <Content>
         <span className="first">개요</span>
-        <span className="second">전체관람가, 139분</span>
+        <span className="second">{data.movieRating}</span>
       </Content>
-      <Content>
+      {/* <Content>
         <span className="first">장르</span>
         <span className="second">애니메이션/액션/어드벤처</span>
-      </Content>
+      </Content> */}
     </Container>
   );
 };
@@ -29,7 +29,7 @@ const Container = styled.div`
 `;
 
 const Content = styled.div`
-display: flex;
+  display: flex;
 
   .first {
     font-size: 16px;

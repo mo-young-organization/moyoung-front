@@ -47,7 +47,25 @@ export const movieSearchGet = async movieName => {
       },
     });
     console.log(data);
-    console.log(data.data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const cinemaGet = async movieId => {
+  try {
+    const data = await instance.get(
+      `/near?latitude=${37.498}&longitude=${127.026}&distance=${10000}&movieId=${movieId}&date=${'2023-10-16'}&early=${true}&lotte=${true}&mega=${true}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'ngrok-skip-browser-warning': 60420,
+        },
+      },
+    );
+    console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -62,6 +80,7 @@ export const getMovieTopFive = async () => {
         'ngrok-skip-browser-warning': 60420,
       },
     });
+    console.log(data.data);
     return data.data;
   } catch (error) {
     console.log(error);

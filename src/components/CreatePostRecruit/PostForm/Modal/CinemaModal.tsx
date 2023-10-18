@@ -9,7 +9,7 @@ import { cinemaGet } from '../../../../api/api';
 import { movieSearchGet } from '../../../../api/api';
 import { CinemaDataProps, ThumbnailProps } from './type';
 
-const CinemaModal = ({ onClose, data, movieName }) => {
+const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPickData, setRunningTimeData }) => {
   // 영화 데이터
   const [movieData, setMovieData] = useState(data.data.data);
   // 영화 & 영화관 데이터
@@ -23,7 +23,7 @@ const CinemaModal = ({ onClose, data, movieName }) => {
 
   const movieSearchClickHandler = async e => {
     console.log('영화 검색 버튼 클릭');
-    console.log(movieValue);
+    setCinemaData(undefined);
 
     const data = await movieSearchGet(movieValue);
     setMovieData(data.data.data);
@@ -35,8 +35,17 @@ const CinemaModal = ({ onClose, data, movieName }) => {
   };
 
   const clickHandler = async movieId => {
+    console.log('여기서 문제');
     const data = await cinemaGet(movieId);
     setCinemaData(data.data);
+    setMoviePickData(data.data);
+  };
+
+  const runningTimeHandler = (runTime, data, el) => {
+    console.log('버튼 클릭');
+    setRunningTimeData(runTime);
+    const cinemaInfoArr = [el, data];
+    setCinemaPickData(cinemaInfoArr);
   };
 
   return (
@@ -92,9 +101,9 @@ const CinemaModal = ({ onClose, data, movieName }) => {
                             <ContentLis key={data.screenInfo}>
                               <span className="theater">{data.screenInfo}</span>
                               <div>
-                                {data.runningTimeList.map((el, idx) => (
-                                  <button key={idx} className="time">
-                                    {el.startTime.slice(11, 16)}
+                                {data.runningTimeList.map((date, idx) => (
+                                  <button key={idx} className="time" onClick={() => runningTimeHandler(date, data, el)}>
+                                    {date.startTime.slice(11, 16)}
                                   </button>
                                 ))}
                               </div>

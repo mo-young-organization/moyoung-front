@@ -8,14 +8,20 @@ import { useState } from 'react';
 import { movieSearchGet } from '../../../api/api';
 import Ticket from './PostTicket';
 
-const PostCinema = ({ register, watch }: PropsCreatePost) => {
+const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: PropsCreatePost) => {
+  // 모달
   const [modalOn, setModalOn] = useState(false);
+  // 영화 리스트를 위한 영화 데이터
   const [data, setData] = useState({});
+  // 인풋 영화이름 밸류
   const [movieName, setMovieName] = useState('');
+  // 유저가 선택한 영화 정보
+  const [moviePickData, setMoviePickData] = useState();
+  // 유저가 선택한 영화관 정보
+  const [cinemaPickData, setCinemaPickData] = useState([]);
 
   const movieSearchHandler = async () => {
     const cinemaName = watch('cinema');
-    console.log(cinemaName);
     if (cinemaName.length !== 0) {
       setMovieName(cinemaName);
       const data = await movieSearchGet(cinemaName);
@@ -44,12 +50,27 @@ const PostCinema = ({ register, watch }: PropsCreatePost) => {
           <LiaSearchSolid />
         </SearchButton>
       </Content>
-      <WhichMovieDiv>
-        <span>어떤 영화를 볼까요?</span>
-      </WhichMovieDiv>
-      <Ticket />
+      <div>
+        {!moviePickData ? (
+          <WhichMovieDiv>
+            <span>어떤 영화를 볼까요?</span>
+          </WhichMovieDiv>
+        ) : (
+          <Ticket moviePickData={moviePickData} cinemaPickData={cinemaPickData} runningTimeData={runningTimeData} />
+        )}
+      </div>
       <CinemaPotal>
-        {modalOn && <CinemaModal onClose={movieSearchHandler} data={data} movieName={movieName} />}
+        {/* ****************************88티켓을 위해 상태 끌어올리기 해야함 **************************** */}
+        {modalOn && (
+          <CinemaModal
+            onClose={movieSearchHandler}
+            data={data}
+            movieName={movieName}
+            setMoviePickData={setMoviePickData}
+            setCinemaPickData={setCinemaPickData}
+            setRunningTimeData={setRunningTimeData}
+          />
+        )}
       </CinemaPotal>
     </Container>
   );

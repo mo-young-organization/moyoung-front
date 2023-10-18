@@ -1,18 +1,40 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 
-const Ticket = () => {
+const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
+  const days = () => {
+    if (runningTimeData) {
+      const month = runningTimeData.startTime.slice(5, 7);
+      const weak = runningTimeData.startTime.slice(8, 10);
+      const year = runningTimeData.startTime.slice(0, 4);
+
+      return `${month}/${weak}/${year}`;
+    }
+  };
+
+  const time = () => {
+    if (runningTimeData) {
+      const time = runningTimeData.startTime.slice(11, 16);
+      if (+time.slice(0, 2) >= 12) {
+        return `${time} PM`;
+      } else {
+        return `${time} AM`;
+      }
+    }
+  };
+
   return (
     <>
       <TicketDiv>
         <LeftTicket>
           <LeftTicketContent>
             <LeftTicketTopDiv>
-              <div className="movie_poster">사진</div>
+              <PosterDiv className="movie_poster" $img={moviePickData.movieInfo.thumbnailUrl} role="사진" />
               <LeftTicketTopDivContnet>
-                <div className="movie_title">스파이더맨:어크로스더 유니버스</div>
+                <div className="movie_title">{moviePickData.movieInfo.name}</div>
                 <div className="top-div-contnet">
                   <div className="box1">x</div>
-                  <span className="kind">2D(자막)</span>
+                  <span className="kind">{moviePickData.movieInfo.movieRating}</span>
                 </div>
               </LeftTicketTopDivContnet>
             </LeftTicketTopDiv>
@@ -20,14 +42,14 @@ const Ticket = () => {
               <LeftTicketBottomTop>
                 <div className="bottom-top-top">
                   <div className="box2">박스</div>
-                  <div className="fontC 위치">연남</div>
+                  <div className="fontC 위치">{cinemaPickData.length ? cinemaPickData[0].name : ''}</div>
                 </div>
                 <span className="fontC">/</span>
-                <span className="fontC 장소">4관</span>
+                <span className="fontC 장소">{cinemaPickData.length ? cinemaPickData[1].screenInfo : ''}</span>
               </LeftTicketBottomTop>
               <LeftTicketBottomBottom>
-                <span>07 / 01 / 2023</span>
-                <span>11:50 AM</span>
+                <span>{days()}</span>
+                <span>{time()}</span>
               </LeftTicketBottomBottom>
             </LeftTicketBottomDiv>
           </LeftTicketContent>
@@ -85,6 +107,7 @@ const LeftTicketTopDiv = styled.div`
     margin-right: 12px;
   }
 `;
+
 const LeftTicketBottomTop = styled.div`
   display: flex;
   justify-content: space-between;
@@ -194,4 +217,9 @@ const TicketDiv = styled.div`
 
   width: 520px;
   height: 295px;
+`;
+
+const PosterDiv = styled.div`
+  background-image: url(${props => props.$img});
+  background-size: 100%;
 `;

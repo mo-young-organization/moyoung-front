@@ -23,7 +23,7 @@ export interface CinemaDataProps {
           screenInfo: string;
           runningTimeList: [
             {
-              runningTimeId: number;
+              runningTimeData: number;
               startTime: string;
               endTime: string;
             },
@@ -32,4 +32,10 @@ export interface CinemaDataProps {
       ];
     },
   ];
+}
+
+export interface RunningIdProps {
+  runningTimeId: number;
+  startTime: string;
+  endTime: string;
 }

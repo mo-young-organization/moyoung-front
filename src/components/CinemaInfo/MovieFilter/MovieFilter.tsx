@@ -2,11 +2,11 @@ import { styled } from 'styled-components';
 import Calendar from './Calendar';
 import Filter from './Filter';
 
-const MovieFilter = () => {
+const MovieFilter = ({ setDate }) => {
   return (
     <Container>
       <ContentCalendar>
-        <Calendar />
+        <Calendar setDate={setDate} />
       </ContentCalendar>
       <ContentFilter>
         <Filter />

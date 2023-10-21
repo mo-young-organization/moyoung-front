@@ -14,6 +14,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [movieData, setMovieData] = useState(data.data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
+  console.log(cinemaData);
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState('');
 
@@ -34,9 +35,27 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     setmodalFilterOn(!modalFilterOn);
   };
 
+  // 오늘 날짜 년도-월-일 순서
+  const dateNew = new Date();
+  const month = dateNew.getMonth() + 1;
+  const year = dateNew.getFullYear();
+  const today = dateNew.getDate();
+  const todayDate = `${year}-${month}-${today}`;
+
+  const lat = '37.498';
+  const lon = '127.026';
+  const dt = 10000;
+  const [date, setDate] = useState(todayDate);
+  const early = false;
+  const lotte = true;
+  const mega = true;
+
+  const [id, setId] = useState();
+
   const clickHandler = async movieId => {
     console.log('여기서 문제');
-    const data = await cinemaGet(movieId);
+    setId(movieId);
+    const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega);
     setCinemaData(data.data);
     setMoviePickData(data.data);
   };
@@ -47,6 +66,10 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     const cinemaInfoArr = [el, data];
     setCinemaPickData(cinemaInfoArr);
   };
+
+  useEffect(() => {
+    clickHandler(id);
+  }, [date]);
 
   return (
     <Background>
@@ -74,7 +97,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
             <>
               <SearchCalendarDiv>
                 <CalendarDiv>
-                  <Calendar />
+                  <Calendar setDate={setDate} />
                 </CalendarDiv>
               </SearchCalendarDiv>
               <FilterCinemainfoDiv>

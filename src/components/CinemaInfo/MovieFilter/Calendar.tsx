@@ -1,15 +1,19 @@
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
-const Calendar = () => {
+const Calendar = ({ setDate }) => {
+  // 날짜 데이터
   const date = new Date();
-
   const todayWeak = date.getDay();
   const today = date.getDate();
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+  // console.log(year);
   const [clickMonth, setClickMonth] = useState(month);
   // console.log(clickMonth);
+  const [clickDay, setClickDay] = useState(today);
+  // console.log(clickDay);
 
   // 일수 가져오는 함수(1,2,3,4 ...)
   const getAlldate = (today: number, lastday: number) => {
@@ -85,6 +89,12 @@ const Calendar = () => {
     getCalendar();
   }, []);
 
+  // 날짜 클릭시 데이터 값 가져와서 상태 올리기(get요청이 새로 들어간다)
+  useEffect(() => {
+    const clickDate = `${year}-${clickMonth}-${clickDay}`;
+    setDate(clickDate);
+  }, [clickDay]);
+
   // ***유즈ref 정리한번 하자!!!!****
   const WeakRefs = useRef<any>([]);
 
@@ -93,10 +103,13 @@ const Calendar = () => {
     setCurIdx(idx);
     //일단 몇월인지 계산하는 조건문인데 조금 이상하지만 1일날 다시 테스트해보자 일단 해결
     if (CalendarDay[0] === 1) {
+      setClickDay(WeakRefs.current[idx]?.textContent);
       setClickMonth(month);
     } else if (WeakRefs.current[idx]?.textContent < today) {
+      setClickDay(WeakRefs.current[idx]?.textContent);
       setClickMonth(month + 1);
     } else {
+      setClickDay(WeakRefs.current[idx]?.textContent);
       setClickMonth(month);
     }
   };

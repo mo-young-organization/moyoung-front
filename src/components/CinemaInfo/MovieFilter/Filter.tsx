@@ -15,12 +15,19 @@ const Filter = () => {
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
-      <Cinema register={register} />
-      <Time register={register} />
-      <DistanceDiv>
-        <Distance register={register} />
-        <MyLocation />
-      </DistanceDiv>
+      <ContentDiv>
+        <div>
+          <Cinema register={register} />
+          <Time register={register} />
+          <Distance register={register} />
+        </div>
+        <div>
+          <MyLocation />
+        </div>
+      </ContentDiv>
+      <ButtonDiv>
+        <button>적용</button>
+      </ButtonDiv>
     </ContainerForm>
   );
 };
@@ -29,15 +36,40 @@ export default Filter;
 
 const ContainerForm = styled.form`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-left: 85px;
+  margin: 0px 85px;
 
-  width: 750px;
+  width: 100%;
   height: 250px;
 `;
 
-const DistanceDiv = styled.div`
+const ContentDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  width: 100px;
+
+  > button {
+    height: 30px;
+
+    background-color: transparent;
+    border-radius: 20;
+    cursor: pointer;
+  }
 `;

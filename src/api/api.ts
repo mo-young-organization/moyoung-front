@@ -53,10 +53,11 @@ export const movieSearchGet = async movieName => {
   }
 };
 
-export const cinemaGet = async movieId => {
+// 영화관 데이터 받아오기 get요청
+export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega) => {
   try {
     const data = await instance.get(
-      `/near?latitude=${37.498}&longitude=${127.026}&distance=${10000}&movieId=${movieId}&date=${'2023-10-16'}&early=${false}&lotte=${true}&mega=${true}`,
+      `/near?latitude=${lat}&longitude=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}`,
       {
         headers: {
           Accept: 'application/json',
@@ -101,7 +102,7 @@ export const postRecruitList = async req => {
 // 모집글 불러오기 get요청
 export const getRecruitList = async (page: number) => {
   try {
-    const data = await instance.get(`recruit?page=${page}`, {
+    const data = await instance.get(`/recruit-article?page=${page}`, {
       headers: {
         Accept: 'application/json',
         'ngrok-skip-browser-warning': 60420,

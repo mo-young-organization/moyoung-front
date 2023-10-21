@@ -24,7 +24,11 @@ const Search = ({ text }: TextProps) => {
     if (movieTitle !== '') {
       console.log('get요청');
       const data = await movieSearchGet(movieTitle);
-
+      console.log(data.data.data.length);
+      if (data.data.data.length === 0) {
+        navigate('/nomovie');
+        return;
+      }
       // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
       navigate('/cinemalist', { state: data.data });
 

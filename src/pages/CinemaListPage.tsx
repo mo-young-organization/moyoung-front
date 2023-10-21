@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { cinemaGet } from '../api/api';
 
 interface ThumbnailProps {
   $img: string;
@@ -11,12 +10,9 @@ const CinemaListPage = () => {
   //   navigate시 넘겨준 state값을 불러 올 수 있다.
   const location = useLocation();
   const data = location.state;
-  console.log(data.data);
 
   const clickHandler = movieId => {
-    cinemaGet(movieId).then(res => {
-      console.log(res.data), navigate('/cinemainfo', { state: res.data });
-    });
+    navigate(`/cinemainfo/${movieId}`);
   };
 
   return (

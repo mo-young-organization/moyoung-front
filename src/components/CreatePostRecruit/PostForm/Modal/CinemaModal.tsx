@@ -14,7 +14,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [movieData, setMovieData] = useState(data.data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
-  console.log(cinemaData);
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState('');
 
@@ -44,11 +43,11 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   const lat = '37.498';
   const lon = '127.026';
-  const dt = 10000;
+  const [dt, setDt] = useState(1500);
   const [date, setDate] = useState(todayDate);
-  const early = false;
-  const lotte = true;
-  const mega = true;
+  const [early, setEarly] = useState(false);
+  const [lotte, setLotte] = useState(true);
+  const [mega, setMega] = useState(true);
 
   const [id, setId] = useState();
 
@@ -69,7 +68,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   useEffect(() => {
     clickHandler(id);
-  }, [date]);
+  }, [lat, lon, dt, date, early, lotte, mega]);
 
   return (
     <Background>
@@ -153,7 +152,18 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
             </ListDiv>
           )}
         </FilterDiv>
-        <ModalPotal>{modalFilterOn && <ModalFilter onClose={filterinFilterHandler} />}</ModalPotal>
+        <ModalPotal>
+          {modalFilterOn && (
+            <ModalFilter
+              setDate={setDate}
+              setEarly={setEarly}
+              setLotte={setLotte}
+              setMega={setMega}
+              setDt={setDt}
+              onClose={filterinFilterHandler}
+            />
+          )}
+        </ModalPotal>
       </Content>
     </Background>
   );

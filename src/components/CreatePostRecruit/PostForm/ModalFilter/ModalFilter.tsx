@@ -1,13 +1,53 @@
 import { styled } from 'styled-components';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import FilterCinema from '../../Filter/FilterCinema';
 import FilterTime from '../../Filter/FilterTime';
 import FilterDistance from '../../Filter/FilterDistance';
+import { FilterFormValue } from '../../../SignupCheck/FormType';
+import { useState } from 'react';
 
-const ModalFilter = ({ onClose }) => {
+const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
+  const { register, handleSubmit, watch } = useForm<FilterFormValue>();
+
+  const [value, setValue] = useState<number[]>([0, 1]);
+
+  const dt계산 = dt => {
+    console.log(dt);
+    if (dt[1] === 1) {
+      setDt(1500);
+    } else if (dt[1] === 2) {
+      setDt(3000);
+    } else if (dt[1] === 3) {
+      setDt(4500);
+    } else if (dt[1] === 4) {
+      setDt(6000);
+    }
+  };
+
+  const onSubmitHandler: SubmitHandler<FilterFormValue> = data => {
+    // 영화관 조건문
+    if (watch('cinema') === '메가박스') {
+      setLotte(false);
+      setMega(true);
+    } else if (watch('cinema') === '롯데시네마') {
+      setLotte(true);
+      setMega(false);
+    }
+
+    // 영화 시간 조건문
+    if (watch('time') === '조조') {
+      setEarly(true);
+    } else if (watch('time') !== '조조') {
+      setEarly(false);
+    }
+
+    dt계산(value);
+  };
+
   return (
     <Background>
       <Content>
-        <InFilterForm>
+        <InFilterForm onSubmit={handleSubmit(onSubmitHandler)}>
           <InFilterDiv>
             <div className="top-div">
               {/* 야매로 span3개로 함... */}
@@ -18,12 +58,12 @@ const ModalFilter = ({ onClose }) => {
               </span>
             </div>
             <InMidDiv>
-              <FilterCinema />
-              <FilterTime />
-              <FilterDistance />
+              <FilterCinema register={register} />
+              <FilterTime register={register} />
+              <FilterDistance value={value} setValue={setValue} />
             </InMidDiv>
             <div className="filter_button_div">
-              <button onClick={e => e.preventDefault()}>적용</button>
+              <button>적용</button>
             </div>
           </InFilterDiv>
         </InFilterForm>
@@ -96,6 +136,7 @@ const InFilterDiv = styled.div`
 
       font-size: 14px;
       font-weight: 500;
+      cursor: pointer;
     }
   }
 `;

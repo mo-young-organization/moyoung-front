@@ -3,9 +3,7 @@ import { StyledEngineProvider } from '@mui/styled-engine';
 import { useState } from 'react';
 import { styled } from 'styled-components';
 
-const FilterDistance = () => {
-  const [value, setValue] = useState<number[]>([0, 1]);
-
+const FilterDistance = ({ value, setValue }) => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     //조건문으로 0 ~ 4 면 km로 변환시키기
     console.log(newValue);

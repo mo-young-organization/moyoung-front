@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const FilterCinema = () => {
+const FilterCinema = ({ register }) => {
   const cinemaArr = [
     { id: 'cgv', cinema: 'CGV' },
     { id: 'mega', cinema: '메가박스' },
@@ -13,8 +13,10 @@ const FilterCinema = () => {
       <ContentUl>
         {cinemaArr.map(el => (
           <li key={el.id}>
-            <input type="radio" id={el.id} />
-            <label htmlFor={el.id}>{el.cinema}</label>
+            <label htmlFor={el.id}>
+              <input type="radio" id={el.id} value={el.cinema} {...register('cinema')} />
+              {el.cinema}
+            </label>
           </li>
         ))}
       </ContentUl>

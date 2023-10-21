@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const FilterTime = () => {
+const FilterTime = ({ register }) => {
   const timeArr = [
     { id: '조조', time: '조조' },
     { id: '13시 이후', time: '13시 이후' },
@@ -14,8 +14,10 @@ const FilterTime = () => {
       <ContentUl>
         {timeArr.map((el, idx) => (
           <li key={idx}>
-            <input type="radio" id={el.id} />
-            <label htmlFor={el.id}>{el.time}</label>
+            <label htmlFor={el.id}>
+              <input type="radio" id={el.id} value={el.time} {...register('time')} />
+              {el.time}
+            </label>
           </li>
         ))}
       </ContentUl>

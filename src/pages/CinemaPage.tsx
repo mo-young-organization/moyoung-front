@@ -11,7 +11,6 @@ import { CinemaDataProps } from '../components/CreatePostRecruit/PostForm/Modal/
 
 const CinemaPage = () => {
   const [data, setData] = useState<CinemaDataProps>();
-  // console.log(data.cinemaInfo.length);
 
   // 오늘 날짜 년도-월-일 순서
   const dateNew = new Date();
@@ -23,12 +22,12 @@ const CinemaPage = () => {
   const params = useParams();
   const lat = '37.498';
   const lon = '127.026';
-  const dt = 10000;
+  const [dt, setDt] = useState(1500);
   const movieId = params.cinemaId;
   const [date, setDate] = useState(todayDate);
-  const early = false;
-  const lotte = true;
-  const mega = true;
+  const [early, setEarly] = useState(false);
+  const [lotte, setLotte] = useState(true);
+  const [mega, setMega] = useState(true);
 
   useEffect(() => {
     const cinemaData = async () => {
@@ -46,7 +45,14 @@ const CinemaPage = () => {
       </SearchDiv>
       <Content>{data && <MoviePoster data={data.movieInfo} />}</Content>
       <div>
-        <MovieFilter setDate={setDate} />
+        <MovieFilter
+          setDate={setDate}
+          setEarly={setEarly}
+          setLotte={setLotte}
+          setMega={setMega}
+          setDt={setDt}
+          resultLength={data.cinemaInfo.length}
+        />
       </div>
       <Content>{data && <CinemaBox data={data.cinemaInfo} />}</Content>
     </Container>

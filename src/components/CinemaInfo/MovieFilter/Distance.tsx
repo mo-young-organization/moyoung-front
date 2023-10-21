@@ -5,12 +5,9 @@ import { useState } from 'react';
 import { styled } from 'styled-components';
 import Box from '@mui/material/Box';
 
-const Distance = ({ register }: FilterProps) => {
-  const [value, setValue] = useState<number[]>([0, 1]);
-
+const Distance = ({ value, setValue }) => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     //조건문으로 0 ~ 4 면 km로 변환시키기
-    console.log(newValue);
     setValue(newValue as number[]);
   };
 

@@ -15,8 +15,10 @@ const Time = ({ register }: FilterProps) => {
       <ContentUl>
         {timeArr.map((el, idx) => (
           <li key={idx}>
-            <input type="radio" id={el.id} {...register('time')} />
-            <label htmlFor={el.id}>{el.time}</label>
+            <label htmlFor={el.id}>
+              <input type="radio" id={el.id} value={el.time} {...register('time')} />
+              {el.time}
+            </label>
           </li>
         ))}
       </ContentUl>

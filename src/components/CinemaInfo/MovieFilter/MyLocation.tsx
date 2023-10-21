@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
 
-const MyLocation = () => {
+const MyLocation = ({ resultLength }) => {
   return (
     <Container>
       <div>
         <span className="my">내 위치 : </span>
         <span className="location">{`마포구 성산 1동`}</span>
       </div>
-      <div className="my">{`검색결과 6개`}</div>
+      <div className="my">{`검색결과 ${resultLength}개`}</div>
     </Container>
   );
 };

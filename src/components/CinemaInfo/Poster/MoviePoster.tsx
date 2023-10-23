@@ -42,7 +42,7 @@ const Content = styled.div`
 
 const MovieImg = styled.div<ImgProps>`
   width: 240px;
-  height: 337px;
+  height: 315px;
   border-radius: 12px;
   margin-right: 24px;
 

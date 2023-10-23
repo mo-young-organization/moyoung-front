@@ -1,6 +1,5 @@
 import Slider from '@mui/material/Slider';
 import { StyledEngineProvider } from '@mui/styled-engine';
-import { useState } from 'react';
 import { styled } from 'styled-components';
 
 const FilterDistance = ({ value, setValue }) => {

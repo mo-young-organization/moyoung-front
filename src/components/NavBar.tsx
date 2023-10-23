@@ -62,7 +62,7 @@ const NavBar = () => {
     } else {
       setIsLogin(false);
     }
-  }, [refreshToken]);
+  }, [refreshToken, displayName]);
 
   return (
     <Container>

@@ -10,7 +10,8 @@ import { cinemaGet } from '../api/api';
 import { CinemaDataProps } from '../components/CreatePostRecruit/PostForm/Modal/type';
 
 const CinemaPage = () => {
-  const [data, setData] = useState<CinemaDataProps>();
+  const [data, setData] = useState<CinemaDataProps>(undefined);
+  console.log(data)
 
   // 오늘 날짜 년도-월-일 순서
   const dateNew = new Date();
@@ -45,14 +46,16 @@ const CinemaPage = () => {
       </SearchDiv>
       <Content>{data && <MoviePoster data={data.movieInfo} />}</Content>
       <div>
-        <MovieFilter
-          setDate={setDate}
-          setEarly={setEarly}
-          setLotte={setLotte}
-          setMega={setMega}
-          setDt={setDt}
-          resultLength={data.cinemaInfo.length}
-        />
+        {data && (
+          <MovieFilter
+            setDate={setDate}
+            setEarly={setEarly}
+            setLotte={setLotte}
+            setMega={setMega}
+            setDt={setDt}
+            resultLength={data.cinemaInfo.length}
+          />
+        )}
       </div>
       <Content>{data && <CinemaBox data={data.cinemaInfo} />}</Content>
     </Container>

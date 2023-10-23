@@ -25,8 +25,8 @@ const Search = ({ text }: TextProps) => {
     if (movieTitle !== '') {
       console.log('get요청');
       const data = await movieSearchGet(movieTitle);
-      console.log(data.data.data.length);
-      if (data.data.data.length === 0) {
+      console.log(data.data.length);
+      if (data.data.length === 0) {
         navigate('/nomovie');
         return;
       }

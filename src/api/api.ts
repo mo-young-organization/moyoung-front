@@ -40,12 +40,16 @@ export const userDelete = async memberId => {
 // 영화 검색 get요청
 export const movieSearchGet = async movieName => {
   try {
-    const data = await instance.get(`/movie?movieName=${movieName}&page=1`, {
-      headers: {
-        Accept: 'application/json',
-        'ngrok-skip-browser-warning': 60420,
+    // const data = await instance.get(`/movie?movieName=${movieName}&page=1`, {
+    const data = await instance.get(
+      `/movie?movieName=${movieName}&x=${'126.75993318746'}&y=${'37.7131914882111'}&distance=${3000}`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'ngrok-skip-browser-warning': 60420,
+        },
       },
-    });
+    );
     console.log(data);
     return data;
   } catch (error) {
@@ -57,7 +61,7 @@ export const movieSearchGet = async movieName => {
 export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega) => {
   try {
     const data = await instance.get(
-      `/near?latitude=${lat}&longitude=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}`,
+      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}`,
       {
         headers: {
           Accept: 'application/json',

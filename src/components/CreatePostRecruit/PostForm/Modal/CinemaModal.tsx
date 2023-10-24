@@ -1,18 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { styled } from 'styled-components';
 import Calendar from '../../../CinemaInfo/MovieFilter/Calendar';
-import { LiaSearchSolid } from 'react-icons/lia';
-import { CinemaDummy } from '../../../CinemaInfo/Cinema/data';
 import ModalPotal from '../ModalFilter/ModalPotal';
 import ModalFilter from '../ModalFilter/ModalFilter';
+
+import { styled } from 'styled-components';
 import { cinemaGet } from '../../../../api/api';
 import { movieSearchGet } from '../../../../api/api';
+import { LiaSearchSolid } from 'react-icons/lia';
 import { CinemaDataProps, ThumbnailProps } from './type';
 
 import all from '../../../../assets/img/all.svg';
 import twelve from '../../../../assets/img/12years.svg';
 import Fifteen from '../../../../assets/img/15years.svg';
 import Eighteen from '../../../../assets/img/18years.svg';
+import MEGA from '../../../../assets/img/MEGA_logo.png';
+import LOTTE from '../../../../assets/img/LOTTE_logo.png';
+import CGV from '../../../../assets/img/CGV_logo.png';
+import ModalCalendar from './ModalCalendar';
 
 const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPickData, setRunningTimeData }) => {
   // 영화 데이터
@@ -30,7 +34,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     console.log('영화 검색 버튼 클릭');
     setCinemaData(undefined);
 
-    const data = await movieSearchGet(movieValue,3000);
+    const data = await movieSearchGet(movieValue, 3000);
     setMovieData(data.data);
   };
 
@@ -56,6 +60,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   const [id, setId] = useState();
 
+  // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
     console.log('여기서 문제');
     setId(movieId);
@@ -64,6 +69,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     setMoviePickData(data.data);
   };
 
+  // cinemaModal에서 영화 시간 클릭 이벤트
   const runningTimeHandler = (runTime, data, el) => {
     console.log('버튼 클릭');
     setRunningTimeData(runTime);
@@ -71,6 +77,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     setCinemaPickData(cinemaInfoArr);
   };
 
+  // 영화 관람가에 맞게 src주소 함수
   const audience = text => {
     if (text.includes('12')) {
       return twelve;
@@ -110,12 +117,13 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
             </button>
           </SearchDiv>
           {cinemaData !== undefined ? (
-            <>
-              <SearchCalendarDiv>
-                <CalendarDiv>
-                  <Calendar setDate={setDate} />
-                </CalendarDiv>
-              </SearchCalendarDiv>
+            // cinemaModal페이지
+            <CinemaModalContent>
+              {/* 날짜-캘린더 div */}
+              <CalendarDiv>
+                <ModalCalendar setDate={setDate} />
+              </CalendarDiv>
+              {/* 필터 + 영화관 정보 div */}
               <FilterCinemainfoDiv>
                 <PosterDiv>
                   <MovieImg $img={cinemaData.movieInfo.thumbnailUrl} role="사진" />
@@ -124,7 +132,9 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                       <div className="kr-title">{cinemaData.movieInfo.name}</div>
                       {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
                     </MovieTitle>
-                    <div>네모??</div>
+                    <div>
+                      <img className="img" src={audience(cinemaData.movieInfo.movieRating)} alt="관람가이미지" />
+                    </div>
                   </RightDiv>
                 </PosterDiv>
                 <CinemaContentDiv>
@@ -132,7 +142,16 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                     {cinemaData.cinemaInfo.map((el, idx) => (
                       <ContentLi key={idx}>
                         <HeadDiv>
-                          <span className="area">{el.name}</span>
+                          <div>
+                            {el.brand === 'Mega' ? (
+                              <img src={MEGA} />
+                            ) : el.brand === 'Lotte' ? (
+                              <img src={LOTTE} />
+                            ) : (
+                              <img src={CGV} />
+                            )}
+                            <span className="area">{el.name}</span>
+                          </div>
                           <span className="address">{el.address}</span>
                         </HeadDiv>
                         <ContentUl>
@@ -154,8 +173,9 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                   </ContainerUl>
                 </CinemaContentDiv>
               </FilterCinemainfoDiv>
-            </>
+            </CinemaModalContent>
           ) : (
+            // 리스트 페이지
             <ListContentUl>
               {movieData.map(el => (
                 <BoxLi key={el.name}>
@@ -168,7 +188,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                           <div className="enName">{el.enName}</div>
                         </div>
                         <div>
-                          <img className="img" src={el.movieRating && audience(el.movieRating)} />
+                          <img className="img" src={el.movieRating && audience(el.movieRating)} alt="관람가이미지" />
                         </div>
                       </TitleDiv>
                     </MovieInfoDiv>
@@ -250,16 +270,29 @@ const FilterDiv = styled.div`
   height: 800px;
 `;
 
-const SearchCalendarDiv = styled.div`
-  /* background-color: pink; */
+const CinemaModalContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-color: white;
+
   width: 520px;
-  height: 180px;
+  height: 670px;
+
+  border-radius: 8px;
+  padding: 20px 28px;
 `;
 
 const CalendarDiv = styled.div`
   display: flex;
+  justify-content: center;
+  /* background-color: red; */
 
-  width: 520px;
+  margin-bottom: 30px;
+  width: 445px;
+  height: 100px;
 `;
 
 const SearchDiv = styled.div`
@@ -303,18 +336,11 @@ const FilterSearchButton = styled.button`
   }
 `;
 
-const FilterCinemainfoDiv = styled.div`
-  background-color: white;
-  width: 520px;
-  height: 550px;
-  border-radius: 8px;
-  padding: 20px 28px;
-`;
+const FilterCinemainfoDiv = styled.div``;
 
 const PosterDiv = styled.div`
   display: flex;
   margin-bottom: 24px;
-  /* background-color: red; */
 `;
 
 const MovieImg = styled.div<ThumbnailProps>`
@@ -344,6 +370,11 @@ const RightDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  .img {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const CinemaContentDiv = styled.div`

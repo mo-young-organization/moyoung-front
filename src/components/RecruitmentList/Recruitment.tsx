@@ -10,13 +10,13 @@ import { getRecruitList } from '../../api/api';
 import { RecruitProps } from './recruitType';
 import { getCookie } from '../../util/Cookie';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
+import NoSearchMovie from '../NoMovie/NoSearchMovie';
 
 const Recruitment = () => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
-  // const { totalPages } = recruitData.pageInfo;
 
   useEffect(() => {
     const fetchGetRecruitData = async () => {
@@ -63,12 +63,17 @@ const Recruitment = () => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
-      <UlArticleMaping>
-        {/* {dummyData.map((el, idx) => ( */}
-        {recruitData?.data.map((el, idx) => (
-          <Article key={idx} data={el} />
-        ))}
-      </UlArticleMaping>
+      {recruitData?.data ? (
+        <UlArticleMaping className="no-recruit">
+          <NoSearchMovie text={'게시물이 없습니다.'} />
+        </UlArticleMaping>
+      ) : (
+        <UlArticleMaping>
+          {recruitData?.data.map((el, idx) => (
+            <Article key={idx} data={el} />
+          ))}
+        </UlArticleMaping>
+      )}
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
@@ -95,6 +100,14 @@ const UlArticleMaping = styled.ul`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 78px 24px;
+
+  &.no-recruit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const DivPagination = styled.div`

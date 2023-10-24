@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import Calendar from '../../../CinemaInfo/MovieFilter/Calendar';
+import { useEffect, useState } from 'react';
 import ModalPotal from '../ModalFilter/ModalPotal';
 import ModalFilter from '../ModalFilter/ModalFilter';
 
@@ -288,7 +287,6 @@ const CinemaModalContent = styled.div`
 const CalendarDiv = styled.div`
   display: flex;
   justify-content: center;
-  /* background-color: red; */
 
   margin-bottom: 30px;
   width: 445px;
@@ -315,6 +313,8 @@ const SearchDiv = styled.div`
   > button {
     width: 48px;
     height: 48px;
+
+    cursor: pointer;
   }
 `;
 
@@ -454,6 +454,10 @@ const ContentLis = styled.li`
     border: 1px solid #b6b6b6;
     padding: 8px 16px;
     margin: 12px 10px 0px 0px;
+  }
+
+  button {
+    cursor: pointer;
   }
 `;
 

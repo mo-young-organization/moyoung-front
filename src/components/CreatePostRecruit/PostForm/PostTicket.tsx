@@ -1,7 +1,14 @@
-import { useEffect } from 'react';
+import all from '../../../assets/img/all.svg';
+import twelve from '../../../assets/img/12years.svg';
+import Fifteen from '../../../assets/img/15years.svg';
+import Eighteen from '../../../assets/img/18years.svg';
+import MEGA from '../../../assets/img/MEGA_logo.png';
+import LOTTE from '../../../assets/img/LOTTE_logo.png';
+import CGV from '../../../assets/img/CGV_logo.png';
 import styled from 'styled-components';
 
 const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
+  // console.log(cinemaPickData[0].brand);
   const days = () => {
     if (runningTimeData) {
       const month = runningTimeData.startTime.slice(5, 7);
@@ -23,6 +30,19 @@ const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
     }
   };
 
+  // 영화 관람가
+  const audience = text => {
+    if (text.includes('12')) {
+      return twelve;
+    } else if (text.includes('15')) {
+      return Fifteen;
+    } else if (text.includes('청소년')) {
+      return Eighteen;
+    } else if (text.includes('전체')) {
+      return all;
+    }
+  };
+
   return (
     <>
       <TicketDiv>
@@ -33,7 +53,9 @@ const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
               <LeftTicketTopDivContnet>
                 <div className="movie_title">{moviePickData.movieInfo.name}</div>
                 <div className="top-div-contnet">
-                  <div className="box1">x</div>
+                  <div className="box1">
+                    <img alt="관람가이미지" src={audience(moviePickData.movieInfo.movieRating)} />
+                  </div>
                   <span className="kind">{moviePickData.movieInfo.movieRating}</span>
                 </div>
               </LeftTicketTopDivContnet>
@@ -41,7 +63,17 @@ const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
             <LeftTicketBottomDiv>
               <LeftTicketBottomTop>
                 <div className="bottom-top-top">
-                  <div className="box2">박스</div>
+                  <div>
+                    {cinemaPickData.length && cinemaPickData[0].brand === 'Mega' ? (
+                      <img src={MEGA} />
+                    ) : cinemaPickData.length && cinemaPickData[0].brand === 'Lotte' ? (
+                      <img src={LOTTE} />
+                    ) : cinemaPickData.length && cinemaPickData[0].brand === 'CGV' ? (
+                      <img src={CGV} />
+                    ) : (
+                      ''
+                    )}
+                  </div>
                   <div className="fontC 위치">{cinemaPickData.length ? cinemaPickData[0].name : ''}</div>
                 </div>
                 <span className="fontC">/</span>
@@ -122,13 +154,6 @@ const LeftTicketBottomTop = styled.div`
 
   .bottom-top-top {
     display: flex;
-
-    .box2 {
-      width: 50px;
-      height: 23px;
-      margin-right: 8px;
-      background-color: #bababa;
-    }
 
     .위치 {
       font-size: 20px;

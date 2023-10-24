@@ -12,7 +12,7 @@ const Filter = ({ setEarly, setLotte, setMega, setDt, resultLength }) => {
 
   const [value, setValue] = useState<number[]>([0, 1]);
 
-  const dt계산 = dt => {
+  const distance = dt => {
     console.log(dt);
     if (dt[1] === 1) {
       setDt(1500);
@@ -42,7 +42,7 @@ const Filter = ({ setEarly, setLotte, setMega, setDt, resultLength }) => {
       setEarly(false);
     }
 
-    dt계산(value);
+    distance(value);
   };
 
   return (

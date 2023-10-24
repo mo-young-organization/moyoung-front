@@ -1,11 +1,27 @@
 import styled from 'styled-components';
 import { LiaMapMarkerAltSolid } from 'react-icons/lia';
 import SearchDistance from '../SearchDistance';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const DistanceModal = ({ modalOn, setModalOn }) => {
+const DistanceModal = ({ modalOn, setModalOn, setDt }) => {
   const [value, setValue] = useState<number[]>([0, 1]);
-  console.log(value);
+
+  const distance = dt => {
+    console.log(dt);
+    if (dt[1] === 1) {
+      setDt(1500);
+    } else if (dt[1] === 2) {
+      setDt(3000);
+    } else if (dt[1] === 3) {
+      setDt(4500);
+    } else if (dt[1] === 4) {
+      setDt(6000);
+    }
+  };
+
+  useEffect(() => {
+    distance(value);
+  }, [value]);
 
   return (
     <Background>

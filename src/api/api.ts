@@ -38,11 +38,11 @@ export const userDelete = async memberId => {
 };
 
 // 영화 검색 get요청
-export const movieSearchGet = async movieName => {
+export const movieSearchGet = async (movieName, dt) => {
   try {
     // const data = await instance.get(`/movie?movieName=${movieName}&page=1`, {
     const data = await instance.get(
-      `/movie?movieName=${movieName}&x=${'126.75993318746'}&y=${'37.7131914882111'}&distance=${3000}`,
+      `/movie?movieName=${movieName}&x=${'126.75993318746'}&y=${'37.7131914882111'}&distance=${dt}`,
       {
         headers: {
           Accept: 'application/json',

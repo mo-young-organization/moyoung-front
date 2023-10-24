@@ -14,6 +14,8 @@ interface TextProps {
 const Search = ({ text }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
   const [modalOn, setModalOn] = useState(false);
+  const [dt, setDt] = useState(1500);
+  console.log(dt);
 
   const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMovieTitle(event.target.value);
@@ -24,7 +26,7 @@ const Search = ({ text }: TextProps) => {
     event.preventDefault();
     if (movieTitle !== '') {
       console.log('get요청');
-      const data = await movieSearchGet(movieTitle);
+      const data = await movieSearchGet(movieTitle, dt);
       console.log(data.data.length);
       if (data.data.length === 0) {
         navigate('/nomovie');
@@ -69,7 +71,9 @@ const Search = ({ text }: TextProps) => {
           </SearchButton>
         </ButtonDiv>
       </Form>
-      <DistancePotal>{modalOn && <DistanceModal modalOn={modalOn} setModalOn={setModalOn} />}</DistancePotal>
+      <DistancePotal>
+        {modalOn && <DistanceModal setDt={setDt} modalOn={modalOn} setModalOn={setModalOn} />}
+      </DistancePotal>
     </Container>
   );
 };

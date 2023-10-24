@@ -17,8 +17,7 @@ const CinemaListPage = () => {
   const data = location.state;
 
   const clickHandler = movieId => {
-    console.log(movieId);
-    // navigate(`/cinemainfo/${movieId}`);
+    navigate(`/cinemainfo/${movieId}`);
   };
 
   const audience = text => {
@@ -26,7 +25,7 @@ const CinemaListPage = () => {
       return twelve;
     } else if (text.includes('15')) {
       return Fifteen;
-    } else if (text.includes('18')) {
+    } else if (text.includes('청소년')) {
       return Eighteen;
     } else if (text.includes('전체')) {
       return all;
@@ -40,7 +39,7 @@ const CinemaListPage = () => {
       </SearchDiv>
       <ContentUl>
         {data.map(el => (
-          <BoxLi key={el.movieId}>
+          <BoxLi key={el.name}>
             <LiContentDiv>
               <MovieInfoDiv>
                 <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
@@ -50,13 +49,13 @@ const CinemaListPage = () => {
                     <div className="enName">{el.enName}</div>
                   </div>
                   <div>
-                    <img className="img" src={audience(el.movieRating)} />
+                    <img className="img" src={el.movieRating && audience(el.movieRating)} />
                   </div>
                 </TitleDiv>
               </MovieInfoDiv>
               <BoxUl>
                 {el.typeList.map(data => (
-                  <BoxLis role="button" onClick={() => clickHandler(data.movieId)}>
+                  <BoxLis key={data.movieId} role="button" onClick={() => clickHandler(data.movieId)}>
                     <div>
                       <div className="type">{data.type}</div>
                       <div className="count">{data.count}건</div>
@@ -108,7 +107,6 @@ const ContentUl = styled.ul`
 
 const BoxLi = styled.li`
   width: 1032px;
-  height: 450px;
 
   border: 1px solid #cccccc;
   border-radius: 8px;

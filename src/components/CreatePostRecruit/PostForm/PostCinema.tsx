@@ -24,7 +24,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
     const cinemaName = watch('cinema');
     if (cinemaName.length !== 0) {
       setMovieName(cinemaName);
-      const data = await movieSearchGet(cinemaName);
+      const data = await movieSearchGet(cinemaName, 3000);
       setData(data);
       setModalOn(!modalOn);
     } else {

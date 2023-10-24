@@ -9,9 +9,14 @@ import { cinemaGet } from '../../../../api/api';
 import { movieSearchGet } from '../../../../api/api';
 import { CinemaDataProps, ThumbnailProps } from './type';
 
+import all from '../../../../assets/img/all.svg';
+import twelve from '../../../../assets/img/12years.svg';
+import Fifteen from '../../../../assets/img/15years.svg';
+import Eighteen from '../../../../assets/img/18years.svg';
+
 const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPickData, setRunningTimeData }) => {
   // 영화 데이터
-  const [movieData, setMovieData] = useState(data.data.data);
+  const [movieData, setMovieData] = useState(data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
@@ -25,8 +30,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     console.log('영화 검색 버튼 클릭');
     setCinemaData(undefined);
 
-    const data = await movieSearchGet(movieValue);
-    setMovieData(data.data.data);
+    const data = await movieSearchGet(movieValue,3000);
+    setMovieData(data.data);
   };
 
   const filterinFilterHandler = () => {
@@ -64,6 +69,18 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     setRunningTimeData(runTime);
     const cinemaInfoArr = [el, data];
     setCinemaPickData(cinemaInfoArr);
+  };
+
+  const audience = text => {
+    if (text.includes('12')) {
+      return twelve;
+    } else if (text.includes('15')) {
+      return Fifteen;
+    } else if (text.includes('청소년')) {
+      return Eighteen;
+    } else if (text.includes('전체')) {
+      return all;
+    }
   };
 
   useEffect(() => {
@@ -139,17 +156,37 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               </FilterCinemainfoDiv>
             </>
           ) : (
-            <ListDiv>
-              <h1>리스트 페이지</h1>
-              <ul>
-                {movieData.map(el => (
-                  <li key={el.movieId} onClick={() => clickHandler(el.movieId)}>
-                    <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
-                    <div>{el.name}</div>
-                  </li>
-                ))}
-              </ul>
-            </ListDiv>
+            <ListContentUl>
+              {movieData.map(el => (
+                <BoxLi key={el.name}>
+                  <LiContentDiv>
+                    <MovieInfoDiv>
+                      <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
+                      <TitleDiv>
+                        <div>
+                          <div className="name">{el.name}</div>
+                          <div className="enName">{el.enName}</div>
+                        </div>
+                        <div>
+                          <img className="img" src={el.movieRating && audience(el.movieRating)} />
+                        </div>
+                      </TitleDiv>
+                    </MovieInfoDiv>
+                    <BoxUl>
+                      {el.typeList.map(data => (
+                        <BoxLis key={data.movieId} role="button" onClick={() => clickHandler(data.movieId)}>
+                          <div>
+                            <div className="type">{data.type}</div>
+                            <div className="count">{data.count}건</div>
+                          </div>
+                          <div>&gt;</div>
+                        </BoxLis>
+                      ))}
+                    </BoxUl>
+                  </LiContentDiv>
+                </BoxLi>
+              ))}
+            </ListContentUl>
           )}
         </FilterDiv>
         <ModalPotal>
@@ -390,14 +427,104 @@ const ContentLis = styled.li`
 `;
 
 // 리스트 페이지
-
-const ListDiv = styled.div`
-  overflow: scroll;
-`;
-
 const ThumbnailDiv = styled.div<ThumbnailProps>`
-  width: 200px;
-  height: 280px;
+  width: 60px;
+  height: 80px;
   background-image: url(${props => props.$img});
   background-size: 100%;
+`;
+
+const ListContentUl = styled.ul`
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 520px;
+  height: 670px;
+  border-radius: 8px;
+
+  background-color: white;
+  list-style: none;
+`;
+
+const BoxLi = styled.li`
+  width: 460px;
+
+  border: 1px solid #cccccc;
+  border-radius: 8px;
+
+  padding: 25px 16px;
+  margin: 12px 0px;
+`;
+
+const LiContentDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+
+  width: 100%;
+`;
+
+const MovieInfoDiv = styled.div`
+  display: flex;
+  width: 100%;
+
+  padding-bottom: 20px;
+
+  border-bottom: 1px solid #e1e1e1;
+
+  .name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .enName {
+    font-size: 12px;
+    font-weight: 300;
+  }
+`;
+
+const TitleDiv = styled.div`
+  height: 78px;
+  margin-left: 12px;
+
+  .img {
+    width: 24px;
+    height: 24px;
+    margin-top: 12px;
+  }
+`;
+
+const BoxUl = styled.ul`
+  width: 30%;
+  padding-top: 20px;
+
+  list-style: none;
+`;
+
+const BoxLis = styled.li`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 10px 12px;
+  width: 130px;
+  border-radius: 8px;
+
+  background-color: #538dff;
+  cursor: pointer;
+
+  .type {
+    font-size: 14px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .count {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 400;
+    color: #e1e1e1;
+  }
 `;

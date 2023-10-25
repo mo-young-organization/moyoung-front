@@ -63,15 +63,16 @@ const Recruitment = () => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
+      {/* 이게 뭔 오류지? */}
       {recruitData?.data ? (
-        <UlArticleMaping className="no-recruit">
-          <NoSearchMovie text={'게시물이 없습니다.'} />
-        </UlArticleMaping>
-      ) : (
         <UlArticleMaping>
           {recruitData?.data.map((el, idx) => (
             <Article key={idx} data={el} />
           ))}
+        </UlArticleMaping>
+      ) : (
+        <UlArticleMaping className="no-recruit">
+          <NoSearchMovie text={'게시물이 없습니다.'} />
         </UlArticleMaping>
       )}
       <DivPagination>

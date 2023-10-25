@@ -8,10 +8,12 @@ import NoSearchMovie from '../components/NoMovie/NoSearchMovie';
 const NoMovie = () => {
   return (
     <Container>
-      <Search />
-      <NoSearchMovie />
-      <div className='left'>
-        <MovieTopFive dummy={Dummy} text="이런 영화는 어때요?" classname="left"/>
+      <div>
+        <Search />
+      </div>
+      <NoSearchMovie text={'현재 상영중인 영화가 없습니다.'}/>
+      <div className="left">
+        <MovieTopFive text="이런 영화는 어때요?" classname="left" />
       </div>
     </Container>
   );
@@ -25,6 +27,14 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  width: 1200px;
+  width: 100%;
   height: 1500px;
+
+  > div:first-child {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
+    background-color: #f0f5fe;
+  }
 `;

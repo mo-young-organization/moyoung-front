@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 
-const Calendar = ({ setDate }) => {
+const ModalCalendar = ({ setDate }) => {
   // 날짜 데이터
   const date = new Date();
   const todayWeak = date.getDay();
@@ -41,7 +41,7 @@ const Calendar = ({ setDate }) => {
     return dates;
   };
 
-  // 요일 표시하는 함수
+  // // 요일 표시하는 함수
   const getAllweak = (todayWeak: number) => {
     const strWeak = ['일', '월', '화', '수', '목', '금', '토'];
     const weaklist = [];
@@ -76,6 +76,7 @@ const Calendar = ({ setDate }) => {
 
   // 배열안 객체로 관리
   const [CalendarObject, setCalendarObject] = useState<{ weak: string; day: number }[]>([]);
+
   const getCalendar = () => {
     // 위에 유즈스태이트와 구분짓기위해 s르 붙힘
     const CalendarObjects = [];
@@ -139,10 +140,9 @@ const Calendar = ({ setDate }) => {
               `${findSat.includes(idx) ? 'sat' : findSun.includes(idx) ? 'sun' : ''}`
             }
           >
-            <span className="day" ref={el => (WeakRefs.current[idx] = el)}>
+            <div className="day" ref={el => (WeakRefs.current[idx] = el)}>
               {el.day}
-            </span>
-            <span className="weak">{el.weak}</span>
+            </div>
           </ContentLi>
         </button>
       ))}
@@ -150,33 +150,39 @@ const Calendar = ({ setDate }) => {
   );
 };
 
-export default Calendar;
+export default ModalCalendar;
 
 const ContainerUl = styled.ul`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  list-style: none;
 
-  width: 1200px;
-  height: 48px;
+  width: 100%;
+  height: 100%;
 
   > button {
     border: none;
     background-color: transparent;
   }
+
+  // 달력 두줄 만들기 위해서 억지로 끼어맞췄는데 다른 방법이 있을거 같은데....
+  > button:not(:nth-child(7), :nth-child(14)) {
+    margin-right: 20px;
+  }
 `;
 
 const ContentLi = styled.li`
   display: flex;
-  justify-content: center;
   align-items: center;
-  width: 72px;
-  height: 48px;
+  justify-content: center;
+  width: 44px;
+  height: 38px;
   cursor: pointer;
 
   &.sat {
-    color: #0094ff !important;
+    color: #0094ff;
   }
 
   &.sun {
@@ -185,26 +191,18 @@ const ContentLi = styled.li`
 
   &:hover {
     border-radius: 8px;
-    background-color: white;
+    background-color: #538dff;
+    color: white;
   }
 
   &.active {
     border-radius: 8px;
-    background-color: #e5e5e5;
+    background-color: #538dff;
+    color: white;
   }
 
   .day {
     font-weight: 700;
-    font-size: 20px;
-  }
-
-  .weak {
-    font-weight: 500;
-    font-size: 16px;
-
-    &::before {
-      content: '•';
-      color: #b1b1b1;
-    }
+    font-size: 14px;
   }
 `;

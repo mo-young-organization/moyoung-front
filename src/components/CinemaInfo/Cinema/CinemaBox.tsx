@@ -1,6 +1,9 @@
 //  import TimeBox from './TimeBox';
 import { styled } from 'styled-components';
 import TimeBox from './TimeBox';
+import MEGA from '../../../assets/img/MEGA_logo.png';
+import LOTTE from '../../../assets/img/LOTTE_logo.png';
+import CGV from '../../../assets/img/CGV_logo.png';
 import { CinemaDummy } from './data';
 
 const CinemaBox = ({ data }) => {
@@ -9,7 +12,16 @@ const CinemaBox = ({ data }) => {
       {data.map((el, idx) => (
         <ContentLi key={idx}>
           <HeadDiv>
-            <span className="area">{el.name}</span>
+            <div>
+              {el.brand === 'Mega' ? (
+                <img src={MEGA} />
+              ) : el.brand === 'Lotte' ? (
+                <img src={LOTTE} />
+              ) : (
+                <img src={CGV} />
+              )}
+              <span className="area">{el.name}</span>
+            </div>
             <span className="address">{el.address}</span>
           </HeadDiv>
           <ContentUl>
@@ -46,6 +58,14 @@ const HeadDiv = styled.div`
   justify-content: space-between;
   width: 100%;
   margin-bottom: 8px;
+
+  > div {
+    display: flex;
+    align-items: center;
+    > span {
+      margin-left: 10px;
+    }
+  }
 
   .area {
     font-size: 24px;

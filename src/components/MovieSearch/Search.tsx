@@ -1,10 +1,11 @@
 import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
+import { RiPinDistanceLine } from 'react-icons/ri';
 import { useState } from 'react';
 import { movieSearchGet } from '../../api/api';
-import { useDispatch } from 'react-redux';
-import { setCinemaNameStatus } from '../../store/reducers/cinemaName';
 import { useNavigate } from 'react-router-dom';
+import DistancePotal from './Modal/DistancePotal';
+import DistanceModal from './Modal/DistanceModal';
 
 interface TextProps {
   text?: string;
@@ -12,19 +13,25 @@ interface TextProps {
 
 const Search = ({ text }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
+  const [modalOn, setModalOn] = useState(false);
+  const [dt, setDt] = useState(1500);
+  console.log(dt);
 
   const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMovieTitle(event.target.value);
   };
 
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (movieTitle !== '') {
       console.log('get요청');
-      const data = await movieSearchGet(movieTitle);
-
+      const data = await movieSearchGet(movieTitle, dt);
+      console.log(data.data.length);
+      if (data.data.length === 0) {
+        navigate('/nomovie');
+        return;
+      }
       // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
       navigate('/cinemalist', { state: data.data });
 
@@ -38,17 +45,35 @@ const Search = ({ text }: TextProps) => {
     <Container>
       <Title>{text ? <h1>{text}</h1> : <h1>내 주변 영화관 찾기</h1>}</Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
-        <SearchInput
-          value={movieTitle}
-          id="searchinput"
-          type="text"
-          placeholder="영화 제목을 검색해보세요."
-          onChange={movieTitleHandler}
-        />
-        <SearchButton type="submit">
-          <LiaSearchSolid />
-        </SearchButton>
+        {text ? (
+          <SearchInput
+            value={movieTitle}
+            id="searchinput"
+            type="text"
+            placeholder="게시물을 검색해보세요."
+            onChange={movieTitleHandler}
+          />
+        ) : (
+          <SearchInput
+            value={movieTitle}
+            id="searchinput"
+            type="text"
+            placeholder="영화 제목을 검색해보세요."
+            onChange={movieTitleHandler}
+          />
+        )}
+        <ButtonDiv>
+          <SearchButton type="button" className="distance" onClick={() => setModalOn(!modalOn)}>
+            <RiPinDistanceLine color="#6f6f6f" />
+          </SearchButton>
+          <SearchButton type="submit">
+            <LiaSearchSolid />
+          </SearchButton>
+        </ButtonDiv>
       </Form>
+      <DistancePotal>
+        {modalOn && <DistanceModal setDt={setDt} modalOn={modalOn} setModalOn={setModalOn} />}
+      </DistancePotal>
     </Container>
   );
 };
@@ -72,11 +97,6 @@ const Form = styled.form`
   align-items: center;
   border-radius: 60px;
   background-color: white;
-
-  button:hover {
-    background-color: red;
-    cursor: pointer;
-  }
 `;
 
 const SearchInput = styled.input`
@@ -90,15 +110,22 @@ const SearchInput = styled.input`
   border: none;
 `;
 
-const SearchButton = styled.button`
+const ButtonDiv = styled.div`
   position: relative;
   right: 0px;
-  width: 80px;
+  width: 120px;
   height: 100%;
 
+  .distance {
+    margin-right: 5px;
+  }
+`;
+
+const SearchButton = styled.button`
   border: 0;
   border-radius: 60px;
   background-color: transparent;
+  cursor: pointer;
 
   > svg {
     width: 40px;

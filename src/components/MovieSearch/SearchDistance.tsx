@@ -2,7 +2,7 @@ import Slider from '@mui/material/Slider';
 import { StyledEngineProvider } from '@mui/styled-engine';
 import { styled } from 'styled-components';
 
-const Distance = ({ value, setValue }) => {
+const SearchDistance = ({ value, setValue }) => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     //조건문으로 0 ~ 4 면 km로 변환시키기
     setValue(newValue as number[]);
@@ -31,7 +31,6 @@ const Distance = ({ value, setValue }) => {
 
   return (
     <Container>
-      <div>거리</div>
       <StyledEngineProvider injectFirst>
         <DistanceSlider
           aria-labelledby="range-slider"
@@ -46,21 +45,15 @@ const Distance = ({ value, setValue }) => {
   );
 };
 
-export default Distance;
+export default SearchDistance;
 
 const Container = styled.div`
   display: flex;
-
-  > div {
-    width: 64px;
-    font-size: 20px;
-    font-weight: 700;
-  }
 `;
 
 const DistanceSlider = styled(Slider)`
   margin-left: 10px;
-  width: 360px;
+  width: 410px;
 
   .MuiSlider-thumb {
     color: white;

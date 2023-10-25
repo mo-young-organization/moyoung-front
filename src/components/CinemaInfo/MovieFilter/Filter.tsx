@@ -5,22 +5,61 @@ import Time from './Time';
 import Distance from './Distance';
 import { styled } from 'styled-components';
 import MyLocation from './MyLocation';
+import { useState } from 'react';
 
-const Filter = () => {
-  const { register, handleSubmit } = useForm<FilterFormValue>();
+const Filter = ({ setEarly, setLotte, setMega, setDt, resultLength }) => {
+  const { register, handleSubmit, watch } = useForm<FilterFormValue>();
+
+  const [value, setValue] = useState<number[]>([0, 1]);
+
+  const distance = dt => {
+    console.log(dt);
+    if (dt[1] === 1) {
+      setDt(1500);
+    } else if (dt[1] === 2) {
+      setDt(3000);
+    } else if (dt[1] === 3) {
+      setDt(4500);
+    } else if (dt[1] === 4) {
+      setDt(6000);
+    }
+  };
 
   const onSubmitHandler: SubmitHandler<FilterFormValue> = data => {
-    console.log(data);
+    // 영화관 조건문
+    if (watch('cinema') === '메가박스') {
+      setLotte(false);
+      setMega(true);
+    } else if (watch('cinema') === '롯데시네마') {
+      setLotte(true);
+      setMega(false);
+    }
+
+    // 영화 시간 조건문
+    if (watch('time') === '조조') {
+      setEarly(true);
+    } else if (watch('time') !== '조조') {
+      setEarly(false);
+    }
+
+    distance(value);
   };
 
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
-      <Cinema register={register} />
-      <Time register={register} />
-      <DistanceDiv>
-        <Distance register={register} />
-        <MyLocation />
-      </DistanceDiv>
+      <ContentDiv>
+        <div>
+          <Cinema register={register} />
+          <Time register={register} />
+          <Distance setValue={setValue} value={value} />
+        </div>
+        <div>
+          <MyLocation resultLength={resultLength} />
+        </div>
+      </ContentDiv>
+      <ButtonDiv>
+        <button>적용</button>
+      </ButtonDiv>
     </ContainerForm>
   );
 };
@@ -29,15 +68,40 @@ export default Filter;
 
 const ContainerForm = styled.form`
   display: flex;
-  flex-direction: column;
   justify-content: space-between;
-  margin-left: 85px;
+  margin: 0px 85px;
 
-  width: 750px;
+  width: 100%;
   height: 250px;
 `;
 
-const DistanceDiv = styled.div`
+const ContentDiv = styled.div`
   display: flex;
-  justify-content: space-between;
+
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  > div:last-child {
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+  }
+`;
+
+const ButtonDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+
+  width: 100px;
+
+  > button {
+    height: 30px;
+
+    background-color: transparent;
+    border-radius: 20;
+    cursor: pointer;
+  }
 `;

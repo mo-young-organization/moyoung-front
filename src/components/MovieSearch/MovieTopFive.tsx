@@ -5,6 +5,7 @@ import { getMovieTopFive } from '../../api/api';
 
 type Props = {
   classname?: string;
+  text?: string;
 };
 
 type ImgProps = {
@@ -20,7 +21,7 @@ export type TMovieTopFive = {
   }[];
 };
 
-const MovieTopFive = ({ classname }: Props) => {
+const MovieTopFive = ({ classname, text }: Props) => {
   const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
 
   const fetchRankedMovies = async () => {
@@ -33,7 +34,7 @@ const MovieTopFive = ({ classname }: Props) => {
   return (
     <Container>
       <Title className={classname}>
-        <div className="top5">{`Top ${topFiveData?.ranks.length}`}</div>
+        <div className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</div>
       </Title>
       <Content>
         {topFiveData?.ranks.map((el, idx) => (

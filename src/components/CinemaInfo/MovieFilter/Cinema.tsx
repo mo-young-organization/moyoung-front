@@ -14,8 +14,10 @@ const Cinema = ({ register }: FilterProps) => {
       <ContentUl>
         {cinemaArr.map(el => (
           <li key={el.id}>
-            <input type="radio" id={el.id} {...register('cinema')} />
-            <label htmlFor={el.id}>{el.cinema}</label>
+            <label htmlFor={el.id}>
+              <input type="radio" id={el.id} value={el.cinema} {...register('cinema')} />
+              {el.cinema}
+            </label>
           </li>
         ))}
       </ContentUl>

@@ -30,7 +30,7 @@ const RoutingPage = () => {
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemalist" element={<CinemaListPage />} />
-          <Route path="/cinemainfo/:cinemaId" element={<CinemaPage />} />
+          <Route path="/cinemainfo/:cinemaId/:dt" element={<CinemaPage />} />
           <Route path="/createpostrecruit" element={<RecruitPostCreatePage />} />
         </Routes>
       </ContentWrapper>

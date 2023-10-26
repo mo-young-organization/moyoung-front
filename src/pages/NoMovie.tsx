@@ -11,7 +11,7 @@ const NoMovie = () => {
       <div>
         <Search />
       </div>
-      <NoSearchMovie text={'현재 상영중인 영화가 없습니다.'}/>
+      <NoSearchMovie text={'현재 주변에 상영중인 영화관이 없습니다.'}/>
       <div className="left">
         <MovieTopFive text="이런 영화는 어때요?" classname="left" />
       </div>

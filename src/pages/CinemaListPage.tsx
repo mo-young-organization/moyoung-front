@@ -15,9 +15,10 @@ const CinemaListPage = () => {
   //   navigate시 넘겨준 state값을 불러 올 수 있다.
   const location = useLocation();
   const data = location.state;
+  console.log(data)
 
   const clickHandler = movieId => {
-    navigate(`/cinemainfo/${movieId}`);
+    navigate(`/cinemainfo/${movieId}/${data[1]}`);
   };
 
   const audience = text => {
@@ -38,7 +39,7 @@ const CinemaListPage = () => {
         <Search />
       </SearchDiv>
       <ContentUl>
-        {data.map(el => (
+        {data[0].map(el => (
           <BoxLi key={el.name}>
             <LiContentDiv>
               <MovieInfoDiv>

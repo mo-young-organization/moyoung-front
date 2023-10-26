@@ -23,7 +23,7 @@ const CinemaPage = () => {
   const params = useParams();
   const lat = '37.498';
   const lon = '127.026';
-  const [dt, setDt] = useState(1500);
+  const [dt, setDt] = useState(params.dt);
   const movieId = params.cinemaId;
   const [date, setDate] = useState(todayDate);
   const [early, setEarly] = useState(false);

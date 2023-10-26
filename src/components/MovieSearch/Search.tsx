@@ -15,7 +15,6 @@ const Search = ({ text }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
   const [modalOn, setModalOn] = useState(false);
   const [dt, setDt] = useState(1500);
-  console.log(dt);
 
   const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setMovieTitle(event.target.value);
@@ -33,7 +32,7 @@ const Search = ({ text }: TextProps) => {
         return;
       }
       // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
-      navigate('/cinemalist', { state: data.data });
+      navigate('/cinemalist', { state: [data.data, dt] });
 
       // 전역 변수로 저장 => 영화 이름으로 검색후 리스트 페이지에서 사용
       // dispatch(setCinemaNameStatus(data.data));

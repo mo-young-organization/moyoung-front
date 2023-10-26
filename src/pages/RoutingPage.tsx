@@ -5,7 +5,6 @@ import Footer from '../components/Footer/Footer';
 import styled from 'styled-components';
 import MovieSearch from './MovieSearch';
 import Login from './Login';
-import Signup from './Signup';
 import SignupCheck from './SignupCheck';
 import NoMovie from './NoMovie';
 import OauthToken from './OauthToken';

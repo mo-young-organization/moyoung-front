@@ -15,16 +15,19 @@ import NoSearchMovie from '../NoMovie/NoSearchMovie';
 const Recruitment = () => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
+  const [keyword, setKeyword] = useState('');
+  console.log(keyword)
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
+  console.log(recruitData?.data);
 
   useEffect(() => {
     const fetchGetRecruitData = async () => {
-      const data = await getRecruitList(1);
+      const data = await getRecruitList(1, `&keyword=${keyword}`);
       setRecruitData(data);
     };
     fetchGetRecruitData();
-  }, []);
+  }, [keyword]);
 
   const navigate = useNavigate();
   const userStatus = getCookie('refreshToken');
@@ -50,7 +53,7 @@ const Recruitment = () => {
   return (
     <>
       <ContentSearchDiv>
-        <Search text="영화 같이 볼 사람 찾기" />
+        <Search text="영화 같이 볼 사람 찾기" setKeyword={setKeyword}/>
       </ContentSearchDiv>
       <FilterBoxDiv>
         <button className="create-button" onClick={createPostHandler}>
@@ -63,7 +66,6 @@ const Recruitment = () => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={1} />
       </DivPagination>
-      {/* 이게 뭔 오류지? */}
       {recruitData?.data ? (
         <UlArticleMaping>
           {recruitData?.data.map((el, idx) => (

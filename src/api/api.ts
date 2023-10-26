@@ -104,9 +104,9 @@ export const postRecruitList = async req => {
 };
 
 // 모집글 불러오기 get요청
-export const getRecruitList = async (page: number) => {
+export const getRecruitList = async (page: number, keyword: string) => {
   try {
-    const data = await instance.get(`/recruit-article?page=${page}`, {
+    const data = await instance.get(`/recruit-article?page=${page}${keyword}`, {
       headers: {
         Accept: 'application/json',
         'ngrok-skip-browser-warning': 60420,

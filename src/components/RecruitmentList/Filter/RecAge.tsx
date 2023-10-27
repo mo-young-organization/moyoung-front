@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const RecAge = () => {
+const RecAge = ({ register }) => {
   const ageArr = [
     { id: 'age10', age: '10대' },
     { id: 'age20', age: '20대' },
@@ -15,8 +15,8 @@ const RecAge = () => {
       <ul>
         {ageArr.map(data => (
           <li key={data.id}>
-            <input type="radio" id={data.id} value={data.age} />
             <label htmlFor={data.id} className="font-list">
+              <input type="radio" id={data.id} value={data.age} {...register('age')} />
               {data.age}
             </label>
           </li>

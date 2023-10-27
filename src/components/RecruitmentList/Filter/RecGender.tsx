@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const RecGender = () => {
+const RecGender = ({ register }) => {
   const genderArr = [
     { gender: 'all', name: '전체' },
     { gender: 'man', name: '남자만' },
@@ -15,8 +15,8 @@ const RecGender = () => {
       <ul>
         {genderArr.map(data => (
           <li key={data.gender}>
-            <input type="radio" id={data.gender} />
             <label htmlFor={data.gender} className="font-list">
+              <input type="radio" id={data.gender} value={data.name} {...register('gender')} />
               {data.name}
             </label>
           </li>

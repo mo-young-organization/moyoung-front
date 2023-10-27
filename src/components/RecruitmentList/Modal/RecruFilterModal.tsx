@@ -3,12 +3,51 @@ import RecGender from '../Filter/RecGender';
 import RecAge from '../Filter/RecAge';
 import RecSort from '../Filter/RecSort';
 import RecDistance from '../Filter/RecDistance';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { ListFilterForm } from '../../SignupCheck/FormType';
+import { useState } from 'react';
 
-const RecruFilterModal = ({ onClose }) => {
+const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThirties }) => {
+  const { register, handleSubmit, watch } = useForm<ListFilterForm>();
+
+  //필터에 아직 거리 추가 안됨
+  // const [value, setValue] = useState<number[]>([0, 1]);
+
+  // const distance = dt => {
+  //   console.log(dt);
+  //   if (dt[1] === 1) {
+  //     setDt(1500);
+  //   } else if (dt[1] === 2) {
+  //     setDt(3000);
+  //   } else if (dt[1] === 3) {
+  //     setDt(4500);
+  //   } else if (dt[1] === 4) {
+  //     setDt(6000);
+  //   }
+  // };
+
+  const onSubmitHandler: SubmitHandler<ListFilterForm> = data => {
+    console.log(data);
+    data.gender === '전체' ? (data.gender = '0') : data.gender === '남자만' ? (data.gender = '1') : (data.gender = '2');
+    if (data.age === '10대') {
+      setTeenager(true), setTwenties(false), setThirties(false);
+    }
+    if (data.age === '20대') {
+      setTeenager(false), setTwenties(true), setThirties(false);
+    }
+    if (data.age === '30대') {
+      setTeenager(false), setTwenties(false), setThirties(true);
+    }
+    setGender(data.gender);
+
+    onClose();
+    // distance(value);
+  };
+
   return (
     <Background>
       <Content>
-        <Container>
+        <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
           <TopDiv>
             <span />
             <span>필터</span>
@@ -17,15 +56,15 @@ const RecruFilterModal = ({ onClose }) => {
             </span>
           </TopDiv>
           <MidDiv>
-            <RecSort />
-            <RecGender />
-            <RecAge />
+            <RecSort register={register} />
+            <RecGender register={register} />
+            <RecAge register={register} />
             <RecDistance />
           </MidDiv>
           <ButtonDiv>
             <button>적용</button>
           </ButtonDiv>
-        </Container>
+        </ContainerForm>
       </Content>
     </Background>
   );
@@ -55,7 +94,7 @@ const Content = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 `;
 
-const Container = styled.div`
+const ContainerForm = styled.form`
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -108,6 +147,7 @@ const ButtonDiv = styled.div`
   text-align: end;
 
   > button {
+    cursor: pointer;
     border: 2px solid #c2c2c2;
     border-radius: 4px;
     background-color: transparent;

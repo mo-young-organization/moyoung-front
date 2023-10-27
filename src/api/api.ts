@@ -105,8 +105,31 @@ export const postRecruitList = async req => {
   }
 };
 
-// 모집글 불러오기 get요청
-export const getRecruitList = async (page: number, keyword: string) => {
+// 회원 모집글 불러오기 get요청
+export const getRecruitList = async (
+  page: number,
+  keyword: string,
+  gender: string,
+  teenager: string,
+  twenties: string,
+  thirties: string,
+) => {
+  try {
+    const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
+      },
+    });
+    console.log(data);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 비회원 모집글 불러오기 get요청
+export const getRecruitListNoUser = async (page: number, keyword: string) => {
   try {
     const data = await instance.get(`/recruit-article?page=${page}${keyword}`, {
       headers: {

@@ -6,7 +6,7 @@ import Search from '../MovieSearch/Search';
 import RecruFilterModal from './Modal/RecruFilterModal';
 import RecPotal from './Modal/RecPotal';
 import { useNavigate } from 'react-router-dom';
-import { getRecruitList } from '../../api/api';
+import { getRecruitList, getRecruitListNoUser } from '../../api/api';
 import { RecruitProps } from './recruitType';
 import { getCookie } from '../../util/Cookie';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
@@ -16,17 +16,36 @@ const Recruitment = () => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
   const [keyword, setKeyword] = useState('');
+  const [gender, setGender] = useState('');
+  const [teenager, setTeenager] = useState(true);
+  const [twenties, setTwenties] = useState(true);
+  const [thirties, setThirties] = useState(true);
+  console.log(gender, teenager, twenties, thirties);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
   const totalPages = recruitData && recruitData?.pageInfo.totalPages;
 
+  const refreshToken = getCookie('refreshToken');
+  console.log(refreshToken);
   useEffect(() => {
     const fetchGetRecruitData = async () => {
-      const data = await getRecruitList(curPage, `&keyword=${keyword}`);
-      setRecruitData(data);
+      if (refreshToken) {
+        const data = await getRecruitList(
+          curPage,
+          `&keyword=${keyword}`,
+          `&gender=${gender}`,
+          `&teenager=${teenager}`,
+          `&twenties=${twenties}`,
+          `&thirties=${thirties}`,
+        );
+        setRecruitData(data);
+      } else {
+        const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`);
+        setRecruitData(data);
+      }
     };
     fetchGetRecruitData();
-  }, [curPage, keyword]);
+  }, [curPage, keyword, gender, teenager, twenties, thirties]);
 
   const navigate = useNavigate();
   const userStatus = getCookie('refreshToken');
@@ -65,7 +84,7 @@ const Recruitment = () => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
       </DivPagination>
-      {recruitData?.data ? (
+      {recruitData?.data.length ? (
         <UlArticleMaping>
           {recruitData?.data.map((el, idx) => (
             <Article key={idx} data={el} />
@@ -79,7 +98,17 @@ const Recruitment = () => {
       <DivPagination>
         <Pagination limit={5} setCurPage={setCurPage} curPage={curPage} totalPage={totalPages} />
       </DivPagination>
-      <RecPotal>{recModalOn && <RecruFilterModal onClose={filterOnAndCancelButtonHandler} />}</RecPotal>
+      <RecPotal>
+        {recModalOn && (
+          <RecruFilterModal
+            onClose={filterOnAndCancelButtonHandler}
+            setGender={setGender}
+            setTeenager={setTeenager}
+            setTwenties={setTwenties}
+            setThirties={setThirties}
+          />
+        )}
+      </RecPotal>
     </>
   );
 };

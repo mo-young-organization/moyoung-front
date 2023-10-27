@@ -6,7 +6,7 @@ import FilterDistance from '../../Filter/FilterDistance';
 import { FilterFormValue } from '../../../SignupCheck/FormType';
 import { useState } from 'react';
 
-const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
+const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setCgv, setDt }) => {
   const { register, handleSubmit, watch } = useForm<FilterFormValue>();
 
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -29,9 +29,15 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
     if (watch('cinema') === '메가박스') {
       setLotte(false);
       setMega(true);
+      setCgv(false);
     } else if (watch('cinema') === '롯데시네마') {
       setLotte(true);
       setMega(false);
+      setCgv(false);
+    } else if (watch('cinema') === 'CGV') {
+      setLotte(false);
+      setMega(false);
+      setCgv(true);
     }
 
     // 영화 시간 조건문

@@ -54,6 +54,7 @@ export const movieSearchGet = async (movieName, dt) => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 

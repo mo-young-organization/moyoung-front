@@ -42,7 +42,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   const filterinFilterHandler = () => {
     console.log('필터안에 필터');
-    setmodalFilterOn(!modalFilterOn);
+    console.log(id);
+    if (!id) {
+      alert('영화를 먼저 선택해주세요');
+    } else {
+      setmodalFilterOn(!modalFilterOn);
+    }
   };
 
   // 오늘 날짜 년도-월-일 순서
@@ -65,7 +70,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
-    console.log('여기서 문제');
+    console.log('cinemaModal 여기서 문제');
     setId(movieId);
     const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
     setCinemaData(data.data);
@@ -106,7 +111,9 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   };
 
   useEffect(() => {
-    clickHandler(id);
+    if (id) {
+      clickHandler(id);
+    }
   }, [lat, lon, dt, date, early, lotte, mega, cgv]);
 
   return (
@@ -226,6 +233,9 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
           ) : (
             <NoSearchMovie text={'상영중인 영화가 없습니다.'} />
           )}
+          <AppButton onClick={onClose}>
+            <button type="button">적용</button>
+          </AppButton>
         </FilterDiv>
         <ModalPotal>
           {modalFilterOn && (
@@ -237,6 +247,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               setCgv={setCgv}
               setDt={setDt}
               onClose={filterinFilterHandler}
+              clickHandler={clickHandler}
+              id={id}
             />
           )}
         </ModalPotal>
@@ -248,6 +260,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 export default CinemaModal;
 
 const Background = styled.div`
+  /* overflow: scroll; */
   height: 100vh;
   width: 100vw;
 
@@ -287,6 +300,22 @@ const FilterDiv = styled.div`
 
   width: 580px;
   height: 800px;
+`;
+
+const AppButton = styled.div`
+  width: 100%;
+
+  text-align: end;
+
+  > button {
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #b6b6b6;
+    padding: 8px 16px;
+    margin: 12px 10px 0px 0px;
+  }
 `;
 
 const CinemaModalContent = styled.div`

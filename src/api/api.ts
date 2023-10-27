@@ -30,7 +30,7 @@ export const signupCheckPost = async req => {
 // 회원 탈퇴(임의) delete요청
 export const userDelete = async memberId => {
   try {
-    const data = await instance.delete(`/hi?id=${memberId}`);
+    const data = await instance.delete(`/member?id=${memberId}`);
     console.log(data);
   } catch (error) {
     console.log(error);
@@ -101,6 +101,7 @@ export const postRecruitList = async req => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 

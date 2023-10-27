@@ -19,7 +19,6 @@ const PostForm = () => {
 
   const navigate = useNavigate();
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
-  console.log(runningTimeData);
 
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
@@ -29,11 +28,15 @@ const PostForm = () => {
     const { cinema, ...req } = data;
     console.log(cinema);
     console.log((req.runningTimeId = runningTimeData && String(runningTimeData.runningTimeId)));
-    console.log(req);
+    console.log(req.runningTimeId);
     // post 요청
-    const postData = await postRecruitList(req);
-    if (postData.status === 200) {
-      navigate('/recruitmentlist');
+    if (req.age && req.gender && req.maxNum && req.runningTimeId && req.title) {
+      const postData = await postRecruitList(req);
+      if (postData.status === 200) {
+        navigate('/recruitmentlist');
+      } else if (postData.response.status === 404) {
+        alert('영화를 선택해주세요.');
+      }
     }
   };
 
@@ -89,6 +92,7 @@ const ButtonDiv = styled.div`
   margin: 100px 83px 115px 0px;
 
   > button {
+    cursor: pointer;
     width: 150px;
     border: none;
     border-radius: 6px;

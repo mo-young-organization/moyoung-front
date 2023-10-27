@@ -25,7 +25,7 @@ const RoutingPage = () => {
           <Route path="/callback" element={<OauthToken />} />
           <Route path="/signupcheck" element={<SignupCheck />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
-          <Route path="/nomovie" element={<NoMovie />} />
+          <Route path="/nomovie" element={<NoMovie isSearch={true} />} />
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemalist" element={<CinemaListPage />} />

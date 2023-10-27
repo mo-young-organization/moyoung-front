@@ -58,10 +58,10 @@ export const movieSearchGet = async (movieName, dt) => {
 };
 
 // 영화관 데이터 받아오기 get요청
-export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega) => {
+export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega, cgv) => {
   try {
     const data = await instance.get(
-      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}`,
+      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}&cgv=${cgv}`,
       {
         headers: {
           Accept: 'application/json',

@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
-import { BsChatLeftDots } from 'react-icons/bs';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';

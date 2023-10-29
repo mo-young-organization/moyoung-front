@@ -1,5 +1,5 @@
 import { BsChatLeftDots } from 'react-icons/bs';
-import { RiArrowDownSLine } from 'react-icons/ri';
+import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 
 import { getChatList } from '../api/api';
@@ -25,7 +25,7 @@ const NavBarChat = () => {
     <div role="button" className="login text" onClick={onClickHandler}>
       <BsChatLeftDots />
       참여중인 채팅
-      <RiArrowDownSLine className="arrow" />
+      {isListOpen ? <RiArrowUpSLine className="arrow" /> : <RiArrowDownSLine className="arrow" />}
     </div>
   );
 };

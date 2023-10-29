@@ -30,10 +30,13 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
       .fill(0)
       .map(() => totalPageArray1.splice(0, limit1));
   };
+
   useEffect(() => {
-    const slicedPageArray = sliceArrayByLimit(totalPage, limit);
-    setTotalPageArray(slicedPageArray);
-    setCurrentPageArray(slicedPageArray[0]);
+    if (totalPage) {
+      const slicedPageArray = sliceArrayByLimit(totalPage, limit);
+      setTotalPageArray(slicedPageArray);
+      setCurrentPageArray(slicedPageArray[0]);
+    }
   }, [totalPage, limit]);
 
   useEffect(() => {
@@ -108,10 +111,10 @@ const Button = styled.button`
 `;
 
 const SideBtn = styled(Button)`
-color: #000000;
+  color: #000000;
   &[disabled] {
     display: none;
-    background: #FFFFFF;
+    background: #ffffff;
     cursor: revert;
     transform: revert;
   }

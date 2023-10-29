@@ -6,7 +6,7 @@ import FilterDistance from '../../Filter/FilterDistance';
 import { FilterFormValue } from '../../../SignupCheck/FormType';
 import { useState } from 'react';
 
-const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
+const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setCgv, setDt, clickHandler, id }) => {
   const { register, handleSubmit, watch } = useForm<FilterFormValue>();
 
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -25,13 +25,20 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
   };
 
   const onSubmitHandler: SubmitHandler<FilterFormValue> = data => {
+    console.log('hi');
     // 영화관 조건문
     if (watch('cinema') === '메가박스') {
       setLotte(false);
       setMega(true);
+      setCgv(false);
     } else if (watch('cinema') === '롯데시네마') {
       setLotte(true);
       setMega(false);
+      setCgv(false);
+    } else if (watch('cinema') === 'CGV') {
+      setLotte(false);
+      setMega(false);
+      setCgv(true);
     }
 
     // 영화 시간 조건문
@@ -42,6 +49,7 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
     }
 
     dt계산(value);
+    onClose();
   };
 
   return (
@@ -63,6 +71,7 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setDt }) => {
               <FilterDistance value={value} setValue={setValue} />
             </InMidDiv>
             <div className="filter_button_div">
+              {/* <button onClick={onClose}>적용</button> */}
               <button>적용</button>
             </div>
           </InFilterDiv>

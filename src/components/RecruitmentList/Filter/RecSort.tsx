@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 
-const RecSort = () => {
+const RecSort = ({ register }) => {
   const timeArr = [
     { id: '최신등록순', time: '최신등록순' },
     { id: '가까운순', time: '가까운순' },
@@ -12,8 +12,8 @@ const RecSort = () => {
       <ContentUl>
         {timeArr.map((el, idx) => (
           <li key={idx}>
-            <input type="radio" id={el.id} />
             <label htmlFor={el.id} className="font-list">
+              <input type="radio" id={el.id} value={el.time} {...register('alignment')} />
               {el.time}
             </label>
           </li>

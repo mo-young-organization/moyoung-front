@@ -1,9 +1,12 @@
 import { styled } from 'styled-components';
 
 import Recruitment from '../components/RecruitmentList/Recruitment';
-import { dummyData } from '../data/RecruitListDummy';
+import { useParams } from 'react-router-dom';
 
 const RecruitmentListPage = () => {
+  const params = useParams();
+  console.log(params);
+
   return (
     <Container>
       {/* <Recruitment dummyData={dummyData} /> */}

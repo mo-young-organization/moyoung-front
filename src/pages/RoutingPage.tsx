@@ -5,7 +5,6 @@ import Footer from '../components/Footer/Footer';
 import styled from 'styled-components';
 import MovieSearch from './MovieSearch';
 import Login from './Login';
-import Signup from './Signup';
 import SignupCheck from './SignupCheck';
 import NoMovie from './NoMovie';
 import OauthToken from './OauthToken';
@@ -26,7 +25,7 @@ const RoutingPage = () => {
           <Route path="/callback" element={<OauthToken />} />
           <Route path="/signupcheck" element={<SignupCheck />} />
           <Route path="/moviesearch" element={<MovieSearch />} />
-          <Route path="/nomovie" element={<NoMovie />} />
+          <Route path="/nomovie" element={<NoMovie isSearch={true} />} />
           <Route path="/moviedetail/:movieId" element={<MovieDetail />} />
           <Route path="/recruitmentlist" element={<RecruitmentListPage />} />
           <Route path="/cinemalist" element={<CinemaListPage />} />

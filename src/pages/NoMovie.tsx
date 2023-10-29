@@ -5,16 +5,22 @@ import Search from '../components/MovieSearch/Search';
 import Dummy from '../data/Dummy';
 import NoSearchMovie from '../components/NoMovie/NoSearchMovie';
 
-const NoMovie = () => {
+const NoMovie = ({ isSearch }) => {
   return (
-    <Container>
-      <div>
-        <Search />
-      </div>
-      <NoSearchMovie text={'현재 주변에 상영중인 영화관이 없습니다.'}/>
-      <div className="left">
-        <MovieTopFive text="이런 영화는 어때요?" classname="left" />
-      </div>
+    <Container className={isSearch ? 'true' : 'false'}>
+      {isSearch ? (
+        <>
+          <div className="first-div">
+            <Search />
+          </div>
+          <NoSearchMovie text={'현재 주변에 상영중인 영화관이 없습니다.'} />
+          <div className="left">
+            <MovieTopFive text="이런 영화는 어때요?" classname="left" />
+          </div>
+        </>
+      ) : (
+        <NoSearchMovie text={'현재 주변에 상영중인 영화관이 없습니다.'} />
+      )}
     </Container>
   );
 };
@@ -27,10 +33,17 @@ const Container = styled.div`
   align-items: center;
   justify-content: space-around;
 
-  width: 100%;
-  height: 1500px;
+  &.true {
+    width: 100%;
+    height: 1500px;
+  }
 
-  > div:first-child {
+  &.false {
+    width: 100%;
+    height: 500px;
+  }
+
+  .first-div {
     display: flex;
     justify-content: center;
     width: 100%;

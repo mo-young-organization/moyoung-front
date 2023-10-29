@@ -16,12 +16,14 @@ import MEGA from '../../../../assets/img/MEGA_logo.png';
 import LOTTE from '../../../../assets/img/LOTTE_logo.png';
 import CGV from '../../../../assets/img/CGV_logo.png';
 import ModalCalendar from './ModalCalendar';
+import NoSearchMovie from '../../../NoMovie/NoSearchMovie';
 
 const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPickData, setRunningTimeData }) => {
   // 영화 데이터
   const [movieData, setMovieData] = useState(data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
+  const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState('');
 
@@ -29,6 +31,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     setMovieValue(e.target.value);
   };
 
+  // 검색창 돋보기 클릭 이벤트
   const movieSearchClickHandler = async e => {
     console.log('영화 검색 버튼 클릭');
     setCinemaData(undefined);
@@ -39,7 +42,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   const filterinFilterHandler = () => {
     console.log('필터안에 필터');
-    setmodalFilterOn(!modalFilterOn);
+    console.log(id);
+    if (!id) {
+      alert('영화를 먼저 선택해주세요');
+    } else {
+      setmodalFilterOn(!modalFilterOn);
+    }
   };
 
   // 오늘 날짜 년도-월-일 순서
@@ -56,14 +64,15 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [early, setEarly] = useState(false);
   const [lotte, setLotte] = useState(true);
   const [mega, setMega] = useState(true);
+  const [cgv, setCgv] = useState(true);
 
   const [id, setId] = useState();
 
   // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
-    console.log('여기서 문제');
+    console.log('cinemaModal 여기서 문제');
     setId(movieId);
-    const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega);
+    const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
     setCinemaData(data.data);
     setMoviePickData(data.data);
   };
@@ -89,9 +98,23 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     }
   };
 
+  const pressEnterKey = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    setCinemaData(undefined);
+    if (e.shiftKey && e.key === 'Enter') {
+      return;
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+
+      const data = await movieSearchGet(movieValue, 3000);
+      setMovieData(data.data);
+    }
+  };
+
   useEffect(() => {
-    clickHandler(id);
-  }, [lat, lon, dt, date, early, lotte, mega]);
+    if (id) {
+      clickHandler(id);
+    }
+  }, [lat, lon, dt, date, early, lotte, mega, cgv]);
 
   return (
     <Background>
@@ -107,6 +130,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               placeholder="영화 제목을 검색해주세요"
               defaultValue={movieName}
               onChange={movieSearchHandler}
+              onKeyPress={pressEnterKey}
             />
             <FilterSearchButton type="button" onClick={movieSearchClickHandler}>
               <LiaSearchSolid />
@@ -173,7 +197,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                 </CinemaContentDiv>
               </FilterCinemainfoDiv>
             </CinemaModalContent>
-          ) : (
+          ) : movieData.length ? (
             // 리스트 페이지
             <ListContentUl>
               {movieData.map(el => (
@@ -206,7 +230,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
                 </BoxLi>
               ))}
             </ListContentUl>
+          ) : (
+            <NoSearchMovie text={'상영중인 영화가 없습니다.'} />
           )}
+          <AppButton onClick={onClose}>
+            <button type="button">적용</button>
+          </AppButton>
         </FilterDiv>
         <ModalPotal>
           {modalFilterOn && (
@@ -215,8 +244,11 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               setEarly={setEarly}
               setLotte={setLotte}
               setMega={setMega}
+              setCgv={setCgv}
               setDt={setDt}
               onClose={filterinFilterHandler}
+              clickHandler={clickHandler}
+              id={id}
             />
           )}
         </ModalPotal>
@@ -228,6 +260,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 export default CinemaModal;
 
 const Background = styled.div`
+  /* overflow: scroll; */
   height: 100vh;
   width: 100vw;
 
@@ -267,6 +300,22 @@ const FilterDiv = styled.div`
 
   width: 580px;
   height: 800px;
+`;
+
+const AppButton = styled.div`
+  width: 100%;
+
+  text-align: end;
+
+  > button {
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #b6b6b6;
+    padding: 8px 16px;
+    margin: 12px 10px 0px 0px;
+  }
 `;
 
 const CinemaModalContent = styled.div`
@@ -532,10 +581,16 @@ const TitleDiv = styled.div`
 `;
 
 const BoxUl = styled.ul`
-  width: 30%;
+  display: flex;
+
   padding-top: 20px;
 
   list-style: none;
+
+  > li:not(:first-child),
+  li:not(:last-child) {
+    margin-right: 10px;
+  }
 `;
 
 const BoxLis = styled.li`
@@ -546,7 +601,6 @@ const BoxLis = styled.li`
   padding: 10px 12px;
   width: 130px;
   border-radius: 8px;
-
   background-color: #538dff;
   cursor: pointer;
 

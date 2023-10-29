@@ -11,7 +11,7 @@ interface TextProps {
   text?: string;
 }
 
-const Search = ({ text }: TextProps) => {
+const Search = ({ text, setKeyword }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
   const [modalOn, setModalOn] = useState(false);
   const [dt, setDt] = useState(1500);
@@ -23,19 +23,23 @@ const Search = ({ text }: TextProps) => {
   const navigate = useNavigate();
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (movieTitle !== '') {
-      console.log('get요청');
-      const data = await movieSearchGet(movieTitle, dt);
-      console.log(data.data.length);
-      if (data.data.length === 0) {
-        navigate('/nomovie');
-        return;
-      }
-      // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
-      navigate('/cinemalist', { state: [data.data, dt] });
+    if (text) {
+      setKeyword(movieTitle);
+    } else {
+      if (movieTitle !== '') {
+        console.log('get요청');
+        const data = await movieSearchGet(movieTitle, dt);
+        console.log(data.data.length);
+        if (data.data.length === 0) {
+          navigate('/nomovie');
+          return;
+        }
+        // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
+        navigate('/cinemalist', { state: [data.data, dt] });
 
-      // 전역 변수로 저장 => 영화 이름으로 검색후 리스트 페이지에서 사용
-      // dispatch(setCinemaNameStatus(data.data));
+        // 전역 변수로 저장 => 영화 이름으로 검색후 리스트 페이지에서 사용
+        // dispatch(setCinemaNameStatus(data.data));
+      }
     }
     setMovieTitle('');
   };

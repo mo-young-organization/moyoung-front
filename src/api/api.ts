@@ -136,3 +136,13 @@ export const patchRecruit = async req => {
     console.log(error);
   }
 };
+
+// 참여중인 채팅 목록 불러오기 get요청
+export const getChatList = async () => {
+  try {
+    const data = await instance.get(`chatroom`);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

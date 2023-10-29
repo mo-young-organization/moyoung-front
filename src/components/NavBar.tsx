@@ -9,6 +9,8 @@ import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
 import { userDelete } from '../api/api';
 
+import NavBarChat from './NavBarChat';
+
 const NavBar = () => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
@@ -73,11 +75,7 @@ const NavBar = () => {
         <UserDiv>
           {isLogin ? (
             <LoginSuccessDiv>
-              <div role="button" className="login text">
-                <BsChatLeftDots />
-                참여중인 채팅
-                <RiArrowDownSLine className="arrow" />
-              </div>
+              <NavBarChat />
               <div>
                 <div role="button" className="login text" onClick={() => setOnClick(!onClick)}>
                   <PermIdentityOutlinedIcon />

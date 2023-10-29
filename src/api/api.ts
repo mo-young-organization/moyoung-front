@@ -141,7 +141,7 @@ export const patchRecruit = async req => {
 export const getChatList = async () => {
   try {
     const data = await instance.get(`chatroom`);
-    return data.data;
+    return data;
   } catch (error) {
     console.log(error);
   }

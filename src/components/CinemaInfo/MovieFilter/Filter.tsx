@@ -7,7 +7,7 @@ import { styled } from 'styled-components';
 import MyLocation from './MyLocation';
 import { useState } from 'react';
 
-const Filter = ({ setEarly, setLotte, setMega, setDt, resultLength }) => {
+const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt, resultLength }) => {
   const { register, handleSubmit, watch } = useForm<FilterFormValue>();
 
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -29,9 +29,15 @@ const Filter = ({ setEarly, setLotte, setMega, setDt, resultLength }) => {
     // 영화관 조건문
     if (watch('cinema') === '메가박스') {
       setLotte(false);
+      setCgv(false);
       setMega(true);
     } else if (watch('cinema') === '롯데시네마') {
       setLotte(true);
+      setCgv(false);
+      setMega(false);
+    } else if (watch('cinema') === 'CGV') {
+      setLotte(false);
+      setCgv(true);
       setMega(false);
     }
 

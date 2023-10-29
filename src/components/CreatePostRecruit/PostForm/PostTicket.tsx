@@ -202,7 +202,7 @@ const LeftTicket = styled.div`
 
 const TicketLineBoxBottom = styled.div`
   position: relative;
-  right: 23px;
+  right: 22px;
   width: 40px;
   height: 24px;
   border-radius: 12px 12px 0px 0px;
@@ -212,7 +212,7 @@ const TicketLineBoxBottom = styled.div`
 
 const TicketLineBoxTop = styled.div`
   position: relative;
-  right: 23px;
+  right: 22px;
   width: 40px;
   height: 24px;
   border-radius: 0px 0px 12px 12px;
@@ -221,13 +221,15 @@ const TicketLineBoxTop = styled.div`
 `;
 
 const TicketLine = styled.div`
-  position: absolute;
-  left: 680px;
+  position: relative;
+  left: -106px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   border-left: 5px dashed white;
   height: 295px;
+
+  /* background-color: red; */
 `;
 
 const RightTicket = styled.div`

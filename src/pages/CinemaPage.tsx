@@ -8,10 +8,11 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { cinemaGet } from '../api/api';
 import { CinemaDataProps } from '../components/CreatePostRecruit/PostForm/Modal/type';
+import NoMovie from './NoMovie';
 
 const CinemaPage = () => {
   const [data, setData] = useState<CinemaDataProps>(undefined);
-  console.log(data)
+  console.log(data);
 
   // 오늘 날짜 년도-월-일 순서
   const dateNew = new Date();
@@ -29,10 +30,11 @@ const CinemaPage = () => {
   const [early, setEarly] = useState(false);
   const [lotte, setLotte] = useState(true);
   const [mega, setMega] = useState(true);
+  const [cgv, setCgv] = useState(true);
 
   useEffect(() => {
     const cinemaData = async () => {
-      const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega);
+      const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
       console.log(lat, lon, dt, movieId, date, early, lotte, mega);
       setData(data.data);
     };
@@ -52,12 +54,15 @@ const CinemaPage = () => {
             setEarly={setEarly}
             setLotte={setLotte}
             setMega={setMega}
+            setCgv={setCgv}
             setDt={setDt}
             resultLength={data.cinemaInfo.length}
           />
         )}
       </div>
-      <Content>{data && <CinemaBox data={data.cinemaInfo} />}</Content>
+      <Content>
+        {data && data.cinemaInfo.length ? <CinemaBox data={data.cinemaInfo} /> : <NoMovie isSearch={false} />}
+      </Content>
     </Container>
   );
 };

@@ -22,10 +22,18 @@ export interface PropsForm {
   set중복확인: any;
 }
 
-// 필터 폼 제출
+// 게시물 등록 필터 폼 제출
 export interface FilterFormValue {
   cinema: string;
   time: string;
+  distance: string;
+}
+
+// 게시물 리스트 페이지 필터 폼 제출
+export interface ListFilterForm {
+  alignment: string;
+  gender: string;
+  age: string;
   distance: string;
 }
 

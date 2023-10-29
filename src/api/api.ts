@@ -30,7 +30,7 @@ export const signupCheckPost = async req => {
 // 회원 탈퇴(임의) delete요청
 export const userDelete = async memberId => {
   try {
-    const data = await instance.delete(`/hi?id=${memberId}`);
+    const data = await instance.delete(`/member?id=${memberId}`);
     console.log(data);
   } catch (error) {
     console.log(error);
@@ -54,14 +54,15 @@ export const movieSearchGet = async (movieName, dt) => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
 // 영화관 데이터 받아오기 get요청
-export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega) => {
+export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega, cgv) => {
   try {
     const data = await instance.get(
-      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}`,
+      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}&cgv=${cgv}`,
       {
         headers: {
           Accept: 'application/json',
@@ -100,13 +101,37 @@ export const postRecruitList = async req => {
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
-// 모집글 불러오기 get요청
-export const getRecruitList = async (page: number) => {
+// 회원 모집글 불러오기 get요청
+export const getRecruitList = async (
+  page: number,
+  keyword: string,
+  gender: string,
+  teenager: string,
+  twenties: string,
+  thirties: string,
+) => {
   try {
-    const data = await instance.get(`/recruit-article?page=${page}`, {
+    const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
+      },
+    });
+    console.log(data);
+    return data.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 비회원 모집글 불러오기 get요청
+export const getRecruitListNoUser = async (page: number, keyword: string) => {
+  try {
+    const data = await instance.get(`/recruit-article?page=${page}${keyword}`, {
       headers: {
         Accept: 'application/json',
         'ngrok-skip-browser-warning': 60420,

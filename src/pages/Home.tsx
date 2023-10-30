@@ -16,7 +16,7 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
-  background-color: #efefef;
+  background-color: var(--main-color);
   display: flex;
 
   justify-content: center;

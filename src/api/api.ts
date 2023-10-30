@@ -115,12 +115,16 @@ export const getRecruitList = async (
   thirties: string,
 ) => {
   try {
-    const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
-      headers: {
-        Accept: 'application/json',
-        'ngrok-skip-browser-warning': 60420,
+    // const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
+    const data = await instance.get(
+      `/recruit?page=${page}${gender}${teenager}${twenties}${thirties}${keyword}&x=127.026533147412&y=37.4979342251351&distance=30000&sort=true`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'ngrok-skip-browser-warning': 60420,
+        },
       },
-    });
+    );
     console.log(data);
     return data.data;
   } catch (error) {

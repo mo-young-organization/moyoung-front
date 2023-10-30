@@ -13,11 +13,15 @@ import RecruitmentListPage from './RecruitmentListPage';
 import CinemaPage from './CinemaPage';
 import RecruitPostCreatePage from './RecruitPostCreatePage';
 import CinemaListPage from './CinemaListPage';
+import { useSelector } from 'react-redux';
 
 const RoutingPage = () => {
+  const navbarColor = useSelector(state => state.navbarColor.value);
+  console.log(navbarColor);
+
   return (
     <Conatainer>
-      <NavBar />
+      <NavBar color={navbarColor} />
       <ContentWrapper>
         <Routes>
           <Route path="/" element={<Home />} />

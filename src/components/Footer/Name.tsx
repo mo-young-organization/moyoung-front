@@ -29,30 +29,33 @@ export default Name;
 
 const Container = styled.div`
   display: flex;
+  align-items: center;
 
   margin-top: 10px;
 
   .name {
     width: 140px;
+    color: white;
   }
 
   .role {
     font-size: 14px;
-    color: gray;
+    color: white;
   }
 
   .email {
     font-size: 10px;
-    color: #8b8b8b;
+    color: #ababab;
   }
 
   .github-link {
     a:link {
+      color: white;
       text-decoration: none;
     }
     a:visited,
     a:active {
-      color: black;
+      color: white;
     }
   }
 `;

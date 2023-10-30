@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { GiTheater } from 'react-icons/gi';
+import { PiUsersFour } from 'react-icons/pi';
 
 const Box = () => {
   const navigate = useNavigate();
@@ -10,17 +12,19 @@ const Box = () => {
   };
 
   const peoplelHandler = () => {
-    navigate('recruitmentlist')
+    navigate('recruitmentlist');
     console.log('사람 찾기');
   };
 
   return (
     <Container>
       <div className="box" onClick={theaterHandler}>
-        내 주변 영화관 찾기
+        <GiTheater />
+        <div className="text">내 주변 영화관 찾기</div>
       </div>
       <div className="box" onClick={peoplelHandler}>
-        영화 같이 볼 사람 찾기
+        <PiUsersFour />
+        <div className="text">영화 같이 볼 사람 찾기</div>
       </div>
     </Container>
   );
@@ -34,7 +38,11 @@ const Container = styled.div`
   flex-grow: 2;
 
   .box {
-    background-color: #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--point-color);
 
     text-align: center;
 
@@ -43,5 +51,18 @@ const Container = styled.div`
     border-radius: 36px;
     margin: 40px;
     cursor: pointer;
+
+    > svg {
+      width: 172px;
+      height: 140px;
+      margin-bottom: 40px;
+      color: var(--sub-color1);
+    }
+
+    .text {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sub-color1);
+    }
   }
 `;

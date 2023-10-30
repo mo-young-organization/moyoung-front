@@ -2,10 +2,18 @@ import { styled } from 'styled-components';
 
 import Recruitment from '../components/RecruitmentList/Recruitment';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const RecruitmentListPage = () => {
   const params = useParams();
-  console.log(params);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(navbarColorStatus('navy'));
+  }, []);
 
   return (
     <Container>

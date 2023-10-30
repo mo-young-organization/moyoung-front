@@ -8,8 +8,9 @@ import { getCookie, removeCookie } from '../util/Cookie';
 import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
 import { userDelete } from '../api/api';
+import WhiteLogo from '../assets/img/모영흰색로고.png';
 
-const NavBar = () => {
+const NavBar = ({ color }) => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [onClick, setOnClick] = useState(false);
@@ -65,10 +66,10 @@ const NavBar = () => {
   }, [refreshToken, displayName]);
 
   return (
-    <Container>
-      <Content>
+    <Container color={color}>
+      <Content color={color}>
         <div className="logo" onClick={logoClickHandler}>
-          로고
+          <img className="logo" alt="로고이미지" src={WhiteLogo} />
         </div>
         <UserDiv>
           {isLogin ? (
@@ -114,19 +115,20 @@ const Container = styled.header`
 
   width: 100%;
   height: 100px;
+  /* background-color: ()var(--main-color); */
+  background-color: ${props =>
+    props.color === 'main' ? 'var(--main-color)' : props.color === 'login' ? 'white' : 'var(--sub-color1)'};
 
   .logo {
-    background-color: blue;
-
-    width: 100px;
-    height: 50px;
+    width: 120px;
+    height: 30px;
 
     cursor: pointer;
   }
 `;
 
 const Content = styled.div`
-  display: flex;
+  display: ${props => (props.color === 'login' ? 'none' : 'flex')};
   align-items: end;
   justify-content: space-between;
 
@@ -141,12 +143,14 @@ const UserDiv = styled.div`
   .login {
     display: flex;
     align-items: center;
+    color: white;
 
     cursor: pointer;
 
     > svg {
       margin-right: 5px;
       stroke-width: 1;
+      color: var(--point-color);
     }
   }
 

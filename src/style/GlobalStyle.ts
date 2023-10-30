@@ -32,6 +32,13 @@ ul {
 li {
   padding: 0;
 }
+
+:root {
+  --main-color: #538DFF;
+  --sub-color1: #162C56;
+  --sub-color2: #F0F5FE;
+  --point-color: #FFD600;
+}
 `;
 
 export default GlobalStyles;

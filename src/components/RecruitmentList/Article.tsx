@@ -4,15 +4,25 @@ import ChatModal from '../Chat/ChatModal';
 import { ListProps, PosterProps } from './recruitType';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../../util/Cookie';
+import MEGA from '../../assets/img/MEGA_logo.png';
+import LOTTE from '../../assets/img/LOTTE_logo.png';
+import CGV from '../../assets/img/CGV_logo.png';
+import all from '../../assets/img/all.svg';
+import twelve from '../../assets/img/12years.svg';
+import Fifteen from '../../assets/img/15years.svg';
+import Eighteen from '../../assets/img/18years.svg';
+import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 
 export type ArticleProps = {
   age: string;
   cinemaName: string;
+  cinemaBrand: string;
   cinemaRegion: string;
   currentNum: number;
   gender: string;
   maxNum: number;
   movieName: string;
+  movieRating: string;
   movieThumbnailUrl: string;
   recruitingArticleId: number;
   screenInfo: string;
@@ -20,6 +30,7 @@ export type ArticleProps = {
   title: string;
   writerAge: string;
   writerDisplayName: string;
+  writerGender: string;
 };
 
 // const Article = ({ data }: { data: ArticleProps }) => {
@@ -88,12 +99,39 @@ const Article = ({ data }: { data: ArticleProps }) => {
     return strWeak[todayNum];
   };
 
+  // 영화관 브랜드 이미지 함수
+  const cinemaBrand = brand => {
+    if (brand === 'Mega') {
+      return <img src={MEGA} />;
+    } else if (brand === 'Lotte') {
+      return <img src={LOTTE} />;
+    } else {
+      return <img src={CGV} />;
+    }
+  };
+
+  // 영화 관람가 이미지 함수
+  const audience = text => {
+    if (text.includes('12')) {
+      return twelve;
+    } else if (text.includes('15')) {
+      return Fifteen;
+    } else if (text.includes('청소년')) {
+      return Eighteen;
+    } else if (text.includes('전체')) {
+      return all;
+    }
+  };
+
   return (
     <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} $posterImg={data.movieThumbnailUrl}>
       {isChatOpen && <ChatModal closeChatModal={closeChatModal} recruitData={data} />}
       {isHover ? (
         <OutContent className="hover out">
-          <MovieTitle>{data.movieName}</MovieTitle>
+          <MovieTitle>
+            <img src={audience(data.movieRating)} alt="관람가이미지" />
+            {data.movieName}
+          </MovieTitle>
           <DateTime>
             <span className="date">
               {monthWeek(data.startTime)}.{today(data.startTime)}
@@ -120,6 +158,7 @@ const Article = ({ data }: { data: ArticleProps }) => {
             <Head>
               <div>
                 <span className="nick">{data.writerDisplayName}</span>
+                {data.writerGender === '남성' ? <BsGenderMale color="#0094FF" /> : <BsGenderFemale color="#FF0099" />}
                 <span className="gray">{data.writerAge}</span>
               </div>
               <span className="gray">1시간 전</span>
@@ -127,7 +166,7 @@ const Article = ({ data }: { data: ArticleProps }) => {
             <Title>{data.title}</Title>
           </div>
           <OnFotter>
-            <div></div>
+            <div>{cinemaBrand(data.cinemaBrand)}</div>
             <div className="province">{data.cinemaRegion}</div>
             <div className="city">{data.cinemaName}</div>
           </OnFotter>
@@ -201,6 +240,10 @@ const Head = styled.div`
   justify-content: space-between;
   margin-bottom: 28px;
 
+  > div {
+    display: flex;
+  }
+
   .nick {
     color: #ffffff;
     font-size: 14px;
@@ -211,6 +254,7 @@ const Head = styled.div`
     color: #cacaca;
     font-size: 14px;
     font-weight: 500;
+    margin-left: 5px;
   }
 `;
 
@@ -238,9 +282,15 @@ const OnFotter = styled.div`
 `;
 
 const MovieTitle = styled.div`
+  display: flex;
   color: #ffffff;
   font-size: 20px;
   font-weight: 500;
+
+  > img {
+    width: 24px;
+    height: 24px;
+  }
 `;
 
 const DateTime = styled.div`

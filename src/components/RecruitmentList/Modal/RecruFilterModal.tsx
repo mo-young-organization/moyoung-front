@@ -7,41 +7,102 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import { ListFilterForm } from '../../SignupCheck/FormType';
 import { useState } from 'react';
 
-const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThirties }) => {
+const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThirties, setDistance, setSort }) => {
   const { register, handleSubmit, watch } = useForm<ListFilterForm>();
 
-  //필터에 아직 거리 추가 안됨
-  // const [value, setValue] = useState<number[]>([0, 1]);
+  const [value, setValue] = useState<number[]>([0, 1]);
 
-  // const distance = dt => {
-  //   console.log(dt);
-  //   if (dt[1] === 1) {
-  //     setDt(1500);
-  //   } else if (dt[1] === 2) {
-  //     setDt(3000);
-  //   } else if (dt[1] === 3) {
-  //     setDt(4500);
-  //   } else if (dt[1] === 4) {
-  //     setDt(6000);
-  //   }
-  // };
+  const distance = dt => {
+    console.log(dt);
+    if (dt[1] === 1) {
+      setDistance(1500);
+    } else if (dt[1] === 2) {
+      setDistance(3000);
+    } else if (dt[1] === 3) {
+      setDistance(4500);
+    } else if (dt[1] === 4) {
+      setDistance(6000);
+    }
+  };
 
   const onSubmitHandler: SubmitHandler<ListFilterForm> = data => {
     console.log(data);
-    data.gender === '전체' ? (data.gender = '0') : data.gender === '남자만' ? (data.gender = '1') : (data.gender = '2');
-    if (data.age === '10대') {
-      setTeenager(true), setTwenties(false), setThirties(false);
+
+    // 1 젠더필터
+    if (data.gender) {
+      data.gender === '전체'
+        ? (data.gender = '0')
+        : data.gender === '남자만'
+        ? (data.gender = '1')
+        : (data.gender = '2');
+
+      setGender(data.gender);
+    } else {
+      setGender('');
     }
-    if (data.age === '20대') {
-      setTeenager(false), setTwenties(true), setThirties(false);
+
+    // 2. 나이필터
+    if (data.age) {
+      if (data.age === '10대') {
+        setTeenager(true), setTwenties(false), setThirties(false);
+      }
+      if (data.age === '20대') {
+        setTeenager(false), setTwenties(true), setThirties(false);
+      }
+      if (data.age === '30대') {
+        setTeenager(false), setTwenties(false), setThirties(true);
+      }
+    } else {
+      setTeenager(true), setTwenties(true), setThirties(true);
     }
-    if (data.age === '30대') {
-      setTeenager(false), setTwenties(false), setThirties(true);
+
+    // 3. 정렬필터
+    if (data.alignment) {
+      data.alignment === '가까운순' ? setSort(true) : setSort(false);
+    } else {
+      setSort(false);
     }
-    setGender(data.gender);
+
+    // 4. 거리필터
+    console.log(value[1]);
+    if (value[1] !== 1) {
+      distance(value);
+    } else {
+      distance([0, 1]);
+    }
+
+    // 그냥 거기 데이터가 없으면 기본값으로 설정해주면 되는거 아닌가?
+
+    // if (data.gender && !data.age && !data.alignment && !data.distance) {
+    //   console.log('젠더에만 데이터가 있다면 젠더만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+    //   setGender(data.gender);
+    //   setTeenager(true), setTwenties(true), setThirties(true);
+    //   setSort(false);
+    //   setDistance(1500);
+    // } else if (!data.gender && data.age && !data.alignment && !data.distance) {
+    //   console.log('나이에만 데이터가 있다면 나이만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+    //   if (data.age === '10대') {
+    //     setTeenager(true), setTwenties(false), setThirties(false);
+    //   }
+    //   if (data.age === '20대') {
+    //     setTeenager(false), setTwenties(true), setThirties(false);
+    //   }
+    //   if (data.age === '30대') {
+    //     setTeenager(false), setTwenties(false), setThirties(true);
+    //   }
+    //   setGender('');
+    //   setSort(false);
+    //   setDistance(1500);
+    // } else if (!data.gender && !data.age && data.alignment && !data.distance) {
+    //   console.log('정렬에만 데이터가 있다면 정렬만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+    //   // console.log('정렬에만 데이터가 있다면 정렬만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+    //   setGender('');
+    //   setTeenager(true), setTwenties(true), setThirties(true);
+    //   data.alignment === '가까운순' ? setSort(true) : setSort(false);
+    //   setDistance(1500);
+    // }
 
     onClose();
-    // distance(value);
   };
 
   return (
@@ -59,7 +120,7 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
             <RecSort register={register} />
             <RecGender register={register} />
             <RecAge register={register} />
-            <RecDistance />
+            <RecDistance setValue={setValue} value={value} />
           </MidDiv>
           <ButtonDiv>
             <button>적용</button>

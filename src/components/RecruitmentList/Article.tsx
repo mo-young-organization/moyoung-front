@@ -35,7 +35,6 @@ export type ArticleProps = {
 
 // const Article = ({ data }: { data: ArticleProps }) => {
 const Article = ({ data }: { data: ArticleProps }) => {
-  console.log(data);
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 

@@ -113,11 +113,13 @@ export const getRecruitList = async (
   teenager: string,
   twenties: string,
   thirties: string,
+  distance: string,
+  sort: string,
 ) => {
   try {
     // const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
     const data = await instance.get(
-      `/recruit?page=${page}${gender}${teenager}${twenties}${thirties}${keyword}&x=127.026533147412&y=37.4979342251351&distance=30000&sort=true`,
+      `/recruit?page=${page}${gender}${teenager}${twenties}${thirties}${keyword}&x=127.026533147412&y=37.4979342251351${distance}${sort}`,
       {
         headers: {
           Accept: 'application/json',

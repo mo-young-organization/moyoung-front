@@ -20,13 +20,14 @@ const Recruitment = () => {
   const [teenager, setTeenager] = useState(true);
   const [twenties, setTwenties] = useState(true);
   const [thirties, setThirties] = useState(true);
-  console.log(gender, teenager, twenties, thirties);
+  const [distance, setDistance] = useState(1500);
+  //false가 최신순 true가 거리 가까운순
+  const [sort, setSort] = useState(false);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
   const totalPages = recruitData && recruitData?.pageInfo.totalPages;
 
   const refreshToken = getCookie('refreshToken');
-  console.log(refreshToken);
   useEffect(() => {
     const fetchGetRecruitData = async () => {
       if (refreshToken) {
@@ -37,15 +38,27 @@ const Recruitment = () => {
           `&teenager=${teenager}`,
           `&twenties=${twenties}`,
           `&thirties=${thirties}`,
+          `&distance=${distance}`,
+          `&sort=${sort}`,
         );
         setRecruitData(data);
+        console.log(
+          curPage,
+          `&keyword=${keyword}`,
+          `&gender=${gender}`,
+          `&teenager=${teenager}`,
+          `&twenties=${twenties}`,
+          `&thirties=${thirties}`,
+          `&distance=${distance}`,
+          `&sort=${sort}`,
+        );
       } else {
         const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`);
         setRecruitData(data);
       }
     };
     fetchGetRecruitData();
-  }, [curPage, keyword, gender, teenager, twenties, thirties]);
+  }, [curPage, keyword, gender, teenager, twenties, thirties, distance, sort]);
 
   const navigate = useNavigate();
   const userStatus = getCookie('refreshToken');
@@ -106,6 +119,8 @@ const Recruitment = () => {
             setTeenager={setTeenager}
             setTwenties={setTwenties}
             setThirties={setThirties}
+            setDistance={setDistance}
+            setSort={setSort}
           />
         )}
       </RecPotal>

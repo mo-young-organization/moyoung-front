@@ -42,16 +42,6 @@ const Recruitment = () => {
           `&sort=${sort}`,
         );
         setRecruitData(data);
-        console.log(
-          curPage,
-          `&keyword=${keyword}`,
-          `&gender=${gender}`,
-          `&teenager=${teenager}`,
-          `&twenties=${twenties}`,
-          `&thirties=${thirties}`,
-          `&distance=${distance}`,
-          `&sort=${sort}`,
-        );
       } else {
         const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`);
         setRecruitData(data);

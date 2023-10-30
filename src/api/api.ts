@@ -115,7 +115,6 @@ export const getRecruitList = async (
   thirties: string,
   distance: string,
   sort: string,
-) => {
   try {
     // const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
     const data = await instance.get(

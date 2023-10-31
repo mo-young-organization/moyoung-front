@@ -14,8 +14,10 @@ const MovieSearch = () => {
 
   return (
     <Container>
-      <Search />
-      <MovieTopFive />
+      <Content>
+        <Search />
+        <MovieTopFive />
+      </Content>
     </Container>
   );
 };
@@ -30,4 +32,22 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
   background-color: var(--sub-color2);
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 1032px;
+  height: 100%;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+
+    /* background-color: red; */
+  }
 `;

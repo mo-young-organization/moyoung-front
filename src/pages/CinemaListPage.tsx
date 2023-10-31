@@ -43,7 +43,10 @@ const CinemaListPage = () => {
           <BoxLi key={el.name}>
             <LiContentDiv>
               <MovieInfoDiv>
-                <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
+                <div>
+                  <ThumbnailDiv $img={el.thumbnailUrl} role="img" />
+                  <img className="tablet-img" src={el.movieRating && audience(el.movieRating)} />
+                </div>
                 <TitleDiv>
                   <div>
                     <div className="name">{el.name}</div>
@@ -83,6 +86,8 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
+
+  /* background-color: red; */
 `;
 
 const SearchDiv = styled.div`
@@ -104,6 +109,11 @@ const ContentUl = styled.ul`
   height: 100%;
 
   list-style: none;
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
 `;
 
 const BoxLi = styled.li`
@@ -114,6 +124,15 @@ const BoxLi = styled.li`
 
   padding: 54px 64px;
   margin: 40px 0px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 100%;
+
+    padding: 36px 28px;
+    margin: 30px 0px;
+  }
 `;
 
 const LiContentDiv = styled.div`
@@ -127,6 +146,16 @@ const MovieInfoDiv = styled.div`
   display: flex;
   width: 70%;
 
+  > div {
+    display: flex;
+  }
+
+  .tablet-img {
+    display: none;
+    width: 24px;
+    height: 24px;
+  }
+
   .name {
     font-size: 24px;
     font-weight: 600;
@@ -135,6 +164,19 @@ const MovieInfoDiv = styled.div`
   .enName {
     font-size: 16px;
     font-weight: 300;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    flex-direction: column;
+
+    .tablet-img {
+      display: block;
+      width: 24px;
+      height: 24px;
+      margin-left: 5px;
+    }
   }
 `;
 
@@ -149,6 +191,17 @@ const TitleDiv = styled.div`
     width: 24px;
     height: 24px;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .img {
+      display: none;
+    }
+
+    margin: 0px;
+    height: auto;
+  }
 `;
 
 const BoxUl = styled.ul`
@@ -157,6 +210,12 @@ const BoxUl = styled.ul`
 
   border-left: 1px solid #e1e1e1;
   list-style: none;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    padding-left: 30px;
+  }
 `;
 
 const BoxLis = styled.li`
@@ -164,13 +223,17 @@ const BoxLis = styled.li`
   align-items: center;
   justify-content: space-between;
 
-  padding: 0px 16px;
+  padding: 10px 16px;
   width: 200px;
-  height: 90px;
+  height: auto;
   border-radius: 8px;
 
   background-color: #538dff;
   cursor: pointer;
+
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
 
   .type {
     font-size: 20px;
@@ -183,6 +246,16 @@ const BoxLis = styled.li`
     font-size: 12px;
     font-weight: 400;
     color: #e1e1e1;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 160px;
+
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
   }
 `;
 

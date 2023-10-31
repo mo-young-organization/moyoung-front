@@ -53,7 +53,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
 export default MovieTopFive;
 
 const Container = styled.div`
-  width: 1032px;
+  width: 100%;
   height: 440px;
 
   display: flex;
@@ -67,17 +67,45 @@ const Container = styled.div`
     display: flex;
     width: 100%;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
 `;
 
 const Title = styled.div`
   font-size: 28px;
   line-height: 33px;
   border-bottom: 2px solid;
-  margin-bottom: 40px;
+  margin: 0px 0px 40px 190px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    margin: 0px 0px 40px 15px;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & {
+      -ms-overflow-style: none; /* 인터넷 익스플로러 */
+      scrollbar-width: none; /* 파이어폭스 */
+    }
+    width: 100%;
+    overflow-x: scroll;
+
+    /* background-color: blue; */
+  }
 `;
 
 const MovieBox = styled.div<ImgProps>`

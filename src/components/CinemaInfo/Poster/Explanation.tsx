@@ -22,7 +22,6 @@ const Explanation = ({ data }) => {
 export default Explanation;
 
 const Container = styled.div`
-  height: 90px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -45,5 +44,28 @@ const Content = styled.div`
     font-size: 16px;
     font-weight: 500;
     color: #474747;
+  }
+
+  @media all and (max-width: 1024px) {
+    width: 520px;
+    height: auto;
+
+    .first {
+      font-size: 14px;
+      font-weight: 500;
+      color: #a2a2a2;
+
+      width: 80px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
+    .second {
+      font-size: 14px;
+      font-weight: 500;
+      color: #474747;
+
+      width: 700px;
+    }
   }
 `;

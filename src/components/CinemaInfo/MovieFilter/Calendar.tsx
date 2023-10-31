@@ -165,6 +165,15 @@ const ContainerUl = styled.ul`
     border: none;
     background-color: transparent;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    // 달력 두줄 만들기 위해서 억지로 끼어맞췄는데 다른 방법이 있을거 같은데....
+    > button:not(:nth-child(7), :nth-child(14)) {
+      margin-right: 20px;
+    }
+  }
 `;
 
 const ContentLi = styled.li`

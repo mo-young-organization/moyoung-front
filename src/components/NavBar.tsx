@@ -35,11 +35,13 @@ const NavBar = ({ color }) => {
   };
 
   //회원 탈퇴 버튼 이벤트
-  const userDeleteHandler = () => {
+  const userDeleteHandler = async () => {
     const memberId = window.sessionStorage.getItem('memberId');
-    userDelete(memberId);
-    removeCookie('token', { path: '/' });
-    removeCookie('refreshToken', { path: '/' });
+    const data = await userDelete(memberId);
+    if (data.status === 204) {
+      removeCookie('token', { path: '/' });
+      removeCookie('refreshToken', { path: '/' });
+    }
     window.sessionStorage.clear();
     setIsLogin(false);
   };

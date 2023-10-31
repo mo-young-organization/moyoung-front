@@ -28,8 +28,9 @@ export const signupCheckPost = async req => {
 // 회원 탈퇴(임의) delete요청
 export const userDelete = async memberId => {
   try {
-    const data = await instance.delete(`/member?id=${memberId}`);
+    const data = await instance.delete(`/member`);
     console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
   }

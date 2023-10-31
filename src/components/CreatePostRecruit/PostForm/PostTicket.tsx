@@ -122,7 +122,7 @@ const LeftTicketTopDivContnet = styled.div`
     .kind {
       font-size: 16px;
       font-weight: 300;
-      color: #858585;
+      color: #dedede;
     }
   }
 `;
@@ -144,7 +144,7 @@ const LeftTicketBottomTop = styled.div`
   display: flex;
   justify-content: space-between;
   .fontC {
-    color: #858585;
+    color: var(--point-color);
   }
 
   .장소 {
@@ -156,6 +156,7 @@ const LeftTicketBottomTop = styled.div`
     display: flex;
 
     .위치 {
+      margin-left: 5px;
       font-size: 20px;
       font-weight: 700;
     }
@@ -197,7 +198,7 @@ const LeftTicket = styled.div`
   width: 395px;
   height: 100%;
   border-radius: 8px 0px 0px 8px;
-  background-color: #f2f2f2;
+  background-color: var(--main-color);
 `;
 
 const TicketLineBoxBottom = styled.div`
@@ -236,7 +237,7 @@ const RightTicket = styled.div`
   width: 110px;
   height: 100%;
   border-radius: 0px 8px 8px 0px;
-  background-color: #e3e3e3;
+  background-color: var(--sub-color1);
 `;
 
 const TicketDiv = styled.div`

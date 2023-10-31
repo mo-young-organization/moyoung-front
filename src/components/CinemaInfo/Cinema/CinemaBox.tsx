@@ -81,7 +81,7 @@ const HeadDiv = styled.div`
 `;
 
 const ContentUl = styled.ul`
-  background-color: whitesmoke;
+  background-color: var(--sub-color2);
 
   border-radius: 16px;
   padding: 40px 88px;

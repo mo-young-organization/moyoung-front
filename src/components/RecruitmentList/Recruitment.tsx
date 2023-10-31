@@ -133,7 +133,7 @@ export default Recruitment;
 const ContentSearchDiv = styled.div`
   display: flex;
   justify-content: center;
-  background-color: #efefef;
+  background-color: var(--sub-color1);
   width: 100%;
   height: 350px;
 `;
@@ -175,10 +175,16 @@ const FilterBoxDiv = styled.div`
     width: 77px;
     border-radius: 4px;
     cursor: pointer;
+
+    background-color: var(--point-color);
   }
 
   .create-filter {
     background-color: transparent;
+
+    > svg {
+      color: var(--sub-color2);
+    }
   }
 
   > button {

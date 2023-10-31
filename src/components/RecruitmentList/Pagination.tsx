@@ -100,7 +100,7 @@ const Button = styled.button`
   background-color: white;
   font-size: 1rem;
   &:hover {
-    color: #000000;
+    color: var(--point-color);
     cursor: pointer;
     transform: translateY(-2px);
   }
@@ -114,7 +114,6 @@ const SideBtn = styled(Button)`
   color: #000000;
   &[disabled] {
     display: none;
-    background: #ffffff;
     cursor: revert;
     transform: revert;
   }
@@ -124,7 +123,8 @@ const PgBtn = styled(Button)<ActiveT>`
   ${props =>
     props.$i + 1 === props.$curPage &&
     css`
-      color: #000000;
+      color: var(--sub-color2);
+      background-color: var(--point-color);
       font-weight: bold;
       cursor: revert;
       transform: revert;

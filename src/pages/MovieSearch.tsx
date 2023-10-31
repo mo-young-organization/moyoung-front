@@ -29,5 +29,5 @@ const Container = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 100%;
-  background-color: #efefef;
+  background-color: var(--sub-color2);
 `;

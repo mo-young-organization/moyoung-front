@@ -1,6 +1,4 @@
 import { instance } from './create';
-import axios from 'axios';
-import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
 export const nickNameDuplicatePost = async req => {
@@ -74,6 +72,7 @@ export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega,
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 

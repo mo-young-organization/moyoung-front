@@ -63,7 +63,6 @@ const Container = styled.div`
   margin: 64px 84px 142px;
 
   .left {
-    /* background-color: red; */
     border: none;
     display: flex;
     width: 100%;
@@ -73,7 +72,7 @@ const Container = styled.div`
 const Title = styled.div`
   font-size: 28px;
   line-height: 33px;
-  border-bottom: 2px solid #d9d9d9;
+  border-bottom: 2px solid;
   margin-bottom: 40px;
 `;
 
@@ -84,13 +83,14 @@ const Content = styled.div`
 const MovieBox = styled.div<ImgProps>`
   display: flex;
   align-items: end;
-  color: white;
+  color: #e1e1e1;
   font-size: 24px;
   position: relative;
 
   width: 180px;
   height: 255px;
   margin: 14px;
+  border-radius: 8px;
 
   background-image: url(${props => props.$img});
   background-size: 100%;
@@ -98,6 +98,7 @@ const MovieBox = styled.div<ImgProps>`
   .number {
     margin-left: 10px;
     font-size: 38px;
+    text-shadow: 4px 6px 4px #000000;
   }
 `;
 

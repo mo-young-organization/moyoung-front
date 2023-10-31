@@ -85,13 +85,14 @@ const SearchDiv = styled.div`
   align-items: center;
 
   width: 100%;
-  background-color: #efefef;
+  background-color: var(--sub-color2);
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100%;
   background-color: white;
 `;
 

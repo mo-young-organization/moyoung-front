@@ -91,7 +91,7 @@ const SearchDiv = styled.div`
   align-items: center;
 
   width: 100%;
-  background-color: #efefef;
+  background-color: var(--sub-color2);
 `;
 
 const ContentUl = styled.ul`

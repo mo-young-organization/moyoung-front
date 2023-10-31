@@ -32,7 +32,7 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--main-color);
 
   display: flex;
   justify-content: center;

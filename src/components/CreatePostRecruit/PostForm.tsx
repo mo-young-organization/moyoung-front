@@ -96,7 +96,7 @@ const ButtonDiv = styled.div`
     width: 150px;
     border: none;
     border-radius: 6px;
-    background-color: #9f9f9f;
+    background-color: var(--main-color);
     color: white;
 
     font-size: 20px;

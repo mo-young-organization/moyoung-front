@@ -23,17 +23,20 @@ const Container = styled.div`
   justify-content: center;
   width: 100%;
   height: 100%;
+  background-color: var(--sub-color2);
 
   .title {
     display: flex;
     justify-content: center;
     align-items: center;
 
-    background-color: #efefef;
+    background-color: var(--sub-color1);
+    color: var(--sub-color2);
     width: 100%;
     height: 260px;
 
     font-size: 40px;
     font-weight: 700;
+    cursor: pointer;
   }
 `;

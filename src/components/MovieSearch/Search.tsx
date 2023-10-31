@@ -46,7 +46,7 @@ const Search = ({ text, setKeyword }: TextProps) => {
 
   return (
     <Container>
-      <Title>{text ? <h1>{text}</h1> : <h1>내 주변 영화관 찾기</h1>}</Title>
+      <Title>{text ? <h1 className="text-white">{text}</h1> : <h1>내 주변 영화관 찾기</h1>}</Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
         {text ? (
           <SearchInput
@@ -93,6 +93,10 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  .text-white {
+    color: var(--sub-color2);
+  }
 `;
 
 const Form = styled.form`
@@ -105,7 +109,7 @@ const Form = styled.form`
 const SearchInput = styled.input`
   width: 100%;
   max-width: 100%;
-  height: 100%;
+  height: 60px;
   border-radius: 60px;
   padding: 16px 40px;
   outline: none;

@@ -119,7 +119,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   return (
     <Background>
       <Content>
-        <div className="cancell-button" onClick={onClose}>
+        <div className="cancell-button" onClick={onClose} role="button">
           X
         </div>
         <FilterDiv>
@@ -283,6 +283,7 @@ const Content = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 
   .cancell-button {
+    cursor: pointer;
     color: white;
     font-size: 30px;
     margin-bottom: 20px;
@@ -291,7 +292,7 @@ const Content = styled.div`
 `;
 
 const FilterDiv = styled.div`
-  background-color: #f6f6f6;
+  background-color: var(--sub-color1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -520,6 +521,15 @@ const ThumbnailDiv = styled.div<ThumbnailProps>`
 
 const ListContentUl = styled.ul`
   overflow: scroll;
+  /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;

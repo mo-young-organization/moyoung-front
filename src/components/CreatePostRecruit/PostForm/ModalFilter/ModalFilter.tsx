@@ -61,7 +61,7 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setCgv, setDt, clic
               {/* 야매로 span3개로 함... */}
               <span />
               <span className="filter_font_div">필터</span>
-              <span className="cancell-button" onClick={onClose}>
+              <span className="cancell-button" onClick={onClose} role="button">
                 X
               </span>
             </div>
@@ -122,6 +122,10 @@ const InFilterForm = styled.form`
 const InFilterDiv = styled.div`
   height: 320px;
 
+  .cancell-button {
+    cursor: pointer;
+  }
+
   .top-div {
     display: flex;
     justify-content: space-between;
@@ -142,6 +146,9 @@ const InFilterDiv = styled.div`
       background-color: transparent;
       width: 65px;
       height: 33px;
+
+      background-color: var(--main-color);
+      color: var(--sub-color2);
 
       font-size: 14px;
       font-weight: 500;

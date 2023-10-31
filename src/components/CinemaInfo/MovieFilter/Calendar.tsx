@@ -176,7 +176,7 @@ const ContentLi = styled.li`
   cursor: pointer;
 
   &.sat {
-    color: #0094ff !important;
+    color: #0094ff;
   }
 
   &.sun {
@@ -190,7 +190,14 @@ const ContentLi = styled.li`
 
   &.active {
     border-radius: 8px;
-    background-color: #e5e5e5;
+    color: var(--sub-color2);
+    background-color: var(--main-color);
+    &.sat {
+      color: #acdcff;
+    }
+    &.sun {
+      color: #ffa8a8;
+    }
   }
 
   .day {

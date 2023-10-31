@@ -36,8 +36,13 @@ const Container = styled.div`
 
 const Content = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
 
   width: 1200px;
   height: 100%;
+
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
 `;

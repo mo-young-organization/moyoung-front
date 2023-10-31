@@ -35,7 +35,10 @@ export default Box;
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  flex-grow: 2;
+  /* flex-grow: 2; */
+  @media all and (max-width: 1024px) {
+    justify-content: space-between;
+  }
 
   .box {
     display: flex;
@@ -63,6 +66,18 @@ const Container = styled.div`
       font-size: 32px;
       font-weight: 700;
       color: var(--sub-color1);
+    }
+
+    //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+    //태블릿
+    @media all and (max-width: 1024px) {
+      width: 335px;
+      height: 320px;
+      margin: 0px;
+
+      .text {
+        font-size: 24px;
+      }
     }
   }
 `;

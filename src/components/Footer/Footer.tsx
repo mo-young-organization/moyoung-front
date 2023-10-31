@@ -49,6 +49,10 @@ const Content = styled.div`
   width: 1200px;
   height: 100%;
 
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
+
   .logo-div {
     display: flex;
     flex-direction: column;

@@ -21,9 +21,25 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: end;
   align-items: center;
-  flex-grow: 1;
+  /* flex-grow: 1; */
 
   .main-title {
+    //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+    //태블릿
+    @media all and (max-width: 1024px) {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sub-color2);
+    }
+
+    //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+    //모바일
+    @media all and (max-width: 768px) {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--sub-color2);
+    }
+
     font-size: 36px;
     font-weight: 700;
     color: var(--sub-color2);

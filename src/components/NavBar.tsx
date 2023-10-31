@@ -9,10 +9,9 @@ import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
 import { userDelete } from '../api/api';
 import WhiteLogo from '../assets/img/모영흰색로고.png';
-
+import NavBarChat from './NavBarChat';
 
 const NavBar = ({ color }) => {
-import NavBarChat from './NavBarChat';
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [onClick, setOnClick] = useState(false);

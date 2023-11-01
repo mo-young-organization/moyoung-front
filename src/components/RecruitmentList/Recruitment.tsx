@@ -12,7 +12,7 @@ import { getCookie } from '../../util/Cookie';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 import NoSearchMovie from '../NoMovie/NoSearchMovie';
 
-const Recruitment = () => {
+const Recruitment = ({ size }) => {
   const [curPage, setCurPage] = useState(1);
   const [recModalOn, setRecModalOn] = useState(false);
   const [keyword, setKeyword] = useState('');
@@ -33,6 +33,7 @@ const Recruitment = () => {
       if (refreshToken) {
         const data = await getRecruitList(
           curPage,
+          size,
           `&keyword=${keyword}`,
           `&gender=${gender}`,
           `&teenager=${teenager}`,
@@ -53,12 +54,12 @@ const Recruitment = () => {
           `&sort=${sort}`,
         );
       } else {
-        const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`);
+        const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`, size);
         setRecruitData(data);
       }
     };
     fetchGetRecruitData();
-  }, [curPage, keyword, gender, teenager, twenties, thirties, distance, sort]);
+  }, [curPage, keyword, gender, teenager, twenties, thirties, distance, sort, size]);
 
   const navigate = useNavigate();
   const userStatus = getCookie('refreshToken');
@@ -154,6 +155,15 @@ const UlArticleMaping = styled.ul`
     width: 100%;
     height: 100%;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 78px 24px;
+  }
 `;
 
 const DivPagination = styled.div`
@@ -192,5 +202,11 @@ const FilterBoxDiv = styled.div`
     height: 28px;
     margin-left: 5px;
     cursor: pointer;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
   }
 `;

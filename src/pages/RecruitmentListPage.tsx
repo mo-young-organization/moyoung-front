@@ -1,24 +1,29 @@
 import { styled } from 'styled-components';
-
-import Recruitment from '../components/RecruitmentList/Recruitment';
-import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
 
+import Recruitment from '../components/RecruitmentList/Recruitment';
+import useWindowSizeCustom from '../util/WindowSizeCustom';
+
 const RecruitmentListPage = () => {
-  const params = useParams();
-
   const dispatch = useDispatch();
-
+  const { width } = useWindowSizeCustom();
+  const [size, setSize] = useState(20);
+  console.log(width);
   useEffect(() => {
     dispatch(navbarColorStatus('navy'));
-  }, []);
+    if (width > 1023) {
+      setSize(20);
+    } else {
+      setSize(15);
+    }
+  }, [width]);
 
   return (
     <Container>
       {/* <Recruitment dummyData={dummyData} /> */}
-      <Recruitment />
+      <Recruitment size={size} />
     </Container>
   );
 };

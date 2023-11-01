@@ -26,6 +26,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState('');
+  // console.log(movieValue);
 
   const movieSearchHandler = e => {
     setMovieValue(e.target.value);
@@ -54,7 +55,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const dateNew = new Date();
   const month = dateNew.getMonth() + 1;
   const year = dateNew.getFullYear();
-  const today = dateNew.getDate();
+  const today = String(dateNew.getDate()).length !== 2 ? '0' + dateNew.getDate() : dateNew.getDate();
   const todayDate = `${year}-${month}-${today}`;
 
   const lat = '37.498';
@@ -65,12 +66,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [lotte, setLotte] = useState(true);
   const [mega, setMega] = useState(true);
   const [cgv, setCgv] = useState(true);
-
   const [id, setId] = useState();
 
   // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
     console.log('cinemaModal 여기서 문제');
+    console.log(date);
     setId(movieId);
     const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
     setCinemaData(data.data);
@@ -111,10 +112,11 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   };
 
   useEffect(() => {
+    console.log(id);
     if (id) {
       clickHandler(id);
     }
-  }, [lat, lon, dt, date, early, lotte, mega, cgv]);
+  }, [lat, lon, dt, date, early, lotte, mega, cgv, id]);
 
   return (
     <Background>

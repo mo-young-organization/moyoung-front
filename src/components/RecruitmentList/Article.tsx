@@ -197,7 +197,14 @@ const LiContainer = styled.li<PosterProps>`
     flex-direction: column;
     justify-content: space-between;
 
-    /* background-color: yellow; */
+    animation: fadeIn 0.5s ease-in-out;
+  }
+
+  .on {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
     animation: fadeIn 0.5s ease-in-out;
   }
 
@@ -212,12 +219,13 @@ const LiContainer = styled.li<PosterProps>`
     }
   }
 
-  .on {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 208px;
+    height: 289px;
 
-    animation: fadeIn 0.5s ease-in-out;
+    align-items: center;
   }
 `;
 
@@ -225,14 +233,24 @@ const OutContent = styled.div`
   width: 200px;
   height: 290px;
 
-  /* background-color: pink; */
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 168px;
+    height: 244px;
+  }
 `;
 
 const OnContent = styled.div`
   width: 200px;
   height: 290px;
 
-  /* background-color: pink; */
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 168px;
+    height: 244px;
+  }
 `;
 
 const Head = styled.div`
@@ -256,12 +274,35 @@ const Head = styled.div`
     font-weight: 500;
     margin-left: 5px;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .nick {
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .gray {
+      color: #cacaca;
+      font-size: 12px;
+      font-weight: 500;
+      margin-left: 5px;
+    }
+  }
 `;
 
 const Title = styled.div`
   color: #ffffff;
   font-size: 24px;
   font-weight: 700;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    font-size: 20px;
+  }
 `;
 
 const OnFotter = styled.div`
@@ -279,6 +320,22 @@ const OnFotter = styled.div`
     font-size: 20px;
     font-weight: 500;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .province {
+      color: #e7e7e7;
+      font-size: 14px;
+      font-weight: 300;
+    }
+
+    .city {
+      color: #e7e7e7;
+      font-size: 16px;
+      font-weight: 500;
+    }
+  }
 `;
 
 const MovieTitle = styled.div`
@@ -290,6 +347,17 @@ const MovieTitle = styled.div`
   > img {
     width: 24px;
     height: 24px;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    font-size: 16px;
+
+    > img {
+      width: 20px;
+      height: 20px;
+    }
   }
 `;
 
@@ -313,6 +381,23 @@ const DateTime = styled.div`
     color: #b8b8b8;
     font-size: 16px;
     font-weight: 300;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .date {
+      font-size: 24px;
+    }
+
+    .time {
+      width: 60px;
+      height: 30px;
+    }
+
+    .location {
+      font-size: 14px;
+    }
   }
 `;
 
@@ -347,6 +432,27 @@ const OutFotter = styled.div`
 
       font-size: 20px;
       font-weight: 700;
+    }
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .condition {
+      > li {
+        font-size: 12px;
+      }
+    }
+
+    > button {
+      width: 168px;
+      height: 40px;
+
+      padding: 8px 16px;
+
+      > span {
+        font-size: 16px;
+      }
     }
   }
 `;

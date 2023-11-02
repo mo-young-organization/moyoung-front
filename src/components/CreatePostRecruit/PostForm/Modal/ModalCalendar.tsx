@@ -6,8 +6,6 @@ const ModalCalendar = ({ setDate }) => {
   const date = new Date();
   const todayWeak = date.getDay();
   const today = date.getDate() + 10 >= 20 ? date.getDate() : `0${date.getDate()}`;
-  console.log(today);
-
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
@@ -19,7 +17,7 @@ const ModalCalendar = ({ setDate }) => {
     const dates = [];
 
     //초깃값 설정
-    dates[0] = today[0] === 0 ? today[1] : today;
+    dates[0] = today[0] === "0" ? today[1] : today;
     // dates[0] = today;
 
     for (let i = 1; i <= 13; i++) {
@@ -36,7 +34,7 @@ const ModalCalendar = ({ setDate }) => {
     }
 
     //요일 정상적으로 뜨는지 확인해보자
-
+    console.log(dates);
     return dates;
   };
 

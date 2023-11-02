@@ -23,13 +23,15 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [movieData, setMovieData] = useState(data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
+  console.log(cinemaData);
   const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
-  const [movieValue, setMovieValue] = useState('');
+  const [movieValue, setMovieValue] = useState(movieName);
   // console.log(movieValue);
 
   const movieSearchHandler = e => {
     setMovieValue(e.target.value);
+    console.log(e.target.value);
   };
 
   // 검색창 돋보기 클릭 이벤트
@@ -112,7 +114,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   };
 
   useEffect(() => {
-    console.log(id);
     if (id) {
       clickHandler(id);
     }
@@ -130,8 +131,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               type="text"
               title="검색창"
               placeholder="영화 제목을 검색해주세요"
-              defaultValue={movieName}
               onChange={movieSearchHandler}
+              defaultValue={movieName}
               onKeyPress={pressEnterKey}
             />
             <FilterSearchButton type="button" onClick={movieSearchClickHandler}>

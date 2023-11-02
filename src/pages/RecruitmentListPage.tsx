@@ -10,7 +10,6 @@ const RecruitmentListPage = () => {
   const dispatch = useDispatch();
   const { width } = useWindowSizeCustom();
   const [size, setSize] = useState(20);
-  console.log(width);
   useEffect(() => {
     dispatch(navbarColorStatus('navy'));
     if (width > 1023) {

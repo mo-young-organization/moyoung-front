@@ -69,7 +69,6 @@ const ContainerForm = styled.form`
 `;
 
 const Content = styled.div`
-  /* background-color: aqua; */
 
   display: flex;
   flex-direction: column;
@@ -80,6 +79,12 @@ const Content = styled.div`
 
   ul {
     list-style: none;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    margin: 0px;
   }
 `;
 

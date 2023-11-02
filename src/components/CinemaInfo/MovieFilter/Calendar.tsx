@@ -5,7 +5,7 @@ const Calendar = ({ setDate }) => {
   // 날짜 데이터
   const date = new Date();
   const todayWeak = date.getDay();
-  const today = date.getDate();
+  const today = date.getDate() + 10 >= 20 ? date.getDate() : `0${date.getDate()}`;
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
@@ -20,7 +20,7 @@ const Calendar = ({ setDate }) => {
     const dates = [];
 
     //초깃값 설정
-    dates[0] = today;
+    dates[0] = today[0] === '0' ? today[1] : today;
 
     for (let i = 1; i <= 13; i++) {
       today++;
@@ -71,7 +71,7 @@ const Calendar = ({ setDate }) => {
   };
 
   // 함수 리턴 값을 이용하여 함수에 값을 담아주기
-  const CalendarDay = getAlldate(today, lastday);
+  const CalendarDay = getAlldate(+today, lastday);
   const CalendarWeak = getAllweak(todayWeak);
 
   // 배열안 객체로 관리

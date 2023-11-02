@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { RiPinDistanceLine } from 'react-icons/ri';
-import { useState } from 'react';
+import { Dispatch, SetStateAction, useState } from 'react';
 import { movieSearchGet } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import DistancePotal from './Modal/DistancePotal';
@@ -9,6 +9,7 @@ import DistanceModal from './Modal/DistanceModal';
 
 interface TextProps {
   text?: string;
+  setKeyword?: Dispatch<SetStateAction<string>>;
 }
 
 const Search = ({ text, setKeyword }: TextProps) => {

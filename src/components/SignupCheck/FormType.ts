@@ -1,5 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 import { UseFormRegister, FieldErrors, UseFormWatch } from 'react-hook-form';
+import { RunningIdProps } from '../CreatePostRecruit/PostForm/Modal/type';
 
 // 회원가입시 체크
 export interface SignupFormValue {
@@ -56,4 +57,10 @@ export interface PropsCreatePost {
   errors?: FieldErrors<CreatePormProps>;
   watch?: UseFormWatch<CreatePormProps>;
   trigger?: any;
+  runningTimeData?: {
+    runningTimeId: number;
+    startTime: string;
+    endTime: string;
+  };
+  setRunningTimeData?: Dispatch<SetStateAction<RunningIdProps>>;
 }

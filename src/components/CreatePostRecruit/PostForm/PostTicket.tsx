@@ -6,6 +6,7 @@ import MEGA from '../../../assets/img/MEGA_logo.png';
 import LOTTE from '../../../assets/img/LOTTE_logo.png';
 import CGV from '../../../assets/img/CGV_logo.png';
 import styled from 'styled-components';
+import { ThumbnailProps } from './Modal/type';
 
 const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
   // console.log(cinemaPickData[0].brand);
@@ -247,7 +248,7 @@ const TicketDiv = styled.div`
   height: 295px;
 `;
 
-const PosterDiv = styled.div`
+const PosterDiv = styled.div<ThumbnailProps>`
   background-image: url(${props => props.$img});
   background-size: 100%;
 `;

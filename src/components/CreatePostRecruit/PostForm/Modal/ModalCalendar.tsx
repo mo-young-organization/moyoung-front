@@ -17,7 +17,7 @@ const ModalCalendar = ({ setDate }) => {
     const dates = [];
 
     //초깃값 설정
-    dates[0] = today[0] === "0" ? today[1] : today;
+    dates[0] = today[0] === '0' ? today[1] : today;
     // dates[0] = today;
 
     for (let i = 1; i <= 13; i++) {
@@ -68,7 +68,7 @@ const ModalCalendar = ({ setDate }) => {
   };
 
   // 함수 리턴 값을 이용하여 함수에 값을 담아주기
-  const CalendarDay = getAlldate(today, lastday);
+  const CalendarDay = getAlldate(+today, lastday);
   const CalendarWeak = getAllweak(todayWeak);
 
   // 배열안 객체로 관리

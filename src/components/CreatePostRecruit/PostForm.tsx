@@ -19,6 +19,7 @@ const PostForm = () => {
 
   const navigate = useNavigate();
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
+  console.log(runningTimeData);
 
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
@@ -69,7 +70,6 @@ const ContainerForm = styled.form`
 `;
 
 const Content = styled.div`
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;

@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 import { cinemaGet } from '../api/api';
 import { CinemaDataProps } from '../components/CreatePostRecruit/PostForm/Modal/type';
 import NoMovie from './NoMovie';
-import MyLocation from '../components/CinemaInfo/MovieFilter/MyLocation';
 
 const CinemaPage = () => {
   const [data, setData] = useState<CinemaDataProps>(undefined);
@@ -19,7 +18,7 @@ const CinemaPage = () => {
   const dateNew = new Date();
   const month = dateNew.getMonth() + 1;
   const year = dateNew.getFullYear();
-  const today = dateNew.getDate();
+  const today = String(dateNew.getDate()).length !== 2 ? '0' + dateNew.getDate() : dateNew.getDate();
   const todayDate = `${year}-${month}-${today}`;
 
   const params = useParams();

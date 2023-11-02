@@ -1,20 +1,23 @@
 export interface RecruitProps {
   data: [
     {
-      recruitingArticleId: number;
-      writerDisplayName: string;
-      writerAge: string;
-      title: string;
-      cinemaRegion: string;
+      age: string;
       cinemaName: string;
-      movieThumbnailUrl: string;
-      movieName: string;
-      startTime: string;
-      screenInfo: string;
-      maxNum: number;
+      cinemaBrand: string;
+      cinemaRegion: string;
       currentNum: number;
       gender: string;
-      age: string;
+      maxNum: number;
+      movieName: string;
+      movieRating: string;
+      movieThumbnailUrl: string;
+      recruitingArticleId: number;
+      screenInfo: string;
+      startTime: string;
+      title: string;
+      writerAge: string;
+      writerDisplayName: string;
+      writerGender: string;
     },
   ];
   pageInfo: {

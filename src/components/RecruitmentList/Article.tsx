@@ -14,27 +14,28 @@ import Eighteen from '../../assets/img/18years.svg';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 
 export type ArticleProps = {
-  age: string;
-  cinemaName: string;
-  cinemaBrand: string;
-  cinemaRegion: string;
-  currentNum: number;
-  gender: string;
-  maxNum: number;
-  movieName: string;
-  movieRating: string;
-  movieThumbnailUrl: string;
-  recruitingArticleId: number;
-  screenInfo: string;
-  startTime: string;
-  title: string;
-  writerAge: string;
-  writerDisplayName: string;
-  writerGender: string;
+  data: {
+    age: string;
+    cinemaName: string;
+    cinemaBrand: string;
+    cinemaRegion: string;
+    currentNum: number;
+    gender: string;
+    maxNum: number;
+    movieName: string;
+    movieRating: string;
+    movieThumbnailUrl: string;
+    recruitingArticleId: number;
+    screenInfo: string;
+    startTime: string;
+    title: string;
+    writerAge: string;
+    writerDisplayName: string;
+    writerGender: string;
+  };
 };
 
-// const Article = ({ data }: { data: ArticleProps }) => {
-const Article = ({ data }: { data: ArticleProps }) => {
+const Article = ({ data }: ArticleProps) => {
   const [isHover, setIsHover] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
 

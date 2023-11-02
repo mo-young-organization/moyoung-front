@@ -23,7 +23,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [movieData, setMovieData] = useState(data.data);
   // 영화 & 영화관 데이터
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
-  console.log(cinemaData);
   const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState(movieName);
@@ -31,16 +30,19 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 
   const movieSearchHandler = e => {
     setMovieValue(e.target.value);
-    console.log(e.target.value);
   };
 
   // 검색창 돋보기 클릭 이벤트
   const movieSearchClickHandler = async e => {
     console.log('영화 검색 버튼 클릭');
-    setCinemaData(undefined);
+    if (movieValue === '') {
+      alert('영화를 입력해주세요');
+    } else {
+      setCinemaData(undefined);
 
-    const data = await movieSearchGet(movieValue, 3000);
-    setMovieData(data.data);
+      const data = await movieSearchGet(movieValue, 3000);
+      setMovieData(data.data);
+    }
   };
 
   const filterinFilterHandler = () => {
@@ -101,15 +103,19 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     }
   };
 
-  const pressEnterKey = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    setCinemaData(undefined);
-    if (e.shiftKey && e.key === 'Enter') {
-      return;
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
+  const pressEnterKey = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (movieValue === '') {
+      alert('영화를 입력해주세요');
+    } else {
+      setCinemaData(undefined);
+      if (e.shiftKey && e.key === 'Enter') {
+        return;
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
 
-      const data = await movieSearchGet(movieValue, 3000);
-      setMovieData(data.data);
+        const data = await movieSearchGet(movieValue, 3000);
+        setMovieData(data.data);
+      }
     }
   };
 
@@ -243,7 +249,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
         <ModalPotal>
           {modalFilterOn && (
             <ModalFilter
-              setDate={setDate}
               setEarly={setEarly}
               setLotte={setLotte}
               setMega={setMega}

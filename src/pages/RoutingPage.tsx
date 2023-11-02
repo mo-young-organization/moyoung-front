@@ -14,9 +14,10 @@ import CinemaPage from './CinemaPage';
 import RecruitPostCreatePage from './RecruitPostCreatePage';
 import CinemaListPage from './CinemaListPage';
 import { useSelector } from 'react-redux';
+import { ReduxType } from '../store/store';
 
 const RoutingPage = () => {
-  const navbarColor = useSelector(state => state.navbarColor.value);
+  const navbarColor = useSelector((state: ReduxType) => state.navbarColor.value);
   console.log(navbarColor);
 
   return (

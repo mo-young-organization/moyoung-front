@@ -6,11 +6,29 @@ import ChatInfo from './ChatInfo';
 import ChatParticipant from './ChatParticipant';
 import Modal from '../Modal/Modal';
 import type { ArticleProps } from '../RecruitmentList/Article';
-
 export type OpenChat = 'chat' | 'more' | 'participant';
+
 type Props = {
-  closeChatModal: () => void;
-  recruitData: ArticleProps;
+  closeChatModal?: () => void;
+  recruitData: {
+    age: string;
+    cinemaName: string;
+    cinemaBrand: string;
+    cinemaRegion: string;
+    currentNum: number;
+    gender: string;
+    maxNum: number;
+    movieName: string;
+    movieRating: string;
+    movieThumbnailUrl: string;
+    recruitingArticleId: number;
+    screenInfo: string;
+    startTime: string;
+    title: string;
+    writerAge: string;
+    writerDisplayName: string;
+    writerGender: string;
+  };
 };
 
 const ChatModal = (props: Props) => {

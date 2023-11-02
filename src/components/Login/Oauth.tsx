@@ -1,6 +1,6 @@
-import navericon from '../../assets/img/네이버아이콘.png';
-import googleicon from '../../assets/img/구글아이콘 원형.png';
-import kakaoicon from '../../assets/img/카카오아이콘 원형.png';
+import navericon from '../../assets/img/navericon.png';
+import googleicon from '../../assets/img/googleicon.png';
+import kakaoicon from '../../assets/img/kakaoicon.png';
 import { styled } from 'styled-components';
 
 const Oauth = () => {

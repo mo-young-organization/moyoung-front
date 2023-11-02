@@ -8,7 +8,7 @@ import { getCookie, removeCookie } from '../util/Cookie';
 import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
 import { userDelete } from '../api/api';
-import WhiteLogo from '../assets/img/모영흰색로고.png';
+import WhiteLogo from '../assets/img/moyoungwhitelogo.png';
 import NavBarChat from './NavBarChat';
 
 const NavBar = ({ color }) => {

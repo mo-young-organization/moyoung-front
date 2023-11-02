@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import Name from './Name';
 import { BsGithub } from 'react-icons/bs';
-import WhiteLogo from '../../assets/img/모영흰색로고.png';
+import WhiteLogo from '../../assets/img/moyoungwhitelogo.png';
 
 const Footer = () => {
   return (

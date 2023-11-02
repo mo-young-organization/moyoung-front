@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import NavyLogo from '../../assets/img/모영남색로고.png';
+import NavyLogo from '../../assets/img/moyoungnabylogo.png';
 
 const Title = () => {
   return (

@@ -31,6 +31,6 @@ jobs:
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
-            dist s3://ourecostory \
+            build s3://moyoung-toy-project \
             --delete
         working-directory: ./src

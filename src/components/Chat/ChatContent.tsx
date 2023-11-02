@@ -16,7 +16,25 @@ import dummyChatData from '../../data/DummyChat';
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
   closeChatModal: () => void;
-  recruitData?: ArticleProps;
+  recruitData?: {
+    age: string;
+    cinemaName: string;
+    cinemaBrand: string;
+    cinemaRegion: string;
+    currentNum: number;
+    gender: string;
+    maxNum: number;
+    movieName: string;
+    movieRating: string;
+    movieThumbnailUrl: string;
+    recruitingArticleId: number;
+    screenInfo: string;
+    startTime: string;
+    title: string;
+    writerAge: string;
+    writerDisplayName: string;
+    writerGender: string;
+  };
   sessionMyName?: string;
 };
 

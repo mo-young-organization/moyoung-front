@@ -53,7 +53,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
 export default MovieTopFive;
 
 const Container = styled.div`
-  width: 1032px;
+  width: 100%;
   height: 440px;
 
   display: flex;
@@ -63,34 +63,62 @@ const Container = styled.div`
   margin: 64px 84px 142px;
 
   .left {
-    /* background-color: red; */
     border: none;
     display: flex;
     width: 100%;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
   }
 `;
 
 const Title = styled.div`
   font-size: 28px;
   line-height: 33px;
-  border-bottom: 2px solid #d9d9d9;
-  margin-bottom: 40px;
+  border-bottom: 2px solid;
+  margin: 0px 0px 40px 190px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    margin: 0px 0px 40px 15px;
+  }
 `;
 
 const Content = styled.div`
   display: flex;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    & {
+      -ms-overflow-style: none; /* 인터넷 익스플로러 */
+      scrollbar-width: none; /* 파이어폭스 */
+    }
+    width: 100%;
+    overflow-x: scroll;
+
+    /* background-color: blue; */
+  }
 `;
 
 const MovieBox = styled.div<ImgProps>`
   display: flex;
   align-items: end;
-  color: white;
+  color: #e1e1e1;
   font-size: 24px;
   position: relative;
 
   width: 180px;
   height: 255px;
   margin: 14px;
+  border-radius: 8px;
 
   background-image: url(${props => props.$img});
   background-size: 100%;
@@ -98,6 +126,7 @@ const MovieBox = styled.div<ImgProps>`
   .number {
     margin-left: 10px;
     font-size: 38px;
+    text-shadow: 4px 6px 4px #000000;
   }
 `;
 

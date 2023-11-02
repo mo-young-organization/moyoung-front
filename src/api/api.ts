@@ -1,6 +1,4 @@
 import { instance } from './create';
-import axios from 'axios';
-import type { TMovieTopFive } from '../components/MovieSearch/MovieTopFive';
 
 // 낙내암 중복 post요청
 export const nickNameDuplicatePost = async req => {
@@ -30,8 +28,9 @@ export const signupCheckPost = async req => {
 // 회원 탈퇴(임의) delete요청
 export const userDelete = async memberId => {
   try {
-    const data = await instance.delete(`/member?id=${memberId}`);
+    const data = await instance.delete(`/member`);
     console.log(data);
+    return data;
   } catch (error) {
     console.log(error);
   }
@@ -74,6 +73,7 @@ export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega,
     return data;
   } catch (error) {
     console.log(error);
+    return error;
   }
 };
 
@@ -108,6 +108,7 @@ export const postRecruitList = async req => {
 // 회원 모집글 불러오기 get요청
 export const getRecruitList = async (
   page: number,
+  size: number,
   keyword: string,
   gender: string,
   teenager: string,
@@ -119,7 +120,7 @@ export const getRecruitList = async (
   try {
     // const data = await instance.get(`/recruit?page=${page}${keyword}${gender}${teenager}${twenties}${thirties}`, {
     const data = await instance.get(
-      `/recruit?page=${page}${gender}${teenager}${twenties}${thirties}${keyword}&x=127.026533147412&y=37.4979342251351${distance}${sort}`,
+      `/recruit?page=${page}&size=${size}${gender}${teenager}${twenties}${thirties}${keyword}&x=${127.026533147412}&y=${37.4979342251351}${distance}${sort}`,
       {
         headers: {
           Accept: 'application/json',
@@ -135,14 +136,17 @@ export const getRecruitList = async (
 };
 
 // 비회원 모집글 불러오기 get요청
-export const getRecruitListNoUser = async (page: number, keyword: string) => {
+export const getRecruitListNoUser = async (page: number, keyword: string, size: number) => {
   try {
-    const data = await instance.get(`/recruit-article?page=${page}${keyword}`, {
-      headers: {
-        Accept: 'application/json',
-        'ngrok-skip-browser-warning': 60420,
+    const data = await instance.get(
+      `/recruit-article?page=${page}&size=${size}${keyword}&x=${127.026533147412}&y=${37.4979342251351}&distance=3000`,
+      {
+        headers: {
+          Accept: 'application/json',
+          'ngrok-skip-browser-warning': 60420,
+        },
       },
-    });
+    );
     console.log(data);
     return data.data;
   } catch (error) {

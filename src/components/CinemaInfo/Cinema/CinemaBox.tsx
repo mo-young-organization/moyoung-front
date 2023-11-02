@@ -5,10 +5,14 @@ import MEGA from '../../../assets/img/MEGA_logo.png';
 import LOTTE from '../../../assets/img/LOTTE_logo.png';
 import CGV from '../../../assets/img/CGV_logo.png';
 import { CinemaDummy } from './data';
+import MyLocation from '../MovieFilter/MyLocation';
 
-const CinemaBox = ({ data }) => {
+const CinemaBox = ({ data, resultLength }) => {
   return (
     <ContainerUl>
+      <div>
+        <MyLocation resultLength={resultLength} />
+      </div>
       {data.map((el, idx) => (
         <ContentLi key={idx}>
           <HeadDiv>
@@ -45,11 +49,36 @@ const ContainerUl = styled.ul`
   li {
     list-style: none;
   }
+
+  > div {
+    width: 1024px;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+
+    > li:last-child {
+      margin-bottom: 52px;
+    }
+
+    > div {
+      width: 690px;
+    }
+  }
 `;
 
 const ContentLi = styled.li`
   width: 1032px;
   margin: 52px 84px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+    margin: 52px 0px 0px 0px;
+  }
 `;
 
 const HeadDiv = styled.div`
@@ -81,7 +110,7 @@ const HeadDiv = styled.div`
 `;
 
 const ContentUl = styled.ul`
-  background-color: whitesmoke;
+  background-color: var(--sub-color2);
 
   border-radius: 16px;
   padding: 40px 88px;

@@ -15,6 +15,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   const [data, setData] = useState({});
   // 인풋 영화이름 밸류
   const [movieName, setMovieName] = useState('');
+  console.log(movieName);
   // 유저가 선택한 영화 정보
   const [moviePickData, setMoviePickData] = useState();
   // 유저가 선택한 영화관 정보
@@ -82,6 +83,14 @@ const Container = styled.div`
   .cinema_title {
     font-size: 28px;
     font-weight: 700;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .cinema_title {
+      font-size: 24px;
+    }
   }
 `;
 

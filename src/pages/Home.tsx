@@ -1,8 +1,17 @@
 import { styled } from 'styled-components';
 import Title from '../components/Home/Title';
 import Box from '../components/Home/Box';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(navbarColorStatus('main'));
+  }, []);
+
   return (
     <Container>
       <Content>
@@ -27,8 +36,13 @@ const Container = styled.div`
 
 const Content = styled.div`
   display: flex;
+  justify-content: center;
   flex-direction: column;
 
   width: 1200px;
   height: 100%;
+
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
 `;

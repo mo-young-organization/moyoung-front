@@ -25,7 +25,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [cinemaData, setCinemaData] = useState<CinemaDataProps>();
   const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
-  const [movieValue, setMovieValue] = useState('');
+  const [movieValue, setMovieValue] = useState(movieName);
+  // console.log(movieValue);
 
   const movieSearchHandler = e => {
     setMovieValue(e.target.value);
@@ -34,10 +35,14 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   // 검색창 돋보기 클릭 이벤트
   const movieSearchClickHandler = async e => {
     console.log('영화 검색 버튼 클릭');
-    setCinemaData(undefined);
+    if (movieValue === '') {
+      alert('영화를 입력해주세요');
+    } else {
+      setCinemaData(undefined);
 
-    const data = await movieSearchGet(movieValue, 3000);
-    setMovieData(data.data);
+      const data = await movieSearchGet(movieValue, 3000);
+      setMovieData(data.data);
+    }
   };
 
   const filterinFilterHandler = () => {
@@ -54,7 +59,7 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const dateNew = new Date();
   const month = dateNew.getMonth() + 1;
   const year = dateNew.getFullYear();
-  const today = dateNew.getDate();
+  const today = String(dateNew.getDate()).length !== 2 ? '0' + dateNew.getDate() : dateNew.getDate();
   const todayDate = `${year}-${month}-${today}`;
 
   const lat = '37.498';
@@ -65,12 +70,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
   const [lotte, setLotte] = useState(true);
   const [mega, setMega] = useState(true);
   const [cgv, setCgv] = useState(true);
-
   const [id, setId] = useState();
 
   // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
     console.log('cinemaModal 여기서 문제');
+    console.log(date);
     setId(movieId);
     const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
     setCinemaData(data.data);
@@ -98,15 +103,19 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     }
   };
 
-  const pressEnterKey = async (e: KeyboardEvent<HTMLTextAreaElement>) => {
-    setCinemaData(undefined);
-    if (e.shiftKey && e.key === 'Enter') {
-      return;
-    } else if (e.key === 'Enter') {
-      e.preventDefault();
+  const pressEnterKey = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (movieValue === '') {
+      alert('영화를 입력해주세요');
+    } else {
+      setCinemaData(undefined);
+      if (e.shiftKey && e.key === 'Enter') {
+        return;
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
 
-      const data = await movieSearchGet(movieValue, 3000);
-      setMovieData(data.data);
+        const data = await movieSearchGet(movieValue, 3000);
+        setMovieData(data.data);
+      }
     }
   };
 
@@ -114,12 +123,12 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
     if (id) {
       clickHandler(id);
     }
-  }, [lat, lon, dt, date, early, lotte, mega, cgv]);
+  }, [lat, lon, dt, date, early, lotte, mega, cgv, id]);
 
   return (
     <Background>
       <Content>
-        <div className="cancell-button" onClick={onClose}>
+        <div className="cancell-button" onClick={onClose} role="button">
           X
         </div>
         <FilterDiv>
@@ -128,8 +137,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
               type="text"
               title="검색창"
               placeholder="영화 제목을 검색해주세요"
-              defaultValue={movieName}
               onChange={movieSearchHandler}
+              defaultValue={movieName}
               onKeyPress={pressEnterKey}
             />
             <FilterSearchButton type="button" onClick={movieSearchClickHandler}>
@@ -240,7 +249,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
         <ModalPotal>
           {modalFilterOn && (
             <ModalFilter
-              setDate={setDate}
               setEarly={setEarly}
               setLotte={setLotte}
               setMega={setMega}
@@ -283,6 +291,7 @@ const Content = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
 
   .cancell-button {
+    cursor: pointer;
     color: white;
     font-size: 30px;
     margin-bottom: 20px;
@@ -291,7 +300,7 @@ const Content = styled.div`
 `;
 
 const FilterDiv = styled.div`
-  background-color: #f6f6f6;
+  background-color: var(--sub-color1);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -520,6 +529,15 @@ const ThumbnailDiv = styled.div<ThumbnailProps>`
 
 const ListContentUl = styled.ul`
   overflow: scroll;
+  /* ( 크롬, 사파리, 오페라, 엣지 ) 동작 */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  & {
+    -ms-overflow-style: none; /* 인터넷 익스플로러 */
+    scrollbar-width: none; /* 파이어폭스 */
+  }
+
   display: flex;
   flex-direction: column;
   align-items: center;

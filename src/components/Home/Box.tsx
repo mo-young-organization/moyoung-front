@@ -1,5 +1,7 @@
 import { styled } from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import { GiTheater } from 'react-icons/gi';
+import { PiUsersFour } from 'react-icons/pi';
 
 const Box = () => {
   const navigate = useNavigate();
@@ -10,17 +12,19 @@ const Box = () => {
   };
 
   const peoplelHandler = () => {
-    navigate('recruitmentlist')
+    navigate('recruitmentlist');
     console.log('사람 찾기');
   };
 
   return (
     <Container>
       <div className="box" onClick={theaterHandler}>
-        내 주변 영화관 찾기
+        <GiTheater />
+        <div className="text">내 주변 영화관 찾기</div>
       </div>
       <div className="box" onClick={peoplelHandler}>
-        영화 같이 볼 사람 찾기
+        <PiUsersFour />
+        <div className="text">영화 같이 볼 사람 찾기</div>
       </div>
     </Container>
   );
@@ -31,10 +35,17 @@ export default Box;
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  flex-grow: 2;
+  /* flex-grow: 2; */
+  @media all and (max-width: 1024px) {
+    justify-content: space-between;
+  }
 
   .box {
-    background-color: #cccccc;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--point-color);
 
     text-align: center;
 
@@ -43,5 +54,30 @@ const Container = styled.div`
     border-radius: 36px;
     margin: 40px;
     cursor: pointer;
+
+    > svg {
+      width: 172px;
+      height: 140px;
+      margin-bottom: 40px;
+      color: var(--sub-color1);
+    }
+
+    .text {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--sub-color1);
+    }
+
+    //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+    //태블릿
+    @media all and (max-width: 1024px) {
+      width: 335px;
+      height: 320px;
+      margin: 0px;
+
+      .text {
+        font-size: 24px;
+      }
+    }
   }
 `;

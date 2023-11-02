@@ -19,6 +19,7 @@ const PostForm = () => {
 
   const navigate = useNavigate();
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
+  console.log(runningTimeData);
 
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
@@ -69,8 +70,6 @@ const ContainerForm = styled.form`
 `;
 
 const Content = styled.div`
-  /* background-color: aqua; */
-
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -80,6 +79,12 @@ const Content = styled.div`
 
   ul {
     list-style: none;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    margin: 0px;
   }
 `;
 
@@ -96,7 +101,7 @@ const ButtonDiv = styled.div`
     width: 150px;
     border: none;
     border-radius: 6px;
-    background-color: #9f9f9f;
+    background-color: var(--main-color);
     color: white;
 
     font-size: 20px;

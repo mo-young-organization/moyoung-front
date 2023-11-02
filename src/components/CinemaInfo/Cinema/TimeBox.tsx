@@ -43,7 +43,11 @@ const ContentUl = styled.ul`
     height: 52px;
     border-radius: 4px;
     border: 1px solid #b6b6b6;
+    background-color: var(--point-color);
     padding: 12px 16px;
     margin: 12px 10px 0px 0px;
+
+    font-size: 20px;
+    font-weight: 500;
   }
 `;

@@ -18,11 +18,11 @@ jobs:
         
       - name: Install dependencies   
         run: yarn install
-        working-directory: ./public
+        working-directory: ./src
       
       - name: Generate build          
         run: yarn run build
-        working-directory: ./public
+        working-directory: ./src
       
       - name: Deploy                 
         env:
@@ -33,4 +33,4 @@ jobs:
             --region ap-northeast-2 \
             dist s3://ourecostory \
             --delete
-        working-directory: ./public
+        working-directory: ./src

@@ -1,19 +1,22 @@
 import { styled } from 'styled-components';
+import Title from '../components/Home/Title';
+import Box from '../components/Home/Box';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(navbarColorStatus('main'));
+  }, []);
+
   return (
     <Container>
-      <Title>
-        <div>
-          <h3>웹사이트 소개글</h3>
-        </div>
-        <div>
-          <h1>웹사이트 이름</h1>
-        </div>
-      </Title>
       <Content>
-        <div className='box'>내 주변 영화관 찾기</div>
-        <div className='box'>영화 같이 볼 사람 찾기</div>
+        <Title />
+        <Box />
       </Content>
     </Container>
   );
@@ -22,35 +25,24 @@ const Home = () => {
 export default Home;
 
 const Container = styled.div`
-  background-color: #EFEFEF;
+  background-color: var(--main-color);
   display: flex;
-  flex-direction: column;
 
-  width: 100vw;
-  height: 950px;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
 `;
 
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-`
-
 const Content = styled.div`
-  background-color: #EFEFEF;
-
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-grow: 2;
+  flex-direction: column;
 
-  .box{
-    background-color: #CCCCCC;
+  width: 1200px;
+  height: 100%;
 
-    width: 465px;
-    height: 440px;
-    margin: 40px;
+  @media all and (max-width: 1024px) {
+    width: 690px;
   }
-`
+`;

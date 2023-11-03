@@ -18,7 +18,7 @@ const CinemaPage = () => {
   const dateNew = new Date();
   const month = dateNew.getMonth() + 1;
   const year = dateNew.getFullYear();
-  const today = dateNew.getDate();
+  const today = String(dateNew.getDate()).length !== 2 ? '0' + dateNew.getDate() : dateNew.getDate();
   const todayDate = `${year}-${month}-${today}`;
 
   const params = useParams();
@@ -47,7 +47,7 @@ const CinemaPage = () => {
         <Search />
       </SearchDiv>
       <Content>{data && <MoviePoster data={data.movieInfo} />}</Content>
-      <div>
+      <FilterDiv>
         {data && (
           <MovieFilter
             setDate={setDate}
@@ -56,12 +56,15 @@ const CinemaPage = () => {
             setMega={setMega}
             setCgv={setCgv}
             setDt={setDt}
-            resultLength={data.cinemaInfo.length}
           />
         )}
-      </div>
+      </FilterDiv>
       <Content>
-        {data && data.cinemaInfo.length ? <CinemaBox data={data.cinemaInfo} /> : <NoMovie isSearch={false} />}
+        {data && data.cinemaInfo.length ? (
+          <CinemaBox data={data.cinemaInfo} resultLength={data.cinemaInfo.length} />
+        ) : (
+          <NoMovie isSearch={false} />
+        )}
       </Content>
     </Container>
   );
@@ -85,14 +88,29 @@ const SearchDiv = styled.div`
   align-items: center;
 
   width: 100%;
-  background-color: #efefef;
+  background-color: var(--sub-color2);
+`;
+
+const FilterDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #f6f6f6;
 `;
 
 const Content = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100%;
   background-color: white;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+  }
 `;
 
 // ********** 필터 적용을 어떻게 해야하지...?

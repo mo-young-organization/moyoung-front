@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import userStatusReduser from './reducers/userStatus';
-import cinemaNameReduser from './reducers/cinemaName';
+import navbarColorReduser from './reducers/navbarColor';
 
 const store = configureStore({
   reducer: {
     userStatus: userStatusReduser,
-    cinemaName: cinemaNameReduser,
+    navbarColor: navbarColorReduser,
   },
 });
 

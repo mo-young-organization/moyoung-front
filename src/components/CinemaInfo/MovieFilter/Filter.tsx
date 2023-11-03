@@ -4,10 +4,9 @@ import Cinema from './Cinema';
 import Time from './Time';
 import Distance from './Distance';
 import { styled } from 'styled-components';
-import MyLocation from './MyLocation';
 import { useState } from 'react';
 
-const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt, resultLength }) => {
+const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt }) => {
   const { register, handleSubmit, watch } = useForm<FilterFormValue>();
 
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -54,14 +53,9 @@ const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt, resultLength }) =>
   return (
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <ContentDiv>
-        <div>
-          <Cinema register={register} />
-          <Time register={register} />
-          <Distance setValue={setValue} value={value} />
-        </div>
-        <div>
-          <MyLocation resultLength={resultLength} />
-        </div>
+        <Cinema register={register} />
+        <Time register={register} />
+        <Distance setValue={setValue} value={value} />
       </ContentDiv>
       <ButtonDiv>
         <button>적용</button>
@@ -79,20 +73,24 @@ const ContainerForm = styled.form`
 
   width: 100%;
   height: 250px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 
 const ContentDiv = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
 
-  > div:first-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  > div:last-child {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 100%;
   }
 `;
 
@@ -101,13 +99,21 @@ const ButtonDiv = styled.div`
   flex-direction: column;
   justify-content: end;
 
-  width: 100px;
-
   > button {
+    border-radius: 4px;
+    width: 100px;
     height: 30px;
 
     background-color: transparent;
     border-radius: 20;
     cursor: pointer;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    display: flex;
+    align-items: end;
+    width: 100%;
   }
 `;

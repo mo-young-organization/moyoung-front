@@ -45,6 +45,12 @@ const Container = styled.div`
     font-weight: 700;
 
     margin-bottom: 36px;
+
+    //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+    //태블릿
+    @media all and (max-width: 1024px) {
+      font-size: 24px;
+    }
   }
 
   .bottom_explanation {

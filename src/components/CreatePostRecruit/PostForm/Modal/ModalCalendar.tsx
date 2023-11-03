@@ -5,22 +5,20 @@ const ModalCalendar = ({ setDate }) => {
   // 날짜 데이터
   const date = new Date();
   const todayWeak = date.getDay();
-  const today = date.getDate();
+  const today = date.getDate() + 10 >= 20 ? date.getDate() : `0${date.getDate()}`;
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  // console.log(year);
   const [clickMonth, setClickMonth] = useState(month);
-  // console.log(clickMonth);
   const [clickDay, setClickDay] = useState(today);
-  // console.log(clickDay);
 
   // 일수 가져오는 함수(1,2,3,4 ...)
   const getAlldate = (today: number, lastday: number) => {
     const dates = [];
 
     //초깃값 설정
-    dates[0] = today;
+    dates[0] = today[0] === '0' ? today[1] : today;
+    // dates[0] = today;
 
     for (let i = 1; i <= 13; i++) {
       today++;
@@ -36,8 +34,7 @@ const ModalCalendar = ({ setDate }) => {
     }
 
     //요일 정상적으로 뜨는지 확인해보자
-    // console.log(dates);
-
+    console.log(dates);
     return dates;
   };
 
@@ -71,7 +68,7 @@ const ModalCalendar = ({ setDate }) => {
   };
 
   // 함수 리턴 값을 이용하여 함수에 값을 담아주기
-  const CalendarDay = getAlldate(today, lastday);
+  const CalendarDay = getAlldate(+today, lastday);
   const CalendarWeak = getAllweak(todayWeak);
 
   // 배열안 객체로 관리
@@ -93,6 +90,7 @@ const ModalCalendar = ({ setDate }) => {
   // 날짜 클릭시 데이터 값 가져와서 상태 올리기(get요청이 새로 들어간다)
   useEffect(() => {
     const clickDate = `${year}-${clickMonth}-${clickDay}`;
+    console.log(clickDate);
     setDate(clickDate);
   }, [clickDay]);
 
@@ -104,13 +102,25 @@ const ModalCalendar = ({ setDate }) => {
     setCurIdx(idx);
     //일단 몇월인지 계산하는 조건문인데 조금 이상하지만 1일날 다시 테스트해보자 일단 해결
     if (CalendarDay[0] === 1) {
-      setClickDay(WeakRefs.current[idx]?.textContent);
+      setClickDay(
+        WeakRefs.current[idx]?.textContent.length !== 2
+          ? '0' + WeakRefs.current[idx]?.textContent
+          : WeakRefs.current[idx]?.textContent,
+      );
       setClickMonth(month);
     } else if (WeakRefs.current[idx]?.textContent < today) {
-      setClickDay(WeakRefs.current[idx]?.textContent);
+      setClickDay(
+        WeakRefs.current[idx]?.textContent.length !== 2
+          ? '0' + WeakRefs.current[idx]?.textContent
+          : WeakRefs.current[idx]?.textContent,
+      );
       setClickMonth(month + 1);
     } else {
-      setClickDay(WeakRefs.current[idx]?.textContent);
+      setClickDay(
+        WeakRefs.current[idx]?.textContent.length !== 2
+          ? '0' + WeakRefs.current[idx]?.textContent
+          : WeakRefs.current[idx]?.textContent,
+      );
       setClickMonth(month);
     }
   };

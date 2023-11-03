@@ -5,7 +5,7 @@ const Calendar = ({ setDate }) => {
   // 날짜 데이터
   const date = new Date();
   const todayWeak = date.getDay();
-  const today = date.getDate();
+  const today = date.getDate() + 10 >= 20 ? date.getDate() : `0${date.getDate()}`;
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
@@ -20,7 +20,7 @@ const Calendar = ({ setDate }) => {
     const dates = [];
 
     //초깃값 설정
-    dates[0] = today;
+    dates[0] = today[0] === '0' ? today[1] : today;
 
     for (let i = 1; i <= 13; i++) {
       today++;
@@ -71,7 +71,7 @@ const Calendar = ({ setDate }) => {
   };
 
   // 함수 리턴 값을 이용하여 함수에 값을 담아주기
-  const CalendarDay = getAlldate(today, lastday);
+  const CalendarDay = getAlldate(+today, lastday);
   const CalendarWeak = getAllweak(todayWeak);
 
   // 배열안 객체로 관리
@@ -165,6 +165,15 @@ const ContainerUl = styled.ul`
     border: none;
     background-color: transparent;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    // 달력 두줄 만들기 위해서 억지로 끼어맞췄는데 다른 방법이 있을거 같은데....
+    > button:not(:nth-child(7), :nth-child(14)) {
+      margin-right: 20px;
+    }
+  }
 `;
 
 const ContentLi = styled.li`
@@ -176,7 +185,7 @@ const ContentLi = styled.li`
   cursor: pointer;
 
   &.sat {
-    color: #0094ff !important;
+    color: #0094ff;
   }
 
   &.sun {
@@ -190,7 +199,14 @@ const ContentLi = styled.li`
 
   &.active {
     border-radius: 8px;
-    background-color: #e5e5e5;
+    color: var(--sub-color2);
+    background-color: var(--main-color);
+    &.sat {
+      color: #acdcff;
+    }
+    &.sun {
+      color: #ffa8a8;
+    }
   }
 
   .day {

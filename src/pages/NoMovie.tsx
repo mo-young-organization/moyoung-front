@@ -31,11 +31,11 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 
   &.true {
     width: 100%;
-    height: 1500px;
+    height: 100%;
   }
 
   &.false {

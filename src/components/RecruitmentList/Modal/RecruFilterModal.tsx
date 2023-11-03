@@ -9,7 +9,6 @@ import { useState } from 'react';
 
 const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThirties, setDistance, setSort }) => {
   const { register, handleSubmit, watch } = useForm<ListFilterForm>();
-
   const [value, setValue] = useState<number[]>([0, 1]);
 
   const distance = dt => {

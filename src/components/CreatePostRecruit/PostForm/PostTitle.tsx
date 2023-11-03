@@ -43,6 +43,22 @@ const Title = styled.div`
     font-weight: 300;
     margin-left: 24px;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    .post_title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .explanation {
+      color: #8b8b8b;
+      font-size: 16px;
+      font-weight: 300;
+      margin-left: 24px;
+    }
+  }
 `;
 
 const InputDiv = styled.div`
@@ -66,6 +82,12 @@ const InputDiv = styled.div`
 
     &:focus {
       outline: none;
+    }
+
+    //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+    //태블릿
+    @media all and (max-width: 1024px) {
+      width: 510px;
     }
   }
 `;

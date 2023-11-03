@@ -1,12 +1,23 @@
 import { styled } from 'styled-components';
 import Search from '../components/MovieSearch/Search';
 import MovieTopFive from '../components/MovieSearch/MovieTopFive';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const MovieSearch = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(navbarColorStatus('navy'));
+  }, []);
+
   return (
     <Container>
-      <Search />
-      <MovieTopFive />
+      <Content>
+        <Search />
+        <MovieTopFive />
+      </Content>
     </Container>
   );
 };
@@ -20,5 +31,23 @@ const Container = styled.div`
   justify-content: space-around;
   width: 100%;
   height: 100%;
-  background-color: #efefef;
+  background-color: var(--sub-color2);
+`;
+
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 1032px;
+  height: 100%;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 690px;
+
+    /* background-color: red; */
+  }
 `;

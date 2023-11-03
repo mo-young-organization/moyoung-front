@@ -1,16 +1,28 @@
 import { styled } from 'styled-components';
+import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 import Recruitment from '../components/RecruitmentList/Recruitment';
-import { useParams } from 'react-router-dom';
+import useWindowSizeCustom from '../util/WindowSizeCustom';
 
 const RecruitmentListPage = () => {
-  const params = useParams();
-  console.log(params);
+  const dispatch = useDispatch();
+  const { width } = useWindowSizeCustom();
+  const [size, setSize] = useState(20);
+  useEffect(() => {
+    dispatch(navbarColorStatus('navy'));
+    if (width > 1023) {
+      setSize(20);
+    } else {
+      setSize(15);
+    }
+  }, [width]);
 
   return (
     <Container>
       {/* <Recruitment dummyData={dummyData} /> */}
-      <Recruitment />
+      <Recruitment size={size} />
     </Container>
   );
 };
@@ -24,7 +36,7 @@ const Container = styled.div`
 
   width: 100%;
   height: 100%;
-  background-color: white;
+  background-color: var(--main-color);
 
   display: flex;
   justify-content: center;

@@ -123,10 +123,25 @@ const Container = styled.header`
     height: 30px;
 
     cursor: pointer;
+
+    //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+    //모바일
+    @media all and (max-width: 767px) {
+      width: 100px;
+      height: 24px;
+    }
   }
 
-  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
-  //태블릿
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    height: 62px;
+
+    .logo {
+      width: 100px;
+      height: 24px;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -137,8 +152,16 @@ const Content = styled.div`
   width: 1200px;
   margin-bottom: 12px;
 
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
   @media all and (max-width: 1024px) {
     width: 690px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 315px;
   }
 `;
 

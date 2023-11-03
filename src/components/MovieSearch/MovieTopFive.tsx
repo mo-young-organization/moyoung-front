@@ -73,6 +73,14 @@ const Container = styled.div`
   @media all and (max-width: 1024px) {
     width: 690px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    margin: 0px;
+
+    justify-content: flex-start;
+  }
 `;
 
 const Title = styled.div`
@@ -85,6 +93,12 @@ const Title = styled.div`
   //태블릿
   @media all and (max-width: 1024px) {
     margin: 0px 0px 40px 15px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    margin: 0px 0px 40px 0px;
   }
 `;
 
@@ -103,8 +117,12 @@ const Content = styled.div`
     }
     width: 100%;
     overflow-x: scroll;
+  }
 
-    /* background-color: blue; */
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 320px;
   }
 `;
 
@@ -128,6 +146,18 @@ const MovieBox = styled.div<ImgProps>`
     font-size: 38px;
     text-shadow: 4px 6px 4px #000000;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 108px;
+    height: 152px;
+    margin: 5px;
+
+    .number {
+      font-size: 28px;
+    }
+  }
 `;
 
 const MovieTitle = styled.div`
@@ -135,4 +165,10 @@ const MovieTitle = styled.div`
   line-height: 23px;
   font-weight: 500;
   text-align: center;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    font-size: 14px;
+  }
 `;

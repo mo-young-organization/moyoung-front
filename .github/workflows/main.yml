@@ -33,4 +33,4 @@ jobs:
             --region ap-northeast-2 \
             build s3://moyoung-toy-project \
             --delete
-        working-directory: ./dist
+        working-directory: ./src

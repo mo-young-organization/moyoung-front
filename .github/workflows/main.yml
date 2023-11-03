@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate build
         run: yarn run build
-        working-directory: ./
+        working-directory: ./src
 
       - name: Deploy
         env:

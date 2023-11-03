@@ -81,6 +81,13 @@ const OauthButton = styled.div`
   height: 64px;
   border-radius: 8px;
 
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 336px;
+    height: 64px;
+  }
+
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
   @media all and (max-width: 768px) {
@@ -125,6 +132,12 @@ const Content = styled.div`
     font-size: 20px;
     font-weight: 500;
     color: #525252;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    justify-content: space-around;
   }
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용

@@ -25,8 +25,8 @@ const LeftTitle = () => {
 export default LeftTitle;
 
 const Container = styled.div`
-  width: 430px;
-  height: 376px;
+  width: 405px;
+  height: 365px;
 
   .logo {
     cursor: pointer;
@@ -41,6 +41,24 @@ const Container = styled.div`
   }
   .text {
     color: var(--main-color);
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 336px;
+    height: 205px;
+
+    .logo {
+      cursor: pointer;
+      width: 217px;
+      height: 53px;
+      margin-bottom: 15px;
+    }
+
+    .title {
+      font-size: 24px;
+    }
   }
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
@@ -58,7 +76,6 @@ const Container = styled.div`
 
     .title {
       font-size: 16px;
-      font-weight: 700;
     }
   }
 `;

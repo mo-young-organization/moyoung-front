@@ -29,6 +29,18 @@ const Container = styled.div`
     margin-bottom: 20px;
   }
 
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 336px;
+    height: 224px;
+    margin-left: 0px;
+
+    .login {
+      display: none;
+    }
+  }
+
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
   @media all and (max-width: 768px) {

@@ -14,7 +14,7 @@ const MoviePoster = ({ data }) => {
           <div>
             <MovieTitle>
               <div className="kr-title">{data.name}</div>
-              {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
+              <div className="en-title">Spider-Man: Across the Spider-Verse</div>
             </MovieTitle>
             <MovieExplanation>
               <div className="first">영화설명</div>
@@ -44,6 +44,12 @@ const Content = styled.div`
   @media all and (max-width: 1024px) {
     width: 690px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 320px;
+  }
 `;
 
 const MovieImg = styled.div<ImgProps>`
@@ -62,6 +68,15 @@ const MovieImg = styled.div<ImgProps>`
     height: 224px;
 
     margin: 0px 5px 0px 0px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 96px;
+    height: 134px;
+    border-radius: 4px;
+    margin-right: 0px 5px 0px 0px;
   }
 `;
 
@@ -86,6 +101,20 @@ const MovieTitle = styled.div`
 
     .en-title {
       font-size: 16px;
+      font-weight: 500;
+    }
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    .kr-title {
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .en-title {
+      font-size: 14px;
       font-weight: 500;
     }
   }
@@ -136,6 +165,12 @@ const MovieExplanation = styled.div`
       width: 700px;
     }
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    display: none;
+  }
 `;
 
 const InfoDiv = styled.div`
@@ -143,4 +178,10 @@ const InfoDiv = styled.div`
   flex-direction: column;
 
   justify-content: space-between;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 220px;
+  }
 `;

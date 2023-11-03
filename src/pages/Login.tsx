@@ -44,4 +44,23 @@ const Content = styled.div`
   justify-content: center;
 
   background-color: white;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    width: 688px;
+    height: 671px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 320px;
+    height: 500px;
+  }
 `;

@@ -59,7 +59,6 @@ const ContentWrapper = styled.div`
   align-items: center;
   justify-content: center;
 
-  /* background-color: #efefef; */
   min-height: 100vh;
   width: 100%;
 `;

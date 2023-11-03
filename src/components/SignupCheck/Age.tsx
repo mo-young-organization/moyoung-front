@@ -5,7 +5,7 @@ const Age = ({ register, errors }: SignupProps) => {
   const ageArr = [
     { id: 'age10', age: '10대' },
     { id: 'age20', age: '20대' },
-    { id: 'age30', age: '30대' },
+    { id: 'age30', age: '30대 이상' },
   ];
 
   return (
@@ -36,5 +36,13 @@ const Container = styled.div`
     display: flex;
     padding: 0px;
     list-style: none;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    > ul {
+      flex-direction: column;
+    }
   }
 `;

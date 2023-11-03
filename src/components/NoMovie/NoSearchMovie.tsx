@@ -26,4 +26,17 @@ const Container = styled.div`
     font-size: 28px;
     font-weight: 500;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    > svg {
+      margin-top: 40px;
+      width: 100px;
+      height: 100px;
+    }
+    > div {
+      font-size: 20px;
+    }
+  }
 `;

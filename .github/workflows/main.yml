@@ -2,7 +2,7 @@ name: moyoung
 on:
   push:
     branches:
-      - FE_dev
+      - master
 env:
   VITE_BASE_API: ${{ secrets.VITE_BASE_API }}
 

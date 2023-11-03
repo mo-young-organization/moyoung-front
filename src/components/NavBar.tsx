@@ -27,7 +27,7 @@ const NavBar = ({ color }) => {
 
   //로그아웃 버튼 이벤트
   const logoutHandler = () => {
-    console.log('로그아웃이구만유');
+    console.log('로그아웃이구만유우');
     removeCookie('token', { path: '/' });
     removeCookie('refreshToken', { path: '/' });
     window.sessionStorage.clear();

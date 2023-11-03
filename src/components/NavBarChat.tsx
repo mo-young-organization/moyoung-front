@@ -4,8 +4,15 @@ import { useEffect, useState } from 'react';
 
 import { getChatList } from '../api/api';
 
+type PartChatList = {
+  lastMessage: null | string;
+  lastMessageAt: string;
+  recruitingArticleId: number;
+  unreadCount: number;
+};
+
 const NavBarChat = () => {
-  const [partChatList, setPartChatList] = useState<string[] | null>(null);
+  const [partChatList, setPartChatList] = useState<PartChatList[] | null>(null);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const getChatData = async () => {
     const data = await getChatList();

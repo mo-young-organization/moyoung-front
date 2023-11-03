@@ -18,11 +18,11 @@ jobs:
 
       - name: Install dependencies
         run: yarn install
-        working-directory: ./src
+        working-directory: ./moyoung
 
       - name: Generate build
         run: yarn run build
-        working-directory: ./src
+        working-directory: ./moyoung
 
       - name: Deploy
         env:
@@ -33,4 +33,4 @@ jobs:
             --region ap-northeast-2 \
             build s3://moyoung-toy-project \
             --delete
-        working-directory: ./src
+        working-directory: ./moyoung

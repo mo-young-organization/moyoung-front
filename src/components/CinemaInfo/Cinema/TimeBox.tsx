@@ -50,4 +50,22 @@ const ContentUl = styled.ul`
     font-size: 20px;
     font-weight: 500;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    .theater {
+      font-size: 12px;
+    }
+
+    .time {
+      width: 60px;
+      height: 32px;
+      padding: 7px 10px;
+      margin: 12px 8px 0px 0px;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
 `;

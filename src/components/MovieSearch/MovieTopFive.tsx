@@ -34,7 +34,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
   return (
     <Container>
       <Title className={classname}>
-        <div className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</div>
+        <span className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</span>
       </Title>
       <Content>
         {topFiveData?.ranks.map((el, idx) => (
@@ -53,7 +53,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
 export default MovieTopFive;
 
 const Container = styled.div`
-  width: 100%;
+  width: 1032px;
   height: 440px;
 
   display: flex;
@@ -86,13 +86,13 @@ const Container = styled.div`
 const Title = styled.div`
   font-size: 28px;
   line-height: 33px;
-  border-bottom: 2px solid;
-  margin: 0px 0px 40px 190px;
 
-  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
-  //태블릿
-  @media all and (max-width: 1024px) {
-    margin: 0px 0px 40px 15px;
+  text-align: center;
+
+  width: 100%;
+
+  > span {
+    border-bottom: 2px solid;
   }
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용

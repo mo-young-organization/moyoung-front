@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import PermIdentityOutlinedIcon from '@mui/icons-material/PermIdentityOutlined';
 import { BsChatLeftDots } from 'react-icons/bs';
-import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
+import { RiArrowDownSLine, RiArrowUpSLine, RiMenuFill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getCookie, removeCookie } from '../util/Cookie';
@@ -10,11 +10,18 @@ import { ReduxType } from '../store/store';
 import { userDelete } from '../api/api';
 import WhiteLogo from '../assets/img/moyoungwhitelogo.png';
 import NavBarChat from './NavBarChat';
+import useWindowSizeCustom from '../util/WindowSizeCustom';
 
 const NavBar = ({ color }) => {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
   const [onClick, setOnClick] = useState(false);
+
+  // *********** 모바일 환경인지 width와 useState로 하는거야!!
+  // 생각해본데 모달로 해야할거 같기도하고? 이미 사이드바가 상단으로 고정이 되어있어서
+  //  사이드로 가져오는게 생각이 안떠오르네 조금 해놓으려고 했는데 ㅎㅎㅎ
+  const { width } = useWindowSizeCustom();
+  const [isMobile, setIsMobile] = useState(false);
 
   const logoClickHandler = () => {
     navigate('/');
@@ -46,6 +53,11 @@ const NavBar = ({ color }) => {
     setIsLogin(false);
   };
 
+  // ************ 메뉴바 핸들러
+  const mobileSideMenuBarHandler = () => {
+    console.log('메뉴바 클릭');
+  };
+
   const dropDownMenuArr = [
     { key: '로그아웃', onClick: logoutHandler },
     { key: '회원탈퇴', onClick: userDeleteHandler },
@@ -68,6 +80,17 @@ const NavBar = ({ color }) => {
     }
   }, [refreshToken, displayName]);
 
+  // *************************이게 useEffect사용해서 모바일인지 ture/false나눈거야!!
+  useEffect(() => {
+    if (width < 767) {
+      console.log('모바일환경');
+      setIsMobile(true);
+    } else {
+      console.log('pc혹은 태블릿 환경');
+      setIsMobile(false);
+    }
+  }, [width]);
+
   return (
     <Container color={color}>
       <Content color={color}>
@@ -76,23 +99,29 @@ const NavBar = ({ color }) => {
         </div>
         <UserDiv>
           {isLogin ? (
-            <LoginSuccessDiv>
-              <NavBarChat />
-              <div>
-                <div role="button" className="login text" onClick={() => setOnClick(!onClick)}>
-                  <PermIdentityOutlinedIcon />
-                  {displayName}
-                  {onClick ? <RiArrowUpSLine className="arrow" /> : <RiArrowDownSLine className="arrow" />}
+            isMobile ? (
+              <MobileMenuButton onClick={mobileSideMenuBarHandler}>
+                <RiMenuFill />
+              </MobileMenuButton>
+            ) : (
+              <LoginSuccessDiv>
+                <NavBarChat />
+                <div>
+                  <div role="button" className="login text" onClick={() => setOnClick(!onClick)}>
+                    <PermIdentityOutlinedIcon />
+                    {displayName}
+                    {onClick ? <RiArrowUpSLine className="arrow" /> : <RiArrowDownSLine className="arrow" />}
+                  </div>
+                  <DropDownUl role="button" className={onClick ? 'drop-menu' : 'none'}>
+                    {dropDownMenuArr.map(el => (
+                      <li onClick={el.onClick} key={el.key}>
+                        {el.key}
+                      </li>
+                    ))}
+                  </DropDownUl>
                 </div>
-                <DropDownUl role="button" className={onClick ? 'drop-menu' : 'none'}>
-                  {dropDownMenuArr.map(el => (
-                    <li onClick={el.onClick} key={el.key}>
-                      {el.key}
-                    </li>
-                  ))}
-                </DropDownUl>
-              </div>
-            </LoginSuccessDiv>
+              </LoginSuccessDiv>
+            )
           ) : (
             <div className="login text" onClick={loginClickHandler}>
               <PermIdentityOutlinedIcon />
@@ -235,4 +264,18 @@ const LoginSuccessDiv = styled.div`
 const DropDownUl = styled.ul`
   display: flex;
   flex-direction: column;
+`;
+
+const MobileMenuButton = styled.button`
+  border: none;
+  background-color: transparent;
+
+  width: 20px;
+  height: 20px;
+
+  > svg {
+    width: 20px;
+    height: 20px;
+    color: var(--sub-color2);
+  }
 `;

@@ -21,6 +21,10 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
+  > svg {
+    margin-top: 40px;
+  }
+
   > div {
     margin-top: 30px;
     font-size: 28px;

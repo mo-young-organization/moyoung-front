@@ -117,6 +117,14 @@ const InFilterForm = styled.form`
   width: 580px;
   height: 360px;
   border-radius: 12px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 310px;
+    height: 420px;
+    border-radius: 8px;
+  }
 `;
 
 const InFilterDiv = styled.div`
@@ -154,6 +162,12 @@ const InFilterDiv = styled.div`
       font-weight: 500;
       cursor: pointer;
     }
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 280px;
   }
 `;
 

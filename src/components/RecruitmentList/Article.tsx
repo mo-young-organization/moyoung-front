@@ -13,6 +13,8 @@ import Fifteen from '../../assets/img/15years.svg';
 import Eighteen from '../../assets/img/18years.svg';
 import { BsGenderFemale, BsGenderMale } from 'react-icons/bs';
 
+import { postEnterChat } from '../../api/api';
+
 export type ArticleProps = {
   data: {
     age: string;
@@ -65,12 +67,13 @@ const Article = ({ data }: ArticleProps) => {
   const navigate = useNavigate();
   const userStatus = getCookie('refreshToken');
 
-  const participateHandler = () => {
+  const participateHandler = async (id: number) => {
     // 회원만 입장할 수 있도록 유효성 검사
     if (!userStatus) {
       alert('회원만 사용이 가능합니다.');
       navigate('/login');
     } else {
+      await postEnterChat(id);
       openChatModal();
     }
   };
@@ -145,7 +148,7 @@ const Article = ({ data }: ArticleProps) => {
               <li>{data.gender}</li>
               <li>{data.age}</li>
             </ul>
-            <button type="button" onClick={participateHandler}>
+            <button type="button" onClick={() => participateHandler(data.recruitingArticleId)}>
               <span>참여하기</span>
               <span>
                 {data.currentNum}/{data.maxNum}

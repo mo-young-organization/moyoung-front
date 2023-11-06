@@ -191,3 +191,12 @@ export const getRecruitData = async (id: number) => {
     console.log(error);
   }
 };
+
+// 채팅방 입장 post 요청
+export const postEnterChat = async (id: number) => {
+  try {
+    await instance.post(`recruit/${id}/enter`);
+  } catch (error) {
+    console.log(error);
+  }
+};

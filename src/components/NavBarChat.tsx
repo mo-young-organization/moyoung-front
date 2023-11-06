@@ -75,6 +75,7 @@ const NavBarChat = () => {
 
 const ChatroomListWrapper = styled.ul`
   position: absolute;
+  z-index: 999;
   right: 150px;
   top: 100px;
   border-radius: 10px;

@@ -74,7 +74,7 @@ const ChatroomListWrapper = styled.ul`
   top: 100px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px 1px #cccccc;
-  min-width: 400px;
+  min-width: 350px;
   min-height: 80px;
   background-color: #d4e3ff;
   list-style: none;

@@ -181,3 +181,13 @@ export const getChatList = async () => {
     console.log(error);
   }
 };
+
+// 개별 모집글 데이터 불러오기 get 요청
+export const getRecruitData = async (id: number) => {
+  try {
+    const data = await instance.get(`recruit/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

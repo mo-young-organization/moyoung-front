@@ -3,7 +3,7 @@ import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
-import { getChatList } from '../api/api';
+import { getChatList, getRecruitData } from '../api/api';
 
 type TPartChatList = {
   cinemaBrand: string;
@@ -31,6 +31,11 @@ const NavBarChat = () => {
     setIsListOpen(!isListOpen);
   };
 
+  const onChatroomClickHandler = async (id: number) => {
+    const data = await getRecruitData(id);
+    console.log(data.data);
+  };
+
   useEffect(() => {
     getChatData();
   }, [isListOpen]);
@@ -46,7 +51,7 @@ const NavBarChat = () => {
         <ChatroomListWrapper>
           {partChatList &&
             partChatList.map(el => (
-              <Chatroom>
+              <Chatroom key={el.recruitingArticleId} onClick={() => onChatroomClickHandler(el.recruitingArticleId)}>
                 <img className="thumbnail" src={el.movieThumbnailUrl} alt="영화 썸네일 이미지" />
                 <ChatRoomInfoWrapper>
                   <div className="title">{el.title}</div>

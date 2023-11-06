@@ -126,7 +126,7 @@ const Article = ({ data }: ArticleProps) => {
 
   return (
     <LiContainer onMouseOver={handleMouseOver} onMouseOut={handleMouseOut} $posterImg={data.movieThumbnailUrl}>
-      {isChatOpen && <ChatModal closeChatModal={closeChatModal} recruitData={data} />}
+      {isChatOpen && <ChatModal closeChatModal={closeChatModal} recruitId={data.recruitingArticleId} />}
       {isHover ? (
         <OutContent className="hover out">
           <MovieTitle>

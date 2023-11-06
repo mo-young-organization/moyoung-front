@@ -117,7 +117,7 @@ const ContentUl = styled.ul`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
   }
 `;
@@ -149,7 +149,7 @@ const LiContentDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     display: flex;
     flex-direction: column;
   }
@@ -194,7 +194,7 @@ const MovieInfoDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     flex-direction: row;
     margin-bottom: 10px;
     width: 100%;
@@ -230,7 +230,7 @@ const TitleDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     .img {
       display: block;
     }
@@ -253,7 +253,7 @@ const BoxUl = styled.ul`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     padding: 10px 0px 0px 0px;
     border-left: 0px;
     border-top: 1px solid #e1e1e1;
@@ -303,7 +303,7 @@ const BoxLis = styled.li`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     padding: 7px 16px;
     height: auto;
     border-radius: 20px;

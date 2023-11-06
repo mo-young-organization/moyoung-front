@@ -126,7 +126,7 @@ const Container = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     align-items: start;
     flex-direction: column;
     width: 208px;
@@ -175,7 +175,7 @@ const Content = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     .input {
       width: 208px;
       height: 32px;
@@ -196,7 +196,7 @@ const DuplicateButton = styled.button`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     margin: 0px;
   }
 `;

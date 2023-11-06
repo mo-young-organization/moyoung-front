@@ -177,7 +177,7 @@ const ContainerUl = styled.ul`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     border-bottom: solid 2px #dcdcdc;
     height: 38px;
 
@@ -238,7 +238,7 @@ const ContentLi = styled.li`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 44px;
     height: 38px;
 

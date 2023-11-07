@@ -6,6 +6,7 @@ import { styled } from 'styled-components';
 import { cinemaGet } from '../../../../api/api';
 import { movieSearchGet } from '../../../../api/api';
 import { LiaSearchSolid } from 'react-icons/lia';
+import { BiFilterAlt } from 'react-icons/bi';
 import { CinemaDataProps, ThumbnailProps } from './type';
 
 import all from '../../../../assets/img/all.svg';
@@ -144,8 +145,8 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
             <FilterSearchButton type="button" onClick={movieSearchClickHandler}>
               <LiaSearchSolid />
             </FilterSearchButton>
-            <button type="button" onClick={filterinFilterHandler}>
-              필터
+            <button type="button" className={'filter-button'} onClick={filterinFilterHandler}>
+              <BiFilterAlt />
             </button>
           </SearchDiv>
           {cinemaData !== undefined ? (
@@ -268,7 +269,6 @@ const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPick
 export default CinemaModal;
 
 const Background = styled.div`
-  /* overflow: scroll; */
   height: 100vh;
   width: 100vw;
 
@@ -297,6 +297,14 @@ const Content = styled.div`
     margin-bottom: 20px;
     width: 580px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    .cancell-button {
+      width: 360px;
+    }
+  }
 `;
 
 const FilterDiv = styled.div`
@@ -309,6 +317,13 @@ const FilterDiv = styled.div`
 
   width: 580px;
   height: 800px;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 360px;
+    height: 578px;
+  }
 `;
 
 const AppButton = styled.div`
@@ -325,6 +340,14 @@ const AppButton = styled.div`
     padding: 8px 16px;
     margin: 12px 10px 0px 0px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    > button {
+      margin: 12px 0px 0px 0px;
+    }
+  }
 `;
 
 const CinemaModalContent = styled.div`
@@ -340,6 +363,12 @@ const CinemaModalContent = styled.div`
 
   border-radius: 8px;
   padding: 20px 28px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 320px;
+  }
 `;
 
 const CalendarDiv = styled.div`
@@ -349,9 +378,18 @@ const CalendarDiv = styled.div`
   margin-bottom: 30px;
   width: 445px;
   height: 100px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 280px;
+    height: 50px;
+  }
 `;
 
 const SearchDiv = styled.div`
+  display: flex;
+  align-items: center;
   position: relative;
   width: 520px;
   height: 50px;
@@ -374,6 +412,46 @@ const SearchDiv = styled.div`
 
     cursor: pointer;
   }
+
+  .filter-button {
+    border: none;
+    background-color: transparent;
+    color: var(--sub-color2);
+
+    > svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+    height: 45px;
+
+    > input {
+      width: 270px;
+      height: 45px;
+      padding: 0px 55px 0px 15px;
+    }
+
+    > button {
+      width: 40px;
+      height: 40px;
+    }
+
+    .filter-button {
+      border: none;
+      background-color: transparent;
+      color: var(--sub-color2);
+
+      > svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
 `;
 
 const FilterSearchButton = styled.button`
@@ -391,6 +469,12 @@ const FilterSearchButton = styled.button`
     }
     width: 24px;
     height: 24px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    right: 55px;
   }
 `;
 
@@ -436,7 +520,6 @@ const RightDiv = styled.div`
 `;
 
 const CinemaContentDiv = styled.div`
-  /* background-color: pink; */
   overflow: scroll;
 
   -ms-overflow-style: none; /* 인터넷 익스플로러 */
@@ -448,6 +531,13 @@ const CinemaContentDiv = styled.div`
 
   width: 455px;
   height: 360px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 290px;
+    height: 190px;
+  }
 `;
 
 // -----cinemaBox
@@ -476,6 +566,11 @@ const HeadDiv = styled.div`
   width: 100%;
   margin-bottom: 8px;
 
+  > div {
+    display: flex;
+    align-items: center;
+  }
+
   .area {
     font-size: 16px;
     font-weight: 700;
@@ -486,6 +581,26 @@ const HeadDiv = styled.div`
     font-size: 14px;
     font-weight: 300;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+    align-items: start;
+
+    > div {
+      display: flex;
+      align-items: center;
+    }
+
+    .area {
+      font-size: 16px;
+    }
+
+    .address {
+      font-size: 12px;
+    }
+  }
 `;
 
 const ContentUl = styled.ul`
@@ -494,6 +609,12 @@ const ContentUl = styled.ul`
   width: 100%;
   border-radius: 16px;
   padding: 16px 40px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    border-radius: 8px;
+  }
 `;
 
 // ------TimeBox
@@ -510,12 +631,31 @@ const ContentLis = styled.li`
     height: 33px;
     border-radius: 8px;
     border: 1px solid #b6b6b6;
+    background-color: var(--point-color);
     padding: 8px 16px;
     margin: 12px 10px 0px 0px;
   }
 
   button {
     cursor: pointer;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    .theater {
+      font-size: 12px;
+    }
+
+    .time {
+      width: 60px;
+      height: 32px;
+      padding: 7px 10px;
+      margin: 12px 8px 0px 0px;
+
+      font-size: 14px;
+      font-weight: 500;
+    }
   }
 `;
 
@@ -548,6 +688,12 @@ const ListContentUl = styled.ul`
 
   background-color: white;
   list-style: none;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+  }
 `;
 
 const BoxLi = styled.li`
@@ -558,6 +704,12 @@ const BoxLi = styled.li`
 
   padding: 25px 16px;
   margin: 12px 0px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 300px;
+  }
 `;
 
 const LiContentDiv = styled.div`

@@ -19,7 +19,6 @@ const FormCheck = () => {
     formState: { errors },
   } = useForm<SignupFormValue>();
 
-
   const [중복확인, set중복확인] = useState(false);
   const [isNickOverlap, setIsNickOverlap] = useState(false);
   const navigate = useNavigate();
@@ -87,17 +86,50 @@ const ContainerForm = styled.form`
   .content-gender {
     margin: 60px 0px;
   }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 512px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+    width: 208px;
+    height: 510px;
+
+    .font {
+      font-size: 14px;
+    }
+
+    .button-check {
+      width: 100%;
+      align-items: end;
+      justify-content: end;
+    }
+  }
 `;
 
 const CompletButton = styled.button`
-  background-color: #b8b8b8;
+  background-color: var(--main-color);
   color: #ffffff;
   width: 150px;
   height: 50px;
 
   border: none;
-  border-radius: 12px;
+  border-radius: 6px;
 
   font-size: 20px;
   font-weight: 700;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 97px;
+    height: 35px;
+
+    font-size: 14px;
+  }
 `;

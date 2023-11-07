@@ -40,6 +40,16 @@ const Container = styled.div`
     justify-content: space-between;
   }
 
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
   .box {
     display: flex;
     flex-direction: column;
@@ -77,6 +87,27 @@ const Container = styled.div`
 
       .text {
         font-size: 24px;
+      }
+    }
+
+    //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+    //모바일
+    @media all and (max-width: 767px) {
+      display: flex;
+      flex-direction: column;
+      border-radius: 16px;
+
+      width: 208px;
+      height: 198px;
+
+      > svg {
+        width: 100px;
+        height: 90px;
+        margin-bottom: 20px;
+      }
+
+      .text {
+        font-size: 20px;
       }
     }
   }

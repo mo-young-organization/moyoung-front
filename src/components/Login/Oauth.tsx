@@ -51,6 +51,25 @@ const Container = styled.div`
     background-color: #ffffff;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.16);
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 240px;
+    height: 180px;
+
+    .kakao-div {
+      width: 100%;
+    }
+
+    .naver-div {
+      width: 100%;
+    }
+
+    .google-div {
+      width: 100%;
+    }
+  }
 `;
 
 const OauthButton = styled.div`
@@ -61,6 +80,21 @@ const OauthButton = styled.div`
   width: 328px;
   height: 64px;
   border-radius: 8px;
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    width: 336px;
+    height: 64px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 240px;
+    height: 52px;
+    border-radius: 4px;
+  }
 `;
 
 const Content = styled.div`
@@ -98,5 +132,32 @@ const Content = styled.div`
     font-size: 20px;
     font-weight: 500;
     color: #525252;
+  }
+
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    justify-content: space-around;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    justify-content: space-around;
+
+    > div {
+      width: 170px;
+      text-align: center;
+    }
+
+    .kakao_start {
+      font-size: 14px;
+    }
+    .naver_start {
+      font-size: 14px;
+    }
+    .google_start {
+      font-size: 14px;
+    }
   }
 `;

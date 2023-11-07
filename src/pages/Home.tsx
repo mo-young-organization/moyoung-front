@@ -42,7 +42,15 @@ const Content = styled.div`
   width: 1200px;
   height: 100%;
 
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
   @media all and (max-width: 1024px) {
     width: 690px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
   }
 `;

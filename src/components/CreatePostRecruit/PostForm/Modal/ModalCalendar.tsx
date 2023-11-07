@@ -181,6 +181,18 @@ const ContainerUl = styled.ul`
   > button:not(:nth-child(7), :nth-child(14)) {
     margin-right: 20px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    border-bottom: solid 2px #dcdcdc;
+    height: 38px;
+
+    // 달력 두줄 만들기 위해서 억지로 끼어맞췄는데 다른 방법이 있을거 같은데....
+    > button:not(:nth-child(7), :nth-child(14)) {
+      margin-right: 2px;
+    }
+  }
 `;
 
 const ContentLi = styled.li`
@@ -214,5 +226,24 @@ const ContentLi = styled.li`
   .day {
     font-weight: 700;
     font-size: 14px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 36px;
+    height: 34px;
+
+    .weak {
+      display: none;
+    }
+
+    &:hover {
+      border-radius: 4px;
+    }
+
+    &.active {
+      border-radius: 4px;
+    }
   }
 `;

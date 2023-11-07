@@ -67,6 +67,20 @@ const ContainerUl = styled.ul`
       width: 690px;
     }
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+
+    > li:last-child {
+      margin-bottom: 52px;
+    }
+
+    > div {
+      width: 320px;
+    }
+  }
 `;
 
 const ContentLi = styled.li`
@@ -78,6 +92,13 @@ const ContentLi = styled.li`
   @media all and (max-width: 1024px) {
     width: 690px;
     margin: 52px 0px 0px 0px;
+  }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+    margin: 30px 0px 0px 0px;
   }
 `;
 
@@ -107,6 +128,21 @@ const HeadDiv = styled.div`
     font-weight: 300;
     line-height: 19px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+    align-items: start;
+
+    .area {
+      font-size: 16px;
+    }
+
+    .address {
+      font-size: 12px;
+    }
+  }
 `;
 
 const ContentUl = styled.ul`
@@ -114,4 +150,11 @@ const ContentUl = styled.ul`
 
   border-radius: 16px;
   padding: 40px 88px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    border-radius: 8px;
+    padding: 24px 40px;
+  }
 `;

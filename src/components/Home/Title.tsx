@@ -32,9 +32,13 @@ const Container = styled.div`
       color: var(--sub-color2);
     }
 
-    //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+    //브라우저 창 width가 767px보다 작아지는 순간부터 적용
     //모바일
-    @media all and (max-width: 768px) {
+    @media all and (max-width: 767px) {
+      margin-top: 40px;
+
+      width: 200px;
+      text-align: center;
       font-size: 20px;
       font-weight: 700;
       color: var(--sub-color2);
@@ -49,5 +53,12 @@ const Container = styled.div`
     width: 460px;
     height: 115px;
     margin-bottom: 30px;
+
+    //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+    //모바일
+    @media all and (max-width: 767px) {
+      width: 200px;
+      height: 48px;
+    }
   }
 `;

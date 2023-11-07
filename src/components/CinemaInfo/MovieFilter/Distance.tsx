@@ -56,6 +56,17 @@ const Container = styled.div`
     font-size: 20px;
     font-weight: 700;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    flex-direction: column;
+
+    > div {
+      font-size: 14px;
+      font-weight: 700;
+    }
+  }
 `;
 
 const DistanceSlider = styled(Slider)`
@@ -72,4 +83,14 @@ const DistanceSlider = styled(Slider)`
     color: #a0a0a0;
   }
   color: #a0a0a0;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 280px;
+
+    span {
+      font-size: 12px;
+    }
+  }
 `;

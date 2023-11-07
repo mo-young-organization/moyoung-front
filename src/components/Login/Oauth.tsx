@@ -54,7 +54,7 @@ const Container = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 240px;
     height: 180px;
 
@@ -90,7 +90,7 @@ const OauthButton = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 240px;
     height: 52px;
     border-radius: 4px;
@@ -142,7 +142,7 @@ const Content = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     justify-content: space-around;
 
     > div {

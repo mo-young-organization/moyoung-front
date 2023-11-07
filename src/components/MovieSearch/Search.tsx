@@ -91,7 +91,7 @@ const Container = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
   }
 `;
@@ -110,7 +110,7 @@ const Title = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-size: 28px;
     margin-bottom: 20px;
   }
@@ -124,7 +124,7 @@ const Form = styled.form`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
     height: 52px;
   }
@@ -142,7 +142,7 @@ const SearchInput = styled.input`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
     height: 52px;
   }
@@ -160,7 +160,7 @@ const ButtonDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     top: 10px;
     right: 5px;
   }
@@ -179,7 +179,7 @@ const SearchButton = styled.button`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     > svg {
       width: 32px;
       height: 32px;

@@ -70,7 +70,7 @@ const ContainerUl = styled.ul`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
 
     > li:last-child {
@@ -96,7 +96,7 @@ const ContentLi = styled.li`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
     margin: 30px 0px 0px 0px;
   }
@@ -131,7 +131,7 @@ const HeadDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     flex-direction: column;
     align-items: start;
 
@@ -153,7 +153,7 @@ const ContentUl = styled.ul`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     border-radius: 8px;
     padding: 24px 40px;
   }

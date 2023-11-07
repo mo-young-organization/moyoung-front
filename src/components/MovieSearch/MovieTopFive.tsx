@@ -76,7 +76,7 @@ const Container = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
 
     justify-content: flex-start;
@@ -97,7 +97,7 @@ const Title = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     margin: 0px 0px 40px 0px;
 
     > div {
@@ -125,7 +125,7 @@ const Content = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
   }
 `;
@@ -153,7 +153,7 @@ const MovieBox = styled.div<ImgProps>`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 108px;
     height: 152px;
     margin: 5px;
@@ -172,7 +172,7 @@ const MovieTitle = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     font-size: 14px;
   }
 `;

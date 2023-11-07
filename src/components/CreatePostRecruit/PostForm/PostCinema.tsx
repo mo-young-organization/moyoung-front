@@ -92,6 +92,16 @@ const Container = styled.div`
       font-size: 24px;
     }
   }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+
+    .cinema_title {
+      font-size: 16px;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -117,6 +127,16 @@ const InputDiv = styled.div`
 
     box-shadow: 0px 1px 2px 0px #00000040;
   }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    > input {
+      padding: 0px 50px 0px 28px;
+      width: 320px;
+      height: 45px;
+    }
+  }
 `;
 
 const WhichMovieDiv = styled.div`
@@ -133,6 +153,15 @@ const WhichMovieDiv = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #bbbbbb;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+    height: 190px;
+
+    font-size: 14px;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -155,5 +184,17 @@ const SearchButton = styled.button`
     z-index: 1;
     width: 40px;
     height: 40px;
+  }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    right: 40px;
+
+    > svg {
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+    }
   }
 `;

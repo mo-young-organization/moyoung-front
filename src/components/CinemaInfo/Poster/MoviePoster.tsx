@@ -47,7 +47,7 @@ const Content = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 320px;
   }
 `;
@@ -72,7 +72,7 @@ const MovieImg = styled.div<ImgProps>`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 96px;
     height: 134px;
     border-radius: 4px;
@@ -107,7 +107,7 @@ const MovieTitle = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     .kr-title {
       font-size: 24px;
       font-weight: 700;
@@ -168,7 +168,7 @@ const MovieExplanation = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     display: none;
   }
 `;
@@ -181,7 +181,7 @@ const InfoDiv = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 220px;
   }
 `;

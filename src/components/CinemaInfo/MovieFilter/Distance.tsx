@@ -59,7 +59,7 @@ const Container = styled.div`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     flex-direction: column;
 
     > div {
@@ -86,7 +86,7 @@ const DistanceSlider = styled(Slider)`
 
   //브라우저 창 width가 768px보다 작아지는 순간부터 적용
   //모바일
-  @media all and (max-width: 768px) {
+  @media all and (max-width: 767px) {
     width: 280px;
 
     span {

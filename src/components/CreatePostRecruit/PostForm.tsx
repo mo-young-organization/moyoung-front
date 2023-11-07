@@ -27,18 +27,18 @@ const PostForm = () => {
 
     // 객체 분해 할당으로 cinema제외하고 값을 불러옴으로 원하는 값을 빼내올 수 있고 반대로 req에는 cinema가 삭제되어 복사된다.
     const { cinema, ...req } = data;
-    console.log(cinema);
-    console.log((req.runningTimeId = runningTimeData && String(runningTimeData.runningTimeId)));
-    console.log(req.runningTimeId);
+
     // post 요청
-    if (req.age && req.gender && req.maxNum && req.runningTimeId && req.title) {
-      const postData = await postRecruitList(req);
-      if (postData.status === 200) {
-        navigate('/recruitmentlist');
-      } else if (postData.response.status === 404) {
-        alert('영화를 선택해주세요.');
-      }
-    }
+    // if (req.age && req.gender && req.maxNum && req.runningTimeId && req.title) {
+    //   const postData = await postRecruitList(req);
+    //   if (postData.status === 200) {
+    //     navigate('/recruitmentlist');
+    //   } else if (postData.response.status === 404) {
+    //     alert('영화를 선택해주세요.');
+    //   }
+    // }
+
+    console.log(data);
   };
 
   return (

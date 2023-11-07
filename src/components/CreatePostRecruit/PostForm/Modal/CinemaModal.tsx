@@ -413,6 +413,17 @@ const SearchDiv = styled.div`
     cursor: pointer;
   }
 
+  .filter-button {
+    border: none;
+    background-color: transparent;
+    color: var(--sub-color2);
+
+    > svg {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
   //브라우저 창 width가 767px보다 작아지는 순간부터 적용
   //모바일
   @media all and (max-width: 767px) {

@@ -1,8 +1,9 @@
 import { styled } from 'styled-components';
 import { PropsCreatePost } from '../../../SignupCheck/FormType';
 import PostPersonnelBox from './PostPersonnelBox';
+import { useCallback, useState } from 'react';
 
-const PostPersonnel = ({ register }: PropsCreatePost) => {
+const PostPersonnel = ({ register, checkedList, setCheckedList }: PropsCreatePost) => {
   const peopleArr = [
     { title: '2', content: '2' },
     { title: '3', content: '3' },
@@ -14,11 +15,23 @@ const PostPersonnel = ({ register }: PropsCreatePost) => {
     { title: '남자만', content: '남자만' },
     { title: '여자만', content: '여자만' },
   ];
-  const ageArr = [
-    { title: '10대', content: '10대' },
-    { title: '20대', content: '20대' },
-    { title: '30대 이상', content: '30대 이상' },
-  ];
+
+  const onChekedItem = useCallback(
+    (checked, item) => {
+      if (checked) {
+        setCheckedList(prev => [...prev, item]);
+      } else if (!checked) {
+        setCheckedList(checkedList.filter(el => el !== item));
+      }
+    },
+    [checkedList],
+  );
+
+  const ageArr = ['20대', '30대 이상'];
+
+  // 체크 박스로 중복 체크가 가능해야함 => 배열로 값이 나와야함.
+  // 10대가 아니라면 10대 클릭 x 성인은 성인만 체크 가능 o
+  // 동일하게 10대는 10대만 가능하고 o 성인 체크 x
 
   return (
     <Container>
@@ -26,12 +39,18 @@ const PostPersonnel = ({ register }: PropsCreatePost) => {
       <ContentPersonnel>
         <PostPersonnelBox text={'인원수'} arrayMap={peopleArr} register={register} name={'maxNum'} />
         <PostPersonnelBox text={'성별'} arrayMap={genderArr} register={register} name={'gender'} />
-        <PostPersonnelBox text={'나이대'} arrayMap={ageArr} register={register} name={'age'} />
+        <PostPersonnelBox
+          text={'나이대'}
+          arrayMapAge={ageArr}
+          register={register}
+          name={'ages'}
+          onChekedItem={onChekedItem}
+        />
       </ContentPersonnel>
       <div className="bottom_explanation">
         *중복 선택 가능
         <br />
-        *10대는 10대만, 20대 이상은 20대 이상만 선택 가능합니다
+        *10대는 10대 체크박스만 뜨며, 성인은 20대,30대 이상 체크박스 선택이 가능합니다.
       </div>
     </Container>
   );

@@ -49,7 +49,7 @@ export interface CreatePormProps {
   runningTimeId: string;
   maxNum: string;
   gender: string;
-  age: string;
+  ages: any[];
 }
 
 export interface PropsCreatePost {
@@ -63,4 +63,6 @@ export interface PropsCreatePost {
     endTime: string;
   };
   setRunningTimeData?: Dispatch<SetStateAction<RunningIdProps>>;
+  checkedList?: string[];
+  setCheckedList?: React.Dispatch<React.SetStateAction<any[]>>;
 }

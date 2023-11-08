@@ -27,6 +27,7 @@ const FormCheck = () => {
   const onSubmitHandler: SubmitHandler<SignupFormValue> = async data => {
     data.gender = String(data.gender === '남자' ? true : false);
     data.age = data.age[0];
+    window.sessionStorage.setItem('age', data.age);
     console.log(data);
     // await 안붙혀서 그런가?? => 회원정보 등록 api요청을 보내고 세션스토리지에 닉네임 저장후 네비게이터 이동 이걸 원한건데 왜 안될까
     // signupCheckPost(data).then(() => navigate('/'));

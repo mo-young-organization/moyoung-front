@@ -19,7 +19,15 @@ import CGV from '../../../../assets/img/CGV_logo.png';
 import ModalCalendar from './ModalCalendar';
 import NoSearchMovie from '../../../NoMovie/NoSearchMovie';
 
-const CinemaModal = ({ onClose, data, movieName, setMoviePickData, setCinemaPickData, setRunningTimeData }) => {
+const CinemaModal = ({
+  register,
+  onClose,
+  data,
+  movieName,
+  setMoviePickData,
+  setCinemaPickData,
+  setRunningTimeData,
+}) => {
   // 영화 데이터
   const [movieData, setMovieData] = useState(data.data);
   // 영화 & 영화관 데이터

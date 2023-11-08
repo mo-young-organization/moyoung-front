@@ -15,7 +15,6 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   const [data, setData] = useState({});
   // 인풋 영화이름 밸류
   const [movieName, setMovieName] = useState('');
-  console.log(movieName);
   // 유저가 선택한 영화 정보
   const [moviePickData, setMoviePickData] = useState();
   // 유저가 선택한 영화관 정보
@@ -64,6 +63,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
         {/* ****************************88티켓을 위해 상태 끌어올리기 해야함 **************************** */}
         {modalOn && (
           <CinemaModal
+            register={register}
             onClose={movieSearchHandler}
             data={data}
             movieName={movieName}

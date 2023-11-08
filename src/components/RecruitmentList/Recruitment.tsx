@@ -25,7 +25,6 @@ const Recruitment = ({ size }) => {
   const [sort, setSort] = useState(false);
 
   const [recruitData, setRecruitData] = useState<RecruitProps>();
-  console.log(size, recruitData);
   const totalPages = recruitData && recruitData?.pageInfo.totalPages;
 
   const refreshToken = getCookie('refreshToken');

@@ -28,7 +28,6 @@ const RecruitmentListPage = () => {
 
   return (
     <Container>
-      {/* <Recruitment dummyData={dummyData} /> */}
       <Recruitment size={size} />
     </Container>
   );

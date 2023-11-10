@@ -2,14 +2,14 @@ import { styled } from 'styled-components';
 import Calendar from './Calendar';
 import Filter from './Filter';
 
-const MovieFilter = ({ setDate, setEarly, setLotte, setMega, setCgv, setDt }) => {
+const MovieFilter = ({ setDate, setLotte, setMega, setCgv, setDt }) => {
   return (
     <Container>
       <ContentCalendar>
         <Calendar setDate={setDate} />
       </ContentCalendar>
       <ContentFilter>
-        <Filter setEarly={setEarly} setLotte={setLotte} setMega={setMega} setCgv={setCgv} setDt={setDt} />
+        <Filter  setLotte={setLotte} setMega={setMega} setCgv={setCgv} setDt={setDt} />
       </ContentFilter>
     </Container>
   );

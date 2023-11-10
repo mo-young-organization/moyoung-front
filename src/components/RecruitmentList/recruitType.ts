@@ -1,7 +1,7 @@
 export interface RecruitProps {
   data: [
     {
-      age: string;
+      ages: string[];
       cinemaName: string;
       cinemaBrand: string;
       cinemaRegion: string;

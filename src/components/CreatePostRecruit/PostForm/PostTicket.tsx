@@ -50,7 +50,7 @@ const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
         <LeftTicket>
           <LeftTicketContent>
             <LeftTicketTopDiv>
-              <PosterDiv className="movie_poster" $img={moviePickData.movieInfo.thumbnailUrl} role="사진" />
+              <PosterDiv $img={moviePickData.movieInfo.thumbnailUrl} role="사진" />
               <LeftTicketTopDivContnet>
                 <div className="movie_title">{moviePickData.movieInfo.name}</div>
                 <div className="top-div-contnet">
@@ -126,24 +126,48 @@ const LeftTicketTopDivContnet = styled.div`
       color: #dedede;
     }
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 150px;
+    height: 78px;
+
+    .movie_title {
+      font-size: 18px;
+    }
+
+    .top-div-contnet {
+      display: flex;
+
+      .box1 {
+        width: 16px;
+        height: 16px;
+        margin-right: 4px;
+      }
+      .kind {
+        font-size: 12px;
+      }
+    }
+  }
 `;
 
 const LeftTicketTopDiv = styled.div`
   display: flex;
   justify-content: space-between;
 
-  .movie_poster {
-    background-color: red;
-    width: 97px;
-    height: 135px;
-    border-radius: 4px;
-    margin-right: 12px;
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 218px;
+    height: 78px;
   }
 `;
 
 const LeftTicketBottomTop = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
   .fontC {
     color: var(--point-color);
   }
@@ -162,6 +186,29 @@ const LeftTicketBottomTop = styled.div`
       font-weight: 700;
     }
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    .fontC {
+      color: var(--point-color);
+    }
+
+    .장소 {
+      font-size: 14px;
+    }
+
+    .bottom-top-top {
+      .위치 {
+        font-size: 14px;
+      }
+
+      img {
+        width: 34px;
+        height: 16px;
+      }
+    }
+  }
 `;
 
 const LeftTicketBottomBottom = styled.div`
@@ -170,6 +217,12 @@ const LeftTicketBottomBottom = styled.div`
 
   font-size: 16px;
   font-weight: 500;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    font-size: 12px;
+  }
 `;
 
 const LeftTicketBottomDiv = styled.div`
@@ -179,6 +232,13 @@ const LeftTicketBottomDiv = styled.div`
 
   width: 246px;
   height: 53px;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    width: 175px;
+    height: 45px;
+  }
 `;
 
 const LeftTicketContent = styled.div`
@@ -189,6 +249,13 @@ const LeftTicketContent = styled.div`
 
   width: 350px;
   height: 240px;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 220px;
+    height: 150px;
+  }
 `;
 
 const LeftTicket = styled.div`
@@ -200,6 +267,13 @@ const LeftTicket = styled.div`
   height: 100%;
   border-radius: 8px 0px 0px 8px;
   background-color: var(--main-color);
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 255px;
+    height: 190px;
+  }
 `;
 
 const TicketLineBoxBottom = styled.div`
@@ -210,6 +284,14 @@ const TicketLineBoxBottom = styled.div`
   border-radius: 12px 12px 0px 0px;
 
   background-color: white;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    right: 19px;
+    width: 32px;
+    height: 20px;
+  }
 `;
 
 const TicketLineBoxTop = styled.div`
@@ -220,6 +302,14 @@ const TicketLineBoxTop = styled.div`
   border-radius: 0px 0px 12px 12px;
 
   background-color: white;
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    right: 19px;
+    width: 32px;
+    height: 20px;
+  }
 `;
 
 const TicketLine = styled.div`
@@ -231,7 +321,12 @@ const TicketLine = styled.div`
   border-left: 5px dashed white;
   height: 295px;
 
-  /* background-color: red; */
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    left: -66px;
+    height: 190px;
+  }
 `;
 
 const RightTicket = styled.div`
@@ -239,6 +334,13 @@ const RightTicket = styled.div`
   height: 100%;
   border-radius: 0px 8px 8px 0px;
   background-color: var(--sub-color1);
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 65px;
+    height: 190px;
+  }
 `;
 
 const TicketDiv = styled.div`
@@ -246,9 +348,29 @@ const TicketDiv = styled.div`
 
   width: 520px;
   height: 295px;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 360px;
+    height: 190px;
+  }
 `;
 
 const PosterDiv = styled.div<ThumbnailProps>`
   background-image: url(${props => props.$img});
   background-size: 100%;
+
+  background-color: red;
+  width: 97px;
+  height: 135px;
+  border-radius: 4px;
+  margin-right: 12px;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 56px;
+    height: 78px;
+  }
 `;

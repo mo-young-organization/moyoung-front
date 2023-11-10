@@ -58,6 +58,12 @@ const Container = styled.div`
     font-weight: 700;
     padding-left: 5px;
   }
+
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
+    flex-direction: column;
+  }
 `;
 
 const DistanceSlider = styled(Slider)`
@@ -78,4 +84,11 @@ const DistanceSlider = styled(Slider)`
     font-weight: 500;
   }
   color: #a0a0a0;
+
+	//브라우저 창 width가 768px보다 작아지는 순간부터 적용
+	//모바일
+  @media all and (max-width: 768px){
+    width: 250px;
+}
+
 `;

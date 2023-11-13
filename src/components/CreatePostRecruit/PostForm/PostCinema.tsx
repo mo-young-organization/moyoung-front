@@ -15,7 +15,6 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   const [data, setData] = useState({});
   // 인풋 영화이름 밸류
   const [movieName, setMovieName] = useState('');
-  console.log(movieName);
   // 유저가 선택한 영화 정보
   const [moviePickData, setMoviePickData] = useState();
   // 유저가 선택한 영화관 정보
@@ -84,6 +83,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
         {/* ****************************88티켓을 위해 상태 끌어올리기 해야함 **************************** */}
         {modalOn && (
           <CinemaModal
+            register={register}
             onClose={movieSearchHandler}
             data={data}
             movieName={movieName}
@@ -112,6 +112,16 @@ const Container = styled.div`
       font-size: 24px;
     }
   }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+
+    .cinema_title {
+      font-size: 16px;
+    }
+  }
 `;
 
 const Content = styled.div`
@@ -137,6 +147,16 @@ const InputDiv = styled.div`
 
     box-shadow: 0px 1px 2px 0px #00000040;
   }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    > input {
+      padding: 0px 50px 0px 28px;
+      width: 320px;
+      height: 45px;
+    }
+  }
 `;
 
 const WhichMovieDiv = styled.div`
@@ -153,6 +173,15 @@ const WhichMovieDiv = styled.div`
   font-size: 20px;
   font-weight: 700;
   color: #bbbbbb;
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    width: 320px;
+    height: 190px;
+
+    font-size: 14px;
+  }
 `;
 
 const SearchButton = styled.button`
@@ -175,5 +204,17 @@ const SearchButton = styled.button`
     z-index: 1;
     width: 40px;
     height: 40px;
+  }
+
+  //브라우저 창 width가 767px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 767px) {
+    right: 40px;
+
+    > svg {
+      z-index: 1;
+      width: 24px;
+      height: 24px;
+    }
   }
 `;

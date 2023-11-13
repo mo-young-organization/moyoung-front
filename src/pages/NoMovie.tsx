@@ -1,6 +1,8 @@
 import { styled } from 'styled-components';
 import MovieTopFive from '../components/MovieSearch/MovieTopFive';
 import Search from '../components/MovieSearch/Search';
+
+import Dummy from '../data/Dummy';
 import NoSearchMovie from '../components/NoMovie/NoSearchMovie';
 
 const NoMovie = ({ isSearch }) => {

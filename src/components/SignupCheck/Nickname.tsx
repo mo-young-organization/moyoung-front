@@ -123,14 +123,6 @@ export default Nickname;
 const Container = styled.div`
   display: flex;
   align-items: center;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    align-items: start;
-    flex-direction: column;
-    width: 208px;
-  }
 `;
 
 const Content = styled.div`
@@ -172,15 +164,6 @@ const Content = styled.div`
   .red {
     border-bottom: 1px solid red;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    .input {
-      width: 208px;
-      height: 32px;
-    }
-  }
 `;
 
 const DuplicateButton = styled.button`
@@ -191,12 +174,7 @@ const DuplicateButton = styled.button`
   margin-left: 16px;
   border: 0;
 
-  background-color: ${props => (props.disabled ? 'gray' : 'var(--main-color)')};
+  background-color: ${props => (props.disabled ? 'gray' : '#4a154b;')};
+  /* background-color: #bcbcbc; */
   color: white;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    margin: 0px;
-  }
 `;

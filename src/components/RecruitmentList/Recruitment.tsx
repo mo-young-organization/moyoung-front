@@ -154,15 +154,6 @@ const UlArticleMaping = styled.ul`
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 78px 24px;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
 `;
 
 const DivPagination = styled.div`
@@ -207,11 +198,5 @@ const FilterBoxDiv = styled.div`
   //태블릿
   @media all and (max-width: 1024px) {
     width: 690px;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
   }
 `;

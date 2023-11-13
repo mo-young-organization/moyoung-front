@@ -51,6 +51,7 @@ const ChatModal = (props: Props) => {
 
   useEffect(() => {
     getChatroomData(props.recruitId);
+    console.log(props.recruitId);
   }, []);
 
   return (

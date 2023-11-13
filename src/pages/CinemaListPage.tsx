@@ -114,12 +114,6 @@ const ContentUl = styled.ul`
   @media all and (max-width: 1024px) {
     width: 690px;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-  }
 `;
 
 const BoxLi = styled.li`
@@ -146,13 +140,6 @@ const LiContentDiv = styled.div`
   justify-content: space-between;
 
   width: 100%;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    display: flex;
-    flex-direction: column;
-  }
 `;
 
 const MovieInfoDiv = styled.div`
@@ -191,18 +178,6 @@ const MovieInfoDiv = styled.div`
       margin-left: 5px;
     }
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    flex-direction: row;
-    margin-bottom: 10px;
-    width: 100%;
-
-    .tablet-img {
-      display: none;
-    }
-  }
 `;
 
 const TitleDiv = styled.div`
@@ -227,15 +202,6 @@ const TitleDiv = styled.div`
     margin: 0px;
     height: auto;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    .img {
-      display: block;
-    }
-    margin-left: 3px;
-  }
 `;
 
 const BoxUl = styled.ul`
@@ -249,15 +215,6 @@ const BoxUl = styled.ul`
   //태블릿
   @media all and (max-width: 1024px) {
     padding-left: 30px;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    padding: 10px 0px 0px 0px;
-    border-left: 0px;
-    border-top: 1px solid #e1e1e1;
-    width: 100%;
   }
 `;
 
@@ -299,14 +256,6 @@ const BoxLis = styled.li`
     &:not(:last-child) {
       margin-bottom: 10px;
     }
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    padding: 7px 16px;
-    height: auto;
-    border-radius: 20px;
   }
 `;
 

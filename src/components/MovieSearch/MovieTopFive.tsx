@@ -34,7 +34,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
   return (
     <Container>
       <Title className={classname}>
-        <span className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</span>
+        <div className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</div>
       </Title>
       <Content>
         {topFiveData?.ranks.map((el, idx) => (
@@ -53,7 +53,7 @@ const MovieTopFive = ({ classname, text }: Props) => {
 export default MovieTopFive;
 
 const Container = styled.div`
-  width: 1032px;
+  width: 100%;
   height: 440px;
 
   display: flex;
@@ -73,36 +73,18 @@ const Container = styled.div`
   @media all and (max-width: 1024px) {
     width: 690px;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-
-    justify-content: flex-start;
-  }
 `;
 
 const Title = styled.div`
   font-size: 28px;
   line-height: 33px;
+  border-bottom: 2px solid;
+  margin: 0px 0px 40px 190px;
 
-  text-align: center;
-
-  width: 100%;
-
-  > span {
-    border-bottom: 2px solid;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    margin: 0px 0px 40px 0px;
-
-    > div {
-      font-size: 20px;
-    }
+  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
+  //태블릿
+  @media all and (max-width: 1024px) {
+    margin: 0px 0px 40px 15px;
   }
 `;
 
@@ -121,12 +103,8 @@ const Content = styled.div`
     }
     width: 100%;
     overflow-x: scroll;
-  }
 
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
+    /* background-color: blue; */
   }
 `;
 
@@ -150,18 +128,6 @@ const MovieBox = styled.div<ImgProps>`
     font-size: 38px;
     text-shadow: 4px 6px 4px #000000;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 108px;
-    height: 152px;
-    margin: 5px;
-
-    .number {
-      font-size: 28px;
-    }
-  }
 `;
 
 const MovieTitle = styled.div`
@@ -169,10 +135,4 @@ const MovieTitle = styled.div`
   line-height: 23px;
   font-weight: 500;
   text-align: center;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    font-size: 14px;
-  }
 `;

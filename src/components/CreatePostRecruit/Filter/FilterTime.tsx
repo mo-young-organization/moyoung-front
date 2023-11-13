@@ -36,11 +36,6 @@ const Container = styled.div`
     font-weight: 700;
     padding-left: 5px;
   }
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 768px) {
-    flex-direction: column;
-  }
 `;
 
 const ContentUl = styled.ul`
@@ -50,19 +45,7 @@ const ContentUl = styled.ul`
   font-size: 12px;
   font-weight: 500;
 
-  input {
-    margin: 0px;
-  }
-
   > li {
     margin-right: 36px;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 768px) {
-    > li {
-      margin-right: 20px;
-    }
   }
 `;

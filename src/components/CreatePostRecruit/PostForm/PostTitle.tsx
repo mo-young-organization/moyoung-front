@@ -3,7 +3,7 @@ import { PropsCreatePost } from '../../SignupCheck/FormType';
 
 const PostTitle = ({ register, errors }: PropsCreatePost) => {
   return (
-    <Container>
+    <div>
       <Title>
         <span className="post_title">*제목</span>
         <span className="explanation">*18자 이내로 작성</span>
@@ -22,19 +22,14 @@ const PostTitle = ({ register, errors }: PropsCreatePost) => {
         />
         {errors && <div className="error">{errors?.title?.message}</div>}
       </InputDiv>
-    </Container>
+    </div>
   );
 };
 
 export default PostTitle;
 
-const Container = styled.div`
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-  }
-`;
+// const Container = styled.div`
+// `;
 
 const Title = styled.div`
   .post_title {
@@ -62,17 +57,6 @@ const Title = styled.div`
       font-size: 16px;
       font-weight: 300;
       margin-left: 24px;
-    }
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    .post_title {
-      font-size: 16px;
-    }
-    .explanation {
-      font-size: 12px;
     }
   }
 `;
@@ -104,13 +88,6 @@ const InputDiv = styled.div`
     //태블릿
     @media all and (max-width: 1024px) {
       width: 510px;
-    }
-
-    //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-    //모바일
-    @media all and (max-width: 767px) {
-      width: 320px;
-      height: 45px;
     }
   }
 `;

@@ -21,26 +21,9 @@ const Container = styled.div`
   width: 100%;
   height: 100%;
 
-  > svg {
-    margin-top: 40px;
-  }
-
   > div {
     margin-top: 30px;
     font-size: 28px;
     font-weight: 500;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    > svg {
-      margin-top: 40px;
-      width: 100px;
-      height: 100px;
-    }
-    > div {
-      font-size: 20px;
-    }
   }
 `;

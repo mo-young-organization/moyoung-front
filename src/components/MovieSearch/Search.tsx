@@ -47,7 +47,7 @@ const Search = ({ text, setKeyword }: TextProps) => {
 
   return (
     <Container>
-      <Title>{text ? <div className="text-white">{text}</div> : <div>내 주변 영화관 찾기</div>}</Title>
+      <Title>{text ? <h1 className="text-white">{text}</h1> : <h1>내 주변 영화관 찾기</h1>}</Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
         {text ? (
           <SearchInput
@@ -88,32 +88,15 @@ const Container = styled.div`
   width: 550px;
 
   margin: 80px 0px 100px 0px;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-  }
 `;
 
 const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 20px;
-
-  font-size: 40px;
-  font-weight: 700;
 
   .text-white {
     color: var(--sub-color2);
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    font-size: 28px;
-    margin-bottom: 20px;
   }
 `;
 
@@ -122,13 +105,6 @@ const Form = styled.form`
   align-items: center;
   border-radius: 60px;
   background-color: white;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-    height: 52px;
-  }
 `;
 
 const SearchInput = styled.input`
@@ -140,13 +116,6 @@ const SearchInput = styled.input`
   outline: none;
 
   border: none;
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-    height: 52px;
-  }
 `;
 
 const ButtonDiv = styled.div`
@@ -157,13 +126,6 @@ const ButtonDiv = styled.div`
 
   .distance {
     margin-right: 5px;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    top: 10px;
-    right: 5px;
   }
 `;
 
@@ -176,14 +138,5 @@ const SearchButton = styled.button`
   > svg {
     width: 40px;
     height: 40px;
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    > svg {
-      width: 32px;
-      height: 32px;
-    }
   }
 `;

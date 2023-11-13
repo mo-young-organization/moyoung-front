@@ -22,7 +22,7 @@ jobs:
 
       - name: Generate build
         run: yarn run build
-        working-directory: ./
+        working-directory: ./src
 
       - name: Deploy
         env:
@@ -31,7 +31,7 @@ jobs:
         run: |
           aws s3 sync \
             --region ap-northeast-2 \
-            dist s3://moyoung-toy-project \
+            build s3://moyoung-toy-project \
             --delete
-        working-directory: ./
+        working-directory: ./dist
  

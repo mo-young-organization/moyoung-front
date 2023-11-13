@@ -110,14 +110,6 @@ const Content = styled.div`
   @media all and (max-width: 1024px) {
     width: 690px;
   }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    width: 320px;
-
-    /* background-color: red; */
-  }
 `;
 
 // ********** 필터 적용을 어떻게 해야하지...?

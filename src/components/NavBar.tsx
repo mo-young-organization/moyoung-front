@@ -39,6 +39,7 @@ const NavBar = ({ color }) => {
     removeCookie('refreshToken', { path: '/' });
     window.sessionStorage.clear();
     setIsLogin(false);
+    navigate('/');
   };
 
   //회원 탈퇴 버튼 이벤트
@@ -51,6 +52,7 @@ const NavBar = ({ color }) => {
     }
     window.sessionStorage.clear();
     setIsLogin(false);
+    navigate('/');
   };
 
   // ************ 메뉴바 핸들러

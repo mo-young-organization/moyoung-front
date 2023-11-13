@@ -19,6 +19,7 @@ const PostForm = () => {
 
   const navigate = useNavigate();
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
+  console.log(runningTimeData);
 
   // 나이 중복 체크(input checkbox) 리스트
   const [checkedList, setCheckedList] = useState([]);
@@ -62,7 +63,7 @@ const PostForm = () => {
         <PostPersonnel register={register} checkedList={checkedList} setCheckedList={setCheckedList} />
       </Content>
       <ButtonDiv>
-        <button>등록하기</button>
+        <button type="submit">등록하기</button>
       </ButtonDiv>
     </ContainerForm>
   );

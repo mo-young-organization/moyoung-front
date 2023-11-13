@@ -21,6 +21,9 @@ const PostForm = () => {
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
   console.log(runningTimeData);
 
+  // 나이 중복 체크(input checkbox) 리스트
+  const [checkedList, setCheckedList] = useState([]);
+
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
     data.age = data.age[0];
@@ -54,7 +57,7 @@ const PostForm = () => {
         <PostPersonnel register={register} />
       </Content>
       <ButtonDiv>
-        <button>등록하기</button>
+        <button type="submit">등록하기</button>
       </ButtonDiv>
     </ContainerForm>
   );

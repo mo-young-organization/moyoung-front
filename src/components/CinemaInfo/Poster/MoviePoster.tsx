@@ -14,7 +14,6 @@ const MoviePoster = ({ data }) => {
           <div>
             <MovieTitle>
               <div className="kr-title">{data.name}</div>
-              {/* <div className="en-title">Spider-Man: Across the Spider-Verse</div> */}
             </MovieTitle>
             <MovieExplanation>
               <div className="first">영화설명</div>

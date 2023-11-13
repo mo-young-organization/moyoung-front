@@ -21,6 +21,25 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   // 유저가 선택한 영화관 정보
   const [cinemaPickData, setCinemaPickData] = useState([]);
 
+  // 엔터 입력 시 전송되도록
+  const pressEnterKey = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.shiftKey && e.key === 'Enter') {
+      return;
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const cinemaName = watch('cinema');
+      if (cinemaName.length !== 0) {
+        setMovieName(cinemaName);
+        const data = await movieSearchGet(cinemaName, 3000);
+        setData(data);
+        setModalOn(!modalOn);
+      } else {
+        alert('영화를 입력해주세요.');
+      }
+    }
+  };
+
+  // 버튼(돋보기) 클릭 핸들러
   const movieSearchHandler = async () => {
     const cinemaName = watch('cinema');
     if (cinemaName.length !== 0) {
@@ -44,6 +63,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
             id="cinema"
             type="text"
             placeholder="영화 제목을 검색해주세요"
+            onKeyPress={pressEnterKey}
             {...register('cinema', { required: '영화를 입력해 주세요.' })}
           />
         </InputDiv>

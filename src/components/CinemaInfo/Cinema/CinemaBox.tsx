@@ -7,11 +7,11 @@ import CGV from '../../../assets/img/CGV_logo.png';
 import { CinemaDummy } from './data';
 import MyLocation from '../MovieFilter/MyLocation';
 
-const CinemaBox = ({ data, resultLength }) => {
+const CinemaBox = ({ data, resultLength, dt }) => {
   return (
     <ContainerUl>
       <div>
-        <MyLocation resultLength={resultLength} />
+        <MyLocation resultLength={resultLength} dt={dt} />
       </div>
       {data.map((el, idx) => (
         <ContentLi key={idx}>
@@ -51,6 +51,7 @@ const ContainerUl = styled.ul`
   }
 
   > div {
+    margin-top: 20px;
     width: 1024px;
   }
 

@@ -25,21 +25,21 @@ const CinemaPage = () => {
   const lat = '37.498';
   const lon = '127.026';
   const [dt, setDt] = useState(params.dt);
+  console.log(dt);
   const movieId = params.cinemaId;
   const [date, setDate] = useState(todayDate);
-  const [early, setEarly] = useState(false);
   const [lotte, setLotte] = useState(true);
   const [mega, setMega] = useState(true);
   const [cgv, setCgv] = useState(true);
 
   useEffect(() => {
     const cinemaData = async () => {
-      const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
-      console.log(lat, lon, dt, movieId, date, early, lotte, mega);
+      const data = await cinemaGet(lat, lon, dt, movieId, date, lotte, mega, cgv);
+      console.log(lat, lon, dt, movieId, date, lotte, mega);
       setData(data.data);
     };
     cinemaData();
-  }, [lat, lon, dt, movieId, date, early, lotte, mega]);
+  }, [lat, lon, dt, movieId, date, lotte, mega]);
 
   return (
     <Container>
@@ -51,7 +51,6 @@ const CinemaPage = () => {
         {data && (
           <MovieFilter
             setDate={setDate}
-            setEarly={setEarly}
             setLotte={setLotte}
             setMega={setMega}
             setCgv={setCgv}
@@ -61,7 +60,7 @@ const CinemaPage = () => {
       </FilterDiv>
       <Content>
         {data && data.cinemaInfo.length ? (
-          <CinemaBox data={data.cinemaInfo} resultLength={data.cinemaInfo.length} />
+          <CinemaBox data={data.cinemaInfo} resultLength={data.cinemaInfo.length} dt={dt} />
         ) : (
           <NoMovie isSearch={false} />
         )}

@@ -17,7 +17,7 @@ import { postEnterChat } from '../../api/api';
 
 export type ArticleProps = {
   data: {
-    age: string;
+    ages: string[];
     cinemaName: string;
     cinemaBrand: string;
     cinemaRegion: string;
@@ -146,7 +146,11 @@ const Article = ({ data }: ArticleProps) => {
           <OutFotter>
             <ul className="condition">
               <li>{data.gender}</li>
-              <li>{data.age}</li>
+              <ul>
+                {data.ages.map(el => (
+                  <li>{el}</li>
+                ))}
+              </ul>
             </ul>
             <button type="button" onClick={() => participateHandler(data.recruitingArticleId)}>
               <span>참여하기</span>

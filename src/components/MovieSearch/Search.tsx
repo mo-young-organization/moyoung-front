@@ -15,7 +15,6 @@ interface TextProps {
 
 const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
-  console.log(movieTitle);
   const [modalOn, setModalOn] = useState(false);
   const [dt, setDt] = useState(1500);
   const movieNameRef = useRef(null);

@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type PropsT = {
   setCurPage: React.Dispatch<React.SetStateAction<number>>;
@@ -53,9 +54,6 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
 
   return (
     <>
-      {/* <SideBtn onClick={() => setCurPage(1)} disabled={curPage === 1}>
-        &lt;&lt;
-      </SideBtn> */}
       <SideBtn onClick={() => setCurPage(curPage - 1)} disabled={curPage === 1}>
         &lt;
       </SideBtn>
@@ -75,14 +73,6 @@ function Pagination({ setCurPage, curPage, totalPage, limit }: PropsT) {
       <SideBtn onClick={() => setCurPage(curPage + 1)} disabled={curPage === totalPage}>
         &gt;
       </SideBtn>
-      {/* <SideBtn
-        onClick={() => {
-          setCurPage(totalPage);
-        }}
-        disabled={curPage === totalPage}
-      >
-        &gt;&gt;
-      </SideBtn> */}
     </>
   );
 }

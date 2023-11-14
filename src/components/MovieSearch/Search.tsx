@@ -20,17 +20,19 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
   const movieNameRef = useRef(null);
 
   const navigate = useNavigate();
+
   // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setMovieTitle(movieNameRef.current.value);
+    const movieName = movieNameRef.current.value;
 
+    // text를 통해 영화관 찾기 input(검색)인지 게시글 input(검색)인지 구별
     if (text) {
-      setKeyword(movieTitle);
+      setKeyword(movieName);
     } else {
-      if (movieTitle !== '') {
+      if (movieName !== '') {
         console.log('get요청');
-        const data = await movieSearchGet(movieTitle, dt);
+        const data = await movieSearchGet(movieName, dt);
         console.log(data.data.length);
         if (data.data.length === 0) {
           navigate('/nomovie');
@@ -46,6 +48,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
     setMovieTitle('');
   };
 
+  // 영화 순위 포스터 클릭시 실행 될 hook
   useEffect(() => {
     setMovieTitle(clickMovieName);
     const carouselClickHandler = async () => {

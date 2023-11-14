@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 import Search from '../components/MovieSearch/Search';
 import MovieTopFive from '../components/MovieSearch/MovieTopFive';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const MovieSearch = () => {
   const dispatch = useDispatch();
+  const [clickMovieName, setClickMovieName] = useState('');
 
   useEffect(() => {
     dispatch(navbarColorStatus('navy'));
@@ -15,8 +16,8 @@ const MovieSearch = () => {
   return (
     <Container>
       <Content>
-        <Search />
-        <MovieTopFive />
+        <Search clickMovieName={clickMovieName} />
+        <MovieTopFive setClickMovieName={setClickMovieName} />
       </Content>
     </Container>
   );

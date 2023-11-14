@@ -24,7 +24,7 @@ const NavBarChat = () => {
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
   const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
   const [chatroomId, setChatroomId] = useState<number | null>(null);
-  console.log(chatroomId);
+
   const getChatData = async () => {
     const data = await getChatList();
     console.log(data.data);

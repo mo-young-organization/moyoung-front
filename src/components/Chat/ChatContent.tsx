@@ -12,6 +12,7 @@ import type { TChat } from '../../data/DummyChat';
 import type { ArticleProps } from '../RecruitmentList/Article';
 import Chat from './Chat';
 import dummyChatData from '../../data/DummyChat';
+import { getCookie } from '../../util/Cookie';
 
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
@@ -42,14 +43,13 @@ export type Props = {
 // 빈 문자열이면 실행되지 않게
 //ss
 
-const myId = 4;
-const tempToken =
-  'Bearer eyJhbGciOiJIUzI1NiJ9.eyJpZCI6Im1veW91bmciLCJtZW1iZXJJZCI6MSwic3ViIjoibW95b3VuZyIsImlhdCI6MTY5NjgzMDk3MywiZXhwIjoxNjk2ODMzMzczfQ.gUwO46K8LoEYI0C7ASqkerPALqtRlhVAblHYduPKmCA';
+const myId = 7;
 
 const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
   const client = useRef<CompatClient>(); // stomp ref로 만들기
   const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
+  const myToken = getCookie('token');
 
   const sendMessageHandler = () => {
     // 빈문자열이면 리턴
@@ -98,27 +98,27 @@ const ChatContent = (props: Props) => {
 
   const connectHandler = (roomId: string, userId: string) => {
     client.current = Stomp.over(() => {
-      const sock = new SockJS('http://ec2-3-34-181-61.ap-northeast-2.compute.amazonaws.com:8080');
+      const sock = new SockJS(`http://ec2-43-201-26-61.ap-northeast-2.compute.amazonaws.com:8080`);
       return sock;
     });
     client.current.connect(
       {
         //header
-        Authorization: tempToken,
+        Authorization: myToken,
       },
       () => {
         client.current!.subscribe(
-          `/recruit/1/enter`,
+          `/sub/chatroom/${roomId}`,
           // 발행된 메세지 관리
           message => {
             console.log(JSON.parse(message.body));
           },
           {
-            Authorization: tempToken,
+            Authorization: myToken,
           },
         );
       },
-      { Authoization: tempToken },
+      { Authoization: myToken },
     );
   };
 

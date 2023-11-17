@@ -18,7 +18,6 @@ import { ReduxType } from '../store/store';
 
 const RoutingPage = () => {
   const navbarColor = useSelector((state: ReduxType) => state.navbarColor.value);
-  console.log(navbarColor);
 
   return (
     <Conatainer>

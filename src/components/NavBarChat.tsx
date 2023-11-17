@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { getChatList, getRecruitData } from '../api/api';
+import ChatModal from './Chat/ChatModal';
 
 type TPartChatList = {
   cinemaBrand: string;
@@ -21,6 +22,9 @@ type TPartChatList = {
 const NavBarChat = () => {
   const [partChatList, setPartChatList] = useState<TPartChatList[] | null>(null);
   const [isListOpen, setIsListOpen] = useState<boolean>(false);
+  const [isChatOpen, setIsChatOpen] = useState<boolean>(false);
+  const [chatroomId, setChatroomId] = useState<number | null>(null);
+
   const getChatData = async () => {
     const data = await getChatList();
     console.log(data.data);
@@ -29,11 +33,21 @@ const NavBarChat = () => {
 
   const onClickHandler = () => {
     setIsListOpen(!isListOpen);
+    console.log(isListOpen);
   };
 
   const onChatroomClickHandler = async (id: number) => {
     const data = await getRecruitData(id);
     console.log(data.data);
+  };
+
+  const closeChatModal = () => {
+    setIsChatOpen(false);
+  };
+
+  const openChatModal = () => {
+    setIsChatOpen(true);
+    setIsListOpen(false);
   };
 
   useEffect(() => {
@@ -47,25 +61,35 @@ const NavBarChat = () => {
         참여중인 채팅
         {isListOpen ? <RiArrowUpSLine className="arrow" /> : <RiArrowDownSLine className="arrow" />}
       </div>
+      {isChatOpen && chatroomId && <ChatModal closeChatModal={closeChatModal} recruitId={chatroomId} />}
       {isListOpen && (
         <ChatroomListWrapper>
           {partChatList &&
             partChatList.map(el => (
-              <Chatroom key={el.recruitingArticleId} onClick={() => onChatroomClickHandler(el.recruitingArticleId)}>
-                <img className="thumbnail" src={el.movieThumbnailUrl} alt="영화 썸네일 이미지" />
-                <ChatRoomInfoWrapper>
-                  <div className="title">{el.title}</div>
-                  <div className="cinemaInfo">
-                    <span>{el.cinemaBrand}</span>
-                    <span className="cinemaName">{el.cinemaName}</span>
-                  </div>
-                </ChatRoomInfoWrapper>
-                <MemberCountWrapper>
-                  <span className="memberCount">
-                    {el.currentNum} / {el.maxNum}
-                  </span>
-                </MemberCountWrapper>
-              </Chatroom>
+              <>
+                <Chatroom
+                  key={el.recruitingArticleId}
+                  onClick={() => {
+                    onChatroomClickHandler(el.recruitingArticleId);
+                    setChatroomId(el.recruitingArticleId);
+                    openChatModal();
+                  }}
+                >
+                  <img className="thumbnail" src={el.movieThumbnailUrl} alt="영화 썸네일 이미지" />
+                  <ChatRoomInfoWrapper>
+                    <div className="title">{el.title}</div>
+                    <div className="cinemaInfo">
+                      <span>{el.cinemaBrand}</span>
+                      <span className="cinemaName">{el.cinemaName}</span>
+                    </div>
+                  </ChatRoomInfoWrapper>
+                  <MemberCountWrapper>
+                    <span className="memberCount">
+                      {el.currentNum} / {el.maxNum}
+                    </span>
+                  </MemberCountWrapper>
+                </Chatroom>
+              </>
             ))}
         </ChatroomListWrapper>
       )}
@@ -76,7 +100,8 @@ const NavBarChat = () => {
 const ChatroomListWrapper = styled.ul`
   position: absolute;
   z-index: 999;
-  right: 150px;
+  /* left: calc(100% - 500px); */
+  right: 15%;
   top: 100px;
   border-radius: 10px;
   box-shadow: 1px 1px 3px 1px #cccccc;

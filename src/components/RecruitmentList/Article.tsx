@@ -147,8 +147,8 @@ const Article = ({ data }: ArticleProps) => {
             <ul className="condition">
               <li>{data.gender}</li>
               <ul>
-                {data.ages.map(el => (
-                  <li>{el}</li>
+                {data.ages.map((el, idx) => (
+                  <li key={idx}>{el}</li>
                 ))}
               </ul>
             </ul>

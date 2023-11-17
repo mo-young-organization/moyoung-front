@@ -15,6 +15,7 @@ import RecruitPostCreatePage from './RecruitPostCreatePage';
 import CinemaListPage from './CinemaListPage';
 import { useSelector } from 'react-redux';
 import { ReduxType } from '../store/store';
+import ScrollToTop from '../util/ScrollTop';
 
 const RoutingPage = () => {
   const navbarColor = useSelector((state: ReduxType) => state.navbarColor.value);

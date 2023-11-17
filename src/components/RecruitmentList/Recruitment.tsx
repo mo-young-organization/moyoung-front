@@ -11,6 +11,7 @@ import { RecruitProps } from './recruitType';
 import { getCookie } from '../../util/Cookie';
 import { HiOutlineAdjustmentsHorizontal } from 'react-icons/hi2';
 import NoSearchMovie from '../NoMovie/NoSearchMovie';
+import ScrollToTop from '../../util/ScrollTop';
 
 const Recruitment = ({ size }) => {
   const [curPage, setCurPage] = useState(1);
@@ -30,7 +31,7 @@ const Recruitment = ({ size }) => {
   const refreshToken = getCookie('refreshToken');
   useEffect(() => {
     const fetchGetRecruitData = async () => {
-      if (refreshToken) {
+      if (refreshToken && size !== 0) {
         const data = await getRecruitList(
           curPage,
           size,
@@ -44,8 +45,10 @@ const Recruitment = ({ size }) => {
         );
         setRecruitData(data);
       } else {
-        const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`, size);
-        setRecruitData(data);
+        if (size !== 0) {
+          const data = await getRecruitListNoUser(curPage, `&keyword=${keyword}`, size);
+          setRecruitData(data);
+        }
       }
     };
     fetchGetRecruitData();
@@ -74,6 +77,8 @@ const Recruitment = ({ size }) => {
 
   return (
     <>
+      {/* pathname이 변경되면 최상단으로가는 로직 => 나는 url이 안바껴서 curPage로 프롭내려줌 */}
+      <ScrollToTop curPage={curPage} />
       <ContentSearchDiv>
         <Search text="영화 같이 볼 사람 찾기" setKeyword={setKeyword} />
       </ContentSearchDiv>

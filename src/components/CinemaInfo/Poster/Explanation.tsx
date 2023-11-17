@@ -1,20 +1,30 @@
 import { styled } from 'styled-components';
 
 const Explanation = ({ data }) => {
+  const releaseDate = release => {
+    const year = release.slice(0, 4);
+    const month = release.slice(4, 6);
+    const day = release.slice(6, 8);
+
+    return `${year}.${month}.${day}`;
+  };
+
   return (
     <Container>
-      {/* <Content>
+      <Content>
         <span className="first">개봉</span>
-        <span className="second">2023.06.21</span>
-      </Content> */}
+        <span className="second">{releaseDate(data.releaseDate)}</span>
+      </Content>
       <Content>
         <span className="first">개요</span>
-        <span className="second">{data.movieRating}</span>
+        <span className="second">
+          {data.movieRating}, {data.showTm}분
+        </span>
       </Content>
-      {/* <Content>
+      <Content>
         <span className="first">장르</span>
-        <span className="second">애니메이션/액션/어드벤처</span>
-      </Content> */}
+        <span className="second">{data.genre}</span>
+      </Content>
     </Container>
   );
 };
@@ -29,6 +39,7 @@ const Container = styled.div`
 
 const Content = styled.div`
   display: flex;
+  margin: 5px 0px;
 
   .first {
     font-size: 16px;

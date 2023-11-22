@@ -30,8 +30,7 @@
 ## 🖥️ Demo
 |회원가입&로그인|홈 화면|영화관 검색 페이지|
 | :---: | :---: | :---: |
-|<img src="https://i.imgur.com/wH7kXVy.png" width="400px">|<img src="https://i.imgur.com/uLDgm5W.png" width="400px">|![ezgif com-video-to-gif (2)](https://github.com/mo-young-organization/moyoung-front/assets/104414924/1e158290-a8ca-48e0-80dd-3769b7fc11c1)
-" width="400px">|
+|<img src="https://i.imgur.com/wH7kXVy.png" width="400px">|<img src="https://i.imgur.com/uLDgm5W.png" width="400px">|![ezgif com-video-to-gif (2)](https://github.com/mo-young-organization/moyoung-front/assets/104414924/1e158290-a8ca-48e0-80dd-3769b7fc11c1)|
 ||||
 |영화관 리스트 페이지|영화관 상세 페이지|게시글 리스트 페이지|
 |<img src="https://i.imgur.com/G4kwGkd.png" width="400px">|<img src="https://i.imgur.com/VYWUxe6.png" width="400px">|<img src="https://i.imgur.com/4lADCLK.png" width="400px">|

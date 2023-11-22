@@ -36,7 +36,7 @@
 |<img src="https://i.imgur.com/G4kwGkd.png" width="400px">|<img src="https://i.imgur.com/VYWUxe6.png" width="400px">|<img src="https://i.imgur.com/4lADCLK.png" width="400px">|
 ||||
 |게시글 작성 페이지|영화관 거리 필터|게시글 필터|
-|<img src="https://i.imgur.com/l6p3UtA.png" width="400px">|<img src="https://imgur.com/899XAWu.png" width="400px">|<img src="https://imgur.com/oXE2Icr.png" width="400px">
+|<img src="https://i.imgur.com/l6p3UtA.png" width="400px">|<img src="https://i.imgur.com/Fa1wblC.png" width="400px">|<img src="https://i.imgur.com/Nf4XLwv.png" width="400px">
 ||||
 |게시글 작성 필터(리스트)| 게시글 작성 필터(상세) |
 |<img src="https://i.imgur.com/S8XhuLY.png" width="400px"> |<img src="https://i.imgur.com/15LxnRu.png" width="400px"> |

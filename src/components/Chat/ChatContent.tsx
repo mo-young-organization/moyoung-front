@@ -98,7 +98,7 @@ const ChatContent = (props: Props) => {
 
   const connectHandler = (roomId: string, userId: string) => {
     client.current = Stomp.over(() => {
-      const sock = new SockJS(`http://ec2-43-201-26-61.ap-northeast-2.compute.amazonaws.com:8080`);
+      const sock = new SockJS(`http://moyoung-20467093.ap-northeast-2.elb.amazonaws.com/ws`);
       return sock;
     });
     client.current.connect(

@@ -52,10 +52,10 @@ const MovieTopFive = ({ classname, text, setClickMovieName }: Props) => {
   const windowWidth = useWindowSizeCustom().width;
   // 크기별로 토탈 인덱스 변경
   useEffect(() => {
-    if (windowWidth > 1032) {
+    if (windowWidth > 1024) {
       setTotalIndex(10 - 5);
     }
-    if (windowWidth < 1032 && windowWidth > 768) {
+    if (windowWidth < 1024 && windowWidth > 768) {
       setTotalIndex(10 - 3);
     }
     if (windowWidth < 767 && windowWidth > 360) {

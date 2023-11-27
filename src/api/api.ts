@@ -200,3 +200,13 @@ export const postEnterChat = async (id: number) => {
     console.log(error);
   }
 };
+
+// 이전 채팅 불러오기
+export const getChatContentList = async (id: number) => {
+  try {
+    const data = await instance.get(`chatroom/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};

@@ -13,6 +13,7 @@ import type { ArticleProps } from '../RecruitmentList/Article';
 import Chat from './Chat';
 import dummyChatData from '../../data/DummyChat';
 import { getCookie } from '../../util/Cookie';
+import { getChatContentList } from '../../api/api';
 
 export type Props = {
   switchModalView: (witchModalView: OpenChat) => void;
@@ -47,8 +48,14 @@ const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
   const client = useRef<CompatClient>(); // stomp ref로 만들기
   const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
+  const [chatContentList, setChatContentList] = useState();
   const myToken = getCookie('token');
   const myId = window.sessionStorage.getItem('memberId');
+
+  const fetchChatContent = async () => {
+    const data = await getChatContentList(props.recruitData.recruitingArticleId);
+    console.log(data);
+  };
 
   const sendMessageHandler = () => {
     // 빈문자열이면 리턴
@@ -135,6 +142,7 @@ const ChatContent = (props: Props) => {
   };
 
   useEffect(() => {
+    fetchChatContent();
     connectHandler('1', `${myId}`);
   }, []);
 
@@ -203,6 +211,7 @@ const ChatContentWrapper = styled.div`
     height: 485px;
     display: flex;
     flex-direction: column-reverse;
+    padding-left: 8px;
     background-color: #ebebeb;
     overflow: auto;
   }

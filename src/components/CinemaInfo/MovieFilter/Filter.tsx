@@ -6,7 +6,7 @@ import Distance from './Distance';
 import { styled } from 'styled-components';
 import { useState } from 'react';
 
-const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt }) => {
+const Filter = ({ setLotte, setMega, setCgv, setDt }) => {
   const { register, handleSubmit, watch } = useForm<FilterFormValue>();
 
   const [value, setValue] = useState<number[]>([0, 1]);
@@ -40,12 +40,12 @@ const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt }) => {
       setMega(false);
     }
 
-    // 영화 시간 조건문
-    if (watch('time') === '조조') {
-      setEarly(true);
-    } else if (watch('time') !== '조조') {
-      setEarly(false);
-    }
+    // // 영화 시간 조건문
+    // if (watch('time') === '조조') {
+    //   setEarly(true);
+    // } else if (watch('time') !== '조조') {
+    //   setEarly(false);
+    // }
 
     distance(value);
   };
@@ -54,7 +54,7 @@ const Filter = ({ setEarly, setLotte, setMega, setCgv, setDt }) => {
     <ContainerForm onSubmit={handleSubmit(onSubmitHandler)}>
       <ContentDiv>
         <Cinema register={register} />
-        <Time register={register} />
+        {/* <Time register={register} /> */}
         <Distance setValue={setValue} value={value} />
       </ContentDiv>
       <ButtonDiv>

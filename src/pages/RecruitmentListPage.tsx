@@ -5,6 +5,7 @@ import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 import Recruitment from '../components/RecruitmentList/Recruitment';
 import useWindowSizeCustom from '../util/WindowSizeCustom';
+import ScrollToTop from '../util/ScrollTop';
 
 const RecruitmentListPage = () => {
   const dispatch = useDispatch();
@@ -13,8 +14,6 @@ const RecruitmentListPage = () => {
   const [size, setSize] = useState(0);
   useEffect(() => {
     dispatch(navbarColorStatus('navy'));
-
-    console.log(width);
     // 넓이가 1023보다 크면 사이즈 20
     if (width > 1023) {
       setSize(20);
@@ -28,7 +27,6 @@ const RecruitmentListPage = () => {
 
   return (
     <Container>
-      {/* <Recruitment dummyData={dummyData} /> */}
       <Recruitment size={size} />
     </Container>
   );

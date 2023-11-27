@@ -39,6 +39,7 @@ const NavBar = ({ color }) => {
     removeCookie('refreshToken', { path: '/' });
     window.sessionStorage.clear();
     setIsLogin(false);
+    navigate('/');
   };
 
   //회원 탈퇴 버튼 이벤트
@@ -51,6 +52,7 @@ const NavBar = ({ color }) => {
     }
     window.sessionStorage.clear();
     setIsLogin(false);
+    navigate('/');
   };
 
   // ************ 메뉴바 핸들러
@@ -83,10 +85,8 @@ const NavBar = ({ color }) => {
   // *************************이게 useEffect사용해서 모바일인지 ture/false나눈거야!!
   useEffect(() => {
     if (width < 767) {
-      console.log('모바일환경');
       setIsMobile(true);
     } else {
-      console.log('pc혹은 태블릿 환경');
       setIsMobile(false);
     }
   }, [width]);

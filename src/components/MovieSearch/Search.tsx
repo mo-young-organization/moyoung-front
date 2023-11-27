@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { LiaSearchSolid } from 'react-icons/lia';
 import { RiPinDistanceLine } from 'react-icons/ri';
-import { Dispatch, SetStateAction, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import { movieSearchGet } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import DistancePotal from './Modal/DistancePotal';
@@ -10,26 +10,29 @@ import DistanceModal from './Modal/DistanceModal';
 interface TextProps {
   text?: string;
   setKeyword?: Dispatch<SetStateAction<string>>;
+  clickMovieName?: string;
 }
 
-const Search = ({ text, setKeyword }: TextProps) => {
+const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
   const [movieTitle, setMovieTitle] = useState('');
   const [modalOn, setModalOn] = useState(false);
   const [dt, setDt] = useState(1500);
-
-  const movieTitleHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setMovieTitle(event.target.value);
-  };
+  const movieNameRef = useRef(null);
 
   const navigate = useNavigate();
+
+  // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    const movieName = movieNameRef.current.value;
+
+    // text를 통해 영화관 찾기 input(검색)인지 게시글 input(검색)인지 구별
     if (text) {
-      setKeyword(movieTitle);
+      setKeyword(movieName);
     } else {
-      if (movieTitle !== '') {
+      if (movieName !== '') {
         console.log('get요청');
-        const data = await movieSearchGet(movieTitle, dt);
+        const data = await movieSearchGet(movieName, dt);
         console.log(data.data.length);
         if (data.data.length === 0) {
           navigate('/nomovie');
@@ -45,25 +48,57 @@ const Search = ({ text, setKeyword }: TextProps) => {
     setMovieTitle('');
   };
 
+  // 영화 순위 포스터 클릭시 실행 될 hook
+  useEffect(() => {
+    setMovieTitle(clickMovieName);
+    const carouselClickHandler = async () => {
+      if (movieTitle !== undefined && movieTitle !== '') {
+        console.log('get요청');
+        const data = await movieSearchGet(movieTitle, dt);
+        console.log(data.data.length);
+        if (data.data.length === 0) {
+          navigate('/nomovie');
+          return;
+        }
+        // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
+        navigate('/cinemalist', { state: [data.data, dt] });
+      }
+    };
+
+    carouselClickHandler();
+  }, [clickMovieName, movieTitle]);
+
   return (
     <Container>
-      <Title>{text ? <div className="text-white">{text}</div> : <div>내 주변 영화관 찾기</div>}</Title>
+      <Title>
+        {text ? (
+          <div className="text-white">{text}</div>
+        ) : (
+          <div
+            onClick={() => {
+              navigate('/moviesearch');
+            }}
+          >
+            내 주변 영화관 찾기
+          </div>
+        )}
+      </Title>
       <Form id="searchinput" onSubmit={buttonClickHandler}>
         {text ? (
           <SearchInput
-            value={movieTitle}
+            defaultValue={movieTitle}
             id="searchinput"
             type="text"
             placeholder="게시물을 검색해보세요."
-            onChange={movieTitleHandler}
+            ref={movieNameRef}
           />
         ) : (
           <SearchInput
-            value={movieTitle}
+            defaultValue={movieTitle}
             id="searchinput"
             type="text"
             placeholder="영화 제목을 검색해보세요."
-            onChange={movieTitleHandler}
+            ref={movieNameRef}
           />
         )}
         <ButtonDiv>
@@ -100,9 +135,12 @@ const Title = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 20px;
 
   font-size: 40px;
   font-weight: 700;
+
+  cursor: pointer;
 
   .text-white {
     color: var(--sub-color2);

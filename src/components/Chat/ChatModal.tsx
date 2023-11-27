@@ -1,58 +1,73 @@
 import { styled } from 'styled-components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import ChatContent from './ChatContent';
 import ChatInfo from './ChatInfo';
 import ChatParticipant from './ChatParticipant';
 import Modal from '../Modal/Modal';
 import type { ArticleProps } from '../RecruitmentList/Article';
+import { getRecruitData } from '../../api/api';
+
 export type OpenChat = 'chat' | 'more' | 'participant';
 
 type Props = {
   closeChatModal?: () => void;
-  recruitData: {
-    age: string;
-    cinemaName: string;
-    cinemaBrand: string;
-    cinemaRegion: string;
-    currentNum: number;
-    gender: string;
-    maxNum: number;
-    movieName: string;
-    movieRating: string;
-    movieThumbnailUrl: string;
-    recruitingArticleId: number;
-    screenInfo: string;
-    startTime: string;
-    title: string;
-    writerAge: string;
-    writerDisplayName: string;
-    writerGender: string;
-  };
+  recruitId: number;
+  // {
+  //   age: string;
+  //   cinemaName: string;
+  //   cinemaBrand: string;
+  //   cinemaRegion: string;
+  //   currentNum: number;
+  //   gender: string;
+  //   maxNum: number;
+  //   movieName: string;
+  //   movieRating: string;
+  //   movieThumbnailUrl: string;
+  //   recruitingArticleId: number;
+  //   screenInfo: string;
+  //   startTime: string;
+  //   title: string;
+  //   writerAge: string;
+  //   writerDisplayName: string;
+  //   writerGender: string;
+  // };
 };
 
 const ChatModal = (props: Props) => {
   const [isChatContentOpen, setIsChatContentOpen] = useState<OpenChat>('chat');
+  const [chatroomData, setChatroomData] = useState(null);
   const sessionMyName = window.sessionStorage.getItem('displayName');
 
   const switchModalView = (whitchView: OpenChat) => {
     setIsChatContentOpen(whitchView);
   };
+
+  const getChatroomData = async (id: number) => {
+    const data = await getRecruitData(id);
+    setChatroomData(data.data);
+    console.log(data.data);
+  };
+
+  useEffect(() => {
+    getChatroomData(props.recruitId);
+  }, []);
+
   return (
     <Modal>
       <ChatModalWrapper>
-        {isChatContentOpen === 'chat' && (
+        {isChatContentOpen === 'chat' && chatroomData && (
           <ChatContent
             switchModalView={switchModalView}
             closeChatModal={props.closeChatModal}
-            recruitData={props.recruitData}
+            recruitData={chatroomData}
           />
         )}
-        {isChatContentOpen === 'more' && (
+        {isChatContentOpen === 'more' && chatroomData && (
           <ChatInfo
             switchModalView={switchModalView}
             closeChatModal={props.closeChatModal}
-            recruitData={props.recruitData}
+            recruitData={chatroomData}
             sessionMyName={sessionMyName}
           />
         )}

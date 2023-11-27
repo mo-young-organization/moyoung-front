@@ -1,27 +1,45 @@
 import { styled } from 'styled-components';
 import Explanation from './Explanation';
+import useWindowSizeCustom from '../../../util/WindowSizeCustom';
 
 type ImgProps = {
   $jpg: string;
 };
 
 const MoviePoster = ({ data }) => {
+  const width = useWindowSizeCustom().width;
+  console.log(767 > width);
+
+  const mobile = 767 > width;
+
   return (
     <Container>
       <Content>
-        <MovieImg $jpg={data.thumbnailUrl} role="사진" />
+        <MovieDiv>
+          {mobile ? (
+            <>
+              <MovieImg $jpg={data.thumbnailUrl} role="사진" />
+              <MovieTitle>
+                <div className="kr-title">{data.name}</div>
+                <div className="en-title">{data.enName}</div>
+              </MovieTitle>
+            </>
+          ) : (
+            <MovieImg $jpg={data.thumbnailUrl} role="사진" />
+          )}
+        </MovieDiv>
         <InfoDiv>
-          <div>
-            <MovieTitle>
-              <div className="kr-title">{data.name}</div>
-              <div className="en-title">Spider-Man: Across the Spider-Verse</div>
-            </MovieTitle>
-            <MovieExplanation>
-              <div className="first">영화설명</div>
-              <div className="second">{data.info}</div>
-            </MovieExplanation>
-          </div>
-          <Explanation data={data} />
+          {mobile ? (
+            <Explanation data={data} />
+          ) : (
+            <>
+              <MovieTitle>
+                <div className="kr-title">{data.name}</div>
+                <div className="en-title">{data.enName}</div>
+              </MovieTitle>
+              <Explanation data={data} />
+            </>
+          )}
         </InfoDiv>
       </Content>
     </Container>
@@ -49,7 +67,14 @@ const Content = styled.div`
   //모바일
   @media all and (max-width: 767px) {
     width: 320px;
+
+    display: flex;
+    flex-direction: column;
   }
+`;
+
+const MovieDiv = styled.div`
+  display: flex;
 `;
 
 const MovieImg = styled.div<ImgProps>`
@@ -117,59 +142,6 @@ const MovieTitle = styled.div`
       font-size: 14px;
       font-weight: 500;
     }
-  }
-`;
-
-const MovieExplanation = styled.div`
-  display: flex;
-
-  .first {
-    font-size: 16px;
-    font-weight: 500;
-    color: #a2a2a2;
-
-    width: 64px;
-    text-align: center;
-    margin-right: 24px;
-  }
-
-  .second {
-    font-size: 16px;
-    font-weight: 500;
-    color: #474747;
-
-    width: 700px;
-  }
-
-  //브라우저 창 width가 1024px보다 작아지는 순간부터 적용
-  //태블릿
-  @media all and (max-width: 1024px) {
-    width: 520px;
-    height: auto;
-
-    .first {
-      font-size: 14px;
-      font-weight: 500;
-      color: #a2a2a2;
-
-      width: 80px;
-      text-align: center;
-      margin-right: 10px;
-    }
-
-    .second {
-      font-size: 14px;
-      font-weight: 500;
-      color: #474747;
-
-      width: 700px;
-    }
-  }
-
-  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
-  //모바일
-  @media all and (max-width: 767px) {
-    display: none;
   }
 `;
 

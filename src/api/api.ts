@@ -18,7 +18,7 @@ export const signupCheckPost = async req => {
     const data = await instance.post(`/info`, req);
     console.log(data);
 
-    window.sessionStorage.setItem('displayName', data.data);
+    window.sessionStorage.setItem('displayName', data.data.displayName);
     return data;
   } catch (error) {
     console.log(error);
@@ -58,10 +58,10 @@ export const movieSearchGet = async (movieName, dt) => {
 };
 
 // 영화관 데이터 받아오기 get요청
-export const cinemaGet = async (lat, lon, dt, movieId, date, eraly, lotte, mega, cgv) => {
+export const cinemaGet = async (lat, lon, dt, movieId, date, lotte, mega, cgv) => {
   try {
     const data = await instance.get(
-      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&early=${eraly}&lotte=${lotte}&mega=${mega}&cgv=${cgv}`,
+      `/near?y=${lat}&x=${lon}&distance=${dt}&movieId=${movieId}&date=${date}&lotte=${lotte}&mega=${mega}&cgv=${cgv}`,
       {
         headers: {
           Accept: 'application/json',
@@ -177,6 +177,25 @@ export const getChatList = async () => {
   try {
     const data = await instance.get(`chatroom`);
     return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 개별 모집글 데이터 불러오기 get 요청
+export const getRecruitData = async (id: number) => {
+  try {
+    const data = await instance.get(`recruit/${id}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// 채팅방 입장 post 요청
+export const postEnterChat = async (id: number) => {
+  try {
+    await instance.post(`recruit/${id}/enter`);
   } catch (error) {
     console.log(error);
   }

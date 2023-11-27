@@ -16,10 +16,8 @@ const OauthToken = () => {
   const refreshTokenExpiration = searchParams.get('refreshTokenExpiration');
   const memberId = searchParams.get('memberId');
   const nickname = searchParams.get('displayName');
-  console.log([user, token, refreshToken, memberId, nickname, accessTokenExpiration, refreshTokenExpiration]);
-  console.log(new Date());
-  console.log(new Date(accessTokenExpiration));
-  console.log(new Date(refreshTokenExpiration));
+  const age = searchParams.get('age');
+  console.log([user, token, age, refreshToken, memberId, nickname, accessTokenExpiration, refreshTokenExpiration]);
 
   useEffect(() => {
     // 토큰은 쿠키에 저장
@@ -27,6 +25,7 @@ const OauthToken = () => {
     setCookie('refreshToken', refreshToken, { path: '/', expires: new Date(refreshTokenExpiration) });
     // 세션스토리지에 저장(일시적임 창을 닫으면 없어진다.)
     window.sessionStorage.setItem('memberId', memberId);
+    window.sessionStorage.setItem('age', age[0]);
     // utf-8 디코딩 방법
     window.sessionStorage.setItem('displayName', decodeURIComponent(`${nickname}`));
     // 리덕스 툴킷 상태관리에 user여부 확인

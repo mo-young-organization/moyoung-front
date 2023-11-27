@@ -21,22 +21,31 @@ const PostForm = () => {
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
   console.log(runningTimeData);
 
+  // 나이 중복 체크(input checkbox) 리스트
+  const [checkedList, setCheckedList] = useState([]);
+
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
+    console.log(data);
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
-    data.age = data.age[0];
+    data.ages = checkedList.map(el => el[0]);
 
     // 객체 분해 할당으로 cinema제외하고 값을 불러옴으로 원하는 값을 빼내올 수 있고 반대로 req에는 cinema가 삭제되어 복사된다.
     const { cinema, ...req } = data;
 
+    if (!runningTimeData) {
+      alert('영화를 선택해주세요.');
+    }
+    req.runningTimeId = String(runningTimeData.runningTimeId);
+
     // post 요청
-    // if (req.age && req.gender && req.maxNum && req.runningTimeId && req.title) {
-    //   const postData = await postRecruitList(req);
-    //   if (postData.status === 200) {
-    //     navigate('/recruitmentlist');
-    //   } else if (postData.response.status === 404) {
-    //     alert('영화를 선택해주세요.');
-    //   }
-    // }
+    if (req.ages && req.gender && req.maxNum && req.runningTimeId && req.title) {
+      const postData = await postRecruitList(req);
+      if (postData.status === 200) {
+        navigate('/recruitmentlist');
+      } else if (postData.response.status === 404) {
+        alert('영화를 선택해주세요.');
+      }
+    }
 
     console.log(data);
   };
@@ -51,10 +60,10 @@ const PostForm = () => {
           runningTimeData={runningTimeData}
           setRunningTimeData={setRunningTimeData}
         />
-        <PostPersonnel register={register} />
+        <PostPersonnel register={register} checkedList={checkedList} setCheckedList={setCheckedList} />
       </Content>
       <ButtonDiv>
-        <button>등록하기</button>
+        <button type="submit">등록하기</button>
       </ButtonDiv>
     </ContainerForm>
   );
@@ -63,8 +72,6 @@ const PostForm = () => {
 export default PostForm;
 
 const ContainerForm = styled.form`
-  /* background-color: beige; */
-
   display: flex;
   flex-direction: column;
 `;

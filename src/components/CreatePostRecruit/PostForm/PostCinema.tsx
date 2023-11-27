@@ -15,12 +15,30 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   const [data, setData] = useState({});
   // 인풋 영화이름 밸류
   const [movieName, setMovieName] = useState('');
-  console.log(movieName);
   // 유저가 선택한 영화 정보
   const [moviePickData, setMoviePickData] = useState();
   // 유저가 선택한 영화관 정보
   const [cinemaPickData, setCinemaPickData] = useState([]);
 
+  // 엔터 입력 시 전송되도록
+  const pressEnterKey = async (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.shiftKey && e.key === 'Enter') {
+      return;
+    } else if (e.key === 'Enter') {
+      e.preventDefault();
+      const cinemaName = watch('cinema');
+      if (cinemaName.length !== 0) {
+        setMovieName(cinemaName);
+        const data = await movieSearchGet(cinemaName, 3000);
+        setData(data);
+        setModalOn(!modalOn);
+      } else {
+        alert('영화를 입력해주세요.');
+      }
+    }
+  };
+
+  // 버튼(돋보기) 클릭 핸들러
   const movieSearchHandler = async () => {
     const cinemaName = watch('cinema');
     if (cinemaName.length !== 0) {
@@ -44,6 +62,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
             id="cinema"
             type="text"
             placeholder="영화 제목을 검색해주세요"
+            onKeyPress={pressEnterKey}
             {...register('cinema', { required: '영화를 입력해 주세요.' })}
           />
         </InputDiv>
@@ -64,6 +83,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
         {/* ****************************88티켓을 위해 상태 끌어올리기 해야함 **************************** */}
         {modalOn && (
           <CinemaModal
+            register={register}
             onClose={movieSearchHandler}
             data={data}
             movieName={movieName}

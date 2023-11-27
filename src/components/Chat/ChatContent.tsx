@@ -43,13 +43,12 @@ export type Props = {
 // 빈 문자열이면 실행되지 않게
 //ss
 
-const myId = 7;
-
 const ChatContent = (props: Props) => {
   const textRef = useRef<HTMLTextAreaElement>(null);
   const client = useRef<CompatClient>(); // stomp ref로 만들기
   const [chatData, setChatData] = useState<TChat[]>(dummyChatData);
   const myToken = getCookie('token');
+  const myId = window.sessionStorage.getItem('memberId');
 
   const sendMessageHandler = () => {
     // 빈문자열이면 리턴
@@ -161,7 +160,7 @@ const ChatContent = (props: Props) => {
       <div className="contentWrapper">
         <Content>
           {chatData.map((el, idx) => {
-            return myId === el.writerId ? (
+            return myId === `${el.writerId}` ? (
               <div key={idx + 'chat'} className="myChatWrapper">
                 <div className="message-time">
                   <div className="readCount">{el.readCount}</div>

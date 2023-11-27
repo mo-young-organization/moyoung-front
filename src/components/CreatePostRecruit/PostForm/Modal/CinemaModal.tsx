@@ -86,7 +86,7 @@ const CinemaModal = ({
     console.log('cinemaModal 여기서 문제');
     console.log(date);
     setId(movieId);
-    const data = await cinemaGet(lat, lon, dt, movieId, date, early, lotte, mega, cgv);
+    const data = await cinemaGet(lat, lon, dt, movieId, date, lotte, mega, cgv);
     setCinemaData(data.data);
     setMoviePickData(data.data);
   };
@@ -132,7 +132,7 @@ const CinemaModal = ({
     if (id) {
       clickHandler(id);
     }
-  }, [lat, lon, dt, date, early, lotte, mega, cgv, id]);
+  }, [lat, lon, dt, date, lotte, mega, cgv, id]);
 
   return (
     <Background>

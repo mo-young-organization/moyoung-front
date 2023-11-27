@@ -23,24 +23,27 @@
 <img src="https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white"> <img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"> <img src="https://img.shields.io/badge/reactrouter-CA4245?style=for-the-badge&logo=ReactRouter&logoColor=white"> <img src="https://img.shields.io/badge/redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"> <img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white"> <img src="https://img.shields.io/badge/React%20Hook%20Form-%23EC5990.svg?style=for-the-badge&logo=reacthookform&logoColor=white"> <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"> <img src="https://img.shields.io/badge/eslint-4B32C3?style=for-the-badge&logo=ESLint&logoColor=white"> <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=Prettier&logoColor=black">
 
 ### 🔐 Server
-<img src="https://img.shields.io/badge/Amazon EC2-FF9900?style=for-the-badge&logo=Amazon EC2&logoColor=white"> <img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"> <img src="https://img.shields.io/badge/Amazon RDS-527FFF?style=for-the-badge&logo=Amazon RDS&logoColor=white">
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=Amazon S3&logoColor=white"> <img src="https://img.shields.io/badge/GitGub Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
 
 </br>
 
 ## 🖥️ Demo
-|회원가입&로그인|홈 화면|영화관 검색 페이지|
+|회원가입&로그인|홈 화면|영화 검색 페이지|
 | :---: | :---: | :---: |
-|<img src="https://imgur.com/uerglF1.png" width="400px">|<img src="https://imgur.com/Wg4kveH.png" width="400px">|<img src="https://imgur.com/rpiZKpW.png" width="400px">|
-|<회원가입 페이지> <br /> - 여러 정보들을 입력하고 회원가입 할 수 있다. <br /> - 이미 가입되어 있는 이메일과 닉네임은 회원 가입이 불가능하다. <br />- 각 입력창마다 유효성 검사가 존재한다. <br />-가입 성공 시 로그인 화면으로 이동한다. <br />|<로그인 페이지><br />-이메일 주소, 비밀번호를 입력하여 로그인 할 수 있다. <br />-Google Oauth 로그인 가능하다.<br />-로그인 성공 시 홈 화면으로 이동한다. <br /> |<아이디/비밀번호 찾기> <br /> - 회원가입할 때 입력한 주민등록번호로 자신의 아이디를 찾을 수 있다. <br /> - 아이디와 회원가입할 때 입력한 비밀번호 찾기 질문/답변을 입력하면 임시비밀번호를 발급받을 수 있다.
-|영화관 리스트 페이지|영화관 상세 페이지|게시글 리스트 페이지|
-|<img src="https://imgur.com/U2pj9xT.png" width="400px">|<img src="https://imgur.com/vHdALZf.png" width="400px">|<img src="https://imgur.com/nkM74pc.png" width="400px">|
-|<홈><br /> - 관리자 채택글을 캐러셀 형태로 볼 수 있다. 캐러셀은 화살표 버튼으로 이동가능하다. <br /> 관리자 채택글에서는 게시글을 작성할 때 입력한 주소가 카카오맵으로 표시된다.<br />  <나비게이션바> <br /> - 비로그인 시 로그인 버튼이 보이며 클릭 시 로그인 화면으로 이동한다. <br /> - 로그인 시 로그인 버튼이 프로필로 변경되며 클릭 시 마이페이지로 이동한다. <br /> - 서울의 미세먼지 상황을 알려주며, 좋음, 보통, 나쁨으로 나눠 이모티콘과 색상이 변경된다. <br /> - 카테고리 클릭 시 해당 카테고리 게시글 목록 페이지로 이동한다. <br /> - 현재 어떤 카테고리가 클릭되었는지 표시된다.|게시글 목록 <br /> - 카테고리별 게시글 목록을 나열한다. <br /> - 게시글 클릭시 상세페이지로 이동한다. <br /> - 게시글 좋아요와 북마크를 클릭시 색상이 변한다. <br /> - 페이지네이션으로 페이지 이동이 가능하다. <br /> - 검색을 제목,내용,태그로 검색이 가능하다. <br /> - 글쓰기 클릭시 글쓰기 생성페이지로 이동한다.|<게시글 내용> <br /> - 게시글 제목, 작성자 프로필 사진 및 닉네임, 작성 날짜, 총 좋아요 개수와 댓글 개수, 주소, 내용, 사진, 태그, 댓글 대댓글을 보여준다. <br />  - 일반 유저의 경우 좋아요와 북마크 버튼, 관리자의 경우 채택과 고정 버튼이 보인다. <br /> - 작성자의 경우 수정 및 삭제 버튼이 보인다. <br />  <댓글 및 대댓글> <br /> - 입력창에는 300자 초과 시 더이상 입력되지 않으며 등록 버튼을 누르면 댓글이 생성된다. <br /> - 댓글에는 댓글 추가 버튼이 있으며, 클릭 시 해당 댓글 아래로 대댓글 입력창이 뜬다. <br />  - 작성자의 경우 댓글 수정 및 삭제 버튼이 보인다. <br /> |
-|게시글 작성 페이지|영화관 거리 필터|게시글 필터|
-|<img src="https://imgur.com/j3wBHag.png" width="400px">|<img src="https://imgur.com/899XAWu.png" width="400px">|<img src="https://imgur.com/oXE2Icr.png" width="400px">
-|게시글 작성 <br /> - 커뮤니티, 제목, 주소, 태그, 본문을 작성할 수 있다. <br /> - text에디터를 사용하여 글 스타일과 이미지를 첨부할 수 있다. <br /> - 등록 클릭시 유효성 검사를 하여 통과하면 글 작성이 완료된다.| - 기존 작성된 카테고리, 게시글 제목, 주소, 태그, 내용, 사진 정보가 넘어온다. <br /> - 수정 버튼 클릭 시 수정된 게시글 페이지로 이동한다. <br /> | - 기존 작성된 카테고리, 게시글 제목, 주소, 태그, 내용, 사진 정보가 넘어온다. <br /> - 채택 버튼 클릭 시 홈으로 이동되며 해당 게시글에는 채택 마크가 붙는다. <br /> |
-|게시글 작성 필터|
-|<img src="https://imgur.com/Zk7l6sb.png" width="400px"> |
-|내가 쓴 글 <br /> - 내가 쓴 글과 내가 쓴 댓글 목록이 나열된다. <br /> - 제목과 댓글을 클릭시 본인이 작성한 상세페이지로 이동한다.|
+|<img src="https://i.imgur.com/wH7kXVy.png" width="300px">|<img src="https://i.imgur.com/PElSvwR.png" width="300px">|<img src="https://github.com/mo-young-organization/moyoung-front/assets/104414924/1e158290-a8ca-48e0-80dd-3769b7fc11c1" width="300px"> |
+|<회원가입&로그인> <br/> - OAuth 2.0을 사용하여 따로 회원가입 로그인을 <br /> 분리하지 않고 쉽게 한번에 해결하였다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)| <홈 화면> <br /> - 영화관 찾기와 같이 볼 사람 찾기 두개의 버튼이 있다. <br /> - 심플한 디자인으로 홈 화면에서부터 우리 <br /> 웹사이트가 전하고자 하는 의미를 담았다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)| <영화 검색 페이지> <br /> - 검색란에 현재 상영중인 영화를 검색하면 <br />주변에 상영중인 영화관 리스트가 나온다. <br /> - 영화가 헷갈릴때는 한 단어만 <br />검색해도 연관 영화가 나오게 했다. <br /> - 상영중인 영화 top10을 캐러셀로 자동슬라이<br />드 되게 만들었으며, 포스터 클릭시 해당 영화를 <br />상영중인 영화관 리스트가 뜰 수 있도록 하였다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)|
+|영화 리스트 페이지|영화관 리스트 페이지|게시글 리스트 페이지|
+|<img src="https://i.imgur.com/8CRokwE.png" width="300px">|<img src="https://i.imgur.com/VYWUxe6.png" width="300px">|<img src="https://github.com/mo-young-organization/moyoung-front/assets/104414924/dedd0112-7f28-4eb7-a7ea-cd9fc962801f" width="300px">|
+| <영화 리스트 페이지> <br /> - 검색 페이지를 통해 나온 영화들이 뜬다. <br /> - 버튼 클릭시 해당 영화관 상영중인 <br /> 영화관 리스트 페이지가 뜬다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)| <영화관 리스트 페이지> <br /> - 영화 포스터와 제목, 기본 정보들이 뜬다. <br /> - 날짜와 필터가 있어서, 클릭시 해당 날짜와 <br /> 필터적용이 된다. <br /> - 현재 검색 반경과 검색 결과가 뜨며 <br /> 영화관 위치와 상영관, 시간이 뜬다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)| <게시글 리스트 페이지> <br /> - 검색란을 통해 게시글을 검색할 수 있다. <br /> - 페이지 네이션을 통해 유저가 <br /> 쉽게 찾고 기억하게 했다. <br /> - 글쓰기 버튼을 통해 게시글 작성페이지로 <br /> 이동이 가능하다.(회원만 가능) <br /> - 게시글에는 호버 기능을 추가하여 마우스 호버 <br /> 시 영화 정보가 뜨며 참여하기 버튼이 뜬다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하)|
+|게시글 작성 페이지|영화 거리 필터|게시글 필터|
+|<img src="https://i.imgur.com/l6p3UtA.png" width="300px">|<img src="https://i.imgur.com/Fa1wblC.png" width="300px">|<img src="https://i.imgur.com/Nf4XLwv.png" width="300px">
+|<게시글 작성 페이지> <br /> - 제목과 영화와 영화관, 모집 <br /> 정보등을 선택해야한다. <br /> - 영화를 선택하면 티켓 모양으로 바뀐다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하) | <영화 거리 필터> <br /> - 영화 검색시 검색 반경을 검색전에 <br /> 필터로 설정할 수 있다. | <게시글 필터> <br /> - 게시글을 정렬, 성별, 나이대, 거리별로 필터를 <br /> 적용하여 원하는 게시글을 찾을 수 있다.|
+|게시글 작성 필터(리스트)| 게시글 작성 필터(상세) | 푸터 |
+|<img src="https://i.imgur.com/S8XhuLY.png" width="300px"> |<img src="https://i.imgur.com/15LxnRu.png" width="300px"> | <img src="https://i.imgur.com/FDz1fol.png" width="300px" >|
+|<게시글 작성 필터> <br /> - 모달을 통하여 검색한 영화 <br /> 리스트가 뜬다. <br /> - 버튼 클릭시 영화관 리스트 페이지로 이동한다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하) | <게시글 작성 필터> <br /> - 날짜를 클릭하면 해당 날짜에 <br /> 상영하는 시간대를 확인 할 수 있다. <br /> - 우측상단에 필터를 통하여 검색이 가능하다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하) | <푸터> <br /> - 프로젝트에 함께한 팀원들에 <br /> 대한 정보가 기록되어 있다. <br /> - 깃허브 모양 클릭시 해당 <br /> 팀원 깃허브로 이동한다. <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하) |
+|회원정보등록 페이지|||
+|<img src="https://i.imgur.com/ofBTEPA.png" width="300px">|||
+|<회원정보등록 페이지> <br /> - 닉네임, 성별, 나이대를 <br /> 선택해야지만 등록이 된다. <br /> - 닉네임은 중복검사를 해야지만 등록이 된다.  <br /> - 반응형(pc-1024px 이상, <br /> 태블릿 - 1023px~768px, 모바일 - 767px 이하) |||
 
 
 <br />

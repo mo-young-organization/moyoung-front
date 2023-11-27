@@ -55,6 +55,7 @@ const ChatContent = (props: Props) => {
   const fetchChatContent = async () => {
     const data = await getChatContentList(props.recruitData.recruitingArticleId);
     console.log(data);
+    // setChatData(data.data)
   };
 
   const sendMessageHandler = () => {

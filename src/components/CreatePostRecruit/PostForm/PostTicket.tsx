@@ -9,7 +9,6 @@ import styled from 'styled-components';
 import { ThumbnailProps } from './Modal/type';
 
 const Ticket = ({ moviePickData, cinemaPickData, runningTimeData }) => {
-  // console.log(cinemaPickData[0].brand);
   const days = () => {
     if (runningTimeData) {
       const month = runningTimeData.startTime.slice(5, 7);

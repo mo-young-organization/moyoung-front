@@ -12,7 +12,6 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
   const [value, setValue] = useState<number[]>([0, 1]);
 
   const distance = dt => {
-    console.log(dt);
     if (dt[1] === 1) {
       setDistance(1500);
     } else if (dt[1] === 2) {
@@ -25,8 +24,6 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
   };
 
   const onSubmitHandler: SubmitHandler<ListFilterForm> = data => {
-    console.log(data);
-
     // 1 젠더필터
     if (data.gender) {
       data.gender === '전체'
@@ -63,7 +60,7 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
     }
 
     // 4. 거리필터
-    console.log(value[1]);
+
     if (value[1] !== 1) {
       distance(value);
     } else {
@@ -73,13 +70,13 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
     // 그냥 거기 데이터가 없으면 기본값으로 설정해주면 되는거 아닌가?
 
     // if (data.gender && !data.age && !data.alignment && !data.distance) {
-    //   console.log('젠더에만 데이터가 있다면 젠더만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+
     //   setGender(data.gender);
     //   setTeenager(true), setTwenties(true), setThirties(true);
     //   setSort(false);
     //   setDistance(1500);
     // } else if (!data.gender && data.age && !data.alignment && !data.distance) {
-    //   console.log('나이에만 데이터가 있다면 나이만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+
     //   if (data.age === '10대') {
     //     setTeenager(true), setTwenties(false), setThirties(false);
     //   }
@@ -93,8 +90,7 @@ const RecruFilterModal = ({ onClose, setGender, setTeenager, setTwenties, setThi
     //   setSort(false);
     //   setDistance(1500);
     // } else if (!data.gender && !data.age && data.alignment && !data.distance) {
-    //   console.log('정렬에만 데이터가 있다면 정렬만 데이터로 넘겨주고 나머지는 기본값으로 변경');
-    //   // console.log('정렬에만 데이터가 있다면 정렬만 데이터로 넘겨주고 나머지는 기본값으로 변경');
+
     //   setGender('');
     //   setTeenager(true), setTwenties(true), setThirties(true);
     //   data.alignment === '가까운순' ? setSort(true) : setSort(false);

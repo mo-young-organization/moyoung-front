@@ -4,7 +4,7 @@ import { instance } from './create';
 export const nickNameDuplicatePost = async req => {
   try {
     const data = await instance.post(`/displayname`, req);
-    console.log(data);
+
     return data.data;
   } catch (error) {
     console.log(error);
@@ -16,7 +16,6 @@ export const nickNameDuplicatePost = async req => {
 export const signupCheckPost = async req => {
   try {
     const data = await instance.post(`/info`, req);
-    console.log(data);
 
     window.sessionStorage.setItem('displayName', data.data.displayName);
     return data;
@@ -29,7 +28,7 @@ export const signupCheckPost = async req => {
 export const userDelete = async memberId => {
   try {
     const data = await instance.delete(`/member`);
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -49,7 +48,7 @@ export const movieSearchGet = async (movieName, dt) => {
         },
       },
     );
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -69,7 +68,7 @@ export const cinemaGet = async (lat, lon, dt, movieId, date, lotte, mega, cgv) =
         },
       },
     );
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -86,7 +85,7 @@ export const getMovieTopFive = async () => {
         'ngrok-skip-browser-warning': 60420,
       },
     });
-    console.log(data.data);
+
     return data.data;
   } catch (error) {
     console.log(error);
@@ -97,7 +96,7 @@ export const getMovieTopFive = async () => {
 export const postRecruitList = async req => {
   try {
     const data = await instance.post(`recruit`, req);
-    console.log(data);
+
     return data;
   } catch (error) {
     console.log(error);
@@ -128,7 +127,7 @@ export const getRecruitList = async (
         },
       },
     );
-    console.log(data);
+
     return data.data;
   } catch (error) {
     console.log(error);
@@ -147,7 +146,7 @@ export const getRecruitListNoUser = async (page: number, keyword: string, size: 
         },
       },
     );
-    console.log(data);
+
     return data.data;
   } catch (error) {
     console.log(error);

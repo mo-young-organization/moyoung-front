@@ -42,10 +42,9 @@ const Nickname = ({ register, errors, watch, trigger, 중복확인, set중복확
 
   const duplicateHandler = async () => {
     // useState변수명과 다르게 하기위해 1을 붙힘
-    console.log('중복검사 버튼 실행');
+
     const status1 = await nickNameDuplicatePost(req);
     set중복확인(true);
-    console.log(status1);
 
     if (status1 === 400) {
       setIsNick(false);
@@ -61,7 +60,6 @@ const Nickname = ({ register, errors, watch, trigger, 중복확인, set중복확
   };
 
   const validatePassword = value => {
-    console.log('버튼누르면 이게 실행되나?');
     if (중복확인 === false) {
       setIsNick(false);
       setText('중복검사를 해주세요');

@@ -19,13 +19,11 @@ const PostForm = () => {
 
   const navigate = useNavigate();
   const [runningTimeData, setRunningTimeData] = useState<RunningIdProps>();
-  console.log(runningTimeData);
 
   // 나이 중복 체크(input checkbox) 리스트
   const [checkedList, setCheckedList] = useState([]);
 
   const onSubmitHandler: SubmitHandler<CreatePormProps> = async data => {
-    console.log(data);
     data.gender = String(data.gender === '전체' ? 1 : data.gender === '남자만' ? 2 : 3);
     data.ages = checkedList.map(el => el[0]);
 
@@ -46,8 +44,6 @@ const PostForm = () => {
         alert('영화를 선택해주세요.');
       }
     }
-
-    console.log(data);
   };
 
   return (

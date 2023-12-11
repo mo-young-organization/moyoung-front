@@ -1,7 +1,6 @@
 import { styled } from 'styled-components';
 
 const MyLocation = ({ resultLength, dt }) => {
-  console.log(dt);
   const distanceCal = dt => {
     const distance = +dt;
     if (distance === 1500) {
@@ -22,7 +21,8 @@ const MyLocation = ({ resultLength, dt }) => {
         <span className="location">{`${distanceCal(dt)}KM`}</span>
       </div>
       <div className="my">
-        <span className="my">검색결과: </span><span className="location">{`${resultLength}개`}</span>
+        <span className="my">검색결과: </span>
+        <span className="location">{`${resultLength}개`}</span>
       </div>
     </Container>
   );

@@ -8,7 +8,6 @@ type ImgProps = {
 
 const MoviePoster = ({ data }) => {
   const width = useWindowSizeCustom().width;
-  console.log(767 > width);
 
   const mobile = 767 > width;
 

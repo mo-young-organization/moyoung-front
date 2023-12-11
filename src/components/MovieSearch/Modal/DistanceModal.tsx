@@ -7,7 +7,6 @@ const DistanceModal = ({ modalOn, setModalOn, setDt }) => {
   const [value, setValue] = useState<number[]>([0, 1]);
 
   const distance = dt => {
-    console.log(dt);
     if (dt[1] === 1) {
       setDt(1500);
     } else if (dt[1] === 2) {

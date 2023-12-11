@@ -46,7 +46,6 @@ const ChatModal = (props: Props) => {
   const getChatroomData = async (id: number) => {
     const data = await getRecruitData(id);
     setChatroomData(data.data);
-    console.log(data.data);
   };
 
   useEffect(() => {

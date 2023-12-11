@@ -31,9 +31,8 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
       setKeyword(movieName);
     } else {
       if (movieName !== '') {
-        console.log('get요청');
         const data = await movieSearchGet(movieName, dt);
-        console.log(data.data.length);
+
         if (data.data.length === 0) {
           navigate('/nomovie');
           return;
@@ -53,9 +52,8 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
     setMovieTitle(clickMovieName);
     const carouselClickHandler = async () => {
       if (movieTitle !== undefined && movieTitle !== '') {
-        console.log('get요청');
         const data = await movieSearchGet(movieTitle, dt);
-        console.log(data.data.length);
+
         if (data.data.length === 0) {
           navigate('/nomovie');
           return;

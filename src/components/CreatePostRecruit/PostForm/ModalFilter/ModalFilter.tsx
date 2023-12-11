@@ -12,7 +12,6 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setCgv, setDt, clic
   const [value, setValue] = useState<number[]>([0, 1]);
 
   const dt계산 = dt => {
-    console.log(dt);
     if (dt[1] === 1) {
       setDt(1500);
     } else if (dt[1] === 2) {
@@ -25,7 +24,6 @@ const ModalFilter = ({ onClose, setEarly, setLotte, setMega, setCgv, setDt, clic
   };
 
   const onSubmitHandler: SubmitHandler<FilterFormValue> = data => {
-    console.log('hi');
     // 영화관 조건문
     if (watch('cinema') === '메가박스') {
       setLotte(false);

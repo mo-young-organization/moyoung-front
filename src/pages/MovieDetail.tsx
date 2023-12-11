@@ -6,7 +6,7 @@ import MidMovieInfo from '../components/MovieDetail/MidMovieInfo';
 
 const MovieDetail = () => {
   const { movieId } = useParams();
-  console.log(movieId);
+
   // AIzaSyCwqGJGZtRte2upFi6ss6fKkzrIzkJM5n0
   const iframeProps = {
     id: 'ytplayer',

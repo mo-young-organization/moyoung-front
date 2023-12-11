@@ -8,12 +8,10 @@ const Box = () => {
 
   const theaterHandler = () => {
     navigate('moviesearch');
-    console.log('영화관 찾기');
   };
 
   const peoplelHandler = () => {
     navigate('recruitmentlist');
-    console.log('사람 찾기');
   };
 
   return (

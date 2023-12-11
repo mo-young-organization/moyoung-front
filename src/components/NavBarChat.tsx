@@ -27,18 +27,16 @@ const NavBarChat = () => {
 
   const getChatData = async () => {
     const data = await getChatList();
-    console.log(data.data);
+
     setPartChatList(data.data);
   };
 
   const onClickHandler = () => {
     setIsListOpen(!isListOpen);
-    console.log(isListOpen);
   };
 
   const onChatroomClickHandler = async (id: number) => {
     const data = await getRecruitData(id);
-    console.log(data.data);
   };
 
   const closeChatModal = () => {

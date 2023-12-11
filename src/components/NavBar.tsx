@@ -29,12 +29,10 @@ const NavBar = ({ color }) => {
 
   const loginClickHandler = () => {
     navigate('/login');
-    console.log('로그인 클릭');
   };
 
   //로그아웃 버튼 이벤트
   const logoutHandler = () => {
-    console.log('로그아웃이구만유우');
     removeCookie('token', { path: '/' });
     removeCookie('refreshToken', { path: '/' });
     window.sessionStorage.clear();
@@ -53,11 +51,6 @@ const NavBar = ({ color }) => {
     window.sessionStorage.clear();
     setIsLogin(false);
     navigate('/');
-  };
-
-  // ************ 메뉴바 핸들러
-  const mobileSideMenuBarHandler = () => {
-    console.log('메뉴바 클릭');
   };
 
   const dropDownMenuArr = [
@@ -100,7 +93,7 @@ const NavBar = ({ color }) => {
         <UserDiv>
           {isLogin ? (
             isMobile ? (
-              <MobileMenuButton onClick={mobileSideMenuBarHandler}>
+              <MobileMenuButton>
                 <RiMenuFill />
               </MobileMenuButton>
             ) : (

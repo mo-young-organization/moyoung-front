@@ -35,7 +35,6 @@ const CinemaModal = ({
   const [status, setStatus] = useState();
   const [modalFilterOn, setmodalFilterOn] = useState(false);
   const [movieValue, setMovieValue] = useState(movieName);
-  // console.log(movieValue);
 
   const movieSearchHandler = e => {
     setMovieValue(e.target.value);
@@ -43,7 +42,6 @@ const CinemaModal = ({
 
   // 검색창 돋보기 클릭 이벤트
   const movieSearchClickHandler = async e => {
-    console.log('영화 검색 버튼 클릭');
     if (movieValue === '') {
       alert('영화를 입력해주세요');
     } else {
@@ -55,8 +53,6 @@ const CinemaModal = ({
   };
 
   const filterinFilterHandler = () => {
-    console.log('필터안에 필터');
-    console.log(id);
     if (!id) {
       alert('영화를 먼저 선택해주세요');
     } else {
@@ -83,8 +79,6 @@ const CinemaModal = ({
 
   // 리스트 페이지 버튼이벤트
   const clickHandler = async movieId => {
-    console.log('cinemaModal 여기서 문제');
-    console.log(date);
     setId(movieId);
     const data = await cinemaGet(lat, lon, dt, movieId, date, lotte, mega, cgv);
     setCinemaData(data.data);
@@ -93,7 +87,6 @@ const CinemaModal = ({
 
   // cinemaModal에서 영화 시간 클릭 이벤트
   const runningTimeHandler = (runTime, data, el) => {
-    console.log('버튼 클릭');
     setRunningTimeData(runTime);
     const cinemaInfoArr = [el, data];
     setCinemaPickData(cinemaInfoArr);

@@ -33,8 +33,6 @@ const ModalCalendar = ({ setDate }) => {
       }
     }
 
-    //요일 정상적으로 뜨는지 확인해보자
-    console.log(dates);
     return dates;
   };
 
@@ -90,7 +88,7 @@ const ModalCalendar = ({ setDate }) => {
   // 날짜 클릭시 데이터 값 가져와서 상태 올리기(get요청이 새로 들어간다)
   useEffect(() => {
     const clickDate = `${year}-${clickMonth}-${clickDay}`;
-    console.log(clickDate);
+
     setDate(clickDate);
   }, [clickDay]);
 

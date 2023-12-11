@@ -15,7 +15,6 @@ const CinemaListPage = () => {
   //   navigate시 넘겨준 state값을 불러 올 수 있다.
   const location = useLocation();
   const data = location.state;
-  console.log(data);
 
   const clickHandler = movieId => {
     navigate(`/cinemainfo/${movieId}/${data[1]}`);

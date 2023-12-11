@@ -17,7 +17,6 @@ const OauthToken = () => {
   const memberId = searchParams.get('memberId');
   const nickname = searchParams.get('displayName');
   const age = searchParams.get('age');
-  console.log([user, token, age, refreshToken, memberId, nickname, accessTokenExpiration, refreshTokenExpiration]);
 
   useEffect(() => {
     // 토큰은 쿠키에 저장

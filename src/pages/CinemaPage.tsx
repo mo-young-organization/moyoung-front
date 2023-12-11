@@ -12,7 +12,6 @@ import NoMovie from './NoMovie';
 
 const CinemaPage = () => {
   const [data, setData] = useState<CinemaDataProps>(undefined);
-  console.log(data);
 
   // 오늘 날짜 년도-월-일 순서
   const dateNew = new Date();
@@ -25,7 +24,7 @@ const CinemaPage = () => {
   const lat = '37.498';
   const lon = '127.026';
   const [dt, setDt] = useState(params.dt);
-  console.log(dt);
+
   const movieId = params.cinemaId;
   const [date, setDate] = useState(todayDate);
   const [lotte, setLotte] = useState(true);
@@ -35,7 +34,7 @@ const CinemaPage = () => {
   useEffect(() => {
     const cinemaData = async () => {
       const data = await cinemaGet(lat, lon, dt, movieId, date, lotte, mega, cgv);
-      console.log(lat, lon, dt, movieId, date, lotte, mega);
+
       setData(data.data);
     };
     cinemaData();
@@ -48,15 +47,7 @@ const CinemaPage = () => {
       </SearchDiv>
       <Content>{data && <MoviePoster data={data.movieInfo} />}</Content>
       <FilterDiv>
-        {data && (
-          <MovieFilter
-            setDate={setDate}
-            setLotte={setLotte}
-            setMega={setMega}
-            setCgv={setCgv}
-            setDt={setDt}
-          />
-        )}
+        {data && <MovieFilter setDate={setDate} setLotte={setLotte} setMega={setMega} setCgv={setCgv} setDt={setDt} />}
       </FilterDiv>
       <Content>
         {data && data.cinemaInfo.length ? (

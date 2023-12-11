@@ -9,11 +9,10 @@ const Calendar = ({ setDate }) => {
   const lastday = new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
   const month = date.getMonth() + 1;
   const year = date.getFullYear();
-  // console.log(year);
+
   const [clickMonth, setClickMonth] = useState(month);
-  // console.log(clickMonth);
+
   const [clickDay, setClickDay] = useState(today);
-  // console.log(clickDay);
 
   // 일수 가져오는 함수(1,2,3,4 ...)
   const getAlldate = (today: number, lastday: number) => {
@@ -34,9 +33,6 @@ const Calendar = ({ setDate }) => {
         dates.push(today);
       }
     }
-
-    //요일 정상적으로 뜨는지 확인해보자
-    // console.log(dates);
 
     return dates;
   };

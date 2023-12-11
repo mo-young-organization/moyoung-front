@@ -5,7 +5,7 @@ import { styled } from 'styled-components';
 const FilterDistance = ({ value, setValue }) => {
   const handleChange = (event: Event, newValue: number | number[]) => {
     //조건문으로 0 ~ 4 면 km로 변환시키기
-    console.log(newValue);
+
     setValue(newValue as number[]);
   };
 
@@ -85,10 +85,9 @@ const DistanceSlider = styled(Slider)`
   }
   color: #a0a0a0;
 
-	//브라우저 창 width가 768px보다 작아지는 순간부터 적용
-	//모바일
-  @media all and (max-width: 768px){
+  //브라우저 창 width가 768px보다 작아지는 순간부터 적용
+  //모바일
+  @media all and (max-width: 768px) {
     width: 250px;
-}
-
+  }
 `;

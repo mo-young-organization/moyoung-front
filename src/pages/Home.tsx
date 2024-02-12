@@ -1,16 +1,37 @@
 import { styled } from 'styled-components';
 import Title from '../components/Home/Title';
 import Box from '../components/Home/Box';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
+import { useGeoLocation } from '../hooks/useGeolocation';
+import { ReduxType } from '../store/store';
+import { myLocationStatus } from '../store/reducers/myLocation';
 
 const Home = () => {
+  const { mylocationX } = useSelector((state: ReduxType) => state.myLocation.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(navbarColorStatus('main'));
   }, []);
+
+  // 내 위치 가져오기
+  const geolocationOptions = {
+    enableHighAccuracy: false, // 정확한 위치 가져올지
+    timeout: 10 * 1000, // 위치 정보 얻을 때까지 기다릴 시간을 밀리초 단위로 지정
+    maximumAge: 1000 * 3600 * 24, // 캐시된 위치 정보의 유효 시간을 밀리초로 지정하고, default 값은 0입니다.
+  };
+
+  const { location, error } = useGeoLocation(geolocationOptions);
+  useEffect(() => {
+    console.log(location);
+    if (location) {
+      dispatch(myLocationStatus({ mylocationX: location.latitude, mylocationY: location.longitude }));
+    }
+  }, [location]);
+
+  console.log(mylocationX);
 
   return (
     <Container>

@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { cinemaGet } from '../api/api';
 import { CinemaDataProps } from '../components/CreatePostRecruit/PostForm/Modal/type';
 import NoMovie from './NoMovie';
+import { useSelector } from 'react-redux';
+import { ReduxType } from '../store/store';
 
 const CinemaPage = () => {
   const [data, setData] = useState<CinemaDataProps>(undefined);
@@ -21,8 +23,9 @@ const CinemaPage = () => {
   const todayDate = `${year}-${month}-${today}`;
 
   const params = useParams();
-  const lat = '37.498';
-  const lon = '127.026';
+  // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
+  const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.value);
+  console.log('cinemaPage: ', mylocationX, mylocationY);
   const [dt, setDt] = useState(params.dt);
 
   const movieId = params.cinemaId;
@@ -33,12 +36,12 @@ const CinemaPage = () => {
 
   useEffect(() => {
     const cinemaData = async () => {
-      const data = await cinemaGet(lat, lon, dt, movieId, date, lotte, mega, cgv);
+      const data = await cinemaGet(mylocationY, mylocationX, dt, movieId, date, lotte, mega, cgv);
 
       setData(data.data);
     };
     cinemaData();
-  }, [lat, lon, dt, movieId, date, lotte, mega]);
+  }, [mylocationY, mylocationX, dt, movieId, date, lotte, mega, cgv]);
 
   return (
     <Container>

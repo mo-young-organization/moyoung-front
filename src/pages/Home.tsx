@@ -1,15 +1,13 @@
 import { styled } from 'styled-components';
 import Title from '../components/Home/Title';
 import Box from '../components/Home/Box';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
 import { useGeoLocation } from '../hooks/useGeolocation';
-import { ReduxType } from '../store/store';
 import { myLocationStatus } from '../store/reducers/myLocation';
 
 const Home = () => {
-  const { mylocationX } = useSelector((state: ReduxType) => state.myLocation.value);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -30,8 +28,6 @@ const Home = () => {
       dispatch(myLocationStatus({ mylocationX: location.latitude, mylocationY: location.longitude }));
     }
   }, [location]);
-
-  console.log(mylocationX);
 
   return (
     <Container>

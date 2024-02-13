@@ -2,7 +2,6 @@ import { styled } from 'styled-components';
 import RoutingPage from './pages/RoutingPage';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyles from './style/GlobalStyle';
-import ScrollToTop from './util/ScrollTop';
 
 function App() {
   return (

@@ -22,6 +22,7 @@ export const useGeoLocation = (options = {}) => {
     setError(err.message);
   };
 
+  // 종속성을 주지 않아야 한번만 실행이 된다. => options를 주면 무한 로딩이 이뤄남
   useEffect(() => {
     const { geolocation } = navigator;
 

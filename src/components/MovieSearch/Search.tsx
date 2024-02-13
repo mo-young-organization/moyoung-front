@@ -6,6 +6,8 @@ import { movieSearchGet } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import DistancePotal from './Modal/DistancePotal';
 import DistanceModal from './Modal/DistanceModal';
+import { ReduxType } from '../../store/store';
+import { useSelector } from 'react-redux';
 
 interface TextProps {
   text?: string;
@@ -20,6 +22,9 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
   const movieNameRef = useRef(null);
 
   const navigate = useNavigate();
+  // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
+  const { mylocationY, mylocationX } = useSelector((state: ReduxType) => state.myLocation.value);
+  console.log('moviesearch: ', mylocationX, mylocationY);
 
   // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -31,7 +36,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
       setKeyword(movieName);
     } else {
       if (movieName !== '') {
-        const data = await movieSearchGet(movieName, dt);
+        const data = await movieSearchGet(mylocationY, mylocationX, movieName, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');
@@ -52,7 +57,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
     setMovieTitle(clickMovieName);
     const carouselClickHandler = async () => {
       if (movieTitle !== undefined && movieTitle !== '') {
-        const data = await movieSearchGet(movieTitle, dt);
+        const data = await movieSearchGet(mylocationY, mylocationX, movieTitle, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');

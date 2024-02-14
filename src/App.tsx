@@ -2,14 +2,21 @@ import { styled } from 'styled-components';
 import RoutingPage from './pages/RoutingPage';
 import { BrowserRouter } from 'react-router-dom';
 import GlobalStyles from './style/GlobalStyle';
+import { Provider } from 'react-redux';
+import { CookiesProvider } from 'react-cookie';
+import store from './store/store';
 
 function App() {
   return (
     <Wrapper>
-      <BrowserRouter>
-        <GlobalStyles />
-        <RoutingPage />
-      </BrowserRouter>
+      <Provider store={store}>
+        <CookiesProvider>
+          <BrowserRouter>
+            <GlobalStyles />
+            <RoutingPage />
+          </BrowserRouter>
+        </CookiesProvider>
+      </Provider>
     </Wrapper>
   );
 }

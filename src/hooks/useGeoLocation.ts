@@ -19,6 +19,10 @@ export const useGeoLocation = (options = {}) => {
   };
 
   const handleError = (err: GeolocationPositionError) => {
+    setLocation({
+      latitude: 37.7131914882111,
+      longitude: 126.75993318746,
+    });
     setError(err.message);
   };
 

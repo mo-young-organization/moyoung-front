@@ -6,8 +6,7 @@ import { movieSearchGet } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import DistancePotal from './Modal/DistancePotal';
 import DistanceModal from './Modal/DistanceModal';
-import { ReduxType } from '../../store/store';
-import { useSelector } from 'react-redux';
+import { useGeoLocation } from '../../hooks/useGeoLocation';
 
 interface TextProps {
   text?: string;
@@ -22,9 +21,17 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
   const movieNameRef = useRef(null);
 
   const navigate = useNavigate();
+
+  // 내 위치 가져오기 - 옵션
+  const geolocationOptions = {
+    enableHighAccuracy: true, // 정확한 위치 가져올지
+    timeout: 10 * 1000, // 위치 정보 얻을 때까지 기다릴 시간을 밀리초 단위로 지정
+    maximumAge: 1000 * 3600 * 24, // 캐시된 위치 정보의 유효 시간을 밀리초로 지정하고, default 값은 0입니다.
+  };
+
   // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
-  const { mylocationY, mylocationX } = useSelector((state: ReduxType) => state.myLocation.value);
-  console.log('moviesearch: ', mylocationX, mylocationY);
+  const { location, error } = useGeoLocation(geolocationOptions);
+  console.log('location:', location);
 
   // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -36,7 +43,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
       setKeyword(movieName);
     } else {
       if (movieName !== '') {
-        const data = await movieSearchGet(mylocationY, mylocationX, movieName, dt);
+        const data = await movieSearchGet(location.latitude, location.longitude, movieName, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');
@@ -57,7 +64,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
     setMovieTitle(clickMovieName);
     const carouselClickHandler = async () => {
       if (movieTitle !== undefined && movieTitle !== '') {
-        const data = await movieSearchGet(mylocationY, mylocationX, movieTitle, dt);
+        const data = await movieSearchGet(location.latitude, location.longitude, movieTitle, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');

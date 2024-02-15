@@ -26,7 +26,6 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
 
   // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
   const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
-  console.log(mylocationX);
 
   // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {

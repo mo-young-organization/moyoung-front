@@ -18,6 +18,8 @@ import LOTTE from '../../../../assets/img/LOTTE_logo.png';
 import CGV from '../../../../assets/img/CGV_logo.png';
 import ModalCalendar from './ModalCalendar';
 import NoSearchMovie from '../../../NoMovie/NoSearchMovie';
+import { useSelector } from 'react-redux';
+import { ReduxType } from '../../../../store/store';
 
 const CinemaModal = ({
   register,
@@ -47,7 +49,7 @@ const CinemaModal = ({
     } else {
       setCinemaData(undefined);
 
-      const data = await movieSearchGet(movieValue, 3000);
+      const data = await movieSearchGet(lat, lon, movieValue, 3000);
       setMovieData(data.data);
     }
   };
@@ -67,8 +69,10 @@ const CinemaModal = ({
   const today = String(dateNew.getDate()).length !== 2 ? '0' + dateNew.getDate() : dateNew.getDate();
   const todayDate = `${year}-${month}-${today}`;
 
-  const lat = '37.498';
-  const lon = '127.026';
+  const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
+
+  const lat = mylocationY;
+  const lon = mylocationX;
   const [dt, setDt] = useState(1500);
   const [date, setDate] = useState(todayDate);
   const [early, setEarly] = useState(false);
@@ -115,7 +119,7 @@ const CinemaModal = ({
       } else if (e.key === 'Enter') {
         e.preventDefault();
 
-        const data = await movieSearchGet(movieValue, 3000);
+        const data = await movieSearchGet(lat, lon, movieValue, 3000);
         setMovieData(data.data);
       }
     }

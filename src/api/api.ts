@@ -36,18 +36,14 @@ export const userDelete = async memberId => {
 };
 
 // 영화 검색 get요청
-export const movieSearchGet = async (movieName, dt) => {
+export const movieSearchGet = async (lat, lon, movieName, dt) => {
   try {
-    // const data = await instance.get(`/movie?movieName=${movieName}&page=1`, {
-    const data = await instance.get(
-      `/movie?movieName=${movieName}&x=${'126.75993318746'}&y=${'37.7131914882111'}&distance=${dt}`,
-      {
-        headers: {
-          Accept: 'application/json',
-          'ngrok-skip-browser-warning': 60420,
-        },
+    const data = await instance.get(`/movie?movieName=${movieName}&y=${lat}&x=${lon}&distance=${dt}`, {
+      headers: {
+        Accept: 'application/json',
+        'ngrok-skip-browser-warning': 60420,
       },
-    );
+    });
 
     return data;
   } catch (error) {

@@ -1,9 +1,11 @@
 import { styled } from 'styled-components';
 import Title from '../components/Home/Title';
 import Box from '../components/Home/Box';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
+import { ReduxType } from '../store/store';
+import { useGeoLocation } from '../hooks/useGeoLocation';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -11,6 +13,16 @@ const Home = () => {
   useEffect(() => {
     dispatch(navbarColorStatus('main'));
   }, []);
+
+  const { error } = useGeoLocation();
+  useEffect(() => {
+    if (error) {
+      alert('주소를 동의 하지 않았습니다.');
+    }
+  }, [error]);
+
+  const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
+  console.log('이렇게 하는 거네:', mylocationX, mylocationY);
 
   return (
     <Container>

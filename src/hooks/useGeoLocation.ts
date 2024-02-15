@@ -1,28 +1,30 @@
 import { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { myLocationStatus } from '../store/reducers/myLocation';
 
-interface ILocation {
-  latitude: number;
-  longitude: number;
-}
-
-export const useGeoLocation = (options = {}) => {
-  const [location, setLocation] = useState<ILocation>();
+export const useGeoLocation = () => {
+  const dispatch = useDispatch();
   const [error, setError] = useState('');
 
   const handleSuccess = (pos: GeolocationPosition) => {
     const { latitude, longitude } = pos.coords;
 
-    setLocation({
-      latitude,
-      longitude,
-    });
+    dispatch(
+      myLocationStatus({
+        mylocationX: longitude,
+        mylocationY: latitude,
+      }),
+    );
   };
 
   const handleError = (err: GeolocationPositionError) => {
-    setLocation({
-      latitude: 37.7131914882111,
-      longitude: 126.75993318746,
-    });
+    dispatch(
+      myLocationStatus({
+        mylocationX: 126.75993318746,
+        mylocationY: 37.7131914882111,
+      }),
+    );
+
     setError(err.message);
   };
 
@@ -32,12 +34,15 @@ export const useGeoLocation = (options = {}) => {
 
     if (!geolocation) {
       setError('기본 데이터로 실행 됩니다.');
-
       return;
     }
 
-    geolocation.getCurrentPosition(handleSuccess, handleError, options);
+    geolocation.getCurrentPosition(handleSuccess, handleError, {
+      enableHighAccuracy: false, // 정확한 위치 가져올지
+      timeout: 10 * 1000, // 위치 정보 얻을 때까지 기다릴 시간을 밀리초 단위로 지정
+      maximumAge: 1000 * 3600 * 24, // 캐시된 위치 정보의 유효 시간을 밀리초로 지정하고, default 값은 0입니다.;
+    });
   }, []);
 
-  return { location, error };
+  return { error };
 };

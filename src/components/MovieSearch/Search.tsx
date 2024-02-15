@@ -6,7 +6,9 @@ import { movieSearchGet } from '../../api/api';
 import { useNavigate } from 'react-router-dom';
 import DistancePotal from './Modal/DistancePotal';
 import DistanceModal from './Modal/DistanceModal';
-import { useGeoLocation } from '../../hooks/useGeoLocation';
+
+import { useSelector } from 'react-redux';
+import { ReduxType } from '../../store/store';
 
 interface TextProps {
   text?: string;
@@ -22,16 +24,9 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
 
   const navigate = useNavigate();
 
-  // 내 위치 가져오기 - 옵션
-  const geolocationOptions = {
-    enableHighAccuracy: true, // 정확한 위치 가져올지
-    timeout: 10 * 1000, // 위치 정보 얻을 때까지 기다릴 시간을 밀리초 단위로 지정
-    maximumAge: 1000 * 3600 * 24, // 캐시된 위치 정보의 유효 시간을 밀리초로 지정하고, default 값은 0입니다.
-  };
-
   // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
-  const { location, error } = useGeoLocation(geolocationOptions);
-  console.log('location:', location);
+  const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
+  console.log(mylocationX);
 
   // 검색 버튼 이벤트 핸들러
   const buttonClickHandler = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,7 +38,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
       setKeyword(movieName);
     } else {
       if (movieName !== '') {
-        const data = await movieSearchGet(location.latitude, location.longitude, movieName, dt);
+        const data = await movieSearchGet(mylocationY, mylocationX, movieName, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');
@@ -51,9 +46,6 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
         }
         // navigate에서 state로 데이터 연결 가능! => cinemalist페이지에선 useLocation으로 state값을 불러올 수 있다.
         navigate('/cinemalist', { state: [data.data, dt] });
-
-        // 전역 변수로 저장 => 영화 이름으로 검색후 리스트 페이지에서 사용
-        // dispatch(setCinemaNameStatus(data.data));
       }
     }
     setMovieTitle('');
@@ -64,7 +56,7 @@ const Search = ({ text, setKeyword, clickMovieName }: TextProps) => {
     setMovieTitle(clickMovieName);
     const carouselClickHandler = async () => {
       if (movieTitle !== undefined && movieTitle !== '') {
-        const data = await movieSearchGet(location.latitude, location.longitude, movieTitle, dt);
+        const data = await movieSearchGet(mylocationY, mylocationX, movieTitle, dt);
 
         if (data.data.length === 0) {
           navigate('/nomovie');

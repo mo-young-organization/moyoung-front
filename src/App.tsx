@@ -5,17 +5,23 @@ import GlobalStyles from './style/GlobalStyle';
 import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import store from './store/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
 function App() {
+  const persistor = persistStore(store);
+
   return (
     <Wrapper>
       <Provider store={store}>
-        <CookiesProvider>
-          <BrowserRouter>
-            <GlobalStyles />
-            <RoutingPage />
-          </BrowserRouter>
-        </CookiesProvider>
+        <PersistGate loading={null} persistor={persistor}>
+          <CookiesProvider>
+            <BrowserRouter>
+              <GlobalStyles />
+              <RoutingPage />
+            </BrowserRouter>
+          </CookiesProvider>
+        </PersistGate>
       </Provider>
     </Wrapper>
   );

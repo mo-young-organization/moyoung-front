@@ -7,6 +7,8 @@ import CinemaModal from './Modal/CinemaModal';
 import { useState } from 'react';
 import { movieSearchGet } from '../../../api/api';
 import Ticket from './PostTicket';
+import { useSelector } from 'react-redux';
+import { ReduxType } from '../../../store/store';
 
 const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: PropsCreatePost) => {
   // 모달
@@ -20,6 +22,9 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
   // 유저가 선택한 영화관 정보
   const [cinemaPickData, setCinemaPickData] = useState([]);
 
+  // 주소 (위도,경도F)
+  const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
+
   // 엔터 입력 시 전송되도록
   const pressEnterKey = async (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.shiftKey && e.key === 'Enter') {
@@ -29,7 +34,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
       const cinemaName = watch('cinema');
       if (cinemaName.length !== 0) {
         setMovieName(cinemaName);
-        const data = await movieSearchGet(cinemaName, 3000);
+        const data = await movieSearchGet(mylocationY, mylocationX, cinemaName, 3000);
         setData(data);
         setModalOn(!modalOn);
       } else {
@@ -43,7 +48,7 @@ const PostCinema = ({ register, watch, runningTimeData, setRunningTimeData }: Pr
     const cinemaName = watch('cinema');
     if (cinemaName.length !== 0) {
       setMovieName(cinemaName);
-      const data = await movieSearchGet(cinemaName, 3000);
+      const data = await movieSearchGet(mylocationY, mylocationX, cinemaName, 3000);
       setData(data);
       setModalOn(!modalOn);
     } else {

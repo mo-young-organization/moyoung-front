@@ -4,19 +4,25 @@ import kakaoicon from '../../assets/img/kakaoicon.png';
 import { styled } from 'styled-components';
 
 const Oauth = () => {
+  const kakaoOauth = () => {
+    window.location.assign(`${import.meta.env.VITE_BASE_API}oauth2/authorization/kakao`);
+  };
+  const naverOauth = () => {
+    window.location.assign(`${import.meta.env.VITE_BASE_API}oauth2/authorization/naver`);
+  };
   const googleOauth = () => {
     window.location.assign(`${import.meta.env.VITE_BASE_API}oauth2/authorization/google`);
   };
 
   return (
     <Container>
-      <OauthButton className="kakao-div">
+      <OauthButton className="kakao-div" onClick={kakaoOauth}>
         <Content>
           <img className="kakao" src={kakaoicon} />
           <div className="kakao_start">카카오로 시작하기</div>
         </Content>
       </OauthButton>
-      <OauthButton className="naver-div">
+      <OauthButton className="naver-div" onClick={naverOauth}>
         <Content>
           <img src={navericon} />
           <div className="naver_start">네이버로 시작하기</div>

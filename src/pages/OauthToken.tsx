@@ -20,8 +20,8 @@ const OauthToken = () => {
 
   useEffect(() => {
     // 토큰은 쿠키에 저장
-    setCookie('token', token, { path: '/', expires: new Date(accessTokenExpiration) });
-    setCookie('refreshToken', refreshToken, { path: '/', expires: new Date(refreshTokenExpiration) });
+    setCookie('token', token, { path: '/', expires: new Date(accessTokenExpiration), httpOnly: true });
+    setCookie('refreshToken', refreshToken, { path: '/', expires: new Date(refreshTokenExpiration), httpOnly: true });
     // 세션스토리지에 저장(일시적임 창을 닫으면 없어진다.)
     window.sessionStorage.setItem('memberId', memberId);
     window.sessionStorage.setItem('age', age[0]);

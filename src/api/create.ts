@@ -30,10 +30,12 @@ instance.interceptors.request.use(
 let isTokenRefreshing = false;
 const refreshSubscribers = [];
 
+// 받은 토큰을 통해 각각 콜백함수를 실행
 const onTokenRefreshed = accessToken => {
   refreshSubscribers.map(callback => callback(accessToken));
 };
 
+// callback 함수를 인자로 받음
 const addRefreshSubscriber = callback => {
   refreshSubscribers.push(callback);
 };
@@ -80,7 +82,7 @@ instance.interceptors.response.use(
       }
       // token이 재발급 되는 동안의 요청은 refreshSubscribers에 저장
       const retryOriginalRequest = new Promise(resolve => {
-        // 여기서 매개변수로 넘겨주는 accessToken은 어디서 받아오는 값이지?
+        // 토큰을 받아오는 함수를 전달
         addRefreshSubscriber(newAccessToken => {
           originalRequest.headers.Authorization = newAccessToken;
           resolve(axios(originalRequest));

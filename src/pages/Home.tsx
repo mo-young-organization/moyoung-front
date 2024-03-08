@@ -22,7 +22,6 @@ const Home = () => {
   }, [error]);
 
   const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
-  console.log('이렇게 하는 거네:', mylocationX, mylocationY);
 
   return (
     <Container>

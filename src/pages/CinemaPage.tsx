@@ -25,7 +25,6 @@ const CinemaPage = () => {
   const params = useParams();
   // 가로: 위도-latitude-Y값 , 세로: 경도-longitude-X값
   const { mylocationX, mylocationY } = useSelector((state: ReduxType) => state.myLocation.location.value);
-  console.log('cinemaPage: ', mylocationX, mylocationY);
   const [dt, setDt] = useState(params.dt);
 
   const movieId = params.cinemaId;

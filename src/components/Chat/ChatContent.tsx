@@ -123,7 +123,7 @@ const ChatContent = (props: Props) => {
   };
 
   const sendHandler = () => {
-    console.log('sendHandler on progress');
+    console.log('sendHandler on progress!');
     client.current!.send(
       // api address
       '',

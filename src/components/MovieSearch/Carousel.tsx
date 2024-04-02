@@ -11,12 +11,12 @@ type ImgProps = {
   $slideIndex?: number;
 };
 
-const Carousel = ({ topFiveData, setClickMovieName }) => {
+const Carousel = ({ carouselTotalData, setClickMovieName }) => {
   // 캐러셀 필요한 useState들
   // 현재 인덱스 확인하기 => 박스 한개에 나는 5개가 들어가니깐 한칸씩 움직인다고 했을때면 10 - 5
   const [slideIndex, setSlideIndex] = useState(0);
   // 인덱스가 몇개까지 일지 => 이걸로 마지막 판별 => 10 - 5 값인 5를 초깃값으로 설정
-  const [totalIndex, setTotalIndex] = useState(5);
+  const [totalIndex, setTotalIndex] = useState(0);
   // 마우스 오버,아웃 판단 스태이트 => 마우스 오버시 캐러셀 멈추기 아웃시 다시 실행
   const [carouselRunning, setCarouselRunning] = useState(true);
 
@@ -25,13 +25,13 @@ const Carousel = ({ topFiveData, setClickMovieName }) => {
   // 크기별로 토탈 인덱스 변경
   useEffect(() => {
     if (windowWidth > 1024) {
-      setTotalIndex(10 - 5);
+      setTotalIndex(15 - 5);
     }
     if (windowWidth < 1024 && windowWidth > 768) {
-      setTotalIndex(10 - 3);
+      setTotalIndex(15 - 3);
     }
     if (windowWidth < 767 && windowWidth > 360) {
-      setTotalIndex(10 - 2);
+      setTotalIndex(15 - 2);
     }
   }, [windowWidth]);
 
@@ -69,8 +69,8 @@ const Carousel = ({ topFiveData, setClickMovieName }) => {
         </button>
       </ButtonDiv>
       <ContentCarousel>
-        {topFiveData?.ranks.map((el, idx) => (
-          <Slide key={el.rank} $slideIndex={slideIndex}>
+        {carouselTotalData.map((el, idx) => (
+          <Slide key={idx} $slideIndex={slideIndex}>
             <MovieBox
               $img={el.thumbnailUrl}
               onClick={() => {
@@ -110,7 +110,7 @@ const ContentCarousel = styled.ul`
 const Slide = styled.li<ImgProps>`
   /* 위치 이동 && 애니메이션 */
   transform: translateX(-${props => props.$slideIndex * 100}%);
-  transition: all 0.5s ease-in-out;
+  transition: ${props => (props.$slideIndex !== 0 ? 'all 0.5s ease-in-out' : '')};
 `;
 
 const MovieBox = styled.div<ImgProps>`

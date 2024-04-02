@@ -11,17 +11,20 @@ type Props = {
   setClickMovieName?: Dispatch<SetStateAction<string>>;
 };
 
-export type TMovieTopFive = {
+interface RanksDataProps {
+  rank: string;
+  name: string;
+  thumbnailUrl: string;
+}
+
+export interface TMovieTopFive {
   date: string;
-  ranks: {
-    rank: string;
-    name: string;
-    thumbnailUrl: string;
-  }[];
-};
+  ranks: RanksDataProps[];
+}
 
 const MovieTopFive = ({ classname, text, setClickMovieName }: Props) => {
   const [topFiveData, setTopFiveData] = useState<TMovieTopFive | null>(null);
+  const [carouselTotalData, setCarouselTotalData] = useState<RanksDataProps[] | null>(null);
 
   // api요청
   useEffect(() => {
@@ -29,6 +32,12 @@ const MovieTopFive = ({ classname, text, setClickMovieName }: Props) => {
       if (!topFiveData) {
         const rankedMovies = await getMovieTopFive();
         setTopFiveData(rankedMovies);
+
+        // const frontCopy = rankedMovies.ranks.slice(5, 11);
+        const backCopy = rankedMovies.ranks.slice(0, 5);
+        // const carouselTotalData = [...frontCopy, ...rankedMovies.ranks, ...backCopy];
+        const carouselTotalData = [...rankedMovies.ranks, ...backCopy];
+        setCarouselTotalData(carouselTotalData);
       }
     };
 
@@ -40,7 +49,7 @@ const MovieTopFive = ({ classname, text, setClickMovieName }: Props) => {
       <Title className={classname}>
         <span className="top5">{`${text ? text : 'Top ' + topFiveData?.ranks.length}`}</span>
       </Title>
-      <Carousel topFiveData={topFiveData} setClickMovieName={setClickMovieName} />
+      {carouselTotalData && <Carousel carouselTotalData={carouselTotalData} setClickMovieName={setClickMovieName} />}
     </Container>
   );
 };

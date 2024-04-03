@@ -14,9 +14,9 @@ type ImgProps = {
 const Carousel = ({ carouselTotalData, setClickMovieName }) => {
   // 캐러셀 필요한 useState들
   // 현재 인덱스 확인하기 => 박스 한개에 나는 5개가 들어가니깐 한칸씩 움직인다고 했을때면 10 - 5
-  const [slideIndex, setSlideIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(10);
   // 인덱스가 몇개까지 일지 => 이걸로 마지막 판별 => 10 - 5 값인 5를 초깃값으로 설정
-  const [totalIndex, setTotalIndex] = useState(0);
+  const [totalIndex, setTotalIndex] = useState(10);
   // 마우스 오버,아웃 판단 스태이트 => 마우스 오버시 캐러셀 멈추기 아웃시 다시 실행
   const [carouselRunning, setCarouselRunning] = useState(true);
 
@@ -39,6 +39,8 @@ const Carousel = ({ carouselTotalData, setClickMovieName }) => {
   const prevSlide = () => {
     if (slideIndex !== 0) {
       setSlideIndex(slideIndex - 1);
+    } else {
+      setSlideIndex(10);
     }
   };
 
@@ -46,6 +48,8 @@ const Carousel = ({ carouselTotalData, setClickMovieName }) => {
   const nextSlide = () => {
     if (totalIndex !== slideIndex) {
       setSlideIndex(slideIndex + 1);
+    } else {
+      setSlideIndex(0);
     }
   };
 
@@ -58,7 +62,7 @@ const Carousel = ({ carouselTotalData, setClickMovieName }) => {
         setSlideIndex(slideIndex + 1);
       }
     },
-    carouselRunning ? 2000 : null,
+    carouselRunning ? slideIndex === 0 ? 200 : 2000 : null,
   );
 
   return (
@@ -110,7 +114,9 @@ const ContentCarousel = styled.ul`
 const Slide = styled.li<ImgProps>`
   /* 위치 이동 && 애니메이션 */
   transform: translateX(-${props => props.$slideIndex * 100}%);
-  transition: ${props => (props.$slideIndex !== 0 ? 'all 0.5s ease-in-out' : '')};
+  /* 슬라이드가 */
+  transition: ${props =>
+    props.$slideIndex === 0 ? '' : 'all 0.5s ease-in-out'};
 `;
 
 const MovieBox = styled.div<ImgProps>`

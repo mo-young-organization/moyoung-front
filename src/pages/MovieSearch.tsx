@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+
 import { styled } from 'styled-components';
+
 import Search from '../components/MovieSearch/Search';
 import MovieTopFive from '../components/MovieSearch/MovieTopFive';
-import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
 import { navbarColorStatus } from '../store/reducers/navbarColor';
 
 const MovieSearch = () => {
